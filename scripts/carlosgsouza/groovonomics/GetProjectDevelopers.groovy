@@ -3,7 +3,7 @@ import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 import groovyx.net.http.RESTClient
 
-def authHeader = ["Authorization":"Basic Y2FybG9zZ3NvdXphOmdpUjE3Jl9i"]
+def authHeader = ["Authorization":"Basic "]
 def gitHubClient = new RESTClient("https://api.github.com/")
 
 def repositories = new JsonSlurper().parseText(new File("/Users/carlosgsouza/groovonomics/data/repositories.json").text)

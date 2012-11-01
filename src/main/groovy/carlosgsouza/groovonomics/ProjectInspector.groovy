@@ -2,7 +2,7 @@ package carlosgsouza.groovonomics
 
 import groovy.io.FileType;
 
-class ProjectInspector {
+public class ProjectInspector {
 	
 	def projectFolder
 	def result
@@ -17,9 +17,12 @@ class ProjectInspector {
 		projectFolder.eachFileRecurse(FileType.FILES) { 
 			if(it.name.endsWith(".groovy")) {
 				try {
+					println "Parsing $it.absolutePath"
 					def astInspector = new ASTInspector(it.absolutePath)
 					addToResult astInspector.getTypeSystemUsageData()
-				} catch(Throwable e) {}
+				} catch(Throwable e) {
+					println "WARNING: Impossible to parse $it.absolutePath"
+				}
 			}
 		}
 		

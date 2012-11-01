@@ -1,5 +1,6 @@
+package carlosgsouza.groovonomics
+
 import spock.lang.Specification
-import carlosgsouza.groovonomics.*
 
 class ASTInspectorSpec extends Specification {
 
