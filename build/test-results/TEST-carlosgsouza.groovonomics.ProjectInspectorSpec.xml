@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite errors="0" failures="0" hostname="olga.local" name="carlosgsouza.groovonomics.ProjectInspectorSpec" tests="1" time="0.096" timestamp="2012-10-29T01:30:03">
+<testsuite errors="0" failures="1" hostname="olga.local" name="carlosgsouza.groovonomics.ProjectInspectorSpec" tests="1" time="1.358" timestamp="2012-12-07T01:21:24">
   <properties />
-  <testcase classname="carlosgsouza.groovonomics.ProjectInspectorSpec" name="parsing all classes of a project" time="0.07" />
-  <system-out><![CDATA[Parsing /Users/carlosgsouza/Dropbox/UFMG/Mestrado/mes/groovonomics/src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/a_folder/AClass.groovy
-Parsing /Users/carlosgsouza/Dropbox/UFMG/Mestrado/mes/groovonomics/src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/AClass.groovy
-Parsing /Users/carlosgsouza/Dropbox/UFMG/Mestrado/mes/groovonomics/src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/AnotherClass.groovy
+  <testcase classname="carlosgsouza.groovonomics.ProjectInspectorSpec" name="parsing all classes of a project" time="1.12">
+    <failure message="Condition not satisfied:&#xa;&#xa;data[&quot;fields&quot;][&quot;s&quot;] == 3&#xa;|   |         |     |&#xa;|   |         0     false&#xa;|   [s:0, d:0]&#xa;[fields:[s:0, d:0], methods:[s:0, d:0]]&#xa;" type="org.spockframework.runtime.SpockComparisonFailure">Condition not satisfied:
+
+data[&quot;fields&quot;][&quot;s&quot;] == 3
+|   |         |     |
+|   |         0     false
+|   [s:0, d:0]
+[fields:[s:0, d:0], methods:[s:0, d:0]]
+
+	at carlosgsouza.groovonomics.ProjectInspectorSpec.parsing all classes of a project(ProjectInspectorSpec.groovy:16)
+</failure>
+  </testcase>
+  <system-out><![CDATA[Parsing /Users/carlosgsouza/Dropbox/UFMG/Mestrado/mes/groovonomics/src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/a_folder/AClass0.groovy
+WARNING: Impossible to parse /Users/carlosgsouza/Dropbox/UFMG/Mestrado/mes/groovonomics/src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/a_folder/AClass0.groovy
+Parsing /Users/carlosgsouza/Dropbox/UFMG/Mestrado/mes/groovonomics/src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/AClass1.groovy
+WARNING: Impossible to parse /Users/carlosgsouza/Dropbox/UFMG/Mestrado/mes/groovonomics/src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/AClass1.groovy
+Parsing /Users/carlosgsouza/Dropbox/UFMG/Mestrado/mes/groovonomics/src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/AnotherClass1.groovy
+WARNING: Impossible to parse /Users/carlosgsouza/Dropbox/UFMG/Mestrado/mes/groovonomics/src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/AnotherClass1.groovy
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

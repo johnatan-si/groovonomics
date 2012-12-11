@@ -14,7 +14,7 @@ dataFolder.eachFile { projectDataFile ->
 	def projectData = new JsonSlurper().parseText(projectDataFile.text)
 	
 	def bucket = 0
-	def maxSize = 50
+	def maxSize = 200
 	
 	def projectSize = sizeJson[id].lines
 
@@ -38,9 +38,9 @@ dataFolder.eachFile { projectDataFile ->
 //	println id
 }
 
-def size = 50
+def size = 200
 result.size().times {
-	println size + "\t" + result[it]/resultsCount[it]
+	println "$size" + "\t" + result[it]/resultsCount[it]
 	size *=2
 }
 //def outputFolder = new File(dataFolder, "size")

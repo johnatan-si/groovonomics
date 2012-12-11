@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="1" hostname="olga.local" name="carlosgsouza.groovonomics.DecalarationDataBuilderSpec" tests="1" time="0.273" timestamp="2012-12-07T01:21:24">
+  <properties />
+  <testcase classname="carlosgsouza.groovonomics.DecalarationDataBuilderSpec" name="DeclarationData objects should be built using a sexy syntax" time="0.132">
+    <failure message="java.lang.RuntimeException: Failed to create component for &apos;call&apos; reason: java.lang.RuntimeException: java.lang.ClassNotFoundException: Call" type="java.lang.RuntimeException">java.lang.RuntimeException: Failed to create component for &apos;call&apos; reason: java.lang.RuntimeException: java.lang.ClassNotFoundException: Call
+	at groovy.util.FactoryBuilderSupport.createNode(FactoryBuilderSupport.java:719)
+	at groovy.util.FactoryBuilderSupport.dispathNodeCall(FactoryBuilderSupport.java:847)
+	at groovy.util.FactoryBuilderSupport.doInvokeMethod(FactoryBuilderSupport.java:779)
+	at groovy.util.FactoryBuilderSupport.invokeMethod(FactoryBuilderSupport.java:499)
+	at carlosgsouza.groovonomics.DecalarationDataBuilderSpec.DeclarationData objects should be built using a sexy syntax(DecalarationDataBuilderSpec.groovy:12)
+Caused by: java.lang.RuntimeException: java.lang.ClassNotFoundException: Call
+	at groovy.util.ObjectGraphBuilder$ObjectFactory.resolveClass(ObjectGraphBuilder.java:653)
+	at groovy.util.ObjectGraphBuilder$ObjectFactory.newInstance(ObjectGraphBuilder.java:626)
+	at groovy.util.FactoryBuilderSupport.createNode(FactoryBuilderSupport.java:709)
+	... 4 more
+Caused by: java.lang.ClassNotFoundException: Call
+	... 7 more
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
