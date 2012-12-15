@@ -1,9 +1,8 @@
 package carlosgsouza.groovonomics
 
+import groovy.json.JsonBuilder
+
 class ClassData {
-	String name = ""
-	String path = ""
-	boolean isScript = false
 	DeclarationCount publicMethodReturn = new DeclarationCount()
 	DeclarationCount privateMethodReturn = new DeclarationCount()
 	DeclarationCount protectedMethodReturn = new DeclarationCount()
@@ -23,7 +22,57 @@ class ClassData {
 	DeclarationCount pureTypeSystemPrivateConstructors = new DeclarationCount()
 	DeclarationCount pureTypeSystemProtectedConstructors = new DeclarationCount()
 	DeclarationCount localVariable = new DeclarationCount()
+	
 	int numberOfPublicConstructors = 0
 	int numberOfPrivateConstructors = 0
 	int numberOfProtectedConstructors = 0
+	
+	String className = ""
+	String location = ""
+	Boolean isScript = false
+	
+	def plus(other) {
+		def result = new ClassData() 
+		                                                                                        
+		result.publicMethodReturn = this.publicMethodReturn + other.publicMethodReturn                         
+		result.privateMethodReturn = this.privateMethodReturn + other.privateMethodReturn                   
+		result.protectedMethodReturn = this.protectedMethodReturn + other.protectedMethodReturn                     
+		result.publicField = this.publicField + other.publicField                               
+		result.privateField = this.privateField + other.privateField                              
+		result.protectedField = this.protectedField + other.protectedField                            
+		result.publicMethodParameter = this.publicMethodParameter + other.publicMethodParameter                     
+		result.privateMethodParameter = this.privateMethodParameter + other.privateMethodParameter                    
+		result.protectedMethodParameter = this.protectedMethodParameter + other.protectedMethodParameter                  
+		result.pureTypeSystemPublicMethods = this.pureTypeSystemPublicMethods + other.pureTypeSystemPublicMethods               
+		result.pureTypeSystemPrivateMethods = this.pureTypeSystemPrivateMethods + other.pureTypeSystemPrivateMethods              
+		result.pureTypeSystemProtectedMethods = this.pureTypeSystemProtectedMethods + other.pureTypeSystemProtectedMethods            
+		result.publicConstructorParameter = this.publicConstructorParameter + other.publicConstructorParameter                
+		result.privateConstructorParameter = this.privateConstructorParameter + other.privateConstructorParameter               
+		result.protectedConstructorParameter = this.protectedConstructorParameter + other.protectedConstructorParameter             
+		result.pureTypeSystemPublicConstructors = this.pureTypeSystemPublicConstructors + other.pureTypeSystemPublicConstructors          
+		result.pureTypeSystemPrivateConstructors = this.pureTypeSystemPrivateConstructors + other.pureTypeSystemPrivateConstructors         
+		result.pureTypeSystemProtectedConstructors = this.pureTypeSystemProtectedConstructors + other.pureTypeSystemProtectedConstructors       
+		result.localVariable = this.localVariable + other.localVariable                             
+		
+		result.numberOfPublicConstructors = this.numberOfPublicConstructors + other.numberOfPublicConstructors 
+		result.numberOfPrivateConstructors = this.numberOfPrivateConstructors + other.numberOfPrivateConstructors
+		result.numberOfProtectedConstructors = this.numberOfProtectedConstructors + other.numberOfProtectedConstructors
+		
+		String className = ""
+		String location = ""
+		Boolean isScript = false
+		
+		result
+	}
+	
+	@Override
+	String toString() {
+		new JsonBuilder(this).toPrettyString()
+	}
+	
+//	ClassData(classDataJson) {
+//		className = classDataJson.className
+//		location = classDataJson.location
+//		isScript = classDataJson.isScript
+//	}
 }

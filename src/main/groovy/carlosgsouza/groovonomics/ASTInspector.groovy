@@ -18,12 +18,18 @@ class ASTInspector {
 	def sourceFile
 	def classData
 
-	public ASTInspector(sourceFile) {
-		this.sourceFile = sourceFile
+	public ASTInspector(sourceFilePath) {
+		this.sourceFile = new File(sourceFilePath)
 		this.classData = new ClassData()
+		
+		classData.location = sourceFilePath
 	}
 
 	def getFieldsTypeSystemUsageData(fieldNode) {		
+		if(fieldNode.isSynthetic()) {
+			return
+		}
+		
 		def access = getConfuseAccessModifier(fieldNode)
 		
 		def fieldData = null
@@ -44,6 +50,10 @@ class ASTInspector {
 	
 
 	def getMethodsTypeSystemUsageData(methodNode) {
+		if(methodNode.isSynthetic()) {
+			return
+		}
+		
 		def access = getSimpleAccessModifier(methodNode)
 		
 		def methodReturnData = null
@@ -63,11 +73,13 @@ class ASTInspector {
 		}
 		
 		getMethodParametersTypeSystemUsageData(methodNode, access)
-		
-		methodNode.visit(localVariableVistor)
 	}
 
 	def getConstructorsTypeSystemUsageData(constructorNode) {		
+		if(constructorNode.isSynthetic()) {
+			return
+		}
+		
 		def access = getSimpleAccessModifier(constructorNode)
 		
 		def methodData = null
@@ -99,7 +111,7 @@ class ASTInspector {
 			methodDeclarationTypeCounter = classData.protectedMethodParameter
 			pureTypeMethodDeclarationTypeCounter = classData.pureTypeSystemProtectedMethods
 		} else {
-			// TODO log exception
+			println "WARNING: found method with no visibility information: $classData.location"
 		}
 		
 		methodDeclarationTypeCounter.s += staticTypeParameters 
@@ -114,6 +126,14 @@ class ASTInspector {
 			pureTypeMethodDeclarationTypeCounter.s++
 		}
 		
+	}
+	
+	def getLocalVariableTypeSystemUsageData(declarationExpression) {
+		if(declarationExpression.variableExpression.isDynamicTyped()) {
+			classData.localVariable.d++
+		} else {
+			classData.localVariable.s++
+		}
 	}
 
 	def getConstructorParametersTypeSystemUsageData(methodNode, access) {
@@ -133,7 +153,7 @@ class ASTInspector {
 			constructorDeclarationTypeCounter = classData.protectedConstructorParameter
 			pureTypeConstructorDeclarationTypeCounter = classData.pureTypeSystemProtectedConstructors
 		} else {
-			// TODO log exception
+			println "WARNING: found parameter with no visibility information: $classData.location"
 		}
 		
 		constructorDeclarationTypeCounter.s += staticTypeParameters
@@ -151,12 +171,15 @@ class ASTInspector {
 	}
 	
 	def getTypeSystemUsageData() {
-		def classCodeVisitor = new ClassCodeVisitor()
+		def declarationsVisitor = new DeclarationsVisitor()
 		
 		List<ASTNode> nodes = new AstBuilder().buildFromString(CompilePhase.CONVERSION, false, sourceFile.text)
 		def classNode = nodes.find { it.class == ClassNode.class }
 		
-		classCodeVisitor.visitClass(classNode)
+		declarationsVisitor.visitClass(classNode)
+		
+		classData.className = classNode.name
+		classData.isScript = classNode.isScript()
 		
 		classData
 	}
@@ -169,7 +192,7 @@ class ASTInspector {
 		} else if(!node.isPublic() && !node.isProtected()) {
 			AccessModifier.PRIVATE
 		} else {
-			// TODO log error
+			println "WARNING: found node with no visibility information: $node"
 		}
 	}
 	
@@ -181,7 +204,7 @@ class ASTInspector {
 		} else if(node.isPrivate()) {
 			AccessModifier.PRIVATE
 		} else {
-			// TODO log this
+			println "WARNING: found node with no visibility information: $node"
 		}
 	}
 	
@@ -193,34 +216,9 @@ class ASTInspector {
 		STATIC, DYNAMIC
 	}
 	
-	class LocalVariableDeclarationVisitor extends CodeVisitorSupport {
-
-		@Override
-		public void visitDeclarationExpression(DeclarationExpression expression) {
-			if(expression.variableExpression.isDynamicTyped()) {
-				counter.d++
-			} else {
-				counter.s++
-			}
-			
-			super.visitDeclarationExpression(expression)
-		}
+	class DeclarationsVisitor extends ClassCodeVisitorSupport {
 		
-		public void visitClosureExpression(ClosureExpression closureExpression) {
-			// once we get to a closure we don't get any local variable declaration anymore
-			return
-		}
-		
-		@Override
-		protected SourceUnit getSourceUnit() {
-			return null // should I do anything here?
-		}
-
-	}
-	
-	class ClassCodeVisitor extends ClassCodeVisitorSupport {
-		
-		public ClassCodeVisitor() {
+		public DeclarationsVisitor() {
 		}
 		
 		@Override
@@ -242,9 +240,21 @@ class ASTInspector {
 		}
 
 		@Override
+		public void visitDeclarationExpression(DeclarationExpression expression) {
+			getLocalVariableTypeSystemUsageData(expression)
+			super.visitDeclarationExpression(expression)
+		}
+		
+		@Override
+		public void visitClosureExpression(DeclarationExpression expression) {
+			super.visitClosureExpression(expression)
+		}
+		
+		@Override
 		protected SourceUnit getSourceUnit() {
 			return null // should I do anything here?
 		}
+		
 	}
 }
 

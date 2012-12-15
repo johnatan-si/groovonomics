@@ -6,7 +6,7 @@ class ASTInspectorSpec extends Specification {
 	
 	def "getting field declaration data"() {
 		given: "a class with fields"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithFieldsOnly.groovy")
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithFieldsOnly.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
@@ -23,7 +23,7 @@ class ASTInspectorSpec extends Specification {
 	
 	def "properties are considered private fields"() {
 		given: "a class with properties"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithPropertiesOnly.groovy")
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithPropertiesOnly.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
@@ -39,7 +39,7 @@ class ASTInspectorSpec extends Specification {
 	
 	def "getting method return declaration data"() {
 		given: "a class with methods"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsOnly.groovy")
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsOnly.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
@@ -56,7 +56,7 @@ class ASTInspectorSpec extends Specification {
 	
 	def "static method data is also retrieved"() {
 		given: "a class with STATIC methods"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithStaticMethodsOnly.groovy")
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithStaticMethodsOnly.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
@@ -73,7 +73,7 @@ class ASTInspectorSpec extends Specification {
 	
 	def "getting data for method parameters"() {
 		given: "a class with methods with parameters"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsWithParameters.groovy")
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsWithParameters.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
@@ -89,7 +89,7 @@ class ASTInspectorSpec extends Specification {
 	
 	def "void methods are considered statically typed"() {
 		given: "a class with void methods"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithVoidMethods.groovy")
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithVoidMethods.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
@@ -105,7 +105,7 @@ class ASTInspectorSpec extends Specification {
 	
 	def "getting data for constructor"() {
 		given: "a class with constructors"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithConstructors.groovy")
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithConstructors.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
@@ -148,7 +148,7 @@ class ASTInspectorSpec extends Specification {
 	
 	def "counting methods that use only static or only dynamic declarations"() {
 		given: "a class with methods that have only static or only dynamic declarations"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsWithOnlyOneTypeOfDeclaration.groovy")
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsWithOnlyOneTypeOfDeclaration.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
@@ -165,104 +165,72 @@ class ASTInspectorSpec extends Specification {
 	
 	def "counting local variable declarations of methods"() {
 		given: "a class with methods that have local variables"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsWithLocalVariables.groovy")
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsWithLocalVariables.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "you get the count of local variable declarations"
-		data.publicMethodLocal.s == 1
-		data.publicMethodLocal.d == 2
-		data.privateMethodLocal.s == 2
-		data.privateMethodLocal.d == 1
-		data.protectedMethodLocal.s == 3
-		data.protectedMethodLocal.d == 3	
+		data.localVariable.s == 1
+		data.localVariable.d == 2
 	}
 	
 	def "local variables inside blocks are also counted"() {
 		given: "a class with methods that have local variables declared inside blocks such as if, while and do-while"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsWithLocalVariablesInsideBlocks.groovy")
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsWithLocalVariablesInsideBlocks.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "you get the count of local variable declarations"
-		data.publicMethodLocal.s == 1
-		data.publicMethodLocal.d == 2
-		data.privateMethodLocal.s == 2
-		data.privateMethodLocal.d == 1
-		data.protectedMethodLocal.s == 3
-		data.protectedMethodLocal.d == 3	
+		data.localVariable.s == 1
+		data.localVariable.d == 2
 	}
 	
 	def "variables declared inside a for loop are also counted"() {
 		given: "a class with a variable declared inside a for loop"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsWithLocalVariablesInsideForLoop.groovy")
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsWithLocalVariablesInsideForLoop.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "you get the count of local variable declarations"
-		data.publicMethodLocal.s == 1
-		data.publicMethodLocal.d == 2
+		data.localVariable.s == 1
+		data.localVariable.d == 2
 	}
 	
-	def "counting parameters and locals of closures declared inside methods"() {
-		given: "a class with closures inside methods"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithClosuresInsideMethods.groovy")
+	def "variables declared inside closures are also counted"() {
+		given: "a class with a variable declared inside a for loop"
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsWithLocalVariablesInsideClosures.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
-		then: "you get the count of local variable and parameters declarations for closures"
-		data.closureParameter.s == 1
-		data.closureParameter.d == 2
-		data.closureLocal.s == 3
-		data.closureLocal.d == 4
+		then: "you get the count of local variable declarations"
+		data.localVariable.s == 1
+		data.localVariable.d == 2
 	}
 	
-	
-	
-	def "counting parameters and locals of closures declared inside other closures"() {
-		given: "a class with nested closures"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithClosuresInsideClosures.groovy")
+	def "closure parameters are NOT considered local variables"() {
+		given: "a class with a variable declared inside a for loop"
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithMethodsWithClosureParameters.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
-		then: "nested closures declarations are also counted"
-		data.closureParameter.s == 2
-		data.closureParameter.d == 3
-		data.closureLocal.s == 4
-		data.closureLocal.d == 5
+		then: "closure parameters are NOT considered local variables"
+		data.localVariable.s == 0
+		data.localVariable.d == 0
 	}
-	
-	
-	
-	def "counting parameters and locals of closures declared as fields"() {
-		given: "a class with closure fields"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithClosureFields.groovy")
-		
-		when: "you ask for the type system usage data"
-		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
-		
-		then: "nested closures declarations are also counted"
-		data.closureParameter.s == 2
-		data.closureParameter.d == 3
-		data.closureLocal.s == 4
-		data.closureLocal.d == 5
-	}
-	
-	
 	
 	def "closure, local, fields and parameter declarations don't interefere with each other"() {
 		given: "a class with closures, parameters, fields and local variables"
-		def sourceFile = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithClosuresParametersFieldsAndLocals.groovy")
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/ClassWithClosuresParametersFieldsAndLocals.groovy"
 		
 		when: "you ask for the type system usage data"
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
-		then: "nested closures declarations are also counted"
+		then: 
 		data.privateField.s == 1
 		data.privateField.d == 1
 		data.publicField.d == 1
@@ -279,25 +247,45 @@ class ASTInspectorSpec extends Specification {
 		data.privateMethodReturn.s == 0
 		
 		and:
-		data.publicMethodParameter.s == 1
-		data.publicMethodParameter.d == 2
-		data.privateMethodParameter.s == 0
-		data.privateMethodParameter.d == 0
-		data.protectedMethodParameter.s == 0
-		data.protectedMethodParameter.d == 0
+		data.localVariable.s == 9
+		data.localVariable.d == 2
+	}
+	
+	def "class metadata is stored"() {
+		given: "a class"
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/a/packagename/with/multiple/levels/Class.groovy"
 		
-		and:
-		data.publicMethodLocal.s == 3
-		data.publicMethodLocal.d == 1
-		data.privateMethodLocal.s == 0
-		data.privateMethodLocal.d == 0
-		data.protectedMethodLocal.s == 0
-		data.protectedMethodLocal.d == 0
+		when: "you ask for the type system usage data"
+		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
-		and:
-		data.closureParameter.s == 1
-		data.closureParameter.d == 2
-		data.closureLocal.s == 6
-		data.closureLocal.d == 1
+		then: "the path to the file"
+		data.location == sourceFile
+		
+		and: "you get the fully qualified name of the class"
+		data.className == "a.packagename.with.multiple.levels.Class"
+	}
+	
+	def "a class is not a script"() {
+		given: "a class"
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/a/packagename/with/multiple/levels/Class.groovy"
+		
+		when: "you ask for the type system usage data"
+		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
+		
+		then: "it is not a script"
+		data.isScript == false
+	}
+	
+	def "should be able to get data for a script"() {
+		given: "a class"
+		def sourceFile = "src/test/resources/carlosgsouza/groovonomics/projects_folder/0001/a_project/Script.groovy"
+		
+		when: "you ask for the type system usage data"
+		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
+		
+		then: "it is a script"
+		data.isScript == true
+		data.localVariable.s == 1
+		data.localVariable.d == 2
 	}
 }

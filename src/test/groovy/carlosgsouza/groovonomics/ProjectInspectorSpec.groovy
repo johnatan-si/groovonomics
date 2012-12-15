@@ -4,20 +4,17 @@ import spock.lang.Specification
 
 class ProjectInspectorSpec extends Specification {
 
-	def "parsing all classes of a project"() {
+	def "getTypeSystemUsageData should return a projectData object with data for all classes"() {
 		given:
 		def projectsFolder = new File("src/test/resources/carlosgsouza/groovonomics/projects_folder/0001")
 		def inspector = new ProjectInspector(projectsFolder)
 		
 		when:
-		def data = inspector.getTypeSystemUsageData()
+		def projectData = inspector.getTypeSystemUsageData()
 		
 		then:
-		data["fields"]["s"] == 3
-		data["fields"]["d"] == 6
-
-		and:
-		data["methods"]["s"] == 9
-		data["methods"]["d"] == 6
+		projectData.name == "a_project"
+		projectData.id == "0001"
+		projectData.classes.size() == 18
 	}
 }

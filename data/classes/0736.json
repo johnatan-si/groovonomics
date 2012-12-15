@@ -1,0 +1,846 @@
+{
+    "id": "0736",
+    "classes": [
+        {
+            "privateField": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "location": "/Users/carlosgsouza/projects/0736/PersistentHashMap/src/main/groovy/com/victorsavkin/grapes/conflict/ConflictResolver.groovy",
+            "localVariable": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "com.victorsavkin.grapes.conflict.ConflictResolver",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "s": 3
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 1,
+                "s": 4
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 2,
+                "s": 0
+            },
+            "location": "/Users/carlosgsouza/projects/0736/PersistentHashMap/src/main/groovy/com/victorsavkin/grapes/conflict/MergeConflictResolver.groovy",
+            "localVariable": {
+                "d": 1,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "com.victorsavkin.grapes.conflict.MergeConflictResolver",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "s": 3
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "location": "/Users/carlosgsouza/projects/0736/PersistentHashMap/src/main/groovy/com/victorsavkin/grapes/conflict/OverrideConflictResolver.groovy",
+            "localVariable": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "com.victorsavkin.grapes.conflict.OverrideConflictResolver",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "s": 3
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "location": "/Users/carlosgsouza/projects/0736/PersistentHashMap/src/main/groovy/com/victorsavkin/grapes/conflict/RejectConflictResolver.groovy",
+            "localVariable": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "com.victorsavkin.grapes.conflict.RejectConflictResolver",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "s": 3
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 1,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 1,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 1,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 2,
+                "s": 0
+            },
+            "location": "/Users/carlosgsouza/projects/0736/PersistentHashMap/src/main/groovy/com/victorsavkin/grapes/FileExt.groovy",
+            "localVariable": {
+                "d": 4,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "com.victorsavkin.grapes.FileExt",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "s": 3
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "s": 3
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "s": 4
+            },
+            "protectedField": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "location": "/Users/carlosgsouza/projects/0736/PersistentHashMap/src/main/groovy/com/victorsavkin/grapes/FileStoreEntry.groovy",
+            "localVariable": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "com.victorsavkin.grapes.FileStoreEntry",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedField": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 2,
+                "s": 2
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 1,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 1,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 5,
+                "s": 0
+            },
+            "location": "/Users/carlosgsouza/projects/0736/PersistentHashMap/src/main/groovy/com/victorsavkin/grapes/PersistentHashMap.groovy",
+            "localVariable": {
+                "d": 5,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "com.victorsavkin.grapes.PersistentHashMap",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "s": 4
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "s": 3
+            },
+            "protectedField": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "s": 2
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "location": "/Users/carlosgsouza/projects/0736/PersistentHashMap/src/main/groovy/com/victorsavkin/grapes/PersistentHashMapException.groovy",
+            "localVariable": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "com.victorsavkin.grapes.PersistentHashMapException",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedField": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "location": "/Users/carlosgsouza/projects/0736/PersistentHashMap/src/test/groovy/com/victorsavkin/grapes/conflict/MergeConflictResolverSpec.groovy",
+            "localVariable": {
+                "d": 14,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "com.victorsavkin.grapes.conflict.MergeConflictResolverSpec",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 7,
+                "s": 0
+            },
+            "protectedField": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "location": "/Users/carlosgsouza/projects/0736/PersistentHashMap/src/test/groovy/com/victorsavkin/grapes/PersistentHashMapSpec.groovy",
+            "localVariable": {
+                "d": 12,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "com.victorsavkin.grapes.PersistentHashMapSpec",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 9,
+                "s": 0
+            },
+            "protectedField": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        }
+    ],
+    "name": "PersistentHashMap"
+}
