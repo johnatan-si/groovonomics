@@ -1,8 +1,15 @@
 package carlosgsouza.groovonomics
 
+import groovy.json.JsonSlurper
+
 class ClassDataFactory {
 	
 	def declarationCountFactory = new DeclarationCountFactory()
+	
+	def fromJsonFile(jsonFile) {
+		def json = new JsonSlurper().parseText(jsonFile.text)
+		fromMap json
+	}
 	
 	def fromMap(map) {
 		def result = new ClassData()

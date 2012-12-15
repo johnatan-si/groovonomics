@@ -1,5 +1,7 @@
 package carlosgsouza.groovonomics
 
+import groovy.json.JsonBuilder
+
 class DeclarationCount {
 	int s
 	int d
@@ -11,5 +13,15 @@ class DeclarationCount {
 		result.d = d + dc2.d
 		
 		result
+	}
+	
+	
+	
+	def toJson() {
+		new JsonBuilder(this).toPrettyString()
+	}
+	
+	String toString() {
+		toJson()
 	}
 }
