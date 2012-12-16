@@ -15,7 +15,25 @@ class DeclarationCount {
 		result
 	}
 	
+	def getSRelative() {
+		if(total == 0) {
+			0
+		}
+		
+		s / (double)total
+	}
 	
+	def getDRelative() {
+		if(total == 0) {
+			0
+		}
+		
+		d / (double)total
+	}
+	
+	def getTotal() {
+		s + d
+	}
 	
 	def toJson() {
 		new JsonBuilder(this).toPrettyString()

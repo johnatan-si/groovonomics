@@ -12,7 +12,7 @@ class ProjectData {
 		classes.findAll(classFilter).each {
 			result += it
 		}
-		result.agregate()
+		result
 	}
 	
 	def agregate() {
@@ -20,19 +20,19 @@ class ProjectData {
 	}
 	
 	def agregateClasses() {
-		agregateClasses { it.isScript == false }
+		agregateClasses { it.isScript == false }.agregate()
 	}
 	
 	def agregateScripts() {
-		agregateClasses { it.isScript }
+		agregateClasses { it.isScript }.agregate()
 	}
 	
 	def agregateTestClasses() {
-		agregateClasses { it.isTestClass() }
+		agregateClasses { it.isTestClass() }.agregate()
 	}
 	
 	def agregateFunctionalClasses() {
-		agregateClasses { it.isTestClass() == false }
+		agregateClasses { it.isTestClass() == false }.agregate()
 	}
 	
 	def hasTests() {

@@ -6,14 +6,14 @@ import groovy.json.JsonSlurper
 
 public class ProjectDataAgregator {
 	
-	def classDataFolder = new File("/Users/carlosgsouza/Dropbox/UFMG/Mestrado/mes/groovonomics/data/some_classes")
+	def classDataFolder = new File("/Users/carlosgsouza/Dropbox/UFMG/Mestrado/mes/groovonomics/data/classes")
 	def outputFolder = new File("/Users/carlosgsouza/Dropbox/UFMG/Mestrado/mes/groovonomics/data/class_agregate")
 	def sizeOfProjects = new JsonSlurper().parseText(new File("/Users/carlosgsouza/Dropbox/UFMG/Mestrado/mes/groovonomics/data/size/size.json").text)
 	
 	def projectDataFactory = new ProjectDataFactory()
 	
-	def agreageteThemAll() {
-		def datasetAgreagete = new ClassData()
+	def agregeteThemAll() {
+		def datasetagregete = new ClassData()
 		
 		def allProjectsAgregate = new ClassData()
 		classDataFolder.eachFile { projectDataFile ->
@@ -27,38 +27,50 @@ public class ProjectDataAgregator {
 		new File(outputFolder, "all.json") << allProjectsAgregate
 	}
 	
-	def agreageteBySize() {
-		def datasetAgreagete = new ClassData()
+	def agregeteBySize() {
+		def datasetagregete = new ClassData()
 		
 		def agregateBuckets = []
 		12.times {
-			agregateBuckets.add new AgregateProjectData()
-			agregateBuckets.id = it
+			def apd = new AgregateProjectData()
+			apd.id = it
+			
+			agregateBuckets.add apd
 		}
 		
 		classDataFolder.eachFile { projectDataFile ->
 			def projectData = projectDataFactory.fromJsonFile(projectDataFile)
 			def size = getSizeOfProject(projectData)
 			
-			def projectAgregate = projectData.agregate()
-			def bucketIndex = getBucketForSize(size)
-			
-			agregateBuckets[bucketIndex].data += projectAgregate
+			if(size > 0) {
+				def projectAgregate = projectData.agregate()
+				def bucketIndex = getBucketForSize(size)
+				
+				agregateBuckets[bucketIndex].data += projectAgregate
+			}
 		}
 		
 		new File(outputFolder, "agregate_by_size.json") << agregateBuckets
 	}
 	
 	def getBucketForSize(size) {
+		def index = 0
+		def i = size/50.0
 		
+		while(i > 1) {
+			i /= 2
+			index++
+		}
+		
+		index
 	}
 	
-	def getSizeOfProject(projectDataFile) {
-		
+	def getSizeOfProject(projectData) {
+		sizeOfProjects[projectData.id].lines
 	}
 	
-	def agreageteScriptsAndClasses() {
-		def datasetAgreagete = new ClassData()
+	def agregeteScriptsAndClasses() {
+		def datasetagregete = new ClassData()
 		
 		def allScriptsAgregate = new DeclarationCount()
 		def allClassesAgregate = new DeclarationCount()
@@ -75,8 +87,8 @@ public class ProjectDataAgregator {
 		new File(outputFolder, "classes.json") << allClassesAgregate
 	}
 	
-	def agreageteTestAndFuncionalClasses() {
-		def datasetAgreagete = new ClassData()
+	def agregeteTestAndFuncionalClasses() {
+		def datasetagregete = new ClassData()
 		
 		def allTestAgregate = new DeclarationCount()
 		def allFunctionalAgregate = new DeclarationCount()
@@ -118,6 +130,11 @@ public class ProjectDataAgregator {
 	}
 	
 	public static void main(String[] args) {
-		new ProjectDataAgregator().agreageteTestAndFuncionalClasses()
+		def agregator = new ProjectDataAgregator()
+		agregator.agregeteThemAll()
+		agregator.agregateOverall()
+		agregator.agregeteScriptsAndClasses()
+		agregator.agregeteTestAndFuncionalClasses()
+		agregator.agregeteBySize()
 	}
 }
