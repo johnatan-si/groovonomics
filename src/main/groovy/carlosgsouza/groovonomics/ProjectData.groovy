@@ -15,6 +15,22 @@ class ProjectData {
 		result
 	}
 	
+	def agregateClasses() {
+		def result = new ClassData()
+		classes.findAll { it.isScript == false }.each {
+			result += it
+		}
+		result.agregate()
+	}
+	
+	def agregateScripts() {
+		def result = new ClassData()
+		classes.findAll { it.isScript }.each {
+			result += it
+		}
+		result.agregate()
+	}
+	
 	def toJson() {
 		new JsonBuilder(this).toPrettyString()
 	}

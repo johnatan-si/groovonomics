@@ -26,6 +26,24 @@ public class ProjectDataAgregator {
 		new File(outputFolder, "all.json") << allProjectsAgregate
 	}
 	
+	def agreageteScriptsAndClasses() {
+		def datasetAgreagete = new ClassData()
+		
+		def allScriptsAgregate = new DeclarationCount()
+		def allClassesAgregate = new DeclarationCount()
+			
+		classDataFolder.eachFile { projectDataFile ->
+			def projectData = projectDataFactory.fromJsonFile(projectDataFile)
+			def projectScriptsAgregate = projectData.agregateScripts()
+			def projectClassesAgregate = projectData.agregateClasses()
+			
+			allScriptsAgregate += projectScriptsAgregate
+			allClassesAgregate += projectClassesAgregate
+		}
+		new File(outputFolder, "scripts.json") << allScriptsAgregate
+		new File(outputFolder, "classes.json") << allClassesAgregate
+	}
+	
 	def agregateOverall() {
 		def overall = new DeclarationCount()
 		
@@ -54,6 +72,6 @@ public class ProjectDataAgregator {
 	}
 	
 	public static void main(String[] args) {
-		new ProjectDataAgregator().agregateOverall()
+		new ProjectDataAgregator().agreageteScriptsAndClasses()
 	}
 }

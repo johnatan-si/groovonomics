@@ -65,6 +65,28 @@ class ClassData {
 		result
 	}
 	
+	
+	
+	def agregate() {
+		def result = new DeclarationCount()
+			
+		result += publicMethodReturn
+		result += privateMethodReturn
+		result += protectedMethodReturn
+		result += publicField
+		result += privateField
+		result += protectedField
+		result += publicMethodParameter
+		result += privateMethodParameter
+		result += protectedMethodParameter
+		result += publicConstructorParameter
+		result += privateConstructorParameter
+		result += protectedConstructorParameter
+		result += localVariable
+		
+		result
+	}
+	
 	@Override
 	String toString() {
 		new JsonBuilder(this).toPrettyString()
