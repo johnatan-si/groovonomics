@@ -65,7 +65,9 @@ class ClassData {
 		result
 	}
 	
-	
+	def isTestClass() {
+		location.contains("/test/")
+	}
 	
 	def agregate() {
 		def result = new DeclarationCount()

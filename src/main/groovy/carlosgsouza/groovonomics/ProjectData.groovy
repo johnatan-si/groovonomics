@@ -7,28 +7,36 @@ class ProjectData {
 	def name = ""
 	def classes = []
 	
-	def agregate() {
+	def agregateClasses(classFilter) {
 		def result = new ClassData()
-		classes.each {
+		classes.findAll(classFilter).each {
 			result += it
 		}
-		result
+		result.agregate()
+	}
+	
+	def agregate() {
+		agregateClasses { true }
 	}
 	
 	def agregateClasses() {
-		def result = new ClassData()
-		classes.findAll { it.isScript == false }.each {
-			result += it
-		}
-		result.agregate()
+		agregateClasses { it.isScript == false }
 	}
 	
 	def agregateScripts() {
-		def result = new ClassData()
-		classes.findAll { it.isScript }.each {
-			result += it
-		}
-		result.agregate()
+		agregateClasses { it.isScript }
+	}
+	
+	def agregateTestClasses() {
+		agregateClasses { it.isTestClass() }
+	}
+	
+	def agregateFunctionalClasses() {
+		agregateClasses { it.isTestClass() == false }
+	}
+	
+	def hasTests() {
+		classes.any { it.isTestClass() } 
 	}
 	
 	def toJson() {
