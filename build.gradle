@@ -1,5 +1,9 @@
 apply plugin: "groovy"
 
+buildscript {
+	apply from: 'https://github.com/valkolovos/gradle_cobertura/raw/master/repo/gradle_cobertura/gradle_cobertura/1.0/coberturainit.gradle'
+}
+
 configurations {
 	compile.exclude module: "org.codehaus.groovy:groovy-all:2.0.4"
 }
@@ -7,8 +11,8 @@ configurations {
 repositories { mavenCentral() }
 
 dependencies {
-	groovy group: 'org.codehaus.groovy', name: 'groovy', version: '2.0.4'
-	groovy group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.0.4'
+	groovy group: 'org.codehaus.groovy', name: 'groovy', version: '2.0.7'
+	groovy group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.0.7'
 
 	compile group: "org.codehaus.groovy.modules.http-builder", name: "http-builder", version: "0.5.2"
 	
