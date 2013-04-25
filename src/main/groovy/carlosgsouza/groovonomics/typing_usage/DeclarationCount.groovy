@@ -40,7 +40,6 @@ class DeclarationCount {
 	}
 	
 	String toString() {
-		//toJson()
-		"$s $d  $sRelative $dRelative"
+		toJson()
 	}
 }

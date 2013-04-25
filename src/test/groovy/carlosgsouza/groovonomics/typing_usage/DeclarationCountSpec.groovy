@@ -4,7 +4,7 @@ import carlosgsouza.groovonomics.typing_usage.DeclarationCount;
 import spock.lang.Specification
 
 
-class DeclarationCoundSpec extends Specification {
+class DeclarationCountSpec extends Specification {
 	def "+ should implement the sum of s and d"() {
 		given:
 		def dc1 = new DeclarationCount()
