@@ -27,3 +27,10 @@ task(console, dependsOn: 'classes', type: JavaExec) {
 	main = 'groovy.ui.Console'
 	classpath = sourceSets.main.runtimeClasspath
 }
+
+task(listProjects, dependsOn: 'classes', type: JavaExec) {
+	main = 'carlosgsouza.groovonomics.dataset.DatasetBrowser'
+	args = ["/opt/groovonomics/dataset/list"]
+	classpath = sourceSets.main.runtimeClasspath
+}
+
