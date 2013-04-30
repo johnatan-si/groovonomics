@@ -11,7 +11,9 @@ import carlosgsouza.groovonomics.common.FileHandler;
  */
 class Human {
 	
-	def MAX_WAIT_TIME = 10
+	def MAX_WAIT_TIME = 60
+	def MIN_WAIT_TIME = 10
+	
 	FileHandler fileHandler
 	
 	public Human() {
@@ -23,7 +25,7 @@ class Human {
 	}
 	
 	def think() {
-		thinkFor(new Random().nextInt(MAX_WAIT_TIME))
+		thinkFor(MIN_WAIT_TIME + new Random().nextInt(MAX_WAIT_TIME - MIN_WAIT_TIME))
 	}
 	
 	def thinkFor(seconds) {

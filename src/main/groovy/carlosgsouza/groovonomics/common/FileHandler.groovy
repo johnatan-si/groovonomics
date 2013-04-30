@@ -4,26 +4,41 @@ class FileHandler {
 	
 	File baseDir
 	
-	def defaultOutputFile = null
+	def logFile
+	def outputFile
 	
-	public FileHandler(baseDirPath) {
-		this.baseDir = new File(baseDirPath)
+	public FileHandler(baseDirPath, dirName) {
+		this("$baseDirPath/$dirName")
+	}
+	
+	public FileHandler(String baseDirPath) {
+		this(new File(baseDirPath))
+	}
+		
+	public FileHandler(File baseDir) {	
+		if(baseDir.exists()) {
+			baseDir.mkdir()
+		}
+		
+		this.logFile = new File(baseDir, "log.txt")
+		this.outputFile = new File(baseDir, "output.txt")
+		
+		this.logFile.createNewFile()
+		this.outputFile.createNewFile()
 	}
 	
 	def log(String msg) {
-		new File(baseDir, "log.txt") << "$msg\n"		
+		logFile << "INFO\t$msg\n"
+		println msg
 	}
 	
 	def logError(String msg) {
-		new File(baseDir, "error.txt") << "$msg\n"
+		logFile << "ERROR\t$msg\n"
+		println msg
 	}
 	
 	def output(msg) {
-		if(!defaultOutputFile) {
-			defaultOutputFile = new File(baseDir, "output.txt")
-		}
-		
-		defaultOutputFile << "$msg\n"
+		outputFile << "$msg\n"
 		println msg
 	}
 	

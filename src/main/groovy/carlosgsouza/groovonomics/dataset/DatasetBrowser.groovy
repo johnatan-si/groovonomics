@@ -9,24 +9,25 @@ public class DatasetBrowser {
 	FileHandler fileHandler
 	Human human
 	
-	def FIRST_GROOVY_PROJECT_CREATION = new GregorianCalendar(2013, GregorianCalendar.APRIL, 20).time
-//	def FIRST_GROOVY_PROJECT_CREATION = new GregorianCalendar(2008, GregorianCalendar.MARCH, 31).time
-	def today = new GregorianCalendar().time
-	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd")
 	
-	public DatasetBrowser() {
-		this(".")
+	int year, month
+	
+	public DatasetBrowser(year, month) {
+		this.year = year
+		this.month = month
 	}
 	
-	public DatasetBrowser(baseDir) {
-		fileHandler = new FileHandler(baseDir)
+	public DatasetBrowser(baseDir, year, month) {
+		this.year = year
+		this.month = month
+		
+		fileHandler = new FileHandler(baseDir, "$year-$month")
 		gitHubWebClient = new GitHubWebClient(fileHandler)
 		human = new Human(fileHandler)
 	}
 	
-	def listProjectsCreatedAt(Date date) {
-		def dateStr = sdf.format(date)
+	def listProjectsCreatedAt(String dateStr) {
 		fileHandler.log(dateStr)
 		
 		int attempt = 1
@@ -53,10 +54,19 @@ public class DatasetBrowser {
 	}
 	
 	def listAllGroovyProjectsToDate() {
-		(FIRST_GROOVY_PROJECT_CREATION..today).each {
-			listProjectsCreatedAt it
+		(1..31).each { day ->
+			listProjectsCreatedAt formatDate(year, month, day)
 			human.think()
 		}
+	}
+	
+	def formatDate(y, m, d) {
+		m += 1
+		
+		m = (m < 10) ? "0$m" : "$m"
+		d = (d < 10) ? "0$d" : "$d"
+		
+		"$y-$m-$d"
 	}
 	
 	public static void main(String[] args) {
