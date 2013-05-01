@@ -11,7 +11,7 @@ import carlosgsouza.groovonomics.common.FileHandler;
  */
 class Human {
 	
-	def MAX_WAIT_TIME = 60
+	def MAX_WAIT_TIME = 20
 	def MIN_WAIT_TIME = 10
 	
 	FileHandler fileHandler

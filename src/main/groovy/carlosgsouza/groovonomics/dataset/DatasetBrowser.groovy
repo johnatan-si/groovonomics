@@ -70,6 +70,6 @@ public class DatasetBrowser {
 	}
 	
 	public static void main(String[] args) {
-		new DatasetBrowser(args[0]).listAllGroovyProjectsToDate()
+		new DatasetBrowser(args[0], args[1].toInteger(), args[2].toInteger()).listAllGroovyProjectsToDate()
 	}
 }

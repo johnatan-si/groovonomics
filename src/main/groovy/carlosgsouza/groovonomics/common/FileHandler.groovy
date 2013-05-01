@@ -16,7 +16,7 @@ class FileHandler {
 	}
 		
 	public FileHandler(File baseDir) {	
-		if(baseDir.exists()) {
+		if(!baseDir.exists()) {
 			baseDir.mkdir()
 		}
 		
