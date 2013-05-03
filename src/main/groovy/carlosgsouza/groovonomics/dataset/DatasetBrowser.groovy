@@ -61,8 +61,6 @@ public class DatasetBrowser {
 	}
 	
 	def formatDate(y, m, d) {
-		m += 1
-		
 		m = (m < 10) ? "0$m" : "$m"
 		d = (d < 10) ? "0$d" : "$d"
 		
@@ -70,6 +68,12 @@ public class DatasetBrowser {
 	}
 	
 	public static void main(String[] args) {
-		new DatasetBrowser(args[0], args[1].toInteger(), args[2].toInteger()).listAllGroovyProjectsToDate()
+		(2008..2013).each { y ->
+			(1..12).each { m ->
+				if( (y != 2008 || m >= 3) && (y != 2013 || m < 5) ) {
+					new DatasetBrowser(args[0], y, m).listAllGroovyProjectsToDate()
+				}
+			}
+		}
 	}
 }

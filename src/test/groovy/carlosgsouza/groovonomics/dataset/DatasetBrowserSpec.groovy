@@ -7,7 +7,7 @@ class DatasetBrowserSpec extends Specification {
 
 	def "should query for projects created on days 1-31 of a given month"() {
 		given:
-		def datasetBrowser = new DatasetBrowser(2009, 0)
+		def datasetBrowser = new DatasetBrowser(2009, 1)
 		datasetBrowser.fileHandler = Mock(FileHandler)
 		datasetBrowser.human = Mock(Human)
 		
@@ -29,7 +29,7 @@ class DatasetBrowserSpec extends Specification {
 	
 	def "should write project owner/name to output file in order"() {
 		given:
-		def datasetBrowser = new DatasetBrowser(2010, 0)
+		def datasetBrowser = new DatasetBrowser(2010, 1)
 		datasetBrowser.fileHandler = Mock(FileHandler)
 		datasetBrowser.human = Mock(Human)
 		
@@ -60,7 +60,7 @@ class DatasetBrowserSpec extends Specification {
 	
 	def "should try loading the page 3 times before quitting"() {
 		given:
-		def datasetBrowser = new DatasetBrowser(2010, 0)
+		def datasetBrowser = new DatasetBrowser(2010, 1)
 		datasetBrowser.fileHandler = Mock(FileHandler)
 		datasetBrowser.human = Mock(Human)
 		
@@ -110,7 +110,7 @@ class DatasetBrowserSpec extends Specification {
 	
 	def "should have a think time between requests"() {
 		given:
-		def datasetBrowser = new DatasetBrowser(2010, 0)
+		def datasetBrowser = new DatasetBrowser(2010, 1)
 		datasetBrowser.fileHandler = Mock(FileHandler)
 		datasetBrowser.human = Mock(Human)
 		
@@ -138,13 +138,13 @@ class DatasetBrowserSpec extends Specification {
 		date == new DatasetBrowser(year, month).formatDate(year, month, day)
 		
 		where:
-		date		 | year | month	| day
-		"2009-01-01" | 2009 | 0		| 1 
-		"2009-02-31" | 2009 | 1		| 31
-		"2009-09-01" | 2009 | 8		| 1
-		"2009-10-01" | 2009 | 9		| 1
-		"2009-11-11" | 2009 | 10	| 11
-		"2012-12-12" | 2012 | 11	| 12   
+		date			| year | month	| day
+		"2009-01-01" 	| 2009 | 1		| 1 
+		"2009-02-31"	| 2009 | 2		| 31
+		"2009-09-01"	| 2009 | 9		| 1
+		"2009-10-01" 	| 2009 | 10		| 1
+		"2009-11-11" 	| 2009 | 11		| 11
+		"2012-12-12" 	| 2012 | 12		| 12   
 	}
 	
 }

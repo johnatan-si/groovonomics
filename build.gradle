@@ -30,7 +30,7 @@ task(console, dependsOn: 'classes', type: JavaExec) {
 
 task(listProjects, dependsOn: 'classes', type: JavaExec) {
 	main = 'carlosgsouza.groovonomics.dataset.DatasetBrowser'
-	args = ["/opt/groovonomics/dataset/list", "2010", "10"]
+	args = ["/opt/groovonomics/dataset/list"]
 	classpath = sourceSets.main.runtimeClasspath
 }
 
