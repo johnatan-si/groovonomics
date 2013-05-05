@@ -12,6 +12,7 @@ dependencies {
 
 	compile "org.codehaus.groovy.modules.http-builder:http-builder:0.5.2"
 	compile 'org.jsoup:jsoup:1.7.2'
+	compile 'log4j:log4j:1.2.17'
 
 	testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
 	testCompile "cglib:cglib-nodep:2.2.2"
@@ -20,7 +21,7 @@ dependencies {
 }
 
 task fatJar(type: Jar) {
-	appendix = "dependencies"
+	appendix = "dependenciesman"
 	dependsOn configurations.runtime
 	from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
 }
