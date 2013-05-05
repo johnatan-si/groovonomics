@@ -1,26 +1,28 @@
 apply plugin: "groovy"
 
-buildscript {
-	apply from: 'https://github.com/valkolovos/gradle_cobertura/raw/master/repo/gradle_cobertura/gradle_cobertura/1.0/coberturainit.gradle'
-}
+buildscript { apply from: 'https://github.com/valkolovos/gradle_cobertura/raw/master/repo/gradle_cobertura/gradle_cobertura/1.0/coberturainit.gradle' }
 
-configurations {
-	compile.exclude module: "org.codehaus.groovy:groovy-all:2.0.4"
-}
+configurations { compile.exclude module: "org.codehaus.groovy:groovy-all:2.0.4" }
 
 repositories { mavenCentral() }
 
 dependencies {
-	groovy group: 'org.codehaus.groovy', name: 'groovy', version: '2.0.7'
-	groovy group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.0.7'
+	groovy 'org.codehaus.groovy:groovy:2.0.7'
+	groovy 'org.codehaus.groovy:groovy-all:2.0.7'
 
-	compile group: "org.codehaus.groovy.modules.http-builder", name: "http-builder", version: "0.5.2"
+	compile "org.codehaus.groovy.modules.http-builder:http-builder:0.5.2"
 	compile 'org.jsoup:jsoup:1.7.2'
-	
+
 	testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
 	testCompile "cglib:cglib-nodep:2.2.2"
 	testCompile "org.objenesis:objenesis:1.2"
 	testCompile "junit:junit:4.10"
+}
+
+task fatJar(type: Jar) {
+	appendix = "dependencies"
+	dependsOn configurations.runtime
+	from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
 task(console, dependsOn: 'classes', type: JavaExec) {
@@ -30,7 +32,9 @@ task(console, dependsOn: 'classes', type: JavaExec) {
 
 task(listProjects, dependsOn: 'classes', type: JavaExec) {
 	main = 'carlosgsouza.groovonomics.dataset.DatasetBrowser'
-	args = ["/opt/groovonomics/dataset/list"]
+	args = [
+		"/opt/groovonomics/dataset/list"
+	]
 	classpath = sourceSets.main.runtimeClasspath
 }
 
