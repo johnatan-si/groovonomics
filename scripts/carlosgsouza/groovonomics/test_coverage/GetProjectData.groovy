@@ -39,7 +39,7 @@ def requestHeaders = ["Authorization":"Basic $basicAuth", "User-Agent": "Mozilla
 exec "rm -rf $tempPath"
 
 // Parse input
-def fullName = args.size() > 1 ? args[1] : "carlosgsouza/grails-karma"
+def fullName = args.size() > 0 ? args[0] : "carlosgsouza/grails-karma"
 def owner = fullName.substring(0, fullName.lastIndexOf("/"))
 def name = fullName.substring(fullName.lastIndexOf("/")+1)
 def owner_name = "${owner}_${name}"
