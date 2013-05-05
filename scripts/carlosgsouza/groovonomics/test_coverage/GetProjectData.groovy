@@ -1,5 +1,7 @@
 import static groovyx.net.http.ContentType.*
 import static groovyx.net.http.Method.*
+import groovy.json.JsonBuilder
+import groovy.json.JsonOutput
 import groovyx.net.http.*
 
 import org.apache.log4j.Level
@@ -9,12 +11,12 @@ import org.apache.log4j.Logger
 
 /* 
  Retrieves the following data about a project
- - id
- - visibility
- - contributors
- - create/update dates
- number of files
- LOC
+	 - id
+	 - visibility
+	 - contributors
+	 - create/update dates
+	 - number of files
+	 - LOC
  */
 
 
@@ -34,8 +36,11 @@ def basicAuth = new File(baseFolder, "conf/github.conf").text
 def gitHubClient = new RESTClient("https://api.github.com")
 def requestHeaders = ["Authorization":"Basic $basicAuth", "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"]
 
+// Clean work directory
+exec "rm -rf $tempPath"
+
 // Parse input
-def fullName = "carlosgsouza/groovonomics"
+def fullName = args.size() > 1 ? args[1] : "carlosgsouza/grails-karma"
 def owner = fullName.substring(0, fullName.lastIndexOf("/"))
 def name = fullName.substring(fullName.lastIndexOf("/")+1)
 def owner_name = "${owner}_${name}"
@@ -56,7 +61,7 @@ result["isPrivate"] = response.data."private"
 // Clone to local file system
 def cloneUrl = response.data.clone_url
 def localPath = "$tempPath/$owner_name"
-// exec "/usr/local/git/bin/git clone $cloneUrl $localPath"
+exec "/usr/local/git/bin/git clone $cloneUrl $localPath"
 
 // Get the number of lines
 def out = new StringBuilder()
@@ -76,8 +81,16 @@ proc.waitForProcessOutput(out, err)
 
 result["numberOfFiles"] = out.toString().trim()
 
+// Write the result metadata to a file
+new File(tempPath, "${owner_name}.json") << JsonOutput.prettyPrint(new JsonBuilder(result).toString())
+
+// Upload everything to S3
+exec "/usr/bin/s3cmd put -r $tempPath/$owner_name s3://carlosgsouza.groovonomics/dataset/projects/source/"
+exec "/usr/bin/s3cmd put -r $tempPath/${owner_name}.json s3://carlosgsouza.groovonomics/dataset/projects/metadata/"
+
 def exec(cmd) {
 	def proc = cmd.execute()
 	proc.consumeProcessOutput(System.out, System.err)
 	proc.waitForOrKill(3600000)
 }
+
