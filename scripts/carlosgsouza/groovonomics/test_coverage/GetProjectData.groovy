@@ -4,9 +4,9 @@ import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 import groovyx.net.http.*
 
-import org.apache.log4j.Level
-import org.apache.log4j.LogManager
-import org.apache.log4j.Logger
+//import org.apache.log4j.Level
+//import org.apache.log4j.LogManager
+//import org.apache.log4j.Logger
 
 /* 
  Retrieves the following data about a project
@@ -20,11 +20,11 @@ import org.apache.log4j.Logger
 
 
 // Disable HTTPBuilder annoying log messages
-List<Logger> loggers = Collections.<Logger>list(LogManager.getCurrentLoggers());
-loggers.add(LogManager.getRootLogger());
-for ( Logger logger : loggers ) {
-	logger.setLevel(Level.OFF);
-}
+//List<Logger> loggers = Collections.<Logger>list(LogManager.getCurrentLoggers());
+//loggers.add(LogManager.getRootLogger());
+//for ( Logger logger : loggers ) {
+//	logger.setLevel(Level.OFF);
+//}
 
 // Configuration
 def baseFolder = new File("/opt/groovonomics/")
@@ -60,7 +60,7 @@ result["isPrivate"] = response.data."private"
 // Clone to local file system
 def cloneUrl = response.data.clone_url
 def localPath = "$tempPath/$owner_name"
-exec "/usr/local/git/bin/git clone $cloneUrl $localPath"
+exec "/usr/bin/git clone $cloneUrl $localPath"
 
 // Get the number of lines
 def out = new StringBuilder()
