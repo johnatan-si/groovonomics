@@ -27,7 +27,7 @@ git pull
 
 cp ~ubuntu/.s3cfg ~/
 date >> /opt/groovonomics/log.${it}.txt 
-for i in `cat /opt/groovonomics/dataset/list/${it}.txt`; do 
+for i in `head -n 1 /opt/groovonomics/dataset/list/${it}.txt`; do 
 	groovy -cp ~ubuntu/groovonomics/build/libs/groovonomics-dependencies.jar ~ubuntu/groovonomics/scripts/carlosgsouza/groovonomics/test_coverage/GetProjectData.groovy \$i >> /opt/groovonomics/log.${it}.txt; 
 done; 
 s3cmd put /opt/groovonomics/log.${it}.txt s3://carlosgsouza.groovonomics/dataset/projects/log/
@@ -50,7 +50,7 @@ date >> /opt/groovonomics/log.${it}.txt
 
 	CreateTagsRequest createTagsRequest = new CreateTagsRequest()
 	createTagsRequest.withResources(instance.instanceId)
-			.withTags(new Tag("Name", "1.groovonomics.soldier.${it}"))
+			.withTags(new Tag("Name", "2.groovonomics.soldier.${it}"))
 
 	ec2.createTags createTagsRequest 
 }

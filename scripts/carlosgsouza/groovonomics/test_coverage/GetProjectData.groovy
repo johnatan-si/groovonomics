@@ -105,7 +105,7 @@ try {
 	new File(tempPath, "${owner_name}.json") << JsonOutput.prettyPrint(new JsonBuilder(result).toString())
 
 	// Zips the source files
-	exec "/usr/bin/zip -r $tempPath/${owner_name}.zip $tempPath/${owner_name}"
+	exec "/usr/bin/zip -r $tempPath/${owner_name}.zip $tempPath/${owner_name} >> ~/zip.txt"
 
 	// Upload everything to S3
 	exec "/usr/bin/s3cmd put -r $tempPath/${owner_name}.zip  s3://carlosgsouza.groovonomics/dataset/projects/source/ >> ~/s3.txt"
