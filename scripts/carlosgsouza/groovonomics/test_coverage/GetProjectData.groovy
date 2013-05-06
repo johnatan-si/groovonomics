@@ -16,6 +16,7 @@ import groovyx.net.http.*
 	 - create/update dates
 	 - number of files
 	 - LOC
+	 - total size
  */
 
 
@@ -70,6 +71,25 @@ def proc = "/usr/bin/find $localPath -name *.groovy".execute() | "xargs cat".exe
 proc.waitForProcessOutput(out, err)
 
 result["loc"] = out.toString().trim()
+
+// Get the number of files
+out = new StringBuilder()
+err = new StringBuilder()
+
+proc = "/usr/bin/find $localPath -name *.groovy".execute() | "wc -l".execute()
+proc.waitForProcessOutput(out, err)
+
+result["numberOfFiles"] = out.toString().trim()
+
+// Get the total size in Bytes
+out = new StringBuilder()
+err = new StringBuilder()
+
+proc = "/usr/bin/du -sk $localPath".execute()
+proc.waitForProcessOutput(out, err)
+def outStr = out.toString()
+
+result["totalSize"] = outStr.trim().substring(0, outStr.lastIndexOf("\t"))
 
 // Get the number of files
 out = new StringBuilder()
