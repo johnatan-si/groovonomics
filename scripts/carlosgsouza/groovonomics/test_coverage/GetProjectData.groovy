@@ -83,8 +83,11 @@ result["numberOfFiles"] = out.toString().trim()
 // Write the result metadata to a file
 new File(tempPath, "${owner_name}.json") << JsonOutput.prettyPrint(new JsonBuilder(result).toString())
 
+// Zips the source files
+exec "/usr/bin/zip -r $tempPath/$owner_name $tempPath"
+
 // Upload everything to S3
-exec "/usr/bin/s3cmd put -r $tempPath/$owner_name s3://carlosgsouza.groovonomics/dataset/projects/source/"
+exec "/usr/bin/s3cmd put -r $tempPath/${owner_name}.zip  s3://carlosgsouza.groovonomics/dataset/projects/source/"
 exec "/usr/bin/s3cmd put -r $tempPath/${owner_name}.json s3://carlosgsouza.groovonomics/dataset/projects/metadata/"
 
 def exec(cmd) {
