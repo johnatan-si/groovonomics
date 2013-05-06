@@ -12,7 +12,7 @@ import com.amazonaws.services.ec2.model.Tag
  * Starts a lot of ec2 instances to process the dataset in parallel 
  */
 
-def totalInstances = 2
+def totalInstances = 1
 
 def credentials = new PropertiesCredentials(new File("/opt/groovonomics/conf/aws.properties"))
 AmazonEC2Client ec2 = new AmazonEC2Client(credentials)
@@ -20,6 +20,11 @@ AmazonEC2Client ec2 = new AmazonEC2Client(credentials)
 totalInstances.times {
 	def command = 
 	"""#!/bin/sh	
+sudo ubuntu
+
+cd ~ubuntu/groovonomics
+git pull
+
 cp ~ubuntu/.s3cfg ~/
 date >> /opt/groovonomics/log.${it}.txt 
 for i in `cat /opt/groovonomics/dataset/list/${it}.txt`; do 
@@ -32,7 +37,7 @@ date >> /opt/groovonomics/log.${it}.txt
 	def userData = new String(Base64.encodeBase64(command.bytes))
 	
 	RunInstancesRequest runInstancesRequest = new RunInstancesRequest();
-	runInstancesRequest.withImageId("ami-a32945ca")
+	runInstancesRequest.withImageId("ami-913e52f8")
 			.withInstanceType("t1.micro")
 			.withMinCount(1)
 			.withMaxCount(1)
@@ -45,7 +50,7 @@ date >> /opt/groovonomics/log.${it}.txt
 
 	CreateTagsRequest createTagsRequest = new CreateTagsRequest()
 	createTagsRequest.withResources(instance.instanceId)
-			.withTags(new Tag("Name", "groovonomics.soldier.${it}"))
+			.withTags(new Tag("Name", "1.groovonomics.soldier.${it}"))
 
 	ec2.createTags createTagsRequest 
 }
