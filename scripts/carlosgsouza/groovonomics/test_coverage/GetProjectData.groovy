@@ -108,8 +108,8 @@ try {
 	exec "/usr/bin/zip -r $tempPath/${owner_name}.zip $tempPath/${owner_name}"
 
 	// Upload everything to S3
-	exec "/usr/bin/s3cmd put -r $tempPath/${owner_name}.zip  s3://carlosgsouza.groovonomics/dataset/projects/source/"
-	exec "/usr/bin/s3cmd put -r $tempPath/${owner_name}.json s3://carlosgsouza.groovonomics/dataset/projects/metadata/"
+	exec "/usr/bin/s3cmd put -r $tempPath/${owner_name}.zip  s3://carlosgsouza.groovonomics/dataset/projects/source/ >> ~/s3.txt"
+	exec "/usr/bin/s3cmd put -r $tempPath/${owner_name}.json s3://carlosgsouza.groovonomics/dataset/projects/metadata/ >> ~/s3.txt"
 }
 catch(e) {
 	e.printStackTrace()	
