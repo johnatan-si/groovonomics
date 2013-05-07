@@ -10,7 +10,12 @@ def totalNumberOfFiles = 0L
 def totalSize = 0L
 def numberOfProjects = 0
 
+def i = =
+
 baseFolder.eachFile { file ->
+	
+	println i++
+	
 	if(file.name.endsWith("json") && file.name != "all.json"){
 		def projectData = new JsonSlurper().parseText(file.text)
 		
