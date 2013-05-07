@@ -28,12 +28,15 @@ import groovyx.net.http.*
 //}
 
 try {
+	// Parsing parameters 
+	def fullName = args.size() > 0 ? args[0] : "carlosgsouza/grails-karma"
+	def basicAuth = args.size() > 1 ? args[1] : new File(baseFolder, "conf/github.conf").text
+	
 	// Configuration
 	def baseFolder = new File("/opt/groovonomics/")
 	def basePath = baseFolder.absolutePath
 	def tempFolder = new File("/opt/groovonomics/temp/")
 	def tempPath = tempFolder.absolutePath
-	def basicAuth = new File(baseFolder, "conf/github.conf").text
 	def gitHubClient = new RESTClient("https://api.github.com")
 	def requestHeaders = ["Authorization":"Basic $basicAuth", "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"]
 
@@ -41,7 +44,6 @@ try {
 	exec "rm -rf $tempPath"
 
 	// Parse input
-	def fullName = args.size() > 0 ? args[0] : "carlosgsouza/grails-karma"
 	def owner = fullName.substring(0, fullName.lastIndexOf("/"))
 	def name = fullName.substring(fullName.lastIndexOf("/")+1)
 	def owner_name = "${owner}_${name}"

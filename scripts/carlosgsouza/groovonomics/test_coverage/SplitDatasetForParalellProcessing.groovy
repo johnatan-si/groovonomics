@@ -4,7 +4,7 @@
 
 def baseFolder = new File("/opt/groovonomics/dataset/list/")
 def projectsFile = new File(baseFolder, "output.txt")
-def totalInstances = 30
+def totalInstances = 19
 def files = []
 
 totalInstances.times {
