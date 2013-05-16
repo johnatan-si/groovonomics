@@ -10,7 +10,7 @@ def totalNumberOfFiles = 0L
 def totalSize = 0L
 def numberOfProjects = 0
 
-def i = =
+def i = 0
 
 baseFolder.eachFile { file ->
 	
