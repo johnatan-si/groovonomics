@@ -14,7 +14,6 @@ class ProjectInspectorSpec extends Specification {
 		def projectData = inspector.getTypeSystemUsageData()
 		
 		then:
-		projectData.name == "a_project"
 		projectData.id == "0001"
 		projectData.classes.size() == 19
 	}

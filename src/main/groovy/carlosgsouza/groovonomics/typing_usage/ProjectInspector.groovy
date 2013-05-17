@@ -13,7 +13,6 @@ public class ProjectInspector {
 		
 		projectData = new ProjectData()
 		projectData.id = projectFolder.name
-		projectData.name = projectFolder.listFiles().find{ !it.name.startsWith(".") }.name
 	}
 	
 	def getTypeSystemUsageData() {
