@@ -1,3 +1,5 @@
+import groovy.transform.Field;
+
 import java.text.SimpleDateFormat
 
 import org.apache.commons.lang.exception.ExceptionUtils;
@@ -17,25 +19,55 @@ import com.amazonaws.services.sqs.model.DeleteMessageRequest
 import com.amazonaws.services.sqs.model.Message
 import com.amazonaws.services.sqs.model.ReceiveMessageRequest
 
-def TEMP_DIR = "/opt/groovonomics/temp"
-
 turnOffAnnoyingLogs()
 
-def sqs = new SQS()
-def sns = new SNS()
-def s3  = new S3()
-def fs  = new FileSystem()
+String localhostname = java.net.InetAddress.getLocalHost().getHostName()
+
+@Field def TEMP_DIR = "/opt/groovonomics/temp"
+
+@Field def sqs = new SQS()
+@Field def sns = new SNS()
+@Field def s3  = new S3()
+@Field def fs  = new FileSystem()
 
 def projectId
+def processedProjects = []
+def projectsCount = 0
+def startTime = System.currentTimeMillis()
+
+sns.log("INFO", "$localhostname started", "")
 
 try {
-	projectId = null
-	
 	Message msg = sqs.nextMessage
-	projectId = msg.body
+	projectId = msg?.body
 	
-	println "STARTED TO PROCESS PROJECT $projectId"
-	
+	while(projectId) {
+		try {
+			println "STARTED TO PROCESS PROJECT $projectId (total=$projectsCount)"
+			process projectId
+			
+			sqs.deleteMessage(msg)
+			
+			projectsCount++
+			processedProjects << projectId
+			
+			println "FINISHED TO PROCESS PROJECT $projectId  (total=$projectsCount)\n\n"
+		} catch(e) {
+			handleError(e, projectId)
+		} finally {
+			msg = sqs.nextMessage
+			projectId = msg?.body
+		}
+	}	
+} catch(e) {
+	handleError(e, projectId)
+} finally {
+	def totalTime = (System.currentTimeMillis() - startTime) / (60 * 1000)
+
+	sns.log("INFO", "$localhostname processed $projectsCount projects", "$localhostname processed $projectsCount projects in $totalTime minutes\n\n" + processedProjects.join("\n"))
+}
+
+def process(projectId) {
 	fs.cleanWorkDir()
 	s3.downloadSource(projectId)
 	fs.unzipSource(projectId)
@@ -47,10 +79,9 @@ try {
 	w.close()
 	
 	s3.uploadResult(projectId)
-	sqs.deleteMessage(msg)
-	 
-	println "FINISHED TO PROCESS PROJECT $projectId"
-} catch(e) {
+}
+
+def handleError(e, projectId) {
 	sns.log("ERROR", projectId, ExceptionUtils.getStackTrace(e))
 	e.printStackTrace()
 }
@@ -121,6 +152,8 @@ class SNS {
 	def credentials = new PropertiesCredentials(new File("/opt/groovonomics/conf/aws.properties"))
 	def topicArn = "arn:aws:sns:us-east-1:525294860386:groovonomics-log"
 	
+	def localhostname = java.net.InetAddress.getLocalHost().getHostName()
+	
 	def sdf = new SimpleDateFormat()
 	
 	AmazonSNSClient sns = new AmazonSNSClient(credentials)
@@ -132,7 +165,7 @@ class SNS {
 	def log(type, projectId, message) {
 		def subject = "$type | ${now()} | " + (projectId ?: "unknown project")
 		
-		def publishRequest = new PublishRequest(topicArn, message, subject)
+		def publishRequest = new PublishRequest(topicArn, "($localhostname | ${now()})\n\n$message", subject)
 		
 		sns.publish(publishRequest)
 	}
