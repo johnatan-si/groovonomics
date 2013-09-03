@@ -40,3 +40,8 @@ task(listProjects, dependsOn: 'classes', type: JavaExec) {
 	]
 	classpath = sourceSets.main.runtimeClasspath
 }
+
+task(analyzeTypeUsage, dependsOn: 'classes') {
+	main = 'AnalyzeTypingUsage'
+	classpath = sourceSets.main.runtimeClasspath
+}
