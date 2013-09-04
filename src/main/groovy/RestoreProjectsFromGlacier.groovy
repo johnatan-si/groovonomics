@@ -25,7 +25,7 @@ class RestoreProjectsFromGlacier {
 		def frozenProjects = []
 		def count = 0
 		
-		["Chinouchi_AlloSerie"].each{ projectId ->
+		projectsListFile.eachLine{ projectId ->
 			
 			logFile << "${count++} $projectId\n"
 			
