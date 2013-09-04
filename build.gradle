@@ -28,7 +28,7 @@ dependencies {
 }
 
 task fatJar(type: Jar) {
-	appendix = "dependenciesman"
+	appendix = "dependencies"
 	dependsOn configurations.runtime
 	from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
 }
@@ -41,7 +41,12 @@ task(listProjects, dependsOn: 'classes', type: JavaExec) {
 	classpath = sourceSets.main.runtimeClasspath
 }
 
-task(analyzeTypeUsage, dependsOn: 'classes') {
+task(analyzeTypeUsage, dependsOn: 'classes', type: JavaExec) {
 	main = 'AnalyzeTypingUsage'
+	classpath = sourceSets.main.runtimeClasspath
+}
+
+task(restoreFromGlacier, dependsOn: 'classes', type: JavaExec) {
+	main = 'RestoreProjectsFromGlacier'
 	classpath = sourceSets.main.runtimeClasspath
 }
