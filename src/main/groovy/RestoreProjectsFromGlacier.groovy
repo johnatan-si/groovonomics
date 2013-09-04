@@ -25,7 +25,7 @@ class RestoreProjectsFromGlacier {
 		def frozenProjects = []
 		def count = 0
 		
-		["BBK-PiJ-2012-24_branchtest"].each{ projectId ->
+		["Chinouchi_AlloSerie"].each{ projectId ->
 			
 			logFile << "${count++} $projectId\n"
 			
@@ -35,6 +35,8 @@ class RestoreProjectsFromGlacier {
 				try {
 					def restoreReq = new RestoreObjectRequest("carlosgsouza.groovonomics", "dataset/projects/source/${projectId}.zip", 10)
 					s3.restoreObject(restoreReq)
+					
+					break
 				} catch(e) {
 					e.printStackTrace()
 				
