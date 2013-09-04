@@ -36,8 +36,6 @@ class AnalyzeTypingUsage {
 	}
 	
 	def justDoIt() {
-		turnOffAnnoyingLogs()
-		
 		def projectId
 		def processedProjects = []
 		def projectsCount = 0
@@ -177,15 +175,6 @@ class AnalyzeTypingUsage {
 			def publishRequest = new PublishRequest(topicArn, "($localhostname | ${now()})\n\n$message", subject)
 			
 			sns.publish(publishRequest)
-		}
-	}
-	
-	
-	def turnOffAnnoyingLogs() {
-		List<Logger> loggers = Collections.<Logger>list(LogManager.getCurrentLoggers());
-		loggers.add(LogManager.getRootLogger());
-		for ( Logger logger : loggers ) {
-			logger.setLevel(Level.OFF);
 		}
 	}
 }
