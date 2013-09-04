@@ -50,3 +50,8 @@ task(restoreFromGlacier, dependsOn: 'classes', type: JavaExec) {
 	main = 'RestoreProjectsFromGlacier'
 	classpath = sourceSets.main.runtimeClasspath
 }
+
+task(createArmy, dependsOn: 'classes', type: JavaExec) {
+	main = 'CreateAnArmyToProcessDataset'
+	classpath = sourceSets.main.runtimeClasspath
+}
