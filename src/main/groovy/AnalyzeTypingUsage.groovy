@@ -26,9 +26,21 @@ class AnalyzeTypingUsage {
 	def s3  = new S3()
 	def fs  = new FileSystem()
 	
+	public AnalyzeTypingUsage(id) {
+		localhostname += "-$id"
+	}
+	
 	
 	public static void main(args) {
-		new AnalyzeTypingUsage().justDoIt()
+		def threads = []
+		
+		3.times { id ->
+			threads << Thread.start {
+				new AnalyzeTypingUsage(id).justDoIt()
+			}
+		}
+		
+		threads*.join()
 	}
 	
 	def justDoIt() {
