@@ -65,3 +65,8 @@ task(emptyQueue, dependsOn: 'classes', type: JavaExec) {
 	main = 'EmptyQueue'
 	classpath = sourceSets.main.runtimeClasspath
 }
+
+task(agregate, dependsOn: 'classes', type: JavaExec) {
+	main = 'AgregateDataFromClasses'
+	classpath = sourceSets.main.runtimeClasspath
+}

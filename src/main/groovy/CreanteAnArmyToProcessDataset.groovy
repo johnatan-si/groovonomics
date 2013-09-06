@@ -13,7 +13,7 @@ public class CreateAnArmyToProcessDataset {
 	
 	public static void main(args) {
 		
-		def ARMY_SIZE = 3
+		def ARMY_SIZE = 98
 		
 		def credentials = new PropertiesCredentials(new File("/opt/groovonomics/conf/aws.properties"))
 		AmazonEC2Client ec2 = new AmazonEC2Client(credentials)
@@ -34,7 +34,7 @@ gradle analyzeTypeUsage
 		
 		RunInstancesRequest runInstancesRequest = new RunInstancesRequest();
 		runInstancesRequest.withImageId("ami-f73c739e")
-				.withInstanceType("t1.micro")
+				.withInstanceType("m1.small")
 				.withMinCount(ARMY_SIZE)
 				.withMaxCount(ARMY_SIZE)
 				.withKeyName("carlos")
