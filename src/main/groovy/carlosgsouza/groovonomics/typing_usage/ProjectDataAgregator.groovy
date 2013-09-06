@@ -27,48 +27,6 @@ public class ProjectDataAgregator {
 		new File(outputFolder, "all.json") << allProjectsAgregate
 	}
 	
-	def agregeteBySize() {
-		def datasetagregete = new ClassData()
-		
-		def agregateBuckets = []
-		12.times {
-			def apd = new AgregateProjectData()
-			apd.id = it
-			
-			agregateBuckets.add apd
-		}
-		
-		classDataFolder.eachFile { projectDataFile ->
-			def projectData = projectDataFactory.fromJsonFile(projectDataFile)
-			def size = getSizeOfProject(projectData)
-			
-			if(size > 0) {
-				def projectAgregate = projectData.agregate()
-				def bucketIndex = getBucketForSize(size)
-				
-				agregateBuckets[bucketIndex].data += projectAgregate
-			}
-		}
-		
-		new File(outputFolder, "agregate_by_size.json") << agregateBuckets
-	}
-	
-	def getBucketForSize(size) {
-		def index = 0
-		def i = size/50.0
-		
-		while(i > 1) {
-			i /= 2
-			index++
-		}
-		
-		index
-	}
-	
-	def getSizeOfProject(projectData) {
-		sizeOfProjects[projectData.id].lines
-	}
-	
 	def agregeteScriptsAndClasses() {
 		def datasetagregete = new ClassData()
 		

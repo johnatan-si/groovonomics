@@ -1,8 +1,9 @@
 #!/bin/sh
 
 projectId=$1
+tempDir=$2
 
-cd /opt/groovonomics/temp/
+cd $tempDir
 unzip $projectId.zip
 mv opt/groovonomics/temp/* .
 rm -rf opt/

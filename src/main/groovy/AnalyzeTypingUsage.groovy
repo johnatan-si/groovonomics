@@ -18,16 +18,22 @@ import com.amazonaws.services.sqs.model.ReceiveMessageRequest
 class AnalyzeTypingUsage {
 	
 	String localhostname = java.net.InetAddress.getLocalHost().getHostName()
-	
-	def TEMP_DIR = "/opt/groovonomics/temp"
+	def id
+	def tempDir
 	
 	def sqs = new SQS()
 	def sns = new SNS()
-	def s3  = new S3()
-	def fs  = new FileSystem()
+	S3 s3  = new S3()
+	FileSystem fs  = new FileSystem()
 	
 	public AnalyzeTypingUsage(id) {
-		localhostname += "-$id"
+		this.id = id
+		
+		localhostname = java.net.InetAddress.getLocalHost().getHostName() + "-$id" 
+		tempDir = "/opt/groovonomics/temp_$id"
+		
+		fs.tempDirPath = tempDir
+		s3.tempDirPath = tempDir
 	}
 	
 	
@@ -87,9 +93,9 @@ class AnalyzeTypingUsage {
 		s3.downloadSource(projectId)
 		fs.unzipSource(projectId)
 		
-		def typeData = new ProjectInspector(new File("$TEMP_DIR/$projectId/")).getTypeSystemUsageData()
+		def typeData = new ProjectInspector(new File("$tempDir/$projectId/")).getTypeSystemUsageData()
 		
-		def w = new File("$TEMP_DIR/${projectId}.json").newWriter()
+		def w = new File("$tempDir/${projectId}.json").newWriter()
 		w << typeData
 		w.close()
 		
@@ -104,15 +110,16 @@ class AnalyzeTypingUsage {
 	class FileSystem {
 		
 		def SCRIPT_DIR = "/opt/groovonomics/src/scripts/carlosgsouza/groovonomics/typing_usage_2"
+		def tempDirPath
 		
 		def cleanWorkDir() {
-			def workDir = new File("/opt/groovonomics/temp")
+			def workDir = new File(tempDirPath)
 			workDir.deleteDir()
 			workDir.mkdirs()
 		}
 		
 		def unzipSource(projectId) {
-			exec "$SCRIPT_DIR/download_and_extract_project.sh $projectId"
+			exec "$SCRIPT_DIR/download_and_extract_project.sh $projectId $tempDirPath"
 		}
 		
 		
@@ -127,17 +134,18 @@ class AnalyzeTypingUsage {
 	class S3 {
 		def credentials = new PropertiesCredentials(new File("/opt/groovonomics/conf/aws.properties"))
 		def scriptStart = new Date()
+		def tempDirPath
 		
 		AmazonS3Client s3 = new AmazonS3Client(credentials)
 		TransferManager transferManager = new TransferManager(credentials) 
 		
 		def uploadResult(projectId) {
-			s3.putObject("carlosgsouza.groovonomics", "data/type_usage/class/${projectId}.json", new File("/opt/groovonomics/temp/${projectId}.json"))
+			s3.putObject("carlosgsouza.groovonomics", "data/type_usage/class/${projectId}.json", new File("$tempDirPath/${projectId}.json"))
 		}
 		
 		def downloadSource(projectId) {
 			def req = new GetObjectRequest("carlosgsouza.groovonomics", "dataset/projects/source/${projectId}.zip")
-			def download = transferManager.download(req, new File("/opt/groovonomics/temp/${projectId}.zip"))
+			def download = transferManager.download(req, new File("$tempDirPath/${projectId}.zip"))
 			download.waitForCompletion()
 		}
 	}
