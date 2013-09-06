@@ -1,17 +1,13 @@
-import groovy.transform.Field;
-
 import java.text.SimpleDateFormat
 
-import org.apache.commons.lang.exception.ExceptionUtils;
-import org.apache.log4j.Level
-import org.apache.log4j.LogManager
-import org.apache.log4j.Logger
+import org.apache.commons.lang.exception.ExceptionUtils
 
 import carlosgsouza.groovonomics.typing_usage.ProjectInspector
 
 import com.amazonaws.auth.PropertiesCredentials
-import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.AmazonS3Client
+import com.amazonaws.services.s3.model.GetObjectRequest
+import com.amazonaws.services.s3.transfer.TransferManager
 import com.amazonaws.services.sns.AmazonSNSClient
 import com.amazonaws.services.sns.model.PublishRequest
 import com.amazonaws.services.sqs.AmazonSQSClient
@@ -121,17 +117,16 @@ class AnalyzeTypingUsage {
 		def scriptStart = new Date()
 		
 		AmazonS3Client s3 = new AmazonS3Client(credentials)
+		TransferManager transferManager = new TransferManager(credentials) 
 		
 		def uploadResult(projectId) {
 			s3.putObject("carlosgsouza.groovonomics", "data/type_usage/class/${projectId}.json", new File("/opt/groovonomics/temp/${projectId}.json"))
 		}
 		
 		def downloadSource(projectId) {
-			def object = s3.getObject("carlosgsouza.groovonomics", "dataset/projects/source/${projectId}.zip")
-			
-			def w = new File("/opt/groovonomics/temp/${projectId}.zip").newWriter()
-			w << object.objectContent
-			w.close()
+			def req = new GetObjectRequest("carlosgsouza.groovonomics", "dataset/projects/source/${projectId}.zip")
+			def download = transferManager.download(req, new File("/opt/groovonomics/temp/${projectId}.zip"))
+			download.waitForCompletion()
 		}
 	}
 	
