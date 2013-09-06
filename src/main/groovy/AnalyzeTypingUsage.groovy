@@ -40,7 +40,7 @@ class AnalyzeTypingUsage {
 	public static void main(args) {
 		def threads = []
 		
-		5.times { id ->
+		3.times { id ->
 			threads << Thread.start {
 				new AnalyzeTypingUsage(id).justDoIt()
 			}
