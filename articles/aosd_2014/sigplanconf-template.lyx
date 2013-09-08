@@ -1,0 +1,1362 @@
+#LyX file created by tex2lyx 2.0.6
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass sigplanconf
+\begin_preamble
+%-----------------------------------------------------------------------------
+%
+%               Template for sigplanconf LaTeX Class
+%
+% Name:         sigplanconf-template.tex
+%
+% Purpose:      A template for sigplanconf.cls, which is a LaTeX 2e class
+%               file for SIGPLAN conference proceedings.
+%
+% Guide:        Refer to "Author's Guide to the ACM SIGPLAN Class,"
+%               sigplanconf-guide.pdf
+%
+% Author:       Paul C. Anagnostopoulos
+%               Windfall Software
+%               978 371-2316
+%               paul@windfall.com
+%
+% Created:      15 February 2005
+%
+%-----------------------------------------------------------------------------
+
+
+
+
+% The following \documentclass options may be useful:
+
+% preprint      Remove this option only once the paper is in final form.
+% 10pt          To set in 10-point type instead of 9-point.
+% 11pt          To set in 11-point type instead of 9-point.
+% authoryear    To obtain author/year citation style instead of numeric.
+
+
+
+
+
+\end_preamble
+\use_default_options false
+\language english
+\language_package none
+\inputencoding auto
+\fontencoding default
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\paperfontsize default
+\spacing single
+\use_hyperref 0
+\papersize default
+\use_geometry false
+\use_amsmath 2
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+special
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+papersize=8.5in,11in
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+setlength{
+\backslash
+pdfpageheight}{
+\backslash
+paperheight}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+setlength{
+\backslash
+pdfpagewidth}{
+\backslash
+paperwidth}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Conference
+
+CONF 'yy
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+Month d--d, 20yy, City, ST, Country
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+copyrightyear
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+20yy
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Copyrightdata
+
+978-1-nnnn-nnnn-n/yy/mm
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+doi
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+nnnnnnn.nnnnnnn
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+% Uncomment one of the following two, if you are not going for the 
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+% traditional copyright transfer agreement.
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%
+\backslash
+exclusivelicense                % ACM gets exclusive license to publish, 
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+% you retain copyright
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%
+\backslash
+permissiontopublish             % ACM gets nonexclusive license to publish
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+% (paid open-access papers, 
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+% short abstracts)
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+titlebanner
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+banner above paper title
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+% These are ignored unless
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+preprintfooter
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+short description of paper
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+% 'preprint' option specified.
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+
+Title Text
+\end_layout
+
+\begin_layout Subtitle
+
+Subtitle Text, if any
+\end_layout
+
+\begin_layout Author
+
+Name1
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+Affiliation1
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+Email1
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Author
+
+Name2
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+ Name3
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+Affiliation2/3
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+Email2/3
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+
+This is the text of the abstract. 
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+category
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+CR-number
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+subcategory
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+third-level
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+% general terms are not compulsory anymore, 
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+% you may leave them out
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Terms
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+term1, term2
+\end_layout
+
+\begin_layout Keywords
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+keyword1, keyword2
+\end_layout
+
+\begin_layout Section
+
+Introduction
+\end_layout
+
+\begin_layout Standard
+
+The text of the paper begins here.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+
+More text.
+\end_layout
+
+\begin_layout Standard
+
+Lots of text.
+\end_layout
+
+\begin_layout Standard
+\start_of_appendix
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%dummy comment inserted by tex2lyx to ensure that this paragraph is not empty
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+
+Appendix Title
+\end_layout
+
+\begin_layout Standard
+
+This is the text of the appendix, if you need one.
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+acks
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+Acknowledgments, if needed.
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+% We recommend abbrvnat bibliography style.
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+bibliographystyle{abbrvnat}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+% The bibliography should be embedded for final submission.
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+softraggedright
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Bibliography
+
+
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "Smith et~al.(2009)Smith, Jones"
+key "smith02"
+
+\end_inset
+
+ P. Q. Smith, and X. Y. Jones. ...reference text...
+\end_layout
+
+\end_body
+\end_document

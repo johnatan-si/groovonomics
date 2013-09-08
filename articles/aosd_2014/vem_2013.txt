@@ -1,0 +1,402 @@
+Abstract
+
+One of the most important features to be taken into account when 
+choosing a programming language is its typing system, static or 
+dynamic. This question has become increasingly more important due 
+to the recent popularization of dynamic languages such as Ruby 
+and JavaScript. This paper studies which are the most influencing 
+factors for a programmer when choosing between typing systems. An 
+analysis of the source code of over seven thousand projects written 
+in Groovy, a programming language where one can choose, for each 
+declaration, either to type it or not, shows in which situations 
+programmers prefer a typing system over the other. Results of 
+this study suggest that the previous experience of the 
+programmer, project size, complexity of modules, scope and 
+visibility of statements are some of the most important factors 
+in this decision.
+
+
+1 Introduction
+
+When choosing a programming language for a project, a
+developer should consider several features of that
+language, one of the most important being its typing system.
+This, which can be static or dynamic, defines when the type 
+of a statement should be defined. Statically typed languages,
+such as Java and C\#, require a statement to be followed by its 
+type definition, which can then be used by the compiler. On the other side, 
+in dynamically typed languages, like Ruby and JavaScript, the definition of
+type only happens during runtime.
+
+The discussion about that is the best typing system has become 
+increasingly more important in recent years due to rapid
+popularization of dynamically typed languages ​. According to
+The TIOBE Programming Community Index, a well-known ranking that
+measures the popularity of programming languages ​, 27\% of
+the programming languages ​​in the industry are dynamically typed. 
+In 2001, this number was only 17\%. Among the 10
+languages ​​on top of the ranking, four are dynamically typed: 
+JavaScript , Perl , Python and PHP . In 1998, none of
+these languages ​​was among the top 10 ranking.
+
+Several factors may be considered when choosing a
+programming language with a dynamic or static type system. 
+Since dynamically typed languages are simpler, they allow programmers 
+to perform their tasks more quickly.
+Also, by removing the repetitive work of defining types,
+these languages ​​allow their users to focus on the problem to be solved 
+rather than spending time with the rules of language.
+
+Static type systems also have their advantages. 
+These can prevent type errors during compilation time. 
+Type declarations increase the maintainability of
+systems because they act as code documentation , informing
+the programmer on the nature of each variable. systems
+from these written languages ​​tend to be more efficient,
+since it does not need to perform type checking during their
+execution. Finally, modern development environments , such
+as Eclipse and IDEA , when they have knowledge about the type of
+a statement , are able to assist the programmer through
+features such as documentation and add code .
+
+This paper presents a study aiming to understand which
+the factors described above actually influence the choice of a
+developer typecast or not by their statements . In order to obtain
+reliable results , this question was studied based on
+code developed by programmers in the context of their
+everyday activities through a mass analysis data
+composed of more than a thousand projects . These projects were written
+in Groovy , a language system with hybrid types , which
+allows you to choose , for each statement , TIPA it or not . thus,
+through a static analysis of this mass of data, it is possible
+when developers choose to view each type system and
+thereafter enteder what are the factors that influence this
+decision .
+
+The remainder of this paper is organized as follows. The
+section 2 introduces the main concepts of the Groovy program language.
+Sections 3 describes the configuration of the study, which resultas are 
+analyzed on Section 4. Section 5 presents threatens to vality while 
+Secion 6 shows related work. Finally , section 7 concludes this work and
+raises some future work.
+
+2 The Groovy Language
+
+Groovy is an object-oriented
+programming language designed to run on the Java platform, but featuring
+dynamic characteristics similar to Ruby and Python. Its
+adoption has grown remarkably in recent years and, despite
+having been launched only six years ago, Groovy 36st most popular 
+language in the software industry
+
+In Groovy, a programmer can choose between static and dynamic typing
+for each of their statements. Dynamic and static Typing can be combined in the same
+code flexibly. In the algorithm 1, for example, the method return is statically
+typed, while parameters and local variables are dynamically typed.
+
+Most of the Java language is also valid in Groovy and
+Groovy code can interact directly with Java code and
+vice versa. These factors have attracted a large number of
+Java programmers who want to use Groovy's dynamic functionality
+without having to learn a completely different language or change the
+execution platform of their systems. 
+
+3 Study Configuration
+
+This paper analyzes in which statements programmers prefer
+use static typing or dynamic in order to understand which
+factors influence this choice. Below are described mass
+Static analyzer and data used for this purpose.
+
+3.1 Mass Data <sub:Massa-de-Dados>
+
+The projects used in this study were obtained from GitHub, one
+service versioning based on Git. Using the API
+GitHub, it was possible to obtain the source code for almost two thousand
+Groovy projects. After discarding duplicates and private projects,
+remaining 1112 projects with a total of 1.67 million lines
+code, considering only the latest version of each project. The
+size distribution of these designs is shown in figure [fig: size_distribution]
+. These systems were developed for a total of 926
+programmers.
+
+
+Static Code Analyzer 3.2
+
+The static code analyzer used in this work is
+based on Groovy metaprogramming library. with this
+library, you can create an abstract syntax tree (AST) to
+from source using one of the various stages of
+Groovy compiler itself. The phase of the chosen was
+conversion, which has sufficient information to determine the
+type system of each statement. This phase occurs before the
+compiler try to resolve any external dependencies,
+making it possible to analyze each file separately without
+need to compile the project.
+
+The following types of statements can be analyzed
+
+• Return Methods
+
+• Parameters Methods
+
+• Parameters Builders
+
+• fields
+
+• Local Variables
+
+For each item listed above, it is still possible to obtain the following
+information
+
+• The statement is part of a script or a class?
+
+• The statement is part of a class of tests?
+
+• Visibility (except for local variables)
+
+4 Results <sec:Resultados>
+
+The following are the results of this work .
+
+
+
+
+
+4.1 General Result <sub:Resultado-Geral>
+
+About 60 % of the statements are statically typed , while
+only 40 % of these are dynamically typed . Given that large
+Part of the Groovy programmers programmers were previously
+Java and therefore were used to static typing , this
+suggests that the previous experience of a programmer is
+important factor in choosing the type system .
+
+4.2 Results by Type Declaration <sub:Resultados-por-Tipo>
+
+Figure [ fig: tipo_declaracao ] shows that dynamic typing is
+used in declarations of local variables with more
+frequency than in other types of statement . Since variable
+places have less and less scope lifecycle , programmers
+probably feel less need to document them through
+the definition of types and end up opting for a more direct
+to declare them .
+
+[ float Figure :
+ <Ficheiro Of gráficos: /Users/carlosgsouza/workspace_gg/groovonomics/articles/vem_2013/tipo.png>
+ [Figure 2:
+Systems by Type Type Declaration.
+]
+
+<fig:tipo_declaracao>
+]
+
+Conversely, builders parameters are the type of
+more often typed statement . It can be argued that there
+a large concern in typecast ( and document ) builders one
+Since these are important elements of contract definition
+a module.
+
+
+
+4.3 Results for Visibility <sub:Resultados-por-Visibilidade>
+
+According to figure [ fig: visibility ] statements with
+visibility public or protected are those with more
+frequency, static typing . These are the statements
+defining the interface module and when TIPA them ,
+programmers allow the compiler to look for errors
+types in integration with other modules besides documenting
+contract this module so that customers know how to use it .
+
+[ float Figure :
+ <Ficheiro Of gráficos: /Users/carlosgsouza/workspace_gg/groovonomics/articles/vem_2013/visibilidade.png>
+ [Figure 3:
+Systems by Type Visibility Statement
+]
+
+<fig:visibilidade>
+]
+
+In the case of method parameters and return , the use of types in
+statements with protected visibility even surpass that of
+statements with public visibility . It can be argued that
+protected fields and methods establish a contract delicate , since
+that expose internal elements of a superclass for a
+subclass . Apparently the need for programmers sighted
+document and the code that defines this type of contract through
+use static typing .
+
+4.4 Results by Size of Project <sub:Resultados-por-Tamanho>
+
+Figure [ fig: General size ] shows the use of dynamic typing in
+public statements by project size . Each bar of this
+graph represents a group of projects grouped by their size
+and that the boundaries of each group are defined under each bar .
+For example , a project with 1500
+ lines of code is in
+second bar , for 1500
+ lies within the interval ] 400.1600 ]
+
+.
+
+[ float Figure :
+ <Ficheiro Of gráficos: /Users/carlosgsouza/workspace_gg/groovonomics/articles/vem_2013/tamanho.png>
+ [Figure 4:
+Type systems and returns parameters of public methods
+grouped by project size .
+]
+
+<fig:tamanho-geral>
+]
+
+This result shows that the use of dynamic typing in
+public statements decreases as the size of the project
+increases. Projects with more than 6400 lines of code using typing
+dynamics with nearly half of that frequency designs
+minors. Intuitively , the larger the design , the greater the
+difficulty of integration and the need for maintenance, which
+can lead programmers to prefer the use of static typing
+elements in public , the more critical this context.
+No pattern can be observed in other types of statement ,
+reinforcing the idea that this pattern is related to the role
+of public elements in large projects .
+
+4.5 Scripts and Test <sub:Scripts-e-Testes>
+
+Scripts are usually written to perform simple tasks
+and do not relate to many other modules. The same can be
+said of test code . This suggests that typing
+Dynamic would be most often used in such contexts one
+Since maintainability and integration are not critical factors . The
+result table [tab : test ] however contradicts this intuition
+showing no significant difference between the profile of
+use of type systems in these contexts .
+
+[ Floating Table :
+[ Table 1 :
+All types of statements grouped by class / script and
+classes test / functional classes
+]
+
+
++ --------------------- + ------------------- + ------- ----------- +
+| | Typing Static | Dynamic Typing |
++ --------------------- + ------------------- + ------- ----------- +
++ --------------------- + ------------------- + ------- ----------- +
+| All Classes | 61 % | 39 % |
++ --------------------- + ------------------- + ------- ----------- +
+| Scripts | 54 % | 46 % |
++ --------------------- + ------------------- + ------- ----------- +
++ --------------------- + ------------------- + ------- ----------- +
+| Functional Classes | 62 % | 38 % |
++ --------------------- + ------------------- + ------- ----------- +
+| Test Classes | 57 % | 43 % |
++ --------------------- + ------------------- + ------- ----------- +
+<tab:teste>
+]
+
+5 Threats to validity
+
+<sec:ameaca>
+
+As raised in section [ sub : Result - General ] , programmers
+tend to continue using the system with which types are already
+accustomed . Given that most programmers Groovy
+have prior experience with Java , a language statically
+typed , the results shown in this work may have
+tendency to use static typing . Nevertheless, the
+Analysis by type of declaration given in section [ sub : Results - by - type ]
+ shows the predominance of dynamic typing in local variables ,
+indicating that despite the previous experience with Java,
+programmers are able to learn to use dynamic typing
+where they consider it necessary .
+
+Some frameworks require the use of a particular type system in
+certain situations. Spock , for example, a structure of tests
+automated , requires that the return of implementing methods
+tests is dynamically typed . However , due to the heterogeneity
+and the large number of projects analyzed , it is believed that there
+there is no framework using so extensive as to
+influence the overall results .
+
+6 Related Work <sec:Trabalhos-Relacionados>
+
+There are some jobs that perform this comparison by
+controlled studies . In [ experiment_with_purity ] , the author compares
+performance of two groups of students when instructed to
+develop two small systems . Both groups used
+a language developed by the author, Purity , and the only
+difference between them is that a group uses a version of this
+language with static typing while the other used a
+version with dynamic typing . Results showed that the group
+using the dynamic version was significantly more
+productive. As in this work , the author was able to
+compared two types directly , in which case
+developing its own language . However , it can be argued
+that these results may not represent well the situations
+daily life of the software industry , since this was a
+short duration of study where students are used as
+examples of developers and they also do not have any
+interaction with other programmers . In this paper , we try to
+get more relevant results when analyzing source code
+developed pro programmers during activities
+everyday .
+
+In a follow up study [ hanenberg_icpc ] , the authors
+reached opposite conclusions . They compared the performance of
+two groups of developers in maintenance tasks , one
+Java used a statically typed language , and the other ,
+Groovy used to simulate a version of Java dynamically
+typed . In this case , the group using Java language
+statically typed , was much more productive . this contradiction
+strengthens the argument that the results of controlled studies
+can not be trusted to look into this matter .
+
+In experiments conducted in [ ruby_vs_druby ] , the authors
+compare the performance of two groups working on small
+development tasks. One group used Ruby , a language
+dynamically typed , while the other DRuby used , a version
+statically typed Ruby . Results showed that the
+compiler DRuby rarely managed to capture errors that no longer
+were evident for programmers . Most
+involved in the study had previous experience with Ruby , which
+suggests that programmers get used to the lack of typing
+static in their declarations .
+
+7 Conclusion and Future Work <sec:Conclusão-e-Trabalhos>
+
+This study examines which factors are most important to
+choose a system of dynamic or static type . There
+work in the literature on the advantages of each
+through controlled studies . The results presented here
+however, show what are the factors that actually influence this
+decision by mining a wide range of repositories
+software and visualization of using these types of systems .
+
+When the need for maintenance and integration complexity
+between modules are important issues , static typing
+is apparently preferred by programmers Groovy . In these
+situations integration with development tools and
+code documentation provided by static type system
+important advantages are considered by programmers . by
+Conversely, when these issues are not as critical , the
+simplicity of dynamic typing seems to be preferred , as seen
+with declarations of local variables . Another important factor is the
+previous experience of programmers with a given type system .
+
+In future work we wish to analyze the influence of systems
+types of static and dynamic strength of the system
+software. In particular , we want to understand whether the use typing
+dynamics , which limits the compiler's ability to discover
+type problems , has some correlation with the occurrence of
+defects in the system and the use of automated testing is
+able to reduce this correlation.
+
+  Agradecimentos
+
+Este trabalho recebeu apoio financeiro da FAPEMIG, processos 
+APQ-02376-11 e APQ-02532-12, e do CNPq processo 485235/2011-0.
+
+[Comando LaTeX: bibtex]
+
