@@ -1,0 +1,579 @@
+#LyX file created by tex2lyx 2.0.6
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+
+
+\usepackage{sbc-template}
+
+\usepackage{url}
+
+%\usepackage[brazil]{babel}   
+
+
+     
+\sloppy
+
+\title{Instructions for Authors of SBC Conferences\\ Papers and Abstracts}
+
+\author{Luciana P. Nedel\inst{1}, Rafael H. Bordini\inst{2}, Flávio Rech
+  Wagner\inst{1}, Jomi F. Hübner\inst{3} }
+
+
+\address{Instituto de Informática -- Universidade Federal do Rio Grande do Sul
+  (UFRGS)\\
+  Caixa Postal 15.064 -- 91.501-970 -- Porto Alegre -- RS -- Brazil
+\nextinstitute
+  Department of Computer Science -- University of Durham\\
+  Durham, U.K.
+\nextinstitute
+  Departamento de Sistemas e Computação\\
+  Universidade Regional de Blumenal (FURB) -- Blumenau, SC -- Brazil
+  \email{\{nedel,flavio\}@inf.ufrgs.br, R.Bordini@durham.ac.uk,
+  jomi@inf.furb.br}
+}
+
+
+\end_preamble
+\use_default_options false
+\language english
+\language_package none
+\inputencoding latin1
+\fontencoding default
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\paperfontsize 12
+\spacing single
+\use_hyperref 0
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+maketitle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+
+This meta-paper describes the style to be used in articles and short papers for SBC conferences. For papers in English, you should add just an abstract while for the papers in Portuguese, we also ask for an abstract in Portuguese (
+\begin_inset Quotes eld
+\end_inset
+
+resumo
+\begin_inset Quotes erd
+\end_inset
+
+). In both cases, abstracts should not have more than 10 lines and must be in the first page of the paper. 
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+begin{resumo}
+\end_layout
+
+\end_inset
+
+ Este meta-artigo descreve o estilo a ser usado na confecção de artigos e resumos de artigos para publicação nos anais das conferências organizadas pela SBC. É solicitada a escrita de resumo e abstract apenas para os artigos escritos em português. Artigos em inglês deverão apresentar apenas abstract. Nos dois casos, o autor deve tomar cuidado para que o resumo (e o abstract) não ultrapassem 10 linhas cada, sendo que ambos devem estar na primeira página do artigo. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+end{resumo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+
+General Information
+\end_layout
+
+\begin_layout Standard
+
+All full papers and posters (short papers) submitted to some SBC conference, including any supporting documents, should be written in English or in Portuguese. The format paper should be A4 with single column, 3.5 cm for upper margin, 2.5 cm for bottom margin and 3.0 cm for lateral margins, without headers or footers. The main font must be Times, 12 point nominal size, with 6 points of space before each paragraph. Page numbers must be suppressed.
+\end_layout
+
+\begin_layout Standard
+
+Full papers must respect the page limits defined by the conference. Conferences that publish just abstracts ask for 
+\series bold
+one
+\series default
+-page texts.
+\end_layout
+
+\begin_layout Section
+
+First Page
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:firstpage"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+The first page must display the paper title, the name and address of the authors, the abstract in English and 
+\begin_inset Quotes eld
+\end_inset
+
+resumo
+\begin_inset Quotes erd
+\end_inset
+
+ in Portuguese (
+\begin_inset Quotes eld
+\end_inset
+
+resumos
+\begin_inset Quotes erd
+\end_inset
+
+ are required only for papers written in Portuguese). The title must be centered over the whole page, in 16 point boldface font and with 12 points of space before itself. Author names must be centered in 12 point font, bold, all of them disposed in the same line, separated by commas and with 12 points of space after the title. Addresses must be centered in 12 point font, also with 12 points of space after the authors' names. E-mail addresses should be written using font Courier New, 10 point nominal size, with 6 points of space before and 6 points of space after.
+\end_layout
+
+\begin_layout Standard
+
+The abstract and 
+\begin_inset Quotes eld
+\end_inset
+
+resumo
+\begin_inset Quotes erd
+\end_inset
+
+ (if is the case) must be in 12 point Times font, indented 0.8cm on both sides. The word 
+\series bold
+Abstract
+\series default
+ and 
+\series bold
+Resumo
+\series default
+, should be written in boldface and must precede the text.
+\end_layout
+
+\begin_layout Section
+
+CD-ROMs and Printed Proceedings
+\end_layout
+
+\begin_layout Standard
+
+In some conferences, the papers are published on CD-ROM while only the abstract is published in the printed Proceedings. In this case, authors are invited to prepare two final versions of the paper. One, complete, to be published on the CD and the other, containing only the first page, with abstract and 
+\begin_inset Quotes eld
+\end_inset
+
+resumo
+\begin_inset Quotes erd
+\end_inset
+
+ (for papers in Portuguese).
+\end_layout
+
+\begin_layout Section
+
+Sections and Paragraphs
+\end_layout
+
+\begin_layout Standard
+
+Section titles must be in boldface, 13pt, flush left. There should be an extra 12 pt of space before each title. Section numbering is optional. The first paragraph of each section should not be indented, while the first lines of subsequent paragraphs should be indented by 1.27 cm.
+\end_layout
+
+\begin_layout Subsection
+
+Subsections
+\end_layout
+
+\begin_layout Standard
+
+The subsection titles must be in boldface, 12pt, flush left.
+\end_layout
+
+\begin_layout Section
+
+Figures and Captions
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:figs"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+Figure and table captions should be centered if less than one line (Figure
+\begin_inset space ~
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:exampleFig1"
+
+\end_inset
+
+), otherwise justified and indented by 0.8cm on both margins, as shown in Figure
+\begin_inset space ~
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:exampleFig2"
+
+\end_inset
+
+. The caption font must be Helvetica, 10 point, boldface, with 6 points of space before and after each caption.
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset Float figure
+placement ht
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename fig1.jpg
+	width 50text%
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Standard
+
+A typical figure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:exampleFig1"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset Float figure
+placement ht
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename fig2.jpg
+	width 30text%
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Standard
+
+This figure is an example of a figure caption taking more than one line and justified considering margins mentioned in Section
+\begin_inset space ~
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:figs"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:exampleFig2"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+In tables, try to avoid the use of colored or shaded backgrounds, and avoid thick, doubled, or unnecessary framing lines. When reporting empirical data, do not use more decimal digits than warranted by their precision and reproducibility. Table caption must be placed before the table (see Table 1) and the font used must also be Helvetica, 10 point, boldface, with 6 points of space before and after each caption.
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset Float table
+placement ht
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Standard
+
+Variables to be considered on the evaluation of interaction techniques
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:exTable1"
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename table.jpg
+	width 70text%
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+
+Images
+\end_layout
+
+\begin_layout Standard
+
+All images and illustrations should be in black-and-white, or gray tones, excepting for the papers that will be electronically available (on CD-ROMs, internet, etc.). The image resolution on paper should be about 600 dpi for black-and-white images, and 150-300 dpi for grayscale images. Do not include images with excessive resolution, as they may take hours to print, without any visible difference in the result.
+\end_layout
+
+\begin_layout Section
+
+References
+\end_layout
+
+\begin_layout Standard
+
+Bibliographic references must be unambiguous and uniform. We recommend giving the author names references in brackets, e.g. 
+\begin_inset CommandInset citation
+LatexCommand cite
+after ""
+key "knuth:84"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+after ""
+key "boulic:91"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset citation
+LatexCommand cite
+after ""
+key "smith:99"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+The references must be listed using 12 point font size, with 6 points of space before each reference. The first line of each reference should not be indented, while the subsequent should be indented by 0.5 cm.
+\end_layout
+
+\begin_layout Standard
+
+ 
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "sbc-template"
+options "sbc"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
