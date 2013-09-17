@@ -1,113 +1,74 @@
 import groovy.json.JsonSlurper
-import carlosgsouza.groovonomics.typing_usage.AgregateProjectData
-import carlosgsouza.groovonomics.typing_usage.ClassData
-import carlosgsouza.groovonomics.typing_usage.ClassDataFactory
-import carlosgsouza.groovonomics.typing_usage.DeclarationCount
-import carlosgsouza.groovonomics.typing_usage.ProjectDataFactory
+
+import java.text.SimpleDateFormat
 
 public class AgregateDataFromClasses {
 	
-	def classDataFolder = new File("/opt/groovonomics/data/type_usage/class/")
+	JsonSlurper slurper = new JsonSlurper()
+	SimpleDateFormat sdf = new SimpleDateFormat("y-M-dh:m:s")
 	
-	File projectsFolder = new File("/opt/groovonomics/data/type_usage/project/")
-	File agregateFolder = new File("/opt/groovonomics/data/type_usage/agregate/")
-	
-	def projectDataFactory = new ProjectDataFactory()
-	
-	public AgregateDataFromClasses() {
-		projectsFolder.deleteDir()
-		projectsFolder.mkdirs()
+	def rockTheWorld() {
+		def metadataFolder = new File("/Users/carlosgsouza/workspace_gg/groovonomics/articles/aosd_2014/data/metadata")
 		
-		agregateFolder.deleteDir()
-		agregateFolder.mkdirs()
-	}
-	
-	def agregeteThemAll() {
-		def allProjectsAgregate = new ClassData()
-		classDataFolder.eachFile { projectDataFile ->
-			try {
-				if(projectDataFile.text.size() == 0) {
-					println projectDataFile
-				}
-				
-				def projectData = projectDataFactory.fromJsonFile(projectDataFile)
-				def projectAgregate = projectData.agregate()
-				
-				new File(projectsFolder, projectDataFile.name) << projectAgregate
-				
-				allProjectsAgregate += projectAgregate
-			} catch(e) {
-				println "${projectDataFile.name}\t$e.message"
-			}
+		def locDistributionFile = new File("/Users/carlosgsouza/workspace_gg/groovonomics/articles/aosd_2014/data/loc_distribution.txt")
+		locDistributionFile.delete()
+		
+		def developersDistributionFile = new File("/Users/carlosgsouza/workspace_gg/groovonomics/articles/aosd_2014/data/developers_distribution.txt")
+		developersDistributionFile.delete()
+		
+		def ageDistributionFile = new File("/Users/carlosgsouza/workspace_gg/groovonomics/articles/aosd_2014/data/age_distribution.txt")
+		ageDistributionFile.delete()
+		
+		def size_counter = [:]
+		def developers_counter = [:]
+		def age_counter = [:]
+		
+		def numberOfProjects = 0
+		
+		metadataFolder.eachFile { projectFile ->
+			def projectMetadata = slurper.parseText(projectFile.text)
+			
+			def size = projectMetadata.loc.toInteger()
+			size_counter[size] = size_counter[size] ?: 0
+			size_counter[size]++
+					
+			def developers = projectMetadata.contributors.size()
+			developers_counter[developers] = developers_counter[developers] ?: 0
+			developers_counter[developers]++
+					
+			def age = sdf.parse(projectMetadata.updatedAt - 'T' - 'Z') - sdf.parse(projectMetadata.createdAt - 'T' - 'Z')
+			age = Math.round(Math.max(0, age)/30)
+			age_counter[age] = age_counter[age] ?: 0
+			age_counter[age]++
+			
+			numberOfProjects++
 		}
-		new File(agregateFolder, "all.json") << allProjectsAgregate
-	}
-	
-	def agregeteScriptsAndClasses() {
-		def datasetagregete = new ClassData()
 		
-		def allScriptsAgregate = new DeclarationCount()
-		def allClassesAgregate = new DeclarationCount()
+		def totalSoFar = 0
+		size_counter.sort().each { size, counter ->
+			totalSoFar += counter
 			
-		classDataFolder.eachFile { projectDataFile ->
-			def projectData = projectDataFactory.fromJsonFile(projectDataFile)
-			def projectScriptsAgregate = projectData.agregateScripts()
-			def projectClassesAgregate = projectData.agregateClasses()
-			
-			allScriptsAgregate += projectScriptsAgregate
-			allClassesAgregate += projectClassesAgregate
+			locDistributionFile << "$size\t${totalSoFar/numberOfProjects}\n"
+			counter++
 		}
-		new File(agregateFolder, "scripts.json") << allScriptsAgregate
-		new File(agregateFolder, "classes.json") << allClassesAgregate
-	}
-	
-	def agregeteTestAndFuncionalClasses() {
-		def datasetagregete = new ClassData()
 		
-		def allTestAgregate = new DeclarationCount()
-		def allFunctionalAgregate = new DeclarationCount()
-			
-		classDataFolder.eachFile { projectDataFile ->
-			def projectData = projectDataFactory.fromJsonFile(projectDataFile)
-			
-			if(projectData.hasTests()) {
-				def projectTestAgregate = projectData.agregateTestClasses()
-				def projectFunctionalAgregate = projectData.agregateFunctionalClasses()
-				
-				allTestAgregate += projectTestAgregate
-				allFunctionalAgregate += projectFunctionalAgregate
-			}
+		developers_counter.sort().each { developers, counter ->
+			developersDistributionFile << "$developers\t${counter/numberOfProjects}\n"
+			counter++
 		}
-		new File(agregateFolder, "test_classes.json") << allTestAgregate
-		new File(agregateFolder, "functional_classes.json") << allFunctionalAgregate
-	}
-	
-	def agregateOverall() {
-		def overall = new DeclarationCount()
 		
-		def all = new ClassDataFactory().fromJsonFile new File(agregateFolder, "all.json")
-		overall += all.publicMethodReturn
-		overall += all.privateMethodReturn
-		overall += all.protectedMethodReturn
-		overall += all.publicField
-		overall += all.privateField
-		overall += all.protectedField
-		overall += all.publicMethodParameter
-		overall += all.privateMethodParameter
-		overall += all.protectedMethodParameter
-		overall += all.publicConstructorParameter
-		overall += all.privateConstructorParameter
-		overall += all.protectedConstructorParameter
-		overall += all.localVariable
-		
-		new File(agregateFolder, "overall.json") << overall
+		totalSoFar = 0
+		age_counter.sort().each { age, counter ->
+			totalSoFar += counter
+
+			ageDistributionFile << "$age\t${totalSoFar/numberOfProjects}\n"
+			counter++
+		}
 	}
+
 	
 	public static void main(String[] args) {
 		def agregator = new AgregateDataFromClasses()
-		agregator.agregeteThemAll()
-		agregator.agregateOverall()
-		agregator.agregeteScriptsAndClasses()
-		agregator.agregeteTestAndFuncionalClasses()
+		agregator.rockTheWorld()
 	}
 }
