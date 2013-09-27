@@ -12,4 +12,5 @@ There is almost no documentation apart from my unit tests in this project. Howev
 
 The name groovonomics is based on the great book [Freakonomics](http://www.amazon.com/Freakonomics-Economist-Explores-Hidden-Everything/dp/0060731338/ref=sr_1_1?ie=UTF8&qid=1378522562&sr=8-1&keywords=freakonomics) by Levitt and Dubner.
 
+## Research Results
 
