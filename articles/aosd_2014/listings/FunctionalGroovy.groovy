@@ -1,0 +1,1 @@
+["a", "ab", "abc"].findAll{ it.size() > 1 }*.toUpperCase()
