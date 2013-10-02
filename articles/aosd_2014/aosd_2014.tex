@@ -129,41 +129,27 @@ It builds upon the strengths of Java, but has additional features inspired by dy
 Its adoption has grown remarkably over the last years, specially among Java developers who seek more dynamism without having to learn a completelly new language.
 Groovy allows programmers to use both static and dynamic type systems, which makes it ideal for a comparative study between those two type systems.
 
+Despite having been launched less than ten years ago, Groovy is already a very popular language.
+According to the Tiobe Programming Index, Groovy is the 22\textsuperscript{st} most popular language in the software industry\cite{tiobe}, ahead of languages like Prolog, Haskell and Scala. 
+
 The syntax of the Groovy language is similar to Java's and most of Java syntax is also valid in Groovy.
 Like Java, Groovy code is compiled to bytecode, allowing it to seamlessly integrate with existing Java classes and libraries. 
 These factors have attracted a large number of Java programmers who want to use Groovy's dynamic functionality without having to learn a completely different language or change the execution platform of their systems. 
 
-Although Groovy's syntax is similar to Java's, it was designed to be more expressive and concise. Algorithm ?? shows some of the Groovy functionalities that allow programmers to be more expressive
+Groovy was designed to be more expressive and concise than Java.
+Below we show two implementations of a simple algorithm.
+Given a list of numbers, return a list with the even numbers of that list.
+Listing \ref{javaClass} shows the Java implementation while Listing \ref{groovyClass} shows the Groovy counterpart. 
 
-Despite having been launched less than ten years ago, Groovy is already a very popular language.
-According to the Tiobe Programming Index, Groovy is the 22\textsuperscript{st} most popular language in the software industry\cite{tiobe}, ahead of languages like Prolog, Haskell and Scala. 
-
-Groovy's design was heavily influenced by dynamic programming languges like Ruby and Python.
-It provides many modern programming features like those seen in Ruby and Python.
-
-
-Although Groovy language is similar to Java, it was designed to be more expressive and concise. Algorithm ?? shows some 
-> Semicolon
-> Native list support 
-> Import
-> No parenthesis
-> Operator overloading
-
-
-> Functional Programming style 
-> Operator
-> Closures 
-> Scripting 
-
-> Metaprogramming 
-
-> Native Regex support 
-
-
-In Groovy, a programmer can choose between static and dynamic typing for each of their statements. Dynamic and static Typing can be combined flexibly. In the algorithm \ref{codigoGroovy}, for example, the method return is statically typed, while parameters and local variables are dynamically typed.
+Many of the boilerplate elements from Java aren't required in Groovy.  
+As shown in Listing \ref{groovyClass}, semicolons are optional, except when there are multiple statements in the same line. 
+When the keyword $return$ is omitted (line 10), the last expression evaluated with a method is returned. 
+Also, parenthesis in method calls can often be omitted (line 16).
+In addition to that, frequently used classes like those of the $java.util$ package are imported by default and thus don't need to be implicitly imported.
+Least, Groovy provides easy access to frequently used methos such as $System.out.println$ (line 16).
 
 \begin{Listing}[ht]
-\begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
+\begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
 import java.util.ArrayList;
 import java.util.List;
 
@@ -191,12 +177,12 @@ public class JavaFilter {
 	}
 }
 \end{lstlisting}
-\caption{A class written in Java}
-\label{codigoGroovy}
+\caption{A simple algorithm written in Java}
+\label{javaClass}
 \end{Listing}
 
 \begin{Listing}[ht]
-\begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
+\begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
 class GroovyFilter {
 	List<Integer> evenNumbers(List<Integer> list) {
 		List<Integer> result = []
@@ -216,9 +202,31 @@ class GroovyFilter {
 	}
 }
 \end{lstlisting}
-\caption{A class written in Groovy}
-\label{codigoGroovy}
+\caption{A simple algorithm written in Groovy}
+\label{groovyClass}
 \end{Listing}
+
+Groovy's design was heavily influenced by dynamic programming languges like Ruby and Python.
+It provides many modern programming features like those seen in Ruby and Python.
+
+
+Although Groovy language is similar to Java, it was designed to be more expressive and concise. Algorithm ?? shows some 
+
+
+
+> Functional Programming style 
+> Operator
+> Closures 
+> Scripting 
+
+> Metaprogramming 
+
+> Native Regex support 
+
+
+In Groovy, a programmer can choose between static and dynamic typing for each of their statements. Dynamic and static Typing can be combined flexibly. In the algorithm \ref{codigoGroovy}, for example, the method return is statically typed, while parameters and local variables are dynamically typed.
+
+
 
 
 \begin{Listing}[ht]
@@ -248,10 +256,82 @@ println [1, 2, 3, 4].findAll {it % 2 == 0}
 
 \begin{Listing}[ht]
 \begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
-List.metaClass.evenNumbers = {
-	delegate.findAll { it%2 == 0}
+class DynamicGroovy {
+	private String field_s
+	private field_d = 1.0
+
+	DynamicGroovy()
+
+	def sum(param_d, int param_s) {
+		def local_d = param_d + param_s
+		return result
+	}
 }
-println([1, 2, 3, 4].evenNumbers())
+\end{lstlisting}
+\caption{Groovy is a dynamic language}
+\label{codigoGroovy}
+\end{Listing}
+
+
+
+\begin{Listing}[ht]
+\begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
+int thisIsAnInt = "this is a string"
+\end{lstlisting}
+\caption{A class written in Groovy}
+\label{codigoGroovy}
+\end{Listing}
+
+
+
+\begin{Listing}[ht]
+\begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
+class MyRunnable implements Runnable {}
+
+/*
+ERROR MESSAGE
+
+$ groovyc SubclassTypeError.groovy
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+SubclassTypeError.groovy: 1: Can't have an abstract method in a non-abstract class. The class 'MyRunnable' must be declared abstract or the method 'void run()' must be implemented.
+ @ line 1, column 1.
+   class MyRunnable implements Runnable {}
+   ^
+
+1 error
+*/
+
+\end{lstlisting}
+\caption{A class written in Groovy}
+\label{codigoGroovy}
+\end{Listing}
+
+
+
+\begin{Listing}[ht]
+\begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
+@TypeChecked
+class TypeCheckedGroovyClass {
+	
+	static int sum(int a, int b) {
+		a + b
+	}
+
+	public static void main(String[] args) {
+		println sum("1", "2")
+	}
+}
+
+/*
+olga:listings carlosgsouza$ groovyc TypeCheckedGroovyClass.groovy
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+TypeCheckedGroovyClass.groovy: 11: [Static type checking] - Cannot find matching method TypeCheckedGroovyClass#sum(java.lang.String, java.lang.String). Please check if the declared type is right and if the method exists.
+ @ line 11, column 11.
+   		println sum("1", "2")
+             ^
+
+1 error
+*/
 \end{lstlisting}
 \caption{A class written in Groovy}
 \label{codigoGroovy}
@@ -298,13 +378,13 @@ The distribution of the size of these designs is shown in figure \ref{fig:size_d
 These projects were developed by a total of 4806 developers and, together, they have approximately 169 thousand Groovy files.
 
 \begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{size_distribution}
+\centering \includegraphics[width=0.45\textwidth]{images/size_distribution}
 \caption{Project Size Distribution}
 \label{fig:size_distribution} 
 \end{figure}
 
 \begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{age_distribution}
+\centering \includegraphics[width=0.45\textwidth]{images/age_distribution}
 \caption{Project Age Distribution}
 \label{fig:age_distribution} 
 \end{figure}
@@ -352,7 +432,7 @@ Fields, method returns and parameters on the other side are mostly typed. In par
 
 \begin{figure}[ht]
 \centering 
-\includegraphics[width=0.45\textwidth]{tipo} 
+\includegraphics[width=0.45\textwidth]{images/tipo} 
 \caption{Type Systems by Declaration Type.}
 \label{fig:tipo_declaracao} 
 \end{figure}
@@ -365,7 +445,7 @@ With $64.44\%$ and $67.26\%$ typed declarations respectively, these results don'
 On the other side, the return of protected methods, are almost always typed.
 
 \begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{method_return_visibility} 
+\centering \includegraphics[width=0.45\textwidth]{images/method_return_visibility} 
 \caption{Type Systems by Declaration Visibility}
 \label{fig:method_return_visibility} 
 \end{figure}
@@ -375,7 +455,7 @@ Compared to the results for method returns shown in figure \ref{fig:method_retur
 While public method returns have types in $67.26\%$ of the times, public method parameters have more than $80\%$ their declarations typed.
 
 \begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{method_parameter_visibility} 
+\centering \includegraphics[width=0.45\textwidth]{images/method_parameter_visibility} 
 \caption{Type Systems by Declaration Visibility}
 \label{fig:method_parameter_visibility} 
 \end{figure}
@@ -384,7 +464,7 @@ Results for constructor parameters are shown in figure \ref{fig:constructor_para
 These results are close to the results observed for non-constructor method parameters above. 
 
 \begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{constructor_parameter_visibility} 
+\centering \includegraphics[width=0.45\textwidth]{images/constructor_parameter_visibility} 
 \caption{Type Systems by Declaration Visibility}
 \label{fig:constructor_parameter_visibility} 
 \end{figure}
@@ -398,7 +478,7 @@ While this frequency is $72.4\%$ for private fields, method returns, method para
 
 
 \begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{field_visibility} 
+\centering \includegraphics[width=0.45\textwidth]{images/field_visibility} 
 \caption{Type Systems by Declaration Visibility}
 \label{fig:field_visibility} 
 \end{figure}
@@ -431,7 +511,7 @@ While projects with less than $1024$ lines of code have almost $40\%$ of their d
 
 \begin{figure*}[ht]
 \centering 
-\includegraphics[width=1\textwidth]{size_pubMethodReturn} 
+\includegraphics[width=1\textwidth]{images/size_pubMethodReturn} 
 \caption{Dynamic Typing usage in local variables}
 \label{fig:size_pubMethodReturn} 
 \end{figure*}
@@ -440,14 +520,14 @@ Figures \ref{fig:size_priMethodReturn}) and \ref{fig:size_proMethodReturn}) show
 
 \begin{figure*}[ht]
 \centering 
-\includegraphics[width=1\textwidth]{size_priMethodReturn} 
+\includegraphics[width=1\textwidth]{images/size_priMethodReturn} 
 \caption{Dynamic Typing usage in local variables}
 \label{fig:size_priMethodReturn} 
 \end{figure*}
 
 \begin{figure*}[ht]
 \centering 
-\includegraphics[width=1\textwidth]{size_proMethodReturn} 
+\includegraphics[width=1\textwidth]{images/size_proMethodReturn} 
 \caption{Dynamic Typing usage in local variables}
 \label{fig:size_proMethodReturn} 
 \end{figure*}
@@ -459,7 +539,7 @@ On the other side, in projects with over $65536$ lines of code, the average freq
 
 \begin{figure*}[ht]
 \centering 
-\includegraphics[width=1\textwidth]{size_localVariable} 
+\includegraphics[width=1\textwidth]{images/size_localVariable} 
 \caption{Dynamic Typing usage in local variables}
 \label{fig:size_localVariable} 
 \end{figure*}
@@ -474,22 +554,22 @@ TODO: Here I will add some text to explain the spearman ranking of these variabl
 \begin{tabular}{|rr|c|}
 \hline 
 \multirow{3}{*}{Method Return}			& public 			& ?\\
-										& private 			& ?\\
-										& protected			& ?\\
+									& private 			& ?\\
+									& protected		& ?\\
 \hline
-\multirow{3}{*}{Method Parameter}		& public 			& ?\\
-										& private 			& ?\\
-										& protected			& ?\\
+\multirow{3}{*}{Method Parameter}			& public 			& ?\\
+									& private 			& ?\\
+									& protected		& ?\\
 \hline
-\multirow{3}{*}{Constructor Parameter}	& public			& ?\\
-										& private 			& ?\\
-										& protected			& ?\\
+\multirow{3}{*}{Constructor Parameter}		& public			& ?\\
+									& private 			& ?\\
+									& protected		& ?\\
 \hline
 \multirow{3}{*}{Field}					& public 			& ?\\
-										& private 			& ?\\
-										& protected			& ?\\
+									& private 			& ?\\
+									& protected		& ?\\
 \hline
-										& Local Variable	& ?\\
+									& Local Variable	& ?\\
 \hline  	
 \end{tabular}
 \label{tab:size_dynamic_spearman}

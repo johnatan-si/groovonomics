@@ -1,1 +1,0 @@
-println([1, 2, 3, 5, 8].findAll {it % 2 == 0})
