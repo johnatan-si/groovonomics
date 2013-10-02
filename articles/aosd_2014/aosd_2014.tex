@@ -140,13 +140,18 @@ Groovy was designed to be more expressive and concise than Java.
 Below we show two implementations of a simple algorithm.
 Given a list of numbers, return a list with the even numbers of that list.
 Listing \ref{javaClass} shows the Java implementation while Listing \ref{groovyClass} shows the Groovy counterpart. 
+Note that Groovy supports lists nativelly(lines 3, 6 and 14) and operator overloading (line 6).
+
 
 Many of the boilerplate elements from Java aren't required in Groovy.  
 As shown in Listing \ref{groovyClass}, semicolons are optional, except when there are multiple statements in the same line. 
 When the keyword $return$ is omitted (line 10), the last expression evaluated with a method is returned. 
 Also, parenthesis in method calls can often be omitted (line 16).
 In addition to that, frequently used classes like those of the $java.util$ package are imported by default and thus don't need to be implicitly imported.
-Least, Groovy provides easy access to frequently used methos such as $System.out.println$ (line 16).
+Least, Groovy provides easy access to frequently used methos such as $System.out.println$ (line 16). Other important 
+
+% This gives much more expressiveness to a programmer for common tasks that would rather require more boilerplate code in Java.
+% All in all ... Compared to Listing \ref{javaClass}, Groovy code can be much more expressive.
 
 \begin{Listing}[ht]
 \begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
@@ -206,110 +211,86 @@ class GroovyFilter {
 \label{groovyClass}
 \end{Listing}
 
-Groovy's design was heavily influenced by dynamic programming languges like Ruby and Python.
-It provides many modern programming features like those seen in Ruby and Python.
-
-
-Although Groovy language is similar to Java, it was designed to be more expressive and concise. Algorithm ?? shows some 
-
-
-
-> Functional Programming style 
-> Operator
-> Closures 
-> Scripting 
-
-> Metaprogramming 
-
-> Native Regex support 
-
-
-In Groovy, a programmer can choose between static and dynamic typing for each of their statements. Dynamic and static Typing can be combined flexibly. In the algorithm \ref{codigoGroovy}, for example, the method return is statically typed, while parameters and local variables are dynamically typed.
-
-
-
+Groovy's design was influenced by dynamic feature of programming languges like Ruby and Python.
+Listing \ref{dynamicInfuence} shows how these features can be used to rewrite the same algorithm presented in Listing \ref{javaClass} in a single line of code. 
+This code snippet makes use of closures to allow a programmer to define a filter logic for the method $findAll$.
+This allows a functional programming style of code which allows a high level of expressivenes for the programmer.
+Notice that this is a script, rather than a class, and thus the programmer doesn't have to write class.
 
 \begin{Listing}[ht]
 \begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
-List<Integer> result = []
-[1, 2, 3, 5, 8].each { item ->
-	if(item % 2 == 0) {
-		result << item
-	}
+println([1, 2, 3, 4].findAll {it % 2 == 0})
+\end{lstlisting}
+\caption{A class written in Groovy}
+\label{dynamicInfuence}
+\end{Listing}
+
+Metaprogramming is another dynamic feature present in Groovy. 
+Listing \ref{metaprogramming} shows how to add a method to an existing class dynamically.
+By adding the method $evenNumbers()$ to the $List$ class, it is possible to achieve higher expressivenes.
+This is specially useful when implementing Domain Specific Languages.
+
+\begin{Listing}[ht]
+\begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
+List.metaClass.evenNumbers = {
+	delegate.findAll {it % 2 == 0}
 }
-println result
+println([1, 2, 3, 4].evenNumbers())
+
 \end{lstlisting}
-\caption{A class written in Groovy}
-\label{codigoGroovy}
+\caption{An example of metaprogramming in Groovy}
+\label{metaprogramming}
 \end{Listing}
 
-\begin{Listing}[ht]
-\begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
-println [1, 2, 3, 4].findAll {it % 2 == 0}
-\end{lstlisting}
-\caption{A class written in Groovy}
-\label{codigoGroovy}
-\end{Listing}
-
-
+When Groovy 1.0 was first launched, in 2007, it was a purelly dynamically typed language.
+However, it allowed programmers to optionally type their statements.
+This is illustrated in Listing \ref{dynamicTyping}. 
+It shows examples of declarations of typed and untyped methods, fields and variables combined flexibly in the same class.
 
 
 \begin{Listing}[ht]
-\begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
-class DynamicGroovy {
-	private String field_s
-	private field_d = 1.0
+\begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
+class DynamicTyping {
+	private String typedField
+	private untypedField
 
-	DynamicGroovy()
+	DynamicTyping(untypedParam, String typedParam) {}
 
-	def sum(param_d, int param_s) {
-		def local_d = param_d + param_s
+	def untypedMethod(untypedParam, int typedParam) {
+		def untypedVariable = untypedParam + typedParam
 		return result
+	}
+
+	int typedMethod()  {
+		String typedVariable = ""
+		return typedVariable
 	}
 }
 \end{lstlisting}
 \caption{Groovy is a dynamic language}
-\label{codigoGroovy}
+\label{dynamicTyping}
 \end{Listing}
 
-
+This kind of typing shown in Listing \ref{dynamicTyping} should not be confused with static typing.
+Groovy compiler still isn't able to check type correctness.
+For example, the snippet of code shown in Listing \ref{typeError} compiles without any errors, but fails during execution with a type error.
 
 \begin{Listing}[ht]
 \begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
-int thisIsAnInt = "this is a string"
+int integer = "string"
 \end{lstlisting}
 \caption{A class written in Groovy}
-\label{codigoGroovy}
+\label{typeError}
 \end{Listing}
 
-
-
-\begin{Listing}[ht]
-\begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
-class MyRunnable implements Runnable {}
-
-/*
-ERROR MESSAGE
-
-$ groovyc SubclassTypeError.groovy
-org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
-SubclassTypeError.groovy: 1: Can't have an abstract method in a non-abstract class. The class 'MyRunnable' must be declared abstract or the method 'void run()' must be implemented.
- @ line 1, column 1.
-   class MyRunnable implements Runnable {}
-   ^
-
-1 error
-*/
-
-\end{lstlisting}
-\caption{A class written in Groovy}
-\label{codigoGroovy}
-\end{Listing}
-
-
+Since Groovy 2.0, Groovy allows programmers to explicitly activate static typing with the usage of the $@TypeChecked$ annotation.
+In this mode, the Groovy compiler will look for type errors and fail compilation if it finds any.
+Listing \ref{staticTyping} shows a class with the $@TypeChecked$.
+When this class is compiled, the compiler fails with a compilation error since the method $sum$ is supposed to receive to parameters with the type $int$, but is called with two parameters of the type $String$.
+%% TODO: Talk about gradual type systems \cite{gray05,gray08,gray11,siek07,takikawa12}
 
 \begin{Listing}[ht]
-\begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
+\begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
 @TypeChecked
 class TypeCheckedGroovyClass {
 	
@@ -321,23 +302,14 @@ class TypeCheckedGroovyClass {
 		println sum("1", "2")
 	}
 }
-
-/*
-olga:listings carlosgsouza$ groovyc TypeCheckedGroovyClass.groovy
-org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
-TypeCheckedGroovyClass.groovy: 11: [Static type checking] - Cannot find matching method TypeCheckedGroovyClass#sum(java.lang.String, java.lang.String). Please check if the declared type is right and if the method exists.
- @ line 11, column 11.
-   		println sum("1", "2")
-             ^
-
-1 error
-*/
 \end{lstlisting}
 \caption{A class written in Groovy}
-\label{codigoGroovy}
+\label{staticTyping}
 \end{Listing}
 
-TODO: Talk about gradual type systems \cite{gray05,gray08,gray11,siek07,takikawa12}
+The $@TypeChecked$ annotation is reasonably recent and most Groovy programmers still don't use. 
+Typing annotations on the other side are very popular.
+Although they don't provide static type checking, they are capable of documenting the code and aiding in the integration with development tools.
 
 \section{Study Setup\label{sec:Configura=0000E7=0000E3o-do-Estudo}}
 TODO: Right now I only have the static code analyzer here. I will refactor this section so I can list all the phases of my study. It's still not clear where I can describe this static code analyzer though.
