@@ -1,3 +1,6 @@
+% CASE STUDIES
+% CUMULATIVE DISTRIBUTION REVIEW
+
 \documentclass[preprint]{sigplanconf}
 
 \usepackage{amsmath}
@@ -71,9 +74,9 @@ term1, term2
 keyword1, keyword2
 
 \section{Introduction}
-When choosing a programming language for a project, a developer must consider several characteristics of that language.
-One of the most important is its typing system.
-This, which can be static or dynamic, determines when the type of a statement should be defined\cite{types_and_programming_languages}. 
+When choosing a programming language for a project, a developer considers several characteristics of that language.
+One of the most important is its typing system, which can be static or dynamic.
+The typing system determines when the type of a statement is be defined\cite{types_and_programming_languages}. 
 Statically typed languages, such as Java and C\#, require the type of a statement to be defined by the programmer, which can then be used by the compiler to check for any typing errors. 
 On the other side, in dynamically typed languages, like Ruby and JavaScript, the definition of the type of a statement only happens during run time.
 
@@ -101,7 +104,7 @@ Through a static analysis of these projects, it was possible to understand when 
 
 The remainder of this paper is organized as follows. 
 Section \ref{sec:A-Linguagem-Groovy} introduces the main concepts of the Groovy program language. 
-Sections \ref{sec:Configura=0000E7=0000E3o-do-Estudo} and \ref{sec:Resultados} describe the configuration of the study and its results. 
+Sections \ref{sec:Methodology} and \ref{sec:Resultados} describe the configuration of the study and its results. 
 Section \ref{sec:ameaca} discusses threatens to validity and section \ref{sec:Trabalhos-Relacionados} shows related work. 
 Finally, section  \ref{sec:Conclus=0000E3o-e-Trabalhos} concludes this study and suggests future works.
 
@@ -124,10 +127,9 @@ Finally, section  \ref{sec:Conclus=0000E3o-e-Trabalhos} concludes this study and
 %
 
 \section{The Groovy Language\label{sec:A-Linguagem-Groovy}}
-Groovy is an object-oriented programming language designed to run on the Java Virtual Machine.
+Groovy is an object-oriented programming language designed to run on the Java Virtual Machine. Its adoption has grown remarkably over the last years, specially among Java developers who seek more dynamism without having to learn a completelly new language.
 It builds upon the strengths of Java, but has additional features inspired by dynamic languages such as Python and Ruby.
-Its adoption has grown remarkably over the last years, specially among Java developers who seek more dynamism without having to learn a completelly new language.
-Groovy allows programmers to use both static and dynamic type systems, which makes it ideal for a comparative study between those two type systems.
+Groovy type system is flexible and allows programmers to optionally type their statements.
 
 Despite having been launched less than ten years ago, Groovy is already a very popular language.
 According to the Tiobe Programming Index, Groovy is the 22\textsuperscript{st} most popular language in the software industry\cite{tiobe}, ahead of languages like Prolog, Haskell and Scala. 
@@ -138,20 +140,15 @@ These factors have attracted a large number of Java programmers who want to use 
 
 Groovy was designed to be more expressive and concise than Java.
 Below we show two implementations of a simple algorithm.
-Given a list of numbers, return a list with the even numbers of that list.
+Given a list of numbers, return a list containing only the even numbers of that list.
 Listing \ref{javaClass} shows the Java implementation while Listing \ref{groovyClass} shows the Groovy counterpart. 
-Note that Groovy supports lists nativelly(lines 3, 6 and 14) and operator overloading (line 6).
 
-
-Many of the boilerplate elements from Java aren't required in Groovy.  
-As shown in Listing \ref{groovyClass}, semicolons are optional, except when there are multiple statements in the same line. 
+Since Groovy has more expresiveness, it's able to reduce much of the boilerplate required in Java.
+Groovy offers a native syntax for lists(lines 3, 6 and 14) and operator overloading (line 6). 
+Semicolons are optional, except when there are multiple statements in the same line. 
 When the keyword $return$ is omitted (line 10), the last expression evaluated with a method is returned. 
 Also, parenthesis in method calls can often be omitted (line 16).
-In addition to that, frequently used classes like those of the $java.util$ package are imported by default and thus don't need to be implicitly imported.
-Least, Groovy provides easy access to frequently used methos such as $System.out.println$ (line 16). Other important 
-
-% This gives much more expressiveness to a programmer for common tasks that would rather require more boilerplate code in Java.
-% All in all ... Compared to Listing \ref{javaClass}, Groovy code can be much more expressive.
+In addition to that, Groovy implicitly imports frequently used classes, like those of the $java.util$ package, and methods, like $System.out.println$ (line 16).
 
 \begin{Listing}[ht]
 \begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
@@ -211,11 +208,13 @@ class GroovyFilter {
 \label{groovyClass}
 \end{Listing}
 
-Groovy's design was influenced by dynamic feature of programming languges like Ruby and Python.
+Groovy's design was influenced by dynamic features of programming languges such as Ruby and Python.
 Listing \ref{dynamicInfuence} shows how these features can be used to rewrite the same algorithm presented in Listing \ref{javaClass} in a single line of code. 
-This code snippet makes use of closures to allow a programmer to define a filter logic for the method $findAll$.
-This allows a functional programming style of code which allows a high level of expressivenes for the programmer.
-Notice that this is a script, rather than a class, and thus the programmer doesn't have to write class.
+First, notice that the code shown in Listing \ref{dynamicInfuence}  is a script, rathen than a class file.
+It makes use of a closure to allow a programmer to define a filter logic.
+This closure is passed down to the $findAll$ method, which will apply this closure to every element of the list to decide if that element should be returned or not.
+Closures are one of the most importante features of Groovy compared to Java.
+They allow a functional programming style of code, which is both expressive and powerful.
 
 \begin{Listing}[ht]
 \begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
@@ -244,8 +243,7 @@ println([1, 2, 3, 4].evenNumbers())
 
 When Groovy 1.0 was first launched, in 2007, it was a purelly dynamically typed language.
 However, it allowed programmers to optionally type their statements.
-This is illustrated in Listing \ref{dynamicTyping}. 
-It shows examples of declarations of typed and untyped methods, fields and variables combined flexibly in the same class.
+Examples of typed and untyped declarations combined flexibly in the same file are shown on Listing \ref{dynamicTyping}.
 
 
 \begin{Listing}[ht]
@@ -271,23 +269,26 @@ class DynamicTyping {
 \label{dynamicTyping}
 \end{Listing}
 
-This kind of typing shown in Listing \ref{dynamicTyping} should not be confused with static typing.
-Groovy compiler still isn't able to check type correctness.
-For example, the snippet of code shown in Listing \ref{typeError} compiles without any errors, but fails during execution with a type error.
+This kind of typing should not be confused with static typing since Groovy compiler will not use these type annotations to look for errors.
+For example, the snippet of code shown in Listing \ref{typeError} compiles without any errors.
+During runtime, the $string$ variable will reference an instance of the $Integer$ class.
+However, an exception will be thrown when we try to invoke the method $toUpperCase$ since the $Integer$ class doesn't have this method.
 
 \begin{Listing}[ht]
 \begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
-int integer = "string"
+String string = new Integer(1)
+string.toUpperCase()
 \end{lstlisting}
 \caption{A class written in Groovy}
 \label{typeError}
 \end{Listing}
 
-Since Groovy 2.0, Groovy allows programmers to explicitly activate static typing with the usage of the $@TypeChecked$ annotation.
-In this mode, the Groovy compiler will look for type errors and fail compilation if it finds any.
-Listing \ref{staticTyping} shows a class with the $@TypeChecked$.
-When this class is compiled, the compiler fails with a compilation error since the method $sum$ is supposed to receive to parameters with the type $int$, but is called with two parameters of the type $String$.
-%% TODO: Talk about gradual type systems \cite{gray05,gray08,gray11,siek07,takikawa12}
+Since version 2.0, Groovy allows programmers to explicitly activate static typing with the usage of the $@TypeChecked$ annotation.
+This makes Groovy a gradually typed language \cite{gray05,gray08,gray11,siek07,takikawa12}.
+In this mode, the Groovy compiler will look for type errors and fail if it finds any.
+
+Listing \ref{staticTyping} shows an example of static typing in Groovy.
+Trying to compile the class $TypeCheckedGroovyClass$ will produce an error since the method $sum$ is supposed to receive two parameters with the type $int$, but is called with two parameters of the type $String$.
 
 \begin{Listing}[ht]
 \begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
@@ -307,18 +308,124 @@ class TypeCheckedGroovyClass {
 \label{staticTyping}
 \end{Listing}
 
-The $@TypeChecked$ annotation is reasonably recent and most Groovy programmers still don't use. 
+The $@TypeChecked$ annotation is reasonably recent and most Groovy programmers still don't use it. 
 Typing annotations on the other side are very popular.
 Although they don't provide static type checking, they are capable of documenting the code and aiding in the integration with development tools.
 
-\section{Study Setup\label{sec:Configura=0000E7=0000E3o-do-Estudo}}
-TODO: Right now I only have the static code analyzer here. I will refactor this section so I can list all the phases of my study. It's still not clear where I can describe this static code analyzer though.
 
-\subsection{Static Code Analyzer}
-The static code analyzer used in this work is based on the Groovy metaprogramming library. 
-With this library, it's possible to create an abstract syntax tree (AST) from Groovy source code using one of the various stages of the Groovy compiler.
-The phase chosen for this analysis was the conversion phase, which has sufficient information to determine the type system of each statement.
-It occurs before the compiler tries to resolve any external dependencies, making it possible to analyze each file separately without having to compile the whole project.
+
+
+
+
+
+
+%
+% METHODOLOGY
+%
+
+\section{Methodology\label{sec:Methodology}}
+In this section we describe the dataset (subsection \ref{dataset}) and the methodology (subsection \ref{analyzer}) adopted in this study.
+
+\subsection{Research Questoins\label{questions}}
+
+\begin{itemize}
+	\item \textbf{Question Q1:} Do programmers use types to implicitly document their code? More specifically, is it possible to observe a higher usage of typing in statements that require more documentation? We consider two characteristics of statements to determine if they need to be more documented than others, the number of modules to which a statement is visible and the complexity of the contract defined by the statement. The higher the number of modules that can access a statement, the more it need to be documented since bad code can break the entire project and other people might need to see that statement. Same for contract complexity. If the contract is not defined correctly, things will explode.
+	
+	\item \textbf{Question Q2:} Are untyped declarations considered more often when maintinability or readability aren't important factors? If we are able to observe a higher usage of untyped declarations in this scenario, it means that programmers only use typing when they need maintinability and readabaility and in other cases, they will favor the objectivity of untyped declarations.
+	
+	\item \textbf{Question Q3:} Is the previous experience of a programmer a relevant factor in his or her decision for typing or not typing a statement? I mean, previous experience with typing systems. If yes, we can consider that programmers learn how to deal with type systems and can overcome advantages and disadvantages when they have to. This also imposes a threaten to the above two questions since a programmer might not use types because of the factors above, but because he likes it more.
+\end{itemize}
+
+\subsection{Study Design\label{design}}
+We will try to answer the questions proposed in section ?? by conducting a case study.
+We will use a large dataset of Groovy projects to analyze this data.
+Groovy allows programmers to combine typed and untyped statements flexibly in their code, which makes it possible to answer the questions, where programers use typed or untyped statements. We can cross reference that to the questions above and see if there is any correspondence between the use of types and the hyposthesis above.
+
+\subsection{Data Collection Procedure\label{dataCollection}}
+The projects used in this study were obtained from GitHub, a popular source control service based on Git.
+For each project, it was necessary to retrieve its source code, its metadata, and the metadata of all developers involved in that project.
+GitHub doesn't offer a listing of all hosted projects, but it offers two search mechanisms, a REST API and a web based search page.
+Unfortunately GitHub'sAPI is too limited for our requirements.
+It imposes a limit of one thousand results and doesn't allow filtering projects by their programming language.
+
+In order to retrieve a expressive dataset, it was necessary to write a bot to interact with GitHub's webpage and search for projects. 
+Some special care was necessary to make this strategy work. 
+Because the number of results is limited to 1 thousand projects, we had to segment the queries.
+Multiple requests were made.
+Each request asked for the name of all projects created on a given month and results were combined.
+Another problem faced was that GitHub denies excessive requests from the same client.
+By adding a 10 seconds delay between requests, it was possible to overcome this limitation.
+
+With the name of all projects in hands, it was then possible to use GitHub's REST API to query for the metadata of all projects.
+Since the metadata of a project also contains the id of the developers of that project, it was possible to obtain the metadata of those developers using GitHub's REST API.
+
+\subsection{Dataset\label{dataset}}
+A total of 7268 projects developed by 4806 people was obtained form GitHub. 
+These projects add to a total of 9.8 million lines of code and approximately 169 thousand Groovy files. 
+
+Projects have between 1 LoC and 150 KLoC. The age of a project, defined as the time between the the first and last commits, varies form 1 day to 5 years. The distribution of the size and age of the projects are shown in Figures \ref{fig:size_distribution} and \ref{fig:age_distribution} respectivelly. 
+
+\begin{figure}[ht]
+\centering \includegraphics[width=0.45\textwidth]{images/size_distribution}
+\caption{Cumulative Distribution of the Size of the Projects}
+\label{fig:size_distribution} 
+\end{figure}
+
+\begin{figure}[ht]
+\centering \includegraphics[width=0.45\textwidth]{images/age_distribution}
+\caption{Cumulative Distribution of the Age of the Projects}
+\label{fig:age_distribution} 
+\end{figure}
+
+Java is very popular among Groovy developers. 
+Figure \ref{fig:other_languages} shows that more than 50\% of the developers of projects in our dataset also have Java projects on GitHub.
+In addition to that, 61\% of all Groovy programmers have at least one project in another dynamically typed language, while 60\% o f these developers have at least one project in a statically typed language, including Java.  
+
+Most of Table \ref{tab:number_of_developers} shows that most projects were written by a single developer while the project with most developers had 58 developers.
+
+\begin{figure}[ht]
+\centering \includegraphics[width=0.45\textwidth]{images/other_languages}
+\caption{Usage of other languages by Groovy developers on GitHub}
+\label{fig:other_languages} 
+\end{figure}
+ 
+\begin{table}[ht]
+\caption{Distribution of the Number of Developers}
+\centering{}%
+\begin{tabular}{|c|c|c|}
+\hline 
+Number of Developers & Fraction of Projects\tabularnewline
+\hline 
+\hline 
+1 & 84\%\tabularnewline
+\hline 
+2 & 9\%\tabularnewline
+\hline 
+3 & 3\%\tabularnewline
+\hline 
+4 or more & 4\%\tabularnewline
+\hline 
+\end{tabular}
+\label{tab:number_of_developers}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+% ANALYSIS
+%
+
+\subsection{Analysis\label{design}}
 
 The static code analyzer is capable of analyzing the following types of statements
 \begin{itemize}
@@ -341,63 +448,36 @@ For each item listed above, it is possible to answer the following questions
 
 
 
-\section{Dataset\label{sec:dataset}}
-TODO: This is also just the VEM version. The purpose of this section is to present data about my dataset that is fundamental for my discussion. Also, I believe that having a dedicated section to my dataset is a good idea as it highlights one of the strong points of this article.
-
-The projects used in this study were obtained from GitHub, a popular source control service based on Git.
-Using Github API, it was possible to obtain the source code of 7268 projects with a total of 9.8 million lines of code. 
-The distribution of the size of these designs is shown in figure \ref{fig:size_distribution}. 
-These projects were developed by a total of 4806 developers and, together, they have approximately 169 thousand Groovy files.
-
-\begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{images/size_distribution}
-\caption{Project Size Distribution}
-\label{fig:size_distribution} 
-\end{figure}
-
-\begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{images/age_distribution}
-\caption{Project Age Distribution}
-\label{fig:age_distribution} 
-\end{figure}
- 
-\begin{table}[ht]
-\caption{Distribution of the Number of Developers}
-
-
-\centering{}%
-\begin{tabular}{|c|c|c|}
-\hline 
-Number of Developers & Fraction of Projects\tabularnewline
-\hline 
-\hline 
-1 & 84\% \%\tabularnewline
-\hline 
-2 & 9\% \%\tabularnewline
-\hline 
-3 & 3\% \%\tabularnewline
-\hline 
-4 or more & 4\% \%\tabularnewline
-\hline 
-\end{tabular}
-\label{tab:number_of_developers}
-\end{table}
+\subsection{Static Code Analyzer}
+The static code analyzer used in this work is based on the Groovy metaprogramming library. 
+With this library, it's possible to create an abstract syntax tree (AST) from Groovy source code using one of the various stages of the Groovy compiler.
+The phase chosen for this analysis was the conversion phase, which has sufficient information to determine the type system of each statement.
+It occurs before the compiler tries to resolve any external dependencies, making it possible to analyze each file separately without having to compile the whole project.
 
 
 
 
 
 
+
+
+
+
+
+
+
+%
+% Results
+%
 \section{Results\label{sec:Resultados}}
 
 In this section we present the results of the analysis of the declarations of the projects described in section \ref{sec:dataset}. 
 These results will be discussed in more details in section \ref{sec:Discussion}.
 
-\subsection{Overall Result\label{sub:overall-result}}
 The analysis shows that 61\% of the statements are typed, while only 39\% of these are dynamically typed. This results considers all declarations of the 7268 projects in the dataset.
 
 
-\subsection{Results by Declaration Type\label{sub:declaration-type-results}}
+\subsection{Declaration Type\label{sub:declaration-type-results}}
 Figure \ref{fig:tipo_declaracao} shows the amount of typed and untyped declarations for each type of declaration. 
 Untyped declarations are far more frequent in local variables that in other types of statements.
 Fields, method returns and parameters on the other side are mostly typed. In particular, constructor parameters are typed in more than $90\%$ of the declarations.
@@ -409,7 +489,7 @@ Fields, method returns and parameters on the other side are mostly typed. In par
 \label{fig:tipo_declaracao} 
 \end{figure}
 
-\subsection{Results by Visibility\label{sub:visibility-results}}
+\subsection{Visibility\label{sub:visibility-results}}
 In this section, we break down the results shown above by visibility. Our goal is to understand if the visibility of the declarations have any sort of influence on the choice for using types or not.
 
 Figure \ref{fig:method_return_visibility} shows that there is little difference between the use of types in declarations of the return of private and public methods. 
@@ -458,7 +538,7 @@ While this frequency is $72.4\%$ for private fields, method returns, method para
 In summary, for all types of declarations, private declarations are less typed than public and protected.
 Protected declarations, on the other side, are usually those typed in most cases. The only exception to this are fields, where the usage of types in public declarations surpasses those of protected declarations by $8\%$.
 
-\subsection{Results by Project Size\label{sub:size-results}}
+\subsection{Project Size\label{sub:size-results}}
 In this section we show how the use of types in declarations varies according to the project size. 
 The goal of this analysis is to understand if there is any correlation between the usage of types and the complexity of software projects. 
 
