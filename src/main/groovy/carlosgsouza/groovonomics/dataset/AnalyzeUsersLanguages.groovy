@@ -14,37 +14,36 @@ class AnalyzeUsersLanguages {
 	def vamoTurrrrrma() {
 		
 		def language_count = [:]
-		def system_count = [staticLanguage:0, dynamicLanguage:0]
+		def system_count = [staticLanguage:0, dynamicLanguage:0, staticAndDynamicLanguage:0, groovyOnly:0]
 		
 		new File(baseFolder, "users").eachFile { userFile ->
 			def languages = new HashSet<String>(userFile.text.split("\n").collect { it } )
 			
 			def usesStatic = false
 			def usesDynamic = false
+			def usesStaticAndDynamic = false
 			
-			languages.each { language ->
-				if(language && language != "Groovy" && language != "null") {
-					language_count[language] = language_count[language] ? language_count[language]+1 : 1
-					
-					usesStatic |= staticallyTypedLanguages.contains(language)
-					usesDynamic |= !dynamicallyTypedLanguages.contains(language)
-				}
+			def otherLanguages = languages.findAll{it && it != "Groovy" && it != "null"}
+			otherLanguages.each { language ->
+				language_count[language] = language_count[language] ? language_count[language]+1 : 1
+				
+				usesStatic |= staticallyTypedLanguages.contains(language)
+				usesDynamic |= dynamicallyTypedLanguages.contains(language)
 			}
 			
-			if(usesStatic) {
+			if(usesStatic && usesDynamic) {
+				system_count.staticAndDynamicLanguage++
+			}
+			else if(usesStatic) {
 				system_count.staticLanguage++
 			}
-			if(usesDynamic) {
+			else if(usesDynamic) {
 				system_count.dynamicLanguage++
+			} else  {
+				system_count.groovyOnly++
 			}
+			
 		}
-		
-		language_count.sort{it.value}.each {
-			if(it.key && it.key != "null") {
-				println "$it.key\t$it.value"
-			}
-		}
-		
 		
 		def languageFile = new File(baseFolder, "language_summary.json")
 		languageFile.delete()

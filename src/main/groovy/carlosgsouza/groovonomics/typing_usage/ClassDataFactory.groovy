@@ -34,13 +34,13 @@ class ClassDataFactory {
 		result.pureTypeSystemProtectedConstructors = declarationCountFactory.fromMap map.pureTypeSystemProtectedConstructors
 		result.localVariable = declarationCountFactory.fromMap map.localVariable
 		
-		result.numberOfPublicConstructors = map.numberOfPublicConstructors 
-		result.numberOfPrivateConstructors = map.numberOfPrivateConstructors
-		result.numberOfProtectedConstructors = map.numberOfProtectedConstructors
-		
-		result.className = map.className
-		result.location = map.location
-		result.isScript = map.isScript
+//		result.numberOfPublicConstructors = map.numberOfPublicConstructors 
+//		result.numberOfPrivateConstructors = map.numberOfPrivateConstructors
+//		result.numberOfProtectedConstructors = map.numberOfProtectedConstructors
+//		
+//		result.className = map.className
+//		result.location = map.location
+//		result.isScript = map.isScript
 		
 		result
 	}
