@@ -86,8 +86,8 @@ In 2001, this number was only 17\%.
 Among the 10 languages on top of the ranking, four are dynamically typed: JavaScript, Perl, Python and PHP. 
 In 1998, none of these languages was among the top 10 ranking.
 
-Several factors may be considered when choosing betwen a dynamcally or statically typed language. 
-Since dynamically typed languages are simpler, they allow programmers to perform their tasks more quickly \cite{types_and_programming_languages} and adapt to changin requirements \cite{gradual_typing}.
+Several factors may be considered when choosing between a dynamcally or statically typed language. 
+Since dynamically typed languages are simpler, they allow programmers to perform their tasks more quickly \cite{types_and_programming_languages} and adapt to changing requirements \cite{gradual_typing}.
 Also, by removing the repetitive work of defining types, these languages allow their users to focus on the problem to be solved rather than spending time with the rules of the language \cite{dynamically_typed_languages}.
 
 Statically type languages also have their advantages. 
@@ -127,7 +127,7 @@ Finally, section  \ref{sec:Conclus=0000E3o-e-Trabalhos} concludes this study and
 %
 
 \section{The Groovy Language\label{sec:A-Linguagem-Groovy}}
-Groovy is an object-oriented programming language designed to run on the Java Virtual Machine. Its adoption has grown remarkably over the last years, specially among Java developers who seek more dynamism without having to learn a completelly new language.
+Groovy is an object-oriented programming language designed to run on the Java Virtual Machine. Its adoption has grown remarkably over the last years, specially among Java developers who seek more dynamism without having to learn a completely new language.
 It builds upon the strengths of Java, but has additional features inspired by dynamic languages such as Python and Ruby.
 Groovy type system is flexible and allows programmers to optionally type their statements.
 This makes Groovy an ideal language for a case study about how programmers choose between using or not typing in their code.
@@ -144,7 +144,7 @@ Below we show two implementations of a simple algorithm.
 Given a list of numbers, return a list containing only the even numbers of that list.
 Listing \ref{javaClass} shows the Java implementation while Listing \ref{groovyClass} shows the Groovy counterpart. 
 
-Since Groovy has more expresiveness, it's able to reduce much of the boilerplate required in Java.
+Since Groovy has more expressiveness, it's able to reduce much of the boilerplate required in Java.
 Consider Listing \ref{groovyClass}.
 Note that Groovy offers a native syntax for lists(lines 3, 6 and 14) and operator overloading (line 6). 
 Semicolons are optional, except when there are multiple statements in the same line. 
@@ -210,9 +210,9 @@ class GroovyFilter {
 \label{groovyClass}
 \end{Listing}
 
-Groovy's design was influenced by dynamic features of programming languges such as Ruby and Python.
+Groovy's design was influenced by dynamic features of programming languages such as Ruby and Python.
 Listing \ref{dynamicInfuence} shows how these features can be used to rewrite the same algorithm presented in Listing \ref{javaClass} in a single line of code. 
-First, notice that the code shown in Listing \ref{dynamicInfuence}  is a script, rathen than a class file.
+First, notice that the code shown in Listing \ref{dynamicInfuence}  is a script, rather than a class file.
 It makes use of a closure to allow a programmer to define a filter logic.
 This closure is passed down to the $findAll$ method, which will apply this closure to every element of the list to in order to decide if that element should be returned or not.
 Closures are one of the most important features of Groovy compared to Java.
@@ -228,7 +228,7 @@ println([1, 2, 3, 4].findAll {it % 2 == 0})
 
 Metaprogramming is another dynamic feature present in Groovy. 
 Listing \ref{metaprogramming} shows how to add a method to an existing class dynamically.
-By adding the method $evenNumbers()$ to the $List$ class, it is possible to achieve higher expressivenes.
+By adding the method $evenNumbers()$ to the $List$ class, it is possible to achieve higher expressiveness.
 This is specially useful when implementing Domain Specific Languages \cite{fowler10}.
 
 \begin{Listing}[ht]
@@ -243,7 +243,7 @@ println([1, 2, 3, 4].evenNumbers())
 \label{metaprogramming}
 \end{Listing}
 
-When Groovy 1.0 was first launched, in 2007, it was a purelly dynamically typed language.
+When Groovy 1.0 was first launched, in 2007, it was a purely dynamically typed language.
 However, it allowed programmers to optionally type their statements.
 Examples of typed and untyped declarations combined flexibly in the same file are shown on Listing \ref{dynamicTyping}.
 
@@ -328,16 +328,16 @@ Although they don't provide static type checking, they are capable of documentin
 \section{Methodology\label{sec:Methodology}}
 In this paper, we want to understand what are the factors that have an actual influence over the decision of a developer to type their declarations or not. 
 In order to answer that question, we analyzed a series of Groovy projects.
-Groovy allows programmers to choose wether to type or not each of their statements.
+Groovy allows programmers to choose whether to type or not each of their statements.
 By finding out when programmers choose to use types or not, we can infer what is the factor that has influenced such choice.
 
 A case study is the best approach to analyze this question since it provides us with actual data from programmers in their regular activities.
 In order to obtain reliable results, however, we need a large number of projects.
-Fortunatelly, it was possible to retrieve a massive dataset with more that 7 thousand projects from GitHub, a popular source control service. 
-A static code analyzer was developed to analyze typing usage in these projects and these results were analyzed in conjuction with other data about these projects such as the project size and the programmers background.
+Fortunately, it was possible to retrieve a massive dataset with more that 7 thousand projects from GitHub, a popular source control service. 
+A static code analyzer was developed to analyze typing usage in these projects and these results were analyzed in conjunction with other data about these projects such as the project size and the programmers background.
 
 
-In the remainder of this section, we formalize the research questions in subsection \ref{questions}. The Data Collection procedure is described in subsection \ref{dataCollection} while the dataset itself is discussed in subsection \ref{dataset}. Finally, we discuss the static code analyzer and the analyzis procedure in subsection \ref{analyzer}.
+In the remainder of this section, we formalize the research questions in subsection \ref{questions}. The Data Collection procedure is described in subsection \ref{dataCollection} while the dataset itself is discussed in subsection \ref{dataset}. Finally, we discuss the static code analyzer and the analysis procedure in subsection \ref{analyzer}.
 
 \subsection{Research Questoins\label{questions}}
 
@@ -345,7 +345,7 @@ In the remainder of this section, we formalize the research questions in subsect
 \begin{itemize}
 	\item \textbf{Question Q1:} Do programmers use types to implicitly document their code? More specifically, is it possible to observe a higher usage of typing in statements that require more documentation? 
 	
-	\item \textbf{Question Q2:} Does the previous experience of programmers with other languages influence their choice for typing their statements? More specifically, do programmers with a background on statically typed languages tend to keep using types while those with a backgorund on dynamically typed languages tend to keep their statements untyped?
+	\item \textbf{Question Q2:} Does the previous experience of programmers with other languages influence their choice for typing their statements? More specifically, do programmers with a background on statically typed languages tend to keep using types while those with a background on dynamically typed languages tend to keep their statements untyped?
 \end{itemize}
 
 \subsection{Data Collection Procedure\label{dataCollection}}
@@ -370,7 +370,7 @@ Since the metadata of a project also contains the id of the developers of that p
 \subsection{Dataset\label{dataset}}
 Our dataset consists of 7268 obtained from GitHub. 
 These projects add to a total of 9.8 million lines of code and approximately 169 thousand Groovy files. 
-There are about 412 thousasand declarations considering variables, methods and fields. Projects have between 1 LoC and 150 KLoC. The age of a project, defined as the time between the the first and last commits, varies form 1 day to 5 years. The distribution of the size and age of the projects are shown in Figures \ref{fig:size_distribution} and \ref{fig:age_distribution} respectivelly. 
+There are about 412 thousand declarations considering variables, methods and fields. Projects have between 1 LoC and 150 KLoC. The age of a project, defined as the time between the the first and last commits, varies form 1 day to 5 years. The distribution of the size and age of the projects are shown in Figures \ref{fig:size_distribution} and \ref{fig:age_distribution} respectively. 
 
 \begin{figure}[ht]
 \centering \includegraphics[width=0.45\textwidth]{images/size_distribution}
@@ -452,14 +452,14 @@ In addition to that, it can answer the following questions for each statement
 We opted for not compiling projects.
 This would require us to resolve all dependencies, which many times is impossible.
 This is even harder when we consider the dimension of our dataset.
-Instead, we gernated the AST for each file using the $CONVERSION$ phase of the Groovy compiler.
+Instead, we generated the AST for each file using the $CONVERSION$ phase of the Groovy compiler.
 At this phase, the compiler hasn't tried to resolve any dependencies yet, but it is capable of generating an AST with sufficient information to determine the type system of each statement.
-This makes it possible to analyze each Groovy file separetelly without having to compile the whole project.
+This makes it possible to analyze each Groovy file separately without having to compile the whole project.
 
-The downside of the approach described above is that we can't analyze Groovy code in conjuction with its dependencies. 
-For example, it's impossible to anwser if programmers tend to type code that interacts with other typed modules since we haven't resolved any dependencies to these modules.
+The downside of the approach described above is that we can't analyze Groovy code in conjunction with its dependencies. 
+For example, it's impossible to answer if programmers tend to type code that interacts with other typed modules since we haven't resolved any dependencies to these modules.
 However, this was fundamental in order to execute a study with such an expressive dataset.
-Nevertheless, as we will see in the next section, we were still able to obatin detailed and relevant results using this strategy.
+Nevertheless, as we will see in the next section, we were still able to obtain detailed and relevant results using this strategy.
 
 
 
@@ -498,7 +498,7 @@ Fields, method returns and parameters on the other side are mostly typed. In par
 \subsection{Visibility\label{sub:visibility-results}}
 In this section, we break down the results shown above by visibility. 
 Figure \ref{fig:method_return_visibility} shows results for method returns.
-There is little difference in the usage of types on the declaraions of the return of private and public methods, with $64.44\%$ and $67.26\%$ declarations typed respectively.
+There is little difference in the usage of types on the declarations of the return of private and public methods, with $64.44\%$ and $67.26\%$ declarations typed respectively.
 On the other side, the return of protected methods, are almost always typed.
 
 \begin{figure}[ht]
@@ -550,20 +550,17 @@ Project size is a simple metric to measure the complexity of a project.
 Usually, the larger the project, the greater the number of modules and and the need for maintenance. 
 There are metrics far more effective for this purpose such as [TODO].
 However, this simple approach is ideal for this case study because it doesn't require projects to be compiled to determine the project complexity. 
-As discussed in section \ref{dataset}, this would be impractible considering the size of the studied dataset.
+As discussed in section \ref{dataset}, this would be impracticable considering the size of the studied dataset.
 
-Results are shown for public, private and protected method returns (Figures \ref{fig:size_pubMethodReturn}, \ref{fig:size_priMethodReturn}, \ref{fig:size_proMethodReturn} respectively) and local variables (Figure \ref{fig:size_localVariable}). 
-The graphs for other types of declarations were omitted due to lack of space.
-However their behavior is described in Table \ref{tab:size_dynamic_spearman}, which shows the Spearman ranking for the relation between project size and untyped declarations.
-
-In the graphs below, each bar shows the average usage of untyped declarations of projects grouped by their size.
+Results are shown for public, private and protected declarations (Figures \ref{fig:size_pubMethodReturn}, \ref{fig:size_priMethodReturn}, \ref{fig:size_proMethodReturn} respectively) and local variables (Figure \ref{fig:size_localVariable}). 
+In these graphs, each bar shows the average usage of untyped declarations of projects grouped by their size.
 The boundaries of each group are defined under each bar.
 For example, a project with $1500$ lines of code is in the fifth group, since $1500$ lies within the interval $]1024, 2048]$.
 Notice that we are using a logarithm scale for the project size in these graphs.
 
-Types are less used in declarations of public method returns as project size increases.
+Types are less used in public declarations as project size increases.
 While projects with less than $1024$ lines of code have almost $40\%$ of their declarations untyped, this number is  less than $20\%$ in projects with over $65536$ lines of code. 
-Figures \ref{fig:size_priMethodReturn} and \ref{fig:size_proMethodReturn} show that, different from public method returns, private and protected method returns have no correlation with the project size.
+Figures \ref{fig:size_priMethodReturn} and \ref{fig:size_proMethodReturn} show that, different from public declarations, private and protected declarations have no apparent correlation with the project size.
 
 \begin{figure*}[ht]
 \centering 
@@ -598,50 +595,33 @@ On the other side, in projects with over $65536$ lines of code, the average freq
 \label{fig:size_localVariable} 
 \end{figure*}
 
-TODO: Here I will add some text to explain the spearman ranking of these variables.
+
+
+% TESTS
+\subsection{Test Classes\label{sub:scripts}}
+In this section, we analyze how types are used in test classes.
+Table \ref{tab:tests} shows that declarations in this type of code are $14\%$ less typed when compared to declarations in other types of classes.
 
 \begin{table}[ht]
-\caption{Spearman Ranking for Dynamic Typing Usage over Size}
-
-
+\caption{Type System used in different contexts}
 \centering{}%
-\begin{tabular}{|rr|c|}
+\begin{tabular}{|c|c|c|}
 \hline 
-\multirow{3}{*}{Method Return}			& public 			& ?\\
-									& private 			& ?\\
-									& protected		& ?\\
-\hline
-\multirow{3}{*}{Method Parameter}			& public 			& ?\\
-									& private 			& ?\\
-									& protected		& ?\\
-\hline
-\multirow{3}{*}{Constructor Parameter}		& public			& ?\\
-									& private 			& ?\\
-									& protected		& ?\\
-\hline
-\multirow{3}{*}{Field}					& public 			& ?\\
-									& private 			& ?\\
-									& protected		& ?\\
-\hline
-									& Local Variable	& ?\\
-\hline  	
+ & Typed Declarations & Untyped Declarations\tabularnewline
+\hline  
+\hline 
+Test Classes & 56\% & 44\%\tabularnewline
+\hline 
+Other Classes & 68\% & 32\%\tabularnewline
+\hline 
 \end{tabular}
-\label{tab:size_dynamic_spearman}
+\label{tab:tests}
 \end{table}
-
-
-% PROGRAMMERS BACKGROUND
-\subsection{Programmers Background\label{sub:background}}
-
-\begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{images/untyped_background} 
-\caption{Programmers Background and Usage of Untyped Declarations}
-\label{fig:untyped_background} 
-\end{figure}
 
 % SCRIPTS
 \subsection{Scripts\label{sub:scripts}}
-Table \ref{tab:scritps} shows that the usage of types in scripts is not significantly different form the overall usage shown in section \ref{sub:overall-result}.
+In this section we analyze how types are used in script files.
+Differently form last section, Table \ref{tab:scritps} shows that there is no significant difference between declarations in this type of code and declarations in class files.
 
 \begin{table}[ht]
 \caption{Type System used in different contexts}
@@ -650,7 +630,7 @@ Table \ref{tab:scritps} shows that the usage of types in scripts is not signific
 \centering{}%
 \begin{tabular}{|c|c|c|}
 \hline 
- & Static Typing & Dynamic Typing\tabularnewline
+ & Typed Declarations & Untyped Declarations\tabularnewline
 \hline 
 \hline 
 Scripts & 63\% & 37\%\tabularnewline
@@ -662,26 +642,22 @@ Classes & 60\% & 40\%\tabularnewline
 \end{table}
 
 
-\subsection{Test Classes\label{sub:scripts}}
 
-There is a slight difference between the definition of types in tests classes and all other classes. This is shown in table \ref{tab:tests}
+% PROGRAMMERS BACKGROUND
+\subsection{Programmers Background\label{sub:background}}
 
-\begin{table}[ht]
-\caption{Type System used in different contexts}
-\centering{}%
-\begin{tabular}{|c|c|c|}
-\hline 
- & Static Typing & Dynamic Typing\tabularnewline
-\hline  
-\hline 
-Test Classes & 56\% & 44\%\tabularnewline
-\hline 
-Other Classes & 68\% & 32\%\tabularnewline
-\hline 
-\end{tabular}
-\label{tab:tests}
-\end{table}
+In this section we show how the previous experience of developers can influence their choice for using types.
+Developers are distributed in three groups according to the type system of the languages of his or her other projects in GitHub.
+This can be static, dynamic or both if a developer has worked on projects written in statically typed languages and in projects written in dynamically typed languages.
 
+Those programmers whose all projects are written in statically typed languages tend to leave their declarations untyped less than other programmers. 
+Meanwhile, programmers who have only dynamic languages projects in their GitHub portifolio present a very similar behavior compared to those who have worked with both statically and dynamically typed languages.
+
+\begin{figure}[ht]
+\centering \includegraphics[width=0.45\textwidth]{images/untyped_background} 
+\caption{Programmers Background and Usage of Untyped Declarations}
+\label{fig:untyped_background} 
+\end{figure}
 
 
 

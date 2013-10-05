@@ -1,7 +1,5 @@
 import static groovyx.net.http.ContentType.*
 import static groovyx.net.http.Method.*
-import groovy.json.JsonBuilder
-import groovy.json.JsonOutput
 import groovyx.net.http.*
 
 
@@ -53,6 +51,6 @@ class GetUsersLanguages {
 	}
 	
 	public static void main(String[] args) {
-		new DownloadGitHubMetadata().shineOnYouCrazyDiamond()
+		new GetUsersLanguages().shineOnYouCrazyDiamond()
 	}
 }
