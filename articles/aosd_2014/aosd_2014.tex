@@ -130,6 +130,7 @@ Finally, section  \ref{sec:Conclus=0000E3o-e-Trabalhos} concludes this study and
 Groovy is an object-oriented programming language designed to run on the Java Virtual Machine. Its adoption has grown remarkably over the last years, specially among Java developers who seek more dynamism without having to learn a completelly new language.
 It builds upon the strengths of Java, but has additional features inspired by dynamic languages such as Python and Ruby.
 Groovy type system is flexible and allows programmers to optionally type their statements.
+This makes Groovy an ideal language for a case study about how programmers choose between using or not typing in their code.
 
 Despite having been launched less than ten years ago, Groovy is already a very popular language.
 According to the Tiobe Programming Index, Groovy is the 22\textsuperscript{st} most popular language in the software industry\cite{tiobe}, ahead of languages like Prolog, Haskell and Scala. 
@@ -144,7 +145,8 @@ Given a list of numbers, return a list containing only the even numbers of that 
 Listing \ref{javaClass} shows the Java implementation while Listing \ref{groovyClass} shows the Groovy counterpart. 
 
 Since Groovy has more expresiveness, it's able to reduce much of the boilerplate required in Java.
-Groovy offers a native syntax for lists(lines 3, 6 and 14) and operator overloading (line 6). 
+Consider Listing \ref{groovyClass}.
+Note that Groovy offers a native syntax for lists(lines 3, 6 and 14) and operator overloading (line 6). 
 Semicolons are optional, except when there are multiple statements in the same line. 
 When the keyword $return$ is omitted (line 10), the last expression evaluated with a method is returned. 
 Also, parenthesis in method calls can often be omitted (line 16).
@@ -212,8 +214,8 @@ Groovy's design was influenced by dynamic features of programming languges such 
 Listing \ref{dynamicInfuence} shows how these features can be used to rewrite the same algorithm presented in Listing \ref{javaClass} in a single line of code. 
 First, notice that the code shown in Listing \ref{dynamicInfuence}  is a script, rathen than a class file.
 It makes use of a closure to allow a programmer to define a filter logic.
-This closure is passed down to the $findAll$ method, which will apply this closure to every element of the list to decide if that element should be returned or not.
-Closures are one of the most importante features of Groovy compared to Java.
+This closure is passed down to the $findAll$ method, which will apply this closure to every element of the list to in order to decide if that element should be returned or not.
+Closures are one of the most important features of Groovy compared to Java.
 They allow a functional programming style of code, which is both expressive and powerful.
 
 \begin{Listing}[ht]
@@ -227,7 +229,7 @@ println([1, 2, 3, 4].findAll {it % 2 == 0})
 Metaprogramming is another dynamic feature present in Groovy. 
 Listing \ref{metaprogramming} shows how to add a method to an existing class dynamically.
 By adding the method $evenNumbers()$ to the $List$ class, it is possible to achieve higher expressivenes.
-This is specially useful when implementing Domain Specific Languages.
+This is specially useful when implementing Domain Specific Languages \cite{fowler10}.
 
 \begin{Listing}[ht]
 \begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
@@ -252,11 +254,11 @@ class DynamicTyping {
 	private String typedField
 	private untypedField
 
-	DynamicTyping(untypedParam, String typedParam) {}
+	DynamicTyping(typedParam) {}
 
 	def untypedMethod(untypedParam, int typedParam) {
-		def untypedVariable = untypedParam + typedParam
-		return result
+		def untypedVariable = 1.0
+		return untypedVariable
 	}
 
 	int typedMethod()  {
@@ -324,22 +326,31 @@ Although they don't provide static type checking, they are capable of documentin
 %
 
 \section{Methodology\label{sec:Methodology}}
-In this section we describe the dataset (subsection \ref{dataset}) and the methodology (subsection \ref{analyzer}) adopted in this study.
+In this paper, we want to understand what are the factors that have an actual influence over the decision of a developer to type their declarations or not. 
+In order to answer that question, we analyzed the source code of a series of Groovy projects.
+Groovy allows programmers to choose wether to type or not each of their statements.
+By finding out when programmers choose to use types or not, we can infer what is the factor that has influenced such choice.
+
+A case study is the best approach to analyze this question since it provides us with actual data from programmers in their regular activities.
+In order to obtain reliable results, however, we need a large number of projects.
+Fortunatelly, it was possible to retrieve a massive dataset with more that 7 thousand projects from GitHub, a popular source control service. 
+A static code analyzer was developed to analyze typing usage in these projects.
+It was built using Groovy's metaprogramming API, which allows one to easily compile a Groovy file and analyze its Abstract Syntax Tree.
+
+In the remainder of this section, we formalize the research questions in subsection \ref{questions}. The Data Collection procedure is described in subsection \ref{dataCollection} while the dataset itself is discussed in subsection \ref{dataset}. Finally, we discuss the static code analyzer and the analyzis procedure in subsection \ref{analyzer}.
 
 \subsection{Research Questoins\label{questions}}
 
-\begin{itemize}
-	\item \textbf{Question Q1:} Do programmers use types to implicitly document their code? More specifically, is it possible to observe a higher usage of typing in statements that require more documentation? We consider two characteristics of statements to determine if they need to be more documented than others, the number of modules to which a statement is visible and the complexity of the contract defined by the statement. The higher the number of modules that can access a statement, the more it need to be documented since bad code can break the entire project and other people might need to see that statement. Same for contract complexity. If the contract is not defined correctly, things will explode.
-	
-	\item \textbf{Question Q2:} Are untyped declarations considered more often when maintinability or readability aren't important factors? If we are able to observe a higher usage of untyped declarations in this scenario, it means that programmers only use typing when they need maintinability and readabaility and in other cases, they will favor the objectivity of untyped declarations.
-	
-	\item \textbf{Question Q3:} Is the previous experience of a programmer a relevant factor in his or her decision for typing or not typing a statement? I mean, previous experience with typing systems. If yes, we can consider that programmers learn how to deal with type systems and can overcome advantages and disadvantages when they have to. This also imposes a threaten to the above two questions since a programmer might not use types because of the factors above, but because he likes it more.
-\end{itemize}
 
-\subsection{Study Design\label{design}}
-We will try to answer the questions proposed in section ?? by conducting a case study.
-We will use a large dataset of Groovy projects to analyze this data.
-Groovy allows programmers to combine typed and untyped statements flexibly in their code, which makes it possible to answer the questions, where programers use typed or untyped statements. We can cross reference that to the questions above and see if there is any correspondence between the use of types and the hyposthesis above.
+\begin{itemize}
+	\item \textbf{Question Q1:} Do programmers use types to implicitly document their code? More specifically, is it possible to observe a higher usage of typing in statements that require more documentation? 
+	
+	\item \textbf{Question Q2:} Does maintainability influence programmers to type their statements? From another point of view, are untyped declarations used more often when maintainanibility is not a crtitical factor?
+
+Another way to look at this questions is trying to find a correlation between the usage of untyped declarations and statements that don't require maintainance very often. If when these factors aren't as relevant programmers tend to not type their statements, that can indicate that these are influential factors.
+	
+	\item \textbf{Question Q3:} Does the previous experience of programmers with other languages influence their choice for typing their statements? More specifically, do programmers with a background on statically typed languages tend to keep using types while those with a backgorund on dynamically typed languages tend to keep their statements untyped?
+\end{itemize}
 
 \subsection{Data Collection Procedure\label{dataCollection}}
 The projects used in this study were obtained from GitHub, a popular source control service based on Git.
@@ -409,23 +420,7 @@ Number of Developers & Fraction of Projects\tabularnewline
 \label{tab:number_of_developers}
 \end{table}
 
-
-
-
-
-
-
-
-
-
-
-
-
-%
-% ANALYSIS
-%
-
-\subsection{Analysis\label{design}}
+\subsection{Static Code Analyzer\label{analyzer}}
 
 The static code analyzer is capable of analyzing the following types of statements
 \begin{itemize}
@@ -448,8 +443,22 @@ For each item listed above, it is possible to answer the following questions
 
 
 
-\subsection{Static Code Analyzer}
 The static code analyzer used in this work is based on the Groovy metaprogramming library. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 With this library, it's possible to create an abstract syntax tree (AST) from Groovy source code using one of the various stages of the Groovy compiler.
 The phase chosen for this analysis was the conversion phase, which has sufficient information to determine the type system of each statement.
 It occurs before the compiler tries to resolve any external dependencies, making it possible to analyze each file separately without having to compile the whole project.
@@ -672,9 +681,27 @@ Other Classes & 68\% & 32\%\tabularnewline
 \end{table}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+%
+% Discussion
+%
+
 \section{Discussion\label{sec:Discussion}}
 
 In this section we build on the results presented in section \ref{sec:Resultados} to discuss what are the factors that we find to be influencing the choice for a static type system.
+
+% We consider two characteristics of statements to determine if they need to be well documented, the number of modules to which a statement is visible and the complexity of the contract defined by that statement. 
 
 TODO Please, don't review this sextion yet. It's still not clear to me how to put together Results and Discussion section. I wanna discuss this a little more before I move on. 
 
@@ -836,6 +863,8 @@ SIEK, J.,ANDTAHA, W. Gradual typing for objects. In European Conference on Objec
 
 \bibitem[Takikawa(2012)]{takikawa12}
 Takikawa, Asumu, et al. "Gradual typing for first-class classes." ACM SIGPLAN Notices. Vol. 47. No. 10. ACM, 2012.
+\bibitem[Fowler(2010)]{fowler10}
+Fowler, Martin. Domain-specific languages. Pearson Education, 2010.
 
 \end{thebibliography}
 
