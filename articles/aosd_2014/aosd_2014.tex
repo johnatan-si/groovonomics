@@ -41,7 +41,7 @@
 \titlebanner{banner above paper title}        % These are ignored unless
 \preprintfooter{short description of paper}   % 'preprint' option specified.
 
-\title{Understanding Which Factors Influence the Choice for a Typing System}
+\title{How Programmers Use Optional Typing? A Case Study}
 
 \authorinfo{Carlos Souza}
            {Federal University of Minas Gerais}
@@ -109,7 +109,9 @@ Section \ref{sec:ameaca} discusses threatens to validity and section \ref{sec:Tr
 Finally, section  \ref{sec:Conclus=0000E3o-e-Trabalhos} concludes this study and suggests future works.
 
 
-
+%This is important because programmers know how to choose languages better and what they are missing
+%Language desginers can use this information to understand their users, specially Groovy designers
+%Special for hybrid type system language designers
 
 
 
@@ -492,7 +494,7 @@ Fields, method returns and parameters on the other side are mostly typed. In par
 
 \begin{figure}[ht]
 \centering 
-\includegraphics[width=0.45\textwidth]{images/tipo} 
+\includegraphics[width=0.45\textwidth]{images/type} 
 \caption{Type Systems by Declaration Type.}
 \label{fig:tipo_declaracao} 
 \end{figure}
@@ -686,63 +688,53 @@ Meanwhile, programmers who have only dynamic languages projects in their GitHub 
 
 
 % Q1
+% Types as documentation => maintainability
 \subsection{Types as Documentation}
 In this section we discuss Q1, i.e, do programmers consider typing as a means to document their code?
-
-
-
 Well documented code plays an important role in making code more readable, hence improving the code overall maintainability \cite{Iso2004}.
-
+There is evidence that Groovy programmers consider types as a mechanism to implicitly document their code.
+This is even more clear the definition of the interface of their modules.
 Given the results presented in section \ref{sec:results}, we want to understand if there is a higher usage of typing in situations where readability is an important factor. 
 
+Documentation is the main reason why Groovy programmers type their code.
+As mentioned earlier in this study, the main advantadges of using statically typed languages are implicit code documentation, static type verification and execution performance.
+Groovy however is not a statically typed language, but a dynamically typed language with optional typing (we are not considering the $@TypeChecked$ annotation in this study).
+This means that Groovy compiler can't verify types statically and that types still have to be checked during runtime.
+Hence from the usual advantadges of using a statically typed language, only code documentation holds true for Groovy.
+Considering the result shown on previous section that 60\% of all declarations are typed, this means that code documentation is an important matter for Groovy developers.
 
-The most evident benefit of using types for a Groovy programmer is documenting their code.
-Since Groovy has a dynamic type system (except when type checking is explicitly activated), the compiler isn't capable of checking for errors.
-
-To answer this question, we will analyze how programmers type the interfaces of their modules.
+\subsection{Types for modularization}
+Typing plays an even more important role on the documentation of modules.
 As mentioned in the literature \cite{Meyer88, Meijer04, Wadler04, Plosch97, Flanagan2006, Furr09}, types greatly aid in the definition of the contract of a module.
-Programmers can benefit from well typed modules as these will tell him how to use them.
+They retrict the pre and post conditions of methods and define the nature of the properties of that module.
+Clients of an well typed module will learn how to use it faster and make less mistakes since the contract of that module is clear to them.
 
+In our analysis we were able to indentify an even higher usage of typing in those statements that define the interface of a module, i.e, fields, returns and parameters of methods and parameters of constructors.
+Consider Figure \ref{fig:tipo_declaracao}.
+While these elements are typed in the great majority of times, only 30\%  of the local variables, which don't contribute to the definition of a module, are typed. On the other side, parameters of constructors, which are some of the most important elements of a contract definition, are almost always typed
 
+The results grouped by visibility, shown on Section \ref{sub:visibility}, help to confirm that types are indeed considered more often on the definition of modules.
+Figure 6, 7, 8 and 9 show that private declarations are always less typed than the public and protected counterparts.
+Similar to local variables, private statements don't contribute to the interface of a module and are only accessible to the module where they were defined.
+In this case there is a smaller need for documentation and programmers don't feel as compelled to use types.
 
-
-This points that contracts require documentation.
-If contracts require documentation and developers use types in contracts, it means they are using it to document the code.
-
-
-In our analysis, we were able to find evidence that programmers often consider types as a means to document their code.
-
-We were able to find evidence that types are considered as documentation
-We consider two characteristics of statements to determine if they need to be well documented, the number of modules to which a statement is visible and the complexity of the contract defined by that statement. 
-Figure 5 shows that while local variables are very untyped other types of declarations are typed a lot
-Specially constructors which define very special contracts
-
-The analysis provided by visibiliy confirms this idea
-private elements are always less typed than others
-these don't specify an interface
-only the own class can access that
-
-Protected are the most typed
-they specify an intimate contract with a subclass
-that subclass has access to the inners of a superclass
-
-
-Inheritance coupling is high \cite{Eder94}
-
-Figure \ref{fig:tipo_declaracao} shows that dynamic typing is used in local variables declarations with more frequency than in other types of statements.
-Since local variables have smaller scope and shorter life time, programmers probably feel less need to document them through the definition of types and end up choosing a simpler way to declare them, by using dynamic typing.
-
-Conversely, constructor parameters are the declaration type with the most static typing usage.
-It can be argued that there is a relevant concern in documenting these statements by the usage of static typing since these are important elements in the definition of the contract of a module.
-
-According to figure \ref{fig:method_return_visibility}, statements with public or protected visibility are those more frequently statically typed. 
-These statements define the interface of a module and, by typing them, programmers allow the compiler to look for typing problems in the integration with other modules.
-In addition to that these statements should be well documented so clients of this module know how to use it making static typing a good option for that purpose.
-
-In the case of parameters and returns of methods, the usage of types in statements with protected visibility even surpasses that of statements with public visibility.
-It can be argued that protected fields and methods establish a tight contract, since they expose internal elements of a superclass to a subclass.
+Public and protected elements define the interface of a method and thus are widely typed.
+In the case of parameters and returns of methods, the usage of types in statements with protected visibility  surpasses that of statements with public visibility.
+Groovy developers use $protected$ declarations as a mechanism to restrict access of internal elements of a class allowing only subclassess to access them.
+It can be argued that this is a tighly coupled relationship between these classes \cite{Eder94} since they expose internal elements of a superclass to a subclass.
 Apparently programmers understand that this type of contract should be well document to avoid any problems in such a delicate context.
 
+Results by project size also contribute to a positive answer to Q2.
+Figure 10 shows that, as projects grow, untyped public statements become less frequent.
+However, Figures 11 and 12 don't show the same behavior for private or protected statements.
+Intuitively, the larger the project, the greater the difficulty of integration and the need for maintenance.
+This may lead programmers to prefer the use types in public statements, the most critical  statements in this context.
+Since no pattern can be observed in other types of statements, this reinforces the idea that this behavior is related to the role of public elements in large projects.
+
+
+\subsection{No types for fast code}
+Figure \ref{fig:tipo_declaracao} shows that dynamic typing is used in local variables declarations with more frequency than in other types of statements.
+Since local variables have smaller scope and shorter life time, programmers probably feel less need to document them through the definition of types and end up choosing a simpler way to declare them, by using dynamic typing.
 
 
 % PROGRAMMERS BACKGROUND
@@ -755,18 +747,6 @@ Figure \ref{fig:untyped_background} shows a significant difference in how those 
 
 
 
-\subsection{Results by Project Size\label{sub:size-results}}
-Figure \ref{fig:size_pubMethodReturn} shows the use of dynamic typing in public statements by project size. 
-Each bar of this graph show the result for projects grouped by their size.
-The boundaries of each group are defined under each bar.
-For example, a project with $1500$ lines of code is in the second group, since $1500$ lies within the interval $]400, 1600]$.
-
-This result shows that the use of dynamic typing in public statements decreases as the size of the project
-increases. 
-The frequency of dynamic typing usage in projects with more than 6400 lines of code is almost half the frequency of smaller projects.
-Intuitively, the larger the project, the greater the difficulty of integration and the need for maintenance.
-This may lead programmers to prefer the use of static typing in public statements, the most critical  statements in this context.
-No pattern can be observed in other types of statements, reinforcing the idea that this behavior is related to the role of public elements in large projects.
 
 \subsection{Scripts e Testes\label{sub:Scripts-e-Testes}}
 Scripts are usually written to perform simple tasks and do not relate to many other modules. 
