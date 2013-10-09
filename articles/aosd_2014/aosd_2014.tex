@@ -347,7 +347,7 @@ Based on the known facts about statically and dynamically typed languages, we pr
 
 \begin{itemize}
 	\item \textbf{Question Q1: Do programmers use types to implicitly document their code?} By typing their statements, developers are telling other developers about the nature of those statements. This increases the readability and, hence, the maintainability of their code. If we are able to observe a higher usage of types in statements that usually require more documentation, then we can assume that these developers indeed consider types as a means to document their code.
-	\item \textbf{Question Q2: Are untyped declarations preferred when readability or maintainability are not a concern?} These are some of the main reasons why a developer would prefer a typed language. Our hypothesis is that, where these aren't important factors, developers will prefer the flexibility and objectivity offered by dynamic typing. 
+	\item \textbf{Question Q2: Are untyped declarations preferred when readability or stability are not a concern?} Besides readability, typing also contributes to stability. It reduces the risk of unexpected effects of modifications increasing the maintainability of the software system \cite{Iso2004}. Our hypothesis is that, where these aren't important factors, typing becomes less necessary and developers will prefer the flexibility and objectivity offered by dynamic typing. 
 	\item \textbf{Question Q3: Does the previous experience of programmers with other languages influence their choice for typing their statements?} We believe that programmers used to a statically typed language will keep using types since they are used to it. 
 \end{itemize}
 
@@ -740,10 +740,9 @@ They stop typing their declarations unless they understand they are really neces
 
 % Q2
 \subsection{Question Q2: Are untyped declarations preferred when readability or maintainability are not a concern?}
-When readability or changeability are not a concern, the advantages of typing become less apparent and  programmers prefer the flexibility and objectivity of untyped declarations.
+When readability or stability are not a concern, the advantages of typing become less apparent and  programmers prefer the flexibility and objectivity of untyped declarations.
 This is what we found when we analyzed how typing is used in local variables, private statements and test classes.
-These are scenarios that we consider to require less readability and changeability than others.
-These results complement Question Q1 discussed previously.
+These are scenarios we consider readability and stability to be less relevant.
 
 Most local variables are untyped.
 Figure \ref{fig:tipo_declaracao} shows that less than 30\% of these variables are declared with a type, a value significantly smaller than the overall result for all declaration types, 60\%.
@@ -754,14 +753,16 @@ Programmers can be more objective in this scenario and eliminate the repetitive 
 
 Local variables have a smaller scope and life cycle.
 They are only visible inside the block where they were instantiated and are destroyed once the execution of that block is over.
-Changeability in this scenarios is not as critical making he flexibility of untyped declarations more apparent.
+Stability in this scenarios is not as critical making the flexibility of untyped declarations more apparent.
 For example, one can easily change the type of a local variable without having to worry about its use anywhere else.
 
-A similar analysis can be made for private statements.
-These are only visible inside the class they were defined in.
-As shown in Figures \ref{fig:method_return_visibility} and \ref{fig:method_parameter_visibility},\ref{fig:constructor_parameter_visibility} and \ref{fig:field_visibility}, untyped declarations are much more common in private statements that in their public or private counterparts.
+A similar conclusion can be derived for private statements.
+As shown in Figures \ref{fig:method_return_visibility}, \ref{fig:method_parameter_visibility}, \ref{fig:constructor_parameter_visibility} and \ref{fig:field_visibility}, untyped declarations are much more common in in these statements that in their public or private counterparts.
+Private statements are usually more stable than others.
+Since they are only visible inside the class they were defined in, they can often be changed without having any unexpected effects outside that class.
+Also, since those statements are only referenced inside the class where they were defined, a reader can easily find those references and use them as a means to understand the code.
 
-Another scenario with smaller need for readability and changeability are test classes.
+Another scenario with smaller need for readability and stability are test classes.
 These classes usually have simple relationships with the rest of the project, not having any clients and depending only on the classes under test.
 Test code is frequently considered a peripheral artifact of a software project and programmers usually do not worry about keeping the quality of such code \cite{Meszaros07}.
 
@@ -769,8 +770,8 @@ Test classes are also typed less often than the usual.
 Figure \ref{tab:tests} shows that declarations made inside the main classes of a project are typed in 68\% of the cases.
 On the other side, only 56\% of the test classes are typed.
 
-A counter example to this analysis made so far is the usage of types in scripts.
-It can also be said that readability and changeability are not big concerns in scripts.
+A counter example to this analysis is the usage of types in scripts.
+It can also be said that readability and stability are not big concerns in scripts.
 These are pieces of code usually written to solve punctual problems.
 They don't establish complex relationships with other modules and aren't reused very often.
 Nevertheless, as shown in Table \ref{tab:scripts}, there is no significant difference between the overall usage of types in scripts and classes.
@@ -785,7 +786,7 @@ Figure \ref{fig:untyped_background} shows that these developers have only 28.7\%
 
 It's clear that the portfolio of a GitHub developer might not represent well his real experience with other programming languages.
 This developer might have projects hosted somewhere else or have projects in his portfolio that he has barely participated at.
-However, due to the scale of this study, it's difficult to understand each developer's experience in more details.
+However, due to the scale of this study, it's difficult to collect more detailed metrics for every user.
 
 
 
