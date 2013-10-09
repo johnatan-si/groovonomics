@@ -776,16 +776,27 @@ However, due to the scale of this study, it is difficult to collect more detaile
 % THREATS TO VALIDITY
 %
 \section{Threats to Validity\label{sec:ameaca}}
-As mentioned in section \ref{sub:overall-result}, programmers tend to continue using the type system they are used to.
-Given that most Groovy programmers have prior experience with Java, a statically typed language, the results shown in this work might present a certain tendency to favor static type systems. 
-Nevertheless, the analysis by type of declaration given in section \ref{sub:declaration-type-results} shows the predominance of dynamic typing over local variable declarations, indicating that, despite the previous experience with Java,
-programmers are able to learn to use dynamic typing where they consider it necessary.
+In this section, we discuss potential threats to validity. As usual, we have arranged possible threats in two categories, internal and external validity \cite{Campbell1963}.
 
-Some frameworks require the use of a particular type system in certain situations. 
-Spock, for example, a automated testing framework, requires that the return of test methods to be dynamically typed. 
-However, due to the heterogeneity and the large number of projects analyzed, we believe that there is no framework capable of having a significant influence on the overall results of this study.There are metrics far more effective for this purpose such as [TODO].
-However, this simple approach is ideal for this case study because it does not require projects to be compiled to determine the project complexity. 
-As discussed in section \ref{dataset}, this would be impracticable considering the size of the studied dataset.
+
+\subsection*{Internal Validity}
+The main threats to this work involve the fact that, in such a large scale case study, we can't analyze data into much detail.
+In Section \ref{sub:background} we consider that the GitHub portfolio of a programmer represents well his experience with other languages and type systems.
+However, these programmers might have projects hosted somewhere else or projects in his portfolio that he hasn't worked on.
+In Section \ref{sub:size-results}, we consider that the project size is a metric capable of representing the complexity of a project well.
+This is not always true \cite{Fenton1998}, but that was the most effective metric we could use without requiring projects to be compiled, which would drastically reduce our dataset.
+
+There are other variables that can have influenced the programmers besides the ones considered in this study.
+Some frameworks require programmers to use typed or untyped declarations in some cases.
+For example, one of the ways a programmer can create a mock on Spock, a popular Groovy testing framework, requires programmers to type the mock declaration.
+Also, tool integration might encourage programmers to use types for functionalities such as code completion.
+In addition to that, the previous experience of programmers, which we have shown to have influence over programmers, might interfere with analyzis of other influencing factors.
+
+In order to overcome the threats shown above, as a future work, we are planning a controlled study.
+This will provide us with more detailed information, which we can use to complement the results of this case study.
+
+\subsection*{External Validity}
+
 
 \section{Related Work\label{sec:Trabalhos-Relacionados}}
 There are some works in the literature that compare static and dynamic typing systems though controlled studies.
@@ -925,6 +936,9 @@ ISO, ISO, and IEC FCD. "25000, Software Engineering-Software Product Quality Req
 
 \bibitem[Fenton(1998)]{Fenton1998}
 Fenton, Norman E., and Shari Lawrence Pfleeger. Software metrics: a rigorous and practical approach. PWS Publishing Co., 1998.
+
+\bibitem[Campbell(1964)]{Campbell1963}
+Campbell, Donald Thomas, Julian C. Stanley, and Nathaniel Lees Gage. Experimental and quasi-experimental designs for research. Boston: Houghton Mifflin, 1963.
 
 \end{thebibliography}
 
