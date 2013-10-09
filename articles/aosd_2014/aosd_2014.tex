@@ -601,46 +601,24 @@ On the other side, in projects with over $65536$ lines of code, the average freq
 % TESTS
 \subsection{Test Classes\label{sub:scripts}}
 In this section, we analyze how types are used in test classes.
-Table \ref{tab:tests} shows that declarations in this type of code are $14\%$ less typed when compared to declarations in other types of classes.
+Table \ref{fig:test_classes} shows that declarations in this type of code are $14\%$ less typed when compared to declarations in other types of classes.
 
-\begin{table}[ht]
-\caption{Type System used in different contexts}
-\centering{}%
-\begin{tabular}{|c|c|c|}
-\hline 
- & Typed Declarations & Untyped Declarations\tabularnewline
-\hline  
-\hline 
-Test Classes & 56\% & 44\%\tabularnewline
-\hline 
-Other Classes & 68\% & 32\%\tabularnewline
-\hline 
-\end{tabular}
-\label{tab:tests}
-\end{table}
+\begin{figure}[ht]
+\centering \includegraphics[width=0.45\textwidth]{images/test_classes} 
+\caption{Declarations in test classes and main classes}
+\label{fig:test_classes} 
+\end{figure}
 
 % SCRIPTS
 \subsection{Scripts\label{sub:scripts}}
 In this section we analyze how types are used in script files.
-Differently form last section, Table \ref{tab:scritps} shows that there is no significant difference between declarations in this type of code and declarations in class files.
+Differently form last section, Table \ref{fig:scritps} shows that there is no significant difference between declarations in this type of code and declarations in class files.
 
-\begin{table}[ht]
-\caption{Type System used in different contexts}
-
-
-\centering{}%
-\begin{tabular}{|c|c|c|}
-\hline 
- & Typed Declarations & Untyped Declarations\tabularnewline
-\hline 
-\hline 
-Scripts & 63\% & 37\%\tabularnewline
-\hline 
-Classes & 60\% & 40\%\tabularnewline
-\hline 
-\end{tabular}
-\label{tab:scripts}
-\end{table}
+\begin{figure}[ht]
+\centering \includegraphics[width=0.45\textwidth]{images/scripts} 
+\caption{Declarations in scripts and classes}
+\label{fig:scripts} 
+\end{figure}
 
 
 
@@ -762,14 +740,14 @@ These classes usually have simple relationships with the rest of the project, no
 Test code is frequently considered a peripheral artifact of a software project and programmers usually do not worry about keeping the quality of such code \cite{Meszaros07}.
 
 Test classes are also typed less often than the usual.
-Figure \ref{tab:tests} shows that declarations made inside the main classes of a project are typed in 68\% of the cases.
+Figure \ref{fig:tests} shows that declarations made inside the main classes of a project are typed in 68\% of the cases.
 On the other side, only 56\% of the test classes are typed.
 
 A counter example to this analysis is the usage of types in scripts.
 It can also be said that readability and stability are not big concerns in scripts.
 These are pieces of code usually written to solve punctual problems.
 They do not establish complex relationships with other modules and aren't reused very often.
-Nevertheless, as shown in Table \ref{tab:scripts}, there is no significant difference between the overall usage of types in scripts and classes.
+Nevertheless, as shown in Table \ref{fig:scripts}, there is no significant difference between the overall usage of types in scripts and classes.
 
 
 % Q3
