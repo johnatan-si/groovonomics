@@ -656,10 +656,14 @@ Notice that the behavior of those programmers with only dynamic languages on the
 % DISCUSSION
 %
 \section{Discussion\label{sec:Discussion}}
-
+In this section, we discuss the questions proposed in Section \ref{questions} based on the results above.
+We were able to find evidence to support an affirmative answer for all 3 questions.
+Section \ref{discussion-q1} shows that documentation is the main reason why Groovy developers use types, specially on the definition of their modules.
+An analysis of local variables, private statements and test classes in Section \ref{discussion-q2} supports the suspect that untyped declarations are used more frequently when readability or stability aren't a concern. 
+Last, Section \ref{discussion-q3} shows how programmers with experience on statically typed languages use types more frequently than other programmers.
 
 % Q1
-\subsection{Types as implicit documentation}
+\subsection{Types as implicit documentation\label{discussion-q1}}
 Well documented code plays an important role in making code more readable, hence improving the code overall maintainability \cite{Iso2004}.
 By analyzing the results presented in Section \ref{sec:results}, we were able to find evidence that this is an important factor considered by Groovy programmers.
 
@@ -709,7 +713,7 @@ A possible explanation is that, as project grows, developers get more used to fl
 They stop typing their declarations unless they understand they are really necessary.
 
 % Q2
-\subsection{Less typing when readability and stability aren't a concern}
+\subsection{Less typing when readability and stability aren't a concern\label{discussion-q2}}
 When readability or stability are not a concern, the advantages of typing become less apparent and  programmers prefer the flexibility and objectivity of untyped declarations.
 This is what we found when we analyzed how typing is used in local variables, private statements and test classes.
 These are scenarios we consider readability and stability to be less relevant.
@@ -748,7 +752,7 @@ Nevertheless, as shown in Table \ref{fig:scripts}, there is no significant diffe
 
 
 % Q3
-\subsection{Previous experience of programmers}
+\subsection{Previous experience of programmers\label{discussion-q3}}
 Results indicate that the answer for Q3 is affirmative.
 The choice for using types on a language with optional typing, such a Groovy, is in fact influenced by the experience  with other languages.
 Those developers who have only static languages on their GitHub portfolio will leave their statements untyped less often than other developers.
