@@ -342,11 +342,13 @@ In the remainder of this section, we formalize the research questions in subsect
 
 \subsection{Research Questoins\label{questions}}
 
+In this study, we want to understand, from a practical point of view, what are the factors that influence programmers on the choice for using or not types in a programming language with optional typing.
+Based on the known facts about statically and dynamically typed languages, we propose the following questions, which we will try to answer by analyzing the source code of a series of Groovy projects:
 
 \begin{itemize}
-	\item \textbf{Question Q1:} Do programmers use types to implicitly document their code? 
-	\item \textbf{Question Q2:} Are types used less often when maintainability is not a concern?	
-	\item \textbf{Question Q3:} Does the previous experience of programmers with other languages influence their choice for typing their statements? More specifically, do programmers with a background on statically typed languages tend to keep using types while those with a background on dynamically typed languages tend to keep their statements untyped?
+	\item \textbf{Question Q1: Do programmers use types to implicitly document their code?} By typing their statements, developers are telling other developers about the nature of those statements. This increases the readability and, hence, the maintainability of their code. If we are able to observe a higher usage of types in statements that usually require more documentation, then we can assume that these developers indeed consider types as a means to document their code.
+	\item \textbf{Question Q2: Are untyped declarations preferred when readability or maintainability are not a concern?} These are some of the main reasons why a developer would prefer a typed language. Our hypothesis is that, where these aren't important factors, developers will prefer the flexibility and objectivity offered by dynamic typing. 
+	\item \textbf{Question Q3: Does the previous experience of programmers with other languages influence their choice for typing their statements?} We believe that programmers used to a statically typed language will keep using types since they are used to it. 
 \end{itemize}
 
 \subsection{Data Collection Procedure\label{dataCollection}}
