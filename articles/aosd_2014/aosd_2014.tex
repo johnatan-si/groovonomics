@@ -546,12 +546,9 @@ Protected declarations, on the other side, are usually the most typed. The only 
 
 % PROJECT SIZE
 \subsection{Project Size\label{sub:size-results}}
-In this section we show how the use of types in declarations varies according to the project size. 
-Project size is a simple metric to measure the complexity of a project.
-Usually, the larger the project, the greater the number of modules and and the need for maintenance. 
-There are metrics far more effective for this purpose such as [TODO].
-However, this simple approach is ideal for this case study because it does not require projects to be compiled to determine the project complexity. 
-As discussed in section \ref{dataset}, this would be impracticable considering the size of the studied dataset.
+In this section we show how the use of types in declarations varies as projects grown in size.
+The project size is a simple metric to measure the complexity of a project.
+Usually, the larger the project, the greater the number of modules and and the need for maintenance \cite{Fenton1998}. 
 
 Results are shown for public, private and protected declarations (Figures \ref{fig:size_pubMethodReturn}, \ref{fig:size_priMethodReturn}, \ref{fig:size_proMethodReturn} respectively) and local variables (Figure \ref{fig:size_localVariable}). 
 In these graphs, each bar shows the average usage of untyped declarations of projects grouped by their size.
@@ -772,7 +769,7 @@ However, due to the scale of this study, it is difficult to collect more detaile
 
 
 %
-% Threats to Validity
+% THREATS TO VALIDITY
 %
 \section{Threats to Validity\label{sec:ameaca}}
 As mentioned in section \ref{sub:overall-result}, programmers tend to continue using the type system they are used to.
@@ -782,7 +779,9 @@ programmers are able to learn to use dynamic typing where they consider it neces
 
 Some frameworks require the use of a particular type system in certain situations. 
 Spock, for example, a automated testing framework, requires that the return of test methods to be dynamically typed. 
-However, due to the heterogeneity and the large number of projects analyzed, we believe that there is no framework capable of having a significant influence on the overall results of this study.
+However, due to the heterogeneity and the large number of projects analyzed, we believe that there is no framework capable of having a significant influence on the overall results of this study.There are metrics far more effective for this purpose such as [TODO].
+However, this simple approach is ideal for this case study because it does not require projects to be compiled to determine the project complexity. 
+As discussed in section \ref{dataset}, this would be impracticable considering the size of the studied dataset.
 
 \section{Related Work\label{sec:Trabalhos-Relacionados}}
 There are some works in the literature that compare static and dynamic typing systems though controlled studies.
@@ -919,6 +918,9 @@ Eder, Johann, Gerti Kappel, and Michael Schrefl. "Coupling and cohesion in objec
 
 \bibitem[ISO25000(2004)]{Iso2004}
 ISO, ISO, and IEC FCD. "25000, Software Engineering-Software Product Quality Requirements and Evaluation (SQuaRE)-Guide to SQuaRE." Geneva, International Organization for Standardization (2004).
+
+\bibitem[Fenton(1998)]{Fenton1998}
+Fenton, Norman E., and Shari Lawrence Pfleeger. Software metrics: a rigorous and practical approach. PWS Publishing Co., 1998.
 
 \end{thebibliography}
 
