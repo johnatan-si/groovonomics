@@ -644,7 +644,7 @@ Scripts & 63\% & 37\%\tabularnewline
 Classes & 60\% & 40\%\tabularnewline
 \hline 
 \end{tabular}
-\label{tab:scritps}
+\label{tab:scripts}
 \end{table}
 
 
@@ -689,7 +689,6 @@ Notice that the behavior of those programmers with only dynamic languages on the
 
 
 % Q1
-% Types as documentation => maintainability
 \subsection{Question Q1: Do programmers use types to implicitly document their code?}
 Well documented code plays an important role in making code more readable, hence improving the code overall maintainability \cite{Iso2004}.
 By analyzing the results presented in Section \ref{sec:results}, we were able to find evidence that this is an important factor considered by Groovy programmers.
@@ -739,18 +738,42 @@ It's hard to tell the reason for this behavior.
 A possible explanation is that, as project grows, developers get more used to flexibility and objectivity of dynamic typing.
 They stop typing their declarations unless they understand they are really necessary.
 
+% Q2
 \subsection{Question Q2: Are untyped declarations preferred when readability or maintainability are not a concern?}
-Figure \ref{fig:tipo_declaracao} shows that dynamic typing is used in local variables declarations with more frequency than in other types of statements.
-Since local variables have smaller scope and shorter life time, programmers probably feel less need to document them through the definition of types and end up choosing a simpler way to declare them, by using dynamic typing.
+When maintainability or readability are not a concern, Groovy programmers tend to use more untyped declarations.
+The flexibility and objectivity of dynamic typing becomes more visible to programmers in these scenarios.
+The analysis of the results by declaration type, visibility and nature of the code support this understanding and complement the analysis of Question Q1 discussed previously.
 
-\subsection{Scripts e Testes\label{sub:Scripts-e-Testes}}
-Scripts are usually written to perform simple tasks and do not relate to many other modules. 
-The same can be said for test code. 
-This suggests that dynamic typing would be used more often in such contexts since maintainability and integration are not critical factors for tests or scripts. 
-The result shown in table \ref{tab:teste} however contradicts this idea.
-There is no significant difference in the usage of typing systems in these contexts.
+Most local variables are untyped.
+Figure \ref{fig:tipo_declaracao} shows that less than 30\% of these variables are declared with a type, a value significantly smaller than the overall result for all declaration types, 60\%.
+It can be assumed that typing local variables doesn't aid in the readability of the code as much as in other types of declarations.
+The value of a local variable is defined very close to its declaration, usually in the same statement.
+This makes it easier for a reader to understand the nature of a given variable and even infer its type.
+Programmers can be more objective in this scenario and eliminate the repetitive work of typing their variables.
 
-% PROGRAMMERS BACKGROUND
+Local variables have a smaller scope and life cycle.
+They are only visible inside the block where they were instantiated and are destroyed once the execution of that block is over.
+This makes changeability in local variables a smaller concern and make the flexibility of untyped declarations more apparent.
+For example, one can easily change the type of a local variable without having to worry about it use anywhere else.
+
+A similar analysis can be made for private declarations.
+They are only visible inside the class they were defined in.
+In this scenario, readability and changeability aren't big concerns, which allow programmers to benefit form the flexibility and objectivity of dynamic typing more often.
+
+Test classes are typed less often than the main classes of projects.
+Figure \ref{tab:tests} shows that, while declarations made inside the main classes of projects are typed in 68\% of the cases, only 56\% of the test classes are typed.
+These classes usually have simple relationships with the rest of the project.
+They don't have any clients and depend only on the classes under test.
+In this scenario, readability or changeability are usually not a concern.
+
+A counter example to the analysis made so far is the usage of types in scripts.
+It can also be said that readability and changeability are not big concerns in scripts.
+These are pieces of code usually written to solve punctual problems.
+They don't establish complex relationships with other modules aren't often reused.
+Still, as shown in Table \ref{tab:scripts}, there is no significant difference between the overall usage of types in scripts and classes.
+
+
+% Q3
 \subsection{Question Q3: Does the previous experience of programmers with other languages influence their choice for typing their statements?}
 Results indicate that the answer for Q3 is affirmative.
 The choice for using types on a language with optional typing, such a Groovy, is in fact influenced by the experience  with other languages.
