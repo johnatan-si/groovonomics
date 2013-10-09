@@ -344,8 +344,8 @@ In the remainder of this section, we formalize the research questions in subsect
 
 
 \begin{itemize}
-	\item \textbf{Question Q1:} Do programmers use types to implicitly document their modules?
-	\item \textbf{Question Q2:} Do programmers prefer not using types in simple code?	
+	\item \textbf{Question Q1:} Do programmers use types to implicitly document their code? 
+	\item \textbf{Question Q2:} Are types used less often when maintainability is not a concern?	
 	\item \textbf{Question Q3:} Does the previous experience of programmers with other languages influence their choice for typing their statements? More specifically, do programmers with a background on statically typed languages tend to keep using types while those with a background on dynamically typed languages tend to keep their statements untyped?
 \end{itemize}
 
@@ -731,6 +731,12 @@ Intuitively, the larger the project, the greater the difficulty of integration a
 This is more critical in public statements.
 Unlike private or protected statements, the number of modules to which a public statement is visible grows with the project size.
 This suggests that as projects grow, programmers will consider that the documentation of public elements is more important and will consider typing these declarations more often.
+
+The project size has an opposite effect on the declarations of local variables.
+While public declarations get typed more often, the frequency of types in local variable declarations decreases.
+It's hard to tell the reason for this behavior.
+A possible explanation is that, as project grows, developers get more used to flexibility and objectivity of dynamic typing.
+They stop typing their declarations unless they understand they are really necessary.
 
 \subsection{No types for fast code}
 Figure \ref{fig:tipo_declaracao} shows that dynamic typing is used in local variables declarations with more frequency than in other types of statements.
