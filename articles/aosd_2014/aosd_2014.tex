@@ -796,39 +796,63 @@ In order to overcome the threats shown above, as a future work, we are planning 
 This will provide us with more detailed information, which we can use to complement the results of this case study.
 
 \subsection*{External Validity}
+The results presented in this study can not be generalized for every scenario.
+Depending on the context, each developer might find different reasons to type or not their declarations.
+Also, since we only analyzed public projects, we can not say that our dataset can represent projects developed inside an organization, which are mostly private projects.
 
 
+
+
+
+
+
+%
+% RELATED WORK
+%
 \section{Related Work\label{sec:Trabalhos-Relacionados}}
-There are some works in the literature that compare static and dynamic typing systems though controlled studies.
-In \cite{experiment_with_purity}, the author compares the performance of two groups of students when asked to develop two small systems. 
+This work is based on a series of studies that compare different typing strategies.
+Although we are not aware of any studies that analyze this question using a large scale case study as ours, we are aware of multiple controlled experiments with significant results.
+
+In \cite{experiment_with_purity}, the author compares the performance of two groups of students asked to develop two small systems. 
 Both groups used a language developed by the author, Purity. 
 The only difference in the language used by the two groups was the typing system.
 One group used a statically typed version of Purity while the other used a dynamically typed version of the same language.
 Results showed that the group using the dynamic version was significantly more productive than the other. 
-Similarly to this work, the author was able to compare two type systems directly while isolating any external factors. 
+Similarly to this work, the author was able to compare two typing strategies directly while isolating any external factors. 
 However, it can be argued that these results may not represent well real life situations of the software industry. 
 This was a short duration study where students were used as examples of developers with no interaction with other programmers. 
-In this paper, we try to get more relevant results when analyzing source code developed by programmers during their normal activities.
+In our study, we try to get more relevant results when analyzing source code developed by programmers during their normal activities.
 
 In a follow up study \cite{hanenberg_icpc}, the authors got to opposite conclusions. 
 They compared the performance of two groups of developers in maintenance tasks. 
-First group used Java, a statically typed language, and the other used Groovy, but restricting developer to use only dynamic typing in order to simulate a dynamically typed Java.
+The first group used Java, a statically typed language, and the other used Groovy, but restricting developer to use only untyped declarations in order to simulate a dynamically typed version of Java.
 In this case, the group using the statically typed language, Java, was much more productive.
-This contradiction reinforces the argument that the results of controlled studies aren't reliable enough for this type of study.
+This contradiction with a previous work reinforces the argument that the results of controlled studies aren't reliable enough for this type of study.
 
 In experiments conducted in \cite{ruby_vs_druby}, the authors compare the performance of two groups working on small development tasks.
 One group used Ruby, a dynamically typed language, while the other used DRuby, a statically typed version of Ruby. 
 Results showed that the DRuby compiler rarely managed to capture any errors that weren't already evident for programmers.
-Most subjects involved in the study had previous experience with Ruby, which suggests that programmers get used to the lack of static typing in their declarations.
+Most subjects involved in the study had previous experience with Ruby, which suggests that programmers get used to the lack of typing in their declarations.
+We tried to investigate this phenomenon, by analyzing how programmers use types depending on their experience with other languages.
 
+
+
+
+
+
+
+%
+% CONCLUSION AND FUTURE WORK
+%
 \section{Conclusions and Future Work\label{sec:Conclus=0000E3o-e-Trabalhos}}
-This study examines what are the most influencing factors in the choice for a static or dynamic type system. 
-There are some controlled studies in the literature about the advantages of each one of these typing system already. 
-However the results presented here focus on finding the factors that have an actual influence on the decision for one or another through the analysis of a wide range of source code repositories.
+In this study, we investigated, from a practical point of view, what are the most influential factors on the choice of a programmer for using or not types.
+Understanding these factors can help programmers choosing the most appropriate programming language for a given context.
+It's also a valuable information for programming language designers who can base their design on real user data.
+To answer this question, we conducted a large scale case study with more that 7 thousand software projects written in Groovy, a dynamically typed language with optional type annotations. 
 
-When maintainability and the complexity of the integration between modules are considered important, static typing is apparently preferred by Groovy programmers. 
-In these situations, the advantages of static typing such as documenting the code or integrating with software development tools, are relevant advantages considered by Groovy programmers.
-Conversely, when these issues are not as critical, the simplicity of dynamic typing seems to be preferred, as seen on local variables declarations.
+We found evidence that programmers use types as a means to implicitly document their code.
+This tends to grow in the presence of some factors, such as the statement visibility, the complexity of the contract defined by such statement and the size of the project where it is defined. 
+Conversely, when readability or stability aren't a concern, the simplicity and flexibility of untyped declarations seems to be preferred, as seen on local variables, private statements and test classes.
 Another important factor is the previous experience of programmers with a given type system.
 
 In future works we wish to analyze the influence of static and dynamic type systems over the robustness of software systems.
