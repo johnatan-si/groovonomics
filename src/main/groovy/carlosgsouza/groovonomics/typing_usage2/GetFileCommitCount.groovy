@@ -33,15 +33,17 @@ class GetFileCommitCount {
 			def commits = getCommitsIds(owner, name)
 			
 			def file_commits = [:]
-			commits.each { id ->
-				def files = getCommitFiles(owner, name, id)
-				
-				files.findAll{it.endsWith(".groovy")}.each { file ->  
-					file_commits[file] = file_commits[file] ?: 0
-					file_commits[file]++
+			
+			if(commits.size() >= 100) {
+				commits.each { id ->
+					def files = getCommitFiles(owner, name, id)
+					
+					files.findAll{it.endsWith(".groovy")}.each { file ->  
+						file_commits[file] = file_commits[file] ?: 0
+						file_commits[file]++
+					}
 				}
 			}
-			
 			def output = [commits:commits.size(), file_commits:file_commits]
 			
 			outputFile << JsonOutput.prettyPrint(new JsonBuilder(output).toString())
@@ -51,7 +53,8 @@ class GetFileCommitCount {
 	
 	def getCommitFiles(owner, name, id) {
 		try {
-			Thread.sleep(720)
+			// Throttle down the requests so we don't exceed the hourly limit			
+			// Thread.sleep(720)
 			return gitHubClient.get(path: "/repos/$owner/$name/commits/$id", headers:requestHeaders, contentType:ContentType.JSON)?.data?.files*.filename
 		} catch(e) {
 			e.printStackTrace()
