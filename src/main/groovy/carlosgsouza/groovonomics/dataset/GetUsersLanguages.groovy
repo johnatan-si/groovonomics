@@ -35,7 +35,7 @@ class GetUsersLanguages {
 		try {
 			def response = gitHubClient.get(path: "/users/$user/repos", headers:requestHeaders, contentType:ContentType.JSON)
 			return response.data*.language ?: []
-		} catch(e) {
+		} catch(e) { 
 			e.printStackTrace()
 			return []
 		}
