@@ -52,11 +52,11 @@
 \maketitle
 
 \begin{abstract}
-One of the most important things to be taken into account when choosing a programming language is its typing system, static or dynamic. 
-This question has become increasingly more important due to the recent popularization of dynamic languages such as Ruby and JavaScript. 
-This paper studies which are the most influencing factors for a programmer when choosing between typing systems. 
-An analysis of the source code of over seven thousand projects written in Groovy, a programming language where one can mix static and dynamic typing freely, shows in which situations programmers prefer a typing system over the other. 
-Results of this study suggest that the previous experience of the programmer, project size, complexity of modules, scope and visibility of statements are some of the most important factors in this decision.
+The typing system is one of the most important things to be taken in consideration when choosing a programming language. 
+This question has become increasingly more important due to the recent popularization of dynamically typed languages such as Ruby and JavaScript. 
+This paper presents a large scale case study with the goal of finding what are the most influential factors for a programmer when choosing between different typing paradigms. 
+An analysis of the source code of over seven thousand projects written in Groovy, a programming language which features optional typing, shows in which situations programmers prefer typing or not their declarations. 
+Results suggest that the need for maintainability, frequency of change and programmers background are important factors in this decision.
 \end{abstract}
 
 \category{D.2.3}{Software Engineering}{Cooding Tools and Techniques}
@@ -69,43 +69,54 @@ Type systems, static analysis, Groovy and GitHub
 
 \section{Introduction}
 When choosing a programming language for a project, a developer considers several characteristics of that language.
-One of the most important is its typing system, which can be static or dynamic.
-The typing system determines when the type of a statement is be defined\cite{types_and_programming_languages}. 
+One of the most important of these characteristics is its typing system, which can be static or dynamic.
+The typing system determines when the type of a statement is defined \cite{types_and_programming_languages}. 
 Statically typed languages, such as Java and C\#, require the type of a statement to be defined by the programmer, which can then be used by the compiler to check for any typing errors. 
-On the other side, in dynamically typed languages, like Ruby and JavaScript, the definition of the type of a statement only happens during run time.
+On the other side, in dynamically typed languages, like Ruby and JavaScript, the definition of the type of a statement only happens at run time.
 
-The discussion about what is the best typing system has become increasingly more important in recent years due to rapid popularization of dynamically typed languages. 
-According to The TIOBE Programming Community Index \cite{tiobe}, a well-known ranking that measures the popularity of programming languages, 27\% of the programming languages in the industry are dynamically typed. 
-In 2001, this number was only 17\%. 
+Discussions about what is the best typing system for a particular situation have become increasingly more important in recent years due to rapid popularization of dynamically typed languages. 
+According to the TIOBE Programming Community Index \cite{tiobe}, a well-known ranking that measures the popularity of programming languages, 27\% of the programming languages used in the industry are dynamically typed. 
+A decade ago, this number was only 17\%. 
 Among the 10 languages on top of the ranking, four are dynamically typed: JavaScript, Perl, Python and PHP. 
-In 1998, none of these languages was among the top 10 ranking.
+None of these languages were among the top 10 rank until 1998.
 
-Several factors may be considered when choosing between a dynamcally or statically typed language. 
-Since dynamically typed languages are simpler, they allow programmers to perform their tasks more quickly \cite{types_and_programming_languages} and adapt to changing requirements \cite{gradual_typing}.
-Also, by removing the repetitive work of defining types, these languages allow their users to focus on the problem to be solved rather than spending time with the rules of the language \cite{dynamically_typed_languages}.
+Several factors may be considered when choosing between a dynamically or statically typed language. 
+Since dynamically typed languages are simpler, they allow programmers to code faster \cite{types_and_programming_languages} and adapt to frequently changing requirements more easily \cite{gradual_typing}.
+Also, by removing the repetitive work of defining types, these languages allow programmers to focus on the problem to be solved rather than on the rules of the language \cite{dynamically_typed_languages}.
 
-Statically type languages also have their advantages. 
-These allow compilers to look for type errors \cite{should_your_specification_language_be_typed}. 
-Typed declarations increase the maintainability of systems because they document the code, informing the programmer the nature of each variable \cite{type_systems,mayer2012static}. 
+Statically typed languages also have their advantages. 
+For instance, they allow compilers to find type errors statically \cite{should_your_specification_language_be_typed}. 
+Typed declarations increase the maintainability of systems because they implicitly document the code, telling programmers about the nature of statements \cite{type_systems,mayer2012static}. 
 Systems built with these languages tend to be more efficient since they do not need to perform type checking during their execution \cite{bruce2002foundations,jit}. 
-Finally, modern development environments, such as Eclipse and IDEA, are able to assist programmers with functionalities such as code completion based the information
-they get from statically typed declarations \cite{bruch2009learning}.
+Finally, modern development environments, such as Eclipse and IDEA, are able to assist programmers with functionalities such as code completion based on the information
+provided by statically typed declarations \cite{bruch2009learning}.
 
-This paper presents a study aiming to understand which factors actually influence the decision of a developer for typing their declarations or not. 
-This question was studied based on the analysis of a massive dataset with more than seven thousand projects.
-These projects were written in Groovy, a language with a hybrid typing system which allows developers to choose, for each statement, either to type or not.
-Through a static analysis of these projects, it was possible to understand when developers choose each type system and then extract what are the factors that influence this decision.
+Some languages try to combine characteristics from both static and dynamic type systems.
+Groovy\cite{groovy} is one of these languages.
+Although Groovy is mostly a dynamically typed language, it gives programmers the option to annotate their declarations with types.
+It is also possible to turn static type checking so the compiler can find type errors before execution.
+This allows developers to choose the most appropriate paradigm for each situation.
+
+Understanding what are the most relevant factors on the choice for a typing system is an important matter.
+Programmers can make an informed decision by knowing which languages provide the right benefits for their particular context.
+Programming language developers can consider this information in their design so they can develop the most appropriate features for their target audience.
+Finally, tools can be developed or improved to overcome any weaknesses of a given language. 
+
+This paper presents a large scale case study aiming to understand which factors actually influence the decision of a developer for typing their declarations or not. 
+This question was studied based on the analysis of a massive dataset with more than seven thousand Groovy projects.
+Through a static analysis of these projects, it was possible to understand when developers choose each used types and then extract what are the factors that influence this decision.
+
+Results show that programmers consider types as a means to document their code.
+This is even more evident on the definition of the interface of modules.
+Conversely, when readability or stability are not a concern, programmers tend to type their declarations less often.
+In addition to that, programmers seem to prefer the flexibility of untyped declarations in frequently changed code.
+Finally, the experience of a programmer with other languages has a relevant effect on his or her choice for typing a declaration or not.
 
 The remainder of this paper is organized as follows. 
-Section \ref{sec:A-Linguagem-Groovy} introduces the main concepts of the Groovy program language. 
-Sections \ref{sec:Methodology} and \ref{sec:Resultados} describe the configuration of the study and its results. 
-Section \ref{sec:ameaca} discusses threatens to validity and section \ref{sec:Trabalhos-Relacionados} shows related work. 
-Finally, section  \ref{sec:Conclus=0000E3o-e-Trabalhos} concludes this study and suggests future works.
-
-
-%This is important because programmers know how to choose languages better and what they are missing
-%Language desginers can use this information to understand their users, specially Groovy designers
-%Special for hybrid type system language designers
+Section \ref{groovy} introduces the main concepts of the Groovy programming language and Section \ref{settings} presents the study settings.
+Section \ref{results} describes the results of the study, which are then discussed in Section \ref{discussion}.
+Some threats to the validity of this study are presented in Section \ref{threats}.
+Finally, Section \ref{conclusion} concludes this study and suggests future works.
 
 
 
@@ -122,7 +133,7 @@ Finally, section  \ref{sec:Conclus=0000E3o-e-Trabalhos} concludes this study and
 %  THE GROOVY LANGUAGE
 %
 
-\section{The Groovy Language\label{sec:A-Linguagem-Groovy}}
+\section{The Groovy Language\label{groovy}}
 Groovy is a dynamically typed programming language which allows programmers to optionally type their declarations.
 It was designed to run on the Java Virtual Machine and its adoption has grown remarkably over the last years, specially among Java developers who seek more dynamism without having to learn a completely new language.
 It builds upon the strengths of Java, but has additional features inspired by dynamic languages such as Python and Ruby.
@@ -213,7 +224,7 @@ Closures are one of the most important features of Groovy compared to Java.
 They allow a functional programming style of code, which is both expressive and powerful.
 
 \begin{Listing}[ht]
-\begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
+\begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
 println([1, 2, 3, 4].findAll {it % 2 == 0})
 \end{lstlisting}
 \caption{A class written in Groovy}
@@ -271,7 +282,7 @@ During runtime, the $string$ variable references an instance of the $Integer$ cl
 However, an exception is thrown when we try to invoke the method $toUpperCase$ since the $Integer$ class does not have this method.
 
 \begin{Listing}[ht]
-\begin{lstlisting}[language=Java,tabsize=2,breaklines=true]
+\begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
 String string = new Integer(1)
 string.toUpperCase()
 \end{lstlisting}
@@ -319,7 +330,7 @@ In the remainder of this text, we refer to declarations with type annotations as
 % STUDY SETTINGS
 %
 
-\section{Setudy Settings\label{sec:Methodology}}
+\section{Setudy Settings\label{settings}}
 In this paper, we conduct a case study with the goal of understanding what are the factors that have an actual influence over the decision of a developer to type their declarations or not. 
 We analyze the source code of more than 7 thousand Groovy projects and find where types are used.
 In the remainder of this section, we present the study settings starting by the research questions, listed in Subsection \ref{questions}. 
@@ -479,7 +490,7 @@ Nevertheless, as shown in the next section, we were still able to obtain detaile
 %
 % RESULTS
 %
-\section{Results\label{sec:results}}
+\section{Results\label{results}}
 This section presents the results of our analysis showing where Groovy programmers use types and where they do not.
 As an overall result, Groovy programmers use types in 60\% of their declarations.
 Subsection \ref{res-type} shows the type usage in different sorts of declarations and Subsection \ref{res-visibility} details these results by visibility. Subsection \ref{res-size} shows how the project size affects the usage of types.
@@ -660,7 +671,7 @@ On the other side, in projects with over $65536$ lines of code, the average freq
 %
 % DISCUSSION
 %
-\section{Discussion\label{sec:Discussion}}
+\section{Discussion\label{discussion}}
 In this section, we discuss the questions proposed in Section \ref{questions} based on the results above.
 We were able to find evidence to support an affirmative answer for all 3 questions.
 Section \ref{discussion-q1} shows that documentation is the main reason why Groovy developers use types, specially on the definition of their modules.
@@ -780,7 +791,7 @@ However, due to the scale of this study, it is difficult to collect more detaile
 %
 % THREATS TO VALIDITY
 %
-\section{Threats to Validity\label{sec:ameaca}}
+\section{Threats to Validity\label{threats}}
 In this section, we discuss potential threats to validity. As usual, we have arranged possible threats in two categories, internal and external validity \cite{Wohlin2012}. The main threats to the internal validity of this work involve the fact that, in such a large scale case study, we can't analyze data into much detail. In Section \ref{sub:background} we consider that the GitHub portfolio of a programmer represents well his experience with other languages and type systems.
 However, these programmers might have projects hosted somewhere else or projects in his portfolio that he hasn't worked on.
 In Section \ref{sub:size-results}, we consider that the project size is a metric capable of representing the complexity of a project well.
@@ -843,10 +854,14 @@ We tried to investigate this phenomenon, by analyzing how programmers use types 
 
 
 
+
+
+
+
 %
 % CONCLUSION AND FUTURE WORK
 %
-\section{Conclusions and Future Work\label{sec:Conclus=0000E3o-e-Trabalhos}}
+\section{Conclusions and Future Work\label{conclusion}}
 In this study, we investigated, from a practical point of view, what are the most influential factors on the choice of a programmer for using or not types.
 Understanding these factors can help programmers choosing the most appropriate programming language for a given context.
 It's also a valuable information for programming language designers who can base their design on real user data.
@@ -874,6 +889,9 @@ This work was partially supported by FAPEMIG, grants APQ-02376-11 e APQ-02532-12
 
 \bibitem[Tiobe Website(2013)]{tiobe}
 Tiobe programming community index. http://www.tiobe.com/index.php/ content/paperinfo/tpci/index.html. Accessed in 23/09/2013.
+
+\bibitem[Groovy(2013)]{groovy}
+Groovy Programming Language. http://groovy.codehaus.org/. Accessed in 10/10/2013.
 
 \bibitem[Bruce, K. (2002)]{bruce2002foundations}
 Bruce, K. (2002). Foundations of object-oriented languages: types and semantics. MIT press.
