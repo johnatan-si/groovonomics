@@ -19,6 +19,11 @@ public class FileChangeCountVersusTypingSize {
 		
 		def project_commits_d = [:]
 		def project_spearman = [:]
+		
+		def all_commits = 0L
+		def max_commits = 0
+		def all_files = 0
+		
 		commitsFolder.eachFile { projectCommitsFile ->
 			try {
 				def totalCommits = getTotalCommits(projectCommitsFile)
@@ -26,8 +31,13 @@ public class FileChangeCountVersusTypingSize {
 					return
 				}
 				
+				all_commits += totalCommits
+				max_commits = max_commits > totalCommits ? max_commits : totalCommits
+				
 				def file_commits = getFile_commits(projectCommitsFile)
 				def file_d = getFile_d(projectCommitsFile)
+				
+				all_files += file_commits.size()
 				
 				def commits_d = getCommits_d(file_commits, file_d)
 				
@@ -81,6 +91,10 @@ public class FileChangeCountVersusTypingSize {
 		println "Spearman"
 		println "mean\tmin\tmax\tstddev\tN"
 		println "${spearman.mean}\t${spearman.min}\t${spearman.max}\t${spearman.standardDeviation}\t${spearman.n}"
+		
+		println all_commits
+		println max_commits
+		println all_files
 	}
 	
 	def getSpearman(commits_d) {
