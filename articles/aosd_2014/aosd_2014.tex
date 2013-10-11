@@ -492,14 +492,16 @@ Nevertheless, as shown in the next section, we were still able to obtain detaile
 % RESULTS
 %
 \section{Results\label{results}}
-This section presents the results of our analysis showing where Groovy programmers use types and where they do not.
 As an overall result, Groovy programmers use types in 60\% of their declarations.
-Subsection \ref{res-type} shows the type usage in different sorts of declarations and Subsection \ref{res-visibility} details these results by visibility. Subsection \ref{res-size} shows how the project size affects the usage of types.
-Subsection \ref{res-tests-scripts} present type usage in test classes and scripts. Finally, results are shown according to programmers background in Subsection \ref{res-background}.
+This results is further detailed in this section.
+Subsection \ref{res-type-visibility} shows the type usage in different sorts of declarations and visibilities.
+Subsection \ref{res-test-scripts} shows results depending on the type of the file where a declaration was made, a script, a class or a test class.
+The effects of the programmers background and the project size are described in the Subsection \ref{res-background} and \ref{res-size}.
+Finally Subsection \ref{res-changes} presents results according to the number of changes of files.
 
 % TYPE
-\subsection{Declaration Type\label{res-type}}
-Figure \ref{fig:tipo_declaracao} shows the amount of typed and untyped declarations for each sort of declaration. 
+\subsection{Declaration Type and Visibility\label{res-type-visibility}}
+The amount of typed and untyped declarations for each sort of declaration is shown on Figure \ref{fig:tipo_declaracao} 
 Untyped declarations are far more frequent in local variables that in other elements.
 Fields, method returns and parameters on the other side are mostly typed. In particular, constructor parameters are typed in more than $90\%$ of the declarations.
 
@@ -510,10 +512,6 @@ Fields, method returns and parameters on the other side are mostly typed. In par
 \label{fig:tipo_declaracao} 
 \end{figure}
 
-% VISIBILITY
-\subsection{Visibility\label{res-visibility}}
-In this section, we break down the results shown above by visibility. 
-The goal is to investigate the impact of visibility on the programmers choice of typing or not.
 Figure \ref{fig:method_return_visibility} shows results for method returns.
 There is little difference in the usage of types on the declarations of the return in private and public methods, with $64.4\%$ and $67.3\%$ declarations typed respectively.
 On the other side, the return of protected methods typed in $91.8\%$ of the cases.
@@ -543,7 +541,7 @@ Parameters of constructors, shown in Figure \ref{fig:constructor_parameter_visib
 \end{figure}
 
 
-Figure \ref{fig:field_visibility} shows the results for field declarations. 
+The results for field declarations are shown on Figure \ref{fig:field_visibility}. 
 Differently from previous analyzed declarations, protected fields are significantly less typed than public fields. 
 While the first are typed in $80.5\%$ of the cases, $88.8\%$ of the latter are typed.
 Another difference is that private fields are slightly more typed than other private declarations.
@@ -559,8 +557,8 @@ This frequency is $72.4\%$ for private fields, but for method returns, method pa
 In summary, for all types of declarations, private declarations are less typed than the public and protected counterparts.
 Protected declarations, on the other side, are usually the most typed. The only exception to this are fields, where the usage of types in public declarations surpasses those of protected declarations by $8\%$.
 
-% TESTS
-\subsection{Scripts and Test Classes\label{res-tests}}
+% TESTS AND SCRIPTS
+\subsection{Scripts and Test Classes\label{res-test-scripts}}
 In this section, we analyze how types are used in test classes and scripts.
 Figure \ref{fig:test_classes} shows that declarations in test classes are typed in 55.9\% of the cases.
 Meanwhile, main classes have 67.8\% of their declarations typed.
@@ -652,6 +650,28 @@ On the other side, in projects with over $65536$ lines of code, the average freq
 % FREQUENCYT OF CHANGES
 \subsection{Frequency of changes\label{res-changes}}
 The results in this section show how the frequency of changes in a file is related to the usage of types in the declarations in those files.
+For this analysis, we considered only mature projects since we would not be able to get significant results from small and young projects.
+
+In order for a project to be considered mature it has to have at least 2KLoC and 100 commits.
+These numbers were defined by manually inspecting our dataset and finding that there are popular and mature projects that barely exceed these two metrics.
+Examples of these are the grails-sprint-security-core and gradle-gaelyk-plugin projects.
+
+There are 203 mature projects in our dataset.
+Together these projects add to a total of 83211 commits. 
+The most changed project had a total of 6545 commits.
+More than 43 thousand files were changed by these commits.
+
+Figure \ref{fig:change_mean} shows the average frequency of untyped declarations in files by frequency of changes of those files.
+A file is considered in different groups depending on the relative number of commits that change this file in each project.
+Each group contains 10\% of the files in a project such that group 10 contains the 10\% of files with the most changes of every project, while group 1 has the 10\% of the files with the least changes.
+This means that the most changed files of two different projects, one file changed in 50 commits and the other changed in 800 commits, are both part of group 10.
+
+We avoided using the absolute number of changes in a file since this value might have different meanings in different projects.
+What might be considered a high number of commits for one project, may be low for another.
+By using the relative number of changes, we avoid this pitfall.
+
+It is possible to observe in Figure \ref{fig:change_mean} a slight correspondence between the frequency of changes and the use of untyped declarations.
+While the most changed files of each project have, on average, 34.7\% of their declarations untyped, this number is only 24\% for the least changed files.
 
 \begin{figure*}[ht]
 \centering 
@@ -660,13 +680,20 @@ The results in this section show how the frequency of changes in a file is relat
 \label{fig:change_mean} 
 \end{figure*}
 
-\begin{figure}[ht]
+Figure \ref{fig:change_spearman} is capable of describing this relationship in more details.
+Each point in that graph represents the Spearman correlation between the number of changes in a file and the usage of untyped declarations for a project. 
+A positive value denotes a correlation between those two metrics while a negative value denotes an inverse relationship, i.e, the higher the number of changes the less untyped declarations are used.
+Values close to 1 or -1 the strongest the relationship while values above 0.5 or below -0.5 can be considered strong correlations.
+
+From the 203 mature projects in our dataset, only 65 present negative values for the Spearman ranking. 
+Most of the projects present a positive correlation between the frequency of changes and the usage of untyped declarations.
+A total of 64 of these present a strong relationship, i.e, a Spearman ranking value superior to 0.5, while only 20 present a strong inverse relationship.
+
+\begin{figure}[hb]
 \centering \includegraphics[width=0.45\textwidth]{images/change_spearman} 
 \caption{Spearman ranking for the relation between untyped declarations and frequency of changes for mature projects}
 \label{fig:change_spearman} 
 \end{figure}
-
-
 
 
 
@@ -698,7 +725,7 @@ Last, Section \ref{discussion-q3} shows how programmers with experience on stati
 % Q1
 \subsection{Types as implicit documentation\label{discussion-q1}}
 Well documented code plays an important role in making code more readable, hence improving the code overall maintainability \cite{Iso2004}.
-By analyzing the results presented in Section \ref{sec:results}, we were able to find evidence that this is an important factor considered by Groovy programmers.
+By analyzing the results presented in Section \ref{results}, we were able to find evidence that this is an important factor considered by Groovy programmers.
 
 Documentation is the main reason why Groovy programmers type their code.
 It is well known that the main advantages of using statically typed languages are implicit code documentation, static type verification and execution performance.
@@ -716,8 +743,7 @@ Statements that define the interface of a module, i.e, fields, returns and param
 Consider Figure \ref{fig:tipo_declaracao}.
 While most of these elements are typed, only 30\%  of the local variables, which do not contribute to the definition of a module, are typed. On the other side, parameters of constructors, which are some of the most important elements of a contract definition, are almost always typed
 
-Section \ref{sub:visibility-results} further refines the results presented above.
-Figures \ref{fig:method_return_visibility}, \ref{fig:method_parameter_visibility}, \ref{fig:constructor_parameter_visibility} and \ref{fig:field_visibility} show how programmers type their declarations by visibility.
+The results presented above above are further refined by visibility in Figures \ref{fig:method_return_visibility}, \ref{fig:method_parameter_visibility}, \ref{fig:constructor_parameter_visibility} and \ref{fig:field_visibility}.
 These results contribute to the understanding that types are indeed considered more often on the definition of modules.
 First, notice that private statements are always less typed than their public and protected counterparts.
 Private statements are similar to local variables since they do not contribute to the interface of a module and are only accessible to the module where they were defined.
@@ -774,7 +800,7 @@ These classes usually have simple relationships with the rest of the project, no
 Test code is frequently considered a peripheral artifact of a software project and programmers usually do not worry about keeping the quality of such code \cite{Meszaros07}.
 
 Test classes are also typed less often than the usual.
-Figure \ref{fig:tests} shows that declarations made inside the main classes of a project are typed in 68\% of the cases.
+Figure \ref{fig:test_classes} shows that declarations made inside the main classes of a project are typed in 68\% of the cases.
 On the other side, only 56\% of the test classes are typed.
 
 A counter example to this analysis is the usage of types in scripts.
