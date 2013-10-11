@@ -793,26 +793,39 @@ However, due to the scale of this study, it is difficult to collect more detaile
 % THREATS TO VALIDITY
 %
 \section{Threats to Validity\label{threats}}
-In this section, we discuss potential threats to validity. As usual, we have arranged possible threats in two categories, internal and external validity \cite{Wohlin2012}. The main threats to the internal validity of this work involve the fact that, in such a large scale case study, we can't analyze data into much detail. In Section \ref{sub:background} we consider that the GitHub portfolio of a programmer represents well his experience with other languages and type systems.
-However, these programmers might have projects hosted somewhere else or projects in his portfolio that he hasn't worked on.
-In Section \ref{sub:size-results}, we consider that the project size is a metric capable of representing the complexity of a project well.
-This is not always true \cite{Fenton1998}, but that was the most effective metric we could use without requiring projects to be compiled, which would drastically reduce our dataset.
+In this section, we discuss potential threats to validity. As usual, we have arranged possible threats in two categories, internal and external validity \cite{Wohlin2012}. 
 
-There are other variables that can have influenced the programmers besides the ones considered in this study.
+\subsection*{Internal Validity}
+The main threats to the internal validity involve the fact that, in such a large scale case study, we can't analyze data into much detail. In Section \ref{res-background} we consider that the GitHub portfolio of a programmer represents well his experience with other languages and type systems.
+However, these programmers might have projects hosted somewhere else or projects in his portfolio that he hasn't worked on.
+
+In Section \ref{res-size}, we consider that the project size is a metric capable of representing the complexity of a project, but this is not always true \cite{Fenton1998}.
+However that was the most effective metric we could use without requiring projects to be compiled, which would drastically reduce the number of projects in our dataset.
+
+There are other factors which might have influenced the programmers besides the ones considered in this study.
 Some frameworks require programmers to use typed or untyped declarations in some cases.
 For example, one of the ways a programmer can create a mock on Spock, a popular Groovy testing framework, requires programmers to type the mock declaration.
-Also, tool integration might encourage programmers to use types for functionalities such as code completion.
-In addition to that, the previous experience of programmers, which we have shown to have influence over programmers, might interfere with analyzis of other influencing factors.
+In addition to that, the previous experience of programmers, which we have shown to have influence over programmers, might interfere with analysis of other influencing factors.
 
-In order to overcome the threats shown above, as a future work, we are planning a controlled study.
+In order to overcome the threats shown above, we are planning a controlled study as a future work.
 This will provide us with more detailed information, which we can use to complement the results of this case study.
 
-As threts to external validity, 
-% .. 
+\subsection*{External Validity}
+Although we have analyzed a very expressive number of Groovy projects, it can not be said that we have all possible scenarios covered.
+By manually inspecting our dataset, we could find only a few projects with characteristics of software developed inside an organization.
+Most of them were developed by small groups of people or open source communities.
+It is probable that such enterprise projects are hosted privately on GitHub, hence unavailable to us.
 
-The results presented in this study can not be generalized for every scenario.
-Depending on the context, each developer might find different reasons to type or not their declarations.
-Also, since we only analyzed public projects, we can not say that our dataset can represent projects developed inside an organization, which are mostly private projects.
+The behavior observed for Groovy projects can be very different in other languages.
+Most languages are not like Groovy and feature either static or dynamic typing, forcing programmers to choose a single typing strategy for all different scenarios in a single project.
+Even a language with a hybrid typing paradigm might implement different strategies which will be perceived differently by the programmers of that language.
+
+Finally, a programmer must consider other features in the choice for a programming language like tool support, available libraries and the preferences of his or her organization.
+If these are the features considered in such choice, a programmer might end with the typing paradigm that is not ideal for his or her specific context.
+
+
+
+
 
 
 
@@ -825,7 +838,7 @@ Also, since we only analyzed public projects, we can not say that our dataset ca
 %
 \section{Related Work\label{sec:Trabalhos-Relacionados}}
 This work is based on a series of studies that compare different typing strategies.
-Although we are not aware of any studies that analyze this question using a large scale case study as ours, we are aware of multiple controlled experiments with significant results.
+Although we are not aware of any studies that analyze this question using a large scale case study as ours, we know of multiple controlled experiments with significant results.
 
 In \cite{experiment_with_purity}, the author compares the performance of two groups of students asked to develop two small systems. 
 Both groups used a language developed by the author, Purity. 
@@ -839,7 +852,7 @@ In our study, we try to get more relevant results when analyzing source code dev
 
 In a follow up study \cite{hanenberg_icpc}, the authors got to opposite conclusions. 
 They compared the performance of two groups of developers in maintenance tasks. 
-The first group used Java, a statically typed language, and the other used Groovy, but restricting developer to use only untyped declarations in order to simulate a dynamically typed version of Java.
+The first group used Java, a statically typed language, and the other used Groovy, but restricting developers to use only untyped declarations in order to simulate a dynamically typed version of Java.
 In this case, the group using the statically typed language, Java, was much more productive.
 This contradiction with a previous work reinforces the argument that the results of controlled studies aren't reliable enough for this type of study.
 
@@ -869,12 +882,12 @@ It's also a valuable information for programming language designers who can base
 To answer this question, we conducted a large scale case study with more that 7 thousand software projects written in Groovy, a dynamically typed language with optional type annotations. 
 
 We found evidence that programmers use types as a means to implicitly document their code.
-This tends to grow in the presence of some factors, such as the statement visibility, the complexity of the contract defined by such statement and the size of the project where it is defined. 
+This tends to grow in the presence of some factors, such as the statement visibility, the complexity of the contract defined by such statement and the size of the project where it was defined. 
 Conversely, when readability or stability aren't a concern, the simplicity and flexibility of untyped declarations seems to be preferred, as seen on local variables, private statements and test classes.
 Another important factor is the previous experience of programmers with a given type system.
 
 In future works we wish to analyze the influence of static and dynamic type systems over the robustness of software systems.
-In particular , we want to understand whether the use of dynamic typing, which limits the compiler's ability to find type problems, has any correlation with the occurrence of defects in the system and if the use of automated testing is able to reduce this correlation.
+In particular, we want to understand whether the use of dynamic typing, which limits the compiler's ability to find type problems, has any correlation with the occurrence of defects in the system and if the use of automated testing is able to reduce this correlation.
 
 \acks
 This work was partially supported by FAPEMIG, grants APQ-02376-11 e APQ-02532-12, and CNPq grant 485235/2011-0. 
