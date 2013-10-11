@@ -26,7 +26,7 @@ class GetProjectCommitCount {
 			outputFolder.mkdirs()
 		}
 		
-		def pool = Executors.newFixedThreadPool(20)
+		def pool = Executors.newFixedThreadPool(10)
 		projectMetadataFolder.eachFile { projectFile ->
 			pool.submit {
 				def outputFile = new File(outputFolder, projectFile.name)

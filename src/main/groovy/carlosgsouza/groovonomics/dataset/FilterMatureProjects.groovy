@@ -9,7 +9,7 @@ import groovyx.net.http.*
 
 class FilterMatureProjects {
 	def baseFolder = new File("/opt/groovonomics/")
-	def projectFolder = new File(baseFolder, "dataset/projects/metadata2")
+	def projectFolder = new File(baseFolder, "dataset/projects/metadata")
 	def outputFile = new File(baseFolder, "dataset/projects/mature_projects.txt")
 	
 	def dataFolder = new File("/Users/carlosgsouza/workspace_gg/groovonomics/articles/aosd_2014/data/type_usage/classes")
@@ -28,7 +28,8 @@ class FilterMatureProjects {
 			outputFile.delete()
 		}
 		matureProjects.each {
-			outputFile << "$it\n"
+			def name = it - ".json"
+			outputFile << "$name\n"
 		}
 		
 		println matureProjects.size()

@@ -5,22 +5,33 @@ import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 import groovyx.net.http.*
 
+import java.util.concurrent.Executors
+
 
 class GetFileCommitCount {
 	def baseFolder = new File("/opt/groovonomics/")
-	File projectListFile = new File(baseFolder, "dataset/projects/top5p.txt")
+	File projectListFile = new File(baseFolder, "dataset/projects/mature_projects.txt")
 	File outputFolder = new File(baseFolder, "data/type_usage/commits/")
 	
-	def basicAuth = new File(baseFolder, "conf/github.conf").text
-	def gitHubClient = new RESTClient("https://api.github.com")
-	def requestHeaders = ["Authorization":"Basic $basicAuth", "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"]
-	
+	def headers = [
+		"Z3Jvb3ZvMTpwd2QxMjM0", 
+		"Z3Jvb3ZvMjpwd2QxMjM0", 
+		"Z3Jvb3ZvMzpwd2QxMjM0", 
+		"Z3Jvb3ZvNDpwd2QxMjM0", 
+		"Z3Jvb3ZvNTpwd2QxMjM0", 
+		"Z3Jvb3ZvNjpwd2QxMjM0", 
+		"Z3Jvb3ZvNzpwd2QxMjM0", 
+		"Z3Jvb3ZvODpwd2QxMjM0", 
+		"Z3Jvb3ZvOTpwd2QxMjM0", 
+		"Z3Jvb3ZvMTA6cHdkMTIzNA=="
+	]
 	
 	def countThemAll() {
-//		outputFolder.deleteDir()
 		if(!outputFolder.exists()) {
 			outputFolder.mkdirs()
 		}
+		
+		def pool = Executors.newFixedThreadPool(10)
 		
 		projectListFile.eachLine { projectName ->
 			def outputFile = new File(outputFolder, "${projectName}.json")
@@ -28,25 +39,27 @@ class GetFileCommitCount {
 				return
 			}
 			
-			def (owner, name) = parseProjectName(projectName)
-			
-			def commits = getCommitsIds(owner, name)
-			
-			def file_commits = [:]
-			
-			if(commits.size() >= 100) {
-				commits.each { id ->
-					def files = getCommitFiles(owner, name, id)
-					
-					files.findAll{it.endsWith(".groovy")}.each { file ->  
-						file_commits[file] = file_commits[file] ?: 0
-						file_commits[file]++
+			pool.submit {
+				def (owner, name) = parseProjectName(projectName)
+				
+				def commits = getCommitsIds(owner, name)
+				
+				def file_commits = [:]
+				
+				if(commits.size() >= 100) {
+					commits.each { id ->
+						def files = getCommitFiles(owner, name, id)
+						
+						files.findAll{it.endsWith(".groovy")}.each { file ->  
+							file_commits[file] = file_commits[file] ?: 0
+							file_commits[file]++
+						}
 					}
 				}
+				def output = [commits:commits.size(), file_commits:file_commits]
+				
+				outputFile << JsonOutput.prettyPrint(new JsonBuilder(output).toString())
 			}
-			def output = [commits:commits.size(), file_commits:file_commits]
-			
-			outputFile << JsonOutput.prettyPrint(new JsonBuilder(output).toString())
 		}
 		
 	}
@@ -55,6 +68,10 @@ class GetFileCommitCount {
 		try {
 			// Throttle down the requests so we don't exceed the hourly limit			
 			// Thread.sleep(720)
+			
+			def gitHubClient = new RESTClient("https://api.github.com")
+			def requestHeaders = ["Authorization":"Basic $basicAuth", "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"]
+			
 			return gitHubClient.get(path: "/repos/$owner/$name/commits/$id", headers:requestHeaders, contentType:ContentType.JSON)?.data?.files*.filename
 		} catch(e) {
 			e.printStackTrace()
@@ -85,6 +102,9 @@ class GetFileCommitCount {
 		try {
 			def urlBuilder = new URIBuilder(url)
 			
+			def gitHubClient = new RESTClient("https://api.github.com")
+			def requestHeaders = ["Authorization":"Basic $basicAuth", "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"]
+			
 			def response = gitHubClient.get(path: urlBuilder.path, query:urlBuilder.query, headers:requestHeaders, contentType:ContentType.JSON)
 			
 			def next = extractNextLinkFromHeader(response)
@@ -95,6 +115,10 @@ class GetFileCommitCount {
 			e.printStackTrace()
 			return [null, []]
 		}
+	}
+	
+	def getBasicAuth() {
+		def basicAuth = headers[new Random().nextInt(headers.size())]
 	}
 	
 	def extractNextLinkFromHeader(response) {

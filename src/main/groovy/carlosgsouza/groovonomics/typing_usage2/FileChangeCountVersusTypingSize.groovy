@@ -74,7 +74,9 @@ public class FileChangeCountVersusTypingSize {
 			}
 		}
 		
-		println spearman.values
+		spearman.values.each {
+			println it	
+		}
 		
 		println "Spearman"
 		println "mean\tmin\tmax\tstddev\tN"
