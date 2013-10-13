@@ -43,10 +43,10 @@
 \title{How Do Programmers Use Optional Typing? An Empirical Study}
 
 \authorinfo{Carlos Souza}
-           {Federal University of Minas Gerais}
+           {Software Engineering Lab\\Federal University of Minas Gerais (UFMG)}
            {carlosgsouza@gmail.com}
 \authorinfo{Eduardo Figueiredo}
-           {Federal University of Minas Gerais}
+           {Software Engineering Lab\\Federal University of Minas Gerais (UFMG)}
            {figureido@dcc.ufmg.br}
 
 \maketitle
@@ -101,7 +101,7 @@ Programmers can make an informed decision by knowing which languages provide the
 Programming language developers can consider this information in their design so they can develop the most appropriate features for their target audience.
 Finally, tools can be developed or improved to overcome any weaknesses of a given language. 
 
-This paper presents a large scale empirical study aiming to understand which factors actually influence the decision of a developer for typing their declarations or not. 
+This paper presents a large scale empirical study about how programmers use optional typing in Groovy in order to understand which factors actually influence the decision of a developer for unsing types or not. 
 This question was studied based on the analysis of a massive dataset with more than seven thousand Groovy projects.
 Through a static analysis of these projects, it was possible to understand when developers choose each used types and then extract what are the factors that influence this decision.
 
@@ -503,7 +503,8 @@ These results will be further discussed in Section \ref{discussion} in order to 
 
 % TYPE
 \subsection{Declaration Type and Visibility\label{res-type-visibility}}
-The amount of typed and untyped declarations for each sort of declaration is shown on Figure \ref{fig:tipo_declaracao} 
+The amount of typed and untyped declarations for each sort of declaration is shown on Figure \ref{fig:tipo_declaracao}.
+In this graph, each bar shows the frequency of typed and untyped declarations considering all declarations of all projects.
 Untyped declarations are far more frequent in local variables that in other elements.
 Fields, method returns and parameters on the other side are mostly typed. In particular, constructor parameters are typed in more than $90\%$ of the declarations.
 
@@ -574,7 +575,7 @@ The difference between these two types of classes is about $14\%$.
 
 As shown in Figure \ref{fig:scripts}, scripts present a different behavior.
 Classes are typed in 58.6\% of the cases. This number is 63.6\%. for scripts.
-With a difference inferior to 5\%, we can say that classes and scripts present similar behaviors.
+With a difference of less than ,5\%, we can say that classes and scripts present similar behaviors.
 
 \begin{figure}[ht]
 \centering \includegraphics[width=0.45\textwidth]{scripts} 
@@ -609,7 +610,7 @@ In this section we present the results for the use of types in declarations as p
 The project size is a simple metric to measure the complexity of a project.
 Usually, the larger the project, the greater the number of modules and the need for maintenance \cite{Fenton1998}. 
 
-Figure \ref{fig:size_pubMethodReturn} shows the how the frequency of untyped declarations in public statements varies with the project size.
+Figure \ref{fig:size_pubMethodReturn} shows how the frequency of untyped declarations in public statements varies with the project size.
 In this graph, each bar shows the average usage of untyped declarations of projects grouped by their size.
 The boundaries of each group are defined under each bar.
 For example, a project with $1500$ lines of code is in the fifth group, since $1500$ lies within the interval $]1024, 2048]$.
@@ -654,7 +655,16 @@ On the other side, in projects with over $65536$ lines of code, the average freq
 \end{figure*}
 
 % FREQUENCYT OF CHANGES
+
 \subsection{Frequency of changes\label{res-changes}}
+
+\begin{figure*}[ht]
+\centering 
+\includegraphics[width=1\textwidth]{change_mean} 
+\caption{Untyped declarations according to the frequency of changes of files in mature projects}
+\label{fig:change_mean} 
+\end{figure*}
+
 The results in this section show how the frequency of changes in a file is related to the usage of types in the declarations in those files.
 For this analysis, we considered only mature projects since we would not be able to get significant results from small and young projects.
 
@@ -665,24 +675,16 @@ Together they a total of 83211 commits.
 The most changed project had a total of 6545 commits.
 More than 43 thousand files were changed by these commits.
 
-Figure \ref{fig:change_mean} shows the average frequency of untyped declarations in files by frequency of changes of those files.
+Figure \ref{fig:change_mean} shows the average frequency of untyped declarations in files by the frequency of changes of those files.
 A file is considered in different groups depending on the relative number of commits that change this file in each project.
-Each group contains 10\% of the files in a project such that group 10 contains the 10\% of files with the most changes of every project, while group 1 has the 10\% of the files with the least changes.
+Each group contains 10\% of the files in a project such that group 10 contains the top 10\% of files with the most changes of every project, while group 1 has the bottom 10\% of the files with the least.
 This means that the most changed files of two different projects, one file changed in 50 commits and the other changed in 800 commits, are both part of group 10.
-
 We avoided using the absolute number of changes in a file since this value might have different meanings in different projects.
 What might be considered a high number of commits for one project, may be low for another.
 By using the relative number of changes, we avoid this pitfall.
 
 It is possible to observe in Figure \ref{fig:change_mean} a slight correspondence between the frequency of changes and the use of untyped declarations.
 While the most changed files of each project have, on average, 34.7\% of their declarations untyped, this number is only 24\% for the least changed files.
-
-\begin{figure*}[ht]
-\centering 
-\includegraphics[width=1\textwidth]{change_mean} 
-\caption{Untyped declarations according to the frequency of changes of files in mature projects}
-\label{fig:change_mean} 
-\end{figure*}
 
 Figure \ref{fig:change_spearman} is capable of describing this relationship in more details.
 Each point in that graph represents the Spearman correlation between the number of changes in a file and the usage of untyped declarations for a project. 
@@ -693,11 +695,6 @@ From the 203 mature projects in our dataset, only 65 present negative values for
 Most of the projects present a positive correlation between the frequency of changes and the usage of untyped declarations.
 A total of 64 of these present a strong relationship, i.e, a Spearman ranking value superior to 0.5, while only 20 present a strong inverse relationship.
 
-\begin{figure}[hb]
-\centering \includegraphics[width=0.45\textwidth]{change_spearman} 
-\caption{Spearman ranking for the relation between untyped declarations and frequency of changes for mature projects}
-\label{fig:change_spearman} 
-\end{figure}
 
 
 
@@ -727,6 +724,8 @@ An analysis of local variables, private statements and test classes in Section \
 Section \ref{discussion-q3} discusses the higher usage of untyped declarations in most Groovy projects.
 Finally, Section \ref{discussion-q4} shows how programmers with experience on statically typed languages use types more frequently than other programmers.
 
+
+
 % Q1
 \subsection{Types as implicit documentation\label{discussion-q1}}
 Well documented code plays an important role in making code more readable, hence improving the code overall maintainability \cite{Iso2004}.
@@ -739,13 +738,12 @@ Hence from the usual advantages of using a statically typed language, only code 
 Considering the result shown on previous section, which shows that 60\% of all declarations are typed, this means that code documentation is an important matter for Groovy developers.
 
 It is possible to observe an even higher usage of typing in the definition of modules.
-As mentioned in the literature \cite{Meyer88, Meijer04, Wadler04, Plosch97, Flanagan2006, Furr09}, types greatly aid in the definition of the contract of a module.
+As stated in related literature \cite{Meyer88, Meijer04, Wadler04, Plosch97, Flanagan2006, Furr09}, types greatly aid in the definition of the contract of a module.
 They restrict the pre and post conditions of methods and define the nature of the properties of that module.
-Clients of an well typed module learn how to use it faster and make less mistakes since the contract of that module is clear to them.
+Therefore, clients of an well typed module learn how to use it faster and make less mistakes since the contract of that module is clear to them.
 
 Statements that define the interface of a module, i.e, fields, returns and parameters of methods and parameters of constructors, are more typed than the average.
-Consider Figure \ref{fig:tipo_declaracao}.
-While most of these elements are typed, only 30\%  of the local variables, which do not contribute to the definition of a module, are typed. On the other side, parameters of constructors, which are some of the most important elements of a contract definition, are almost always typed \cite{Meijer04}. 
+Figure \ref{fig:tipo_declaracao} shows that, while most of these elements are typed, only 30\%  of the local variables, which do not contribute to the definition of a module, are typed. On the other side, parameters of constructors, which are some of the most important elements of a contract definition, are almost always typed \cite{Meijer04}. 
 
 The results presented above above are further refined by visibility in Figures \ref{fig:method_return_visibility}, \ref{fig:method_parameter_visibility}, \ref{fig:constructor_parameter_visibility} and \ref{fig:field_visibility}.
 These results contribute to the understanding that types are indeed considered more often on the definition of modules.
@@ -753,7 +751,7 @@ First, notice that private statements are always less typed than their public an
 Private statements are similar to local variables since they do not contribute to the interface of a module and are only accessible to the module where they were defined.
 In this case there is a smaller need for documentation and programmers do not feel as compelled to use types.
 
-Public and protected elements define the interface of a method and thus are widely typed.
+Public and protected elements define the interface of a method and thus tend to be typed often.
 In the case of parameters and returns of methods, the usage of types in statements with protected visibility  surpasses that of statements with public visibility.
 In Groovy, protected declarations restrict access to internal elements of a class to its subclasses or other classes in the same package.
 It can be argued that the relationship between these classes is tightly coupled \cite{Chidamber94}.
@@ -762,7 +760,7 @@ Apparently programmers understand that this type of contract is more delicate th
 The usage of types in public declarations is heavily influenced by the project size.
 Figure \ref{fig:size_pubMethodReturn} shows this clearly.
 In projects with more than 65KLoC, these untyped declarations are seen with less than half the frequency observed in the smallest projects.
-However, no particular pattern can be observed for private or protected declarations, represented by Figures \ref{fig:size_priMethodReturn} and \ref{fig:size_proMethodReturn}.
+However, no particular pattern can be observed for private or protected declarations, presented in Figures \ref{fig:size_priMethodReturn} and \ref{fig:size_proMethodReturn}.
 
 Intuitively, the larger the project, the greater the difficulty of integration and the need for maintenance.
 This is more critical in public statements.
@@ -827,7 +825,11 @@ However, it is very unlikely that programmers would not notice that untyped decl
 
 An important conclusion that can be extracted from this analysis is that types are not absolutely necessary in order to build a maintainable system.
 At least, in most software projects written in Groovy, where there is a higher need for maintenance, programmers seem to prefer the flexibility of untyped declarations over the readability of types.
-
+\begin{figure}[hb]
+\centering \includegraphics[width=0.45\textwidth]{change_spearman} 
+\caption{Spearman ranking for the relation between untyped declarations and frequency of changes for mature projects}
+\label{fig:change_spearman} 
+\end{figure}
 
 % Q4
 \subsection{Programmers used to static typing use types more often\label{discussion-q4}}
@@ -950,8 +952,9 @@ Another important factor is the previous experience of programmers with a given 
 In future works we wish to analyze the influence of static and dynamic type systems over the robustness of software systems.
 In particular, we want to understand whether the use of dynamic typing, which limits the compiler's ability to find type problems, has any correlation with the occurrence of defects in the system and if the use of automated testing is able to reduce this correlation.
 
+\newpage 
 \acks
-This work was partially supported by FAPEMIG, grants APQ-02376-11 e APQ-02532-12, and CNPq grant 485235/2011-0. 
+This work was partially supported by FAPEMIG, grants APQ-02376-11 and APQ-02532-12. 
 
 
 %
