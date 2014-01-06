@@ -1,0 +1,5505 @@
+{
+    "id": "icemanftg_twivi",
+    "classes": [
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/src/java/twivi/util/MovieUtils.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "twivi.util.MovieUtils",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/validator/ImageValidator.groovy",
+            "localVariable": {
+                "d": 1,
+                "DRelative": 1.0,
+                "SRelative": 0.0,
+                "total": 1,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.validator.ImageValidator",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 1.0,
+                "SRelative": 0.0,
+                "total": 1,
+                "s": 0
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/container/SaveCommand.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.container.SaveCommand",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/container/DbContainerWorker.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.container.DbContainerWorker",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 3,
+                "s": 3
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/container/DeleteDbImageCommand.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.container.DeleteDbImageCommand",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/file/MultipartImageFile.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 1,
+            "className": "pl.burningice.plugins.image.file.MultipartImageFile",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/file/ImageFileFactory.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.file.ImageFileFactory",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 4,
+                "s": 4
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 4,
+                "s": 4
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 4,
+                "s": 4
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/file/LocalImageFile.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 1,
+            "className": "pl.burningice.plugins.image.file.LocalImageFile",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/file/BytemapImageFile.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "pl.burningice.plugins.image.file.BytemapImageFile",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 3,
+                "s": 3
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 5,
+                "s": 5
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/watermark/ImageMagickWatermarkEngine.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 3,
+                "s": 3
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.watermark.ImageMagickWatermarkEngine",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 3,
+                "DRelative": 0.375,
+                "SRelative": 0.625,
+                "total": 8,
+                "s": 5
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/watermark/DefaultWatermarkEngine.groovy",
+            "localVariable": {
+                "d": 2,
+                "DRelative": 1.0,
+                "SRelative": 0.0,
+                "total": 2,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.watermark.DefaultWatermarkEngine",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 4,
+                "s": 4
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/watermark/WatermarkEngine.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.watermark.WatermarkEngine",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 4,
+                "s": 4
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 5,
+                "s": 5
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/watermark/JaiWatermarkEngine.groovy",
+            "localVariable": {
+                "d": 3,
+                "DRelative": 1.0,
+                "SRelative": 0.0,
+                "total": 3,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.watermark.JaiWatermarkEngine",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/watermark/WatermarkEngineFactory.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.watermark.WatermarkEngineFactory",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 4,
+                "s": 4
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/scale/ImageMagickScaleEngine.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.scale.ImageMagickScaleEngine",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 3,
+                "s": 3
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/scale/ScaleEngineFactory.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.scale.ScaleEngineFactory",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/scale/ScaleEngine.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.scale.ScaleEngine",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 3,
+                "s": 3
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 3,
+                "DRelative": 1.0,
+                "SRelative": 0.0,
+                "total": 3,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/scale/JaiScaleEngine.groovy",
+            "localVariable": {
+                "d": 1,
+                "DRelative": 1.0,
+                "SRelative": 0.0,
+                "total": 1,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 1,
+                "DRelative": 1.0,
+                "SRelative": 0.0,
+                "total": 1,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.scale.JaiScaleEngine",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 1,
+                "DRelative": 1.0,
+                "SRelative": 0.0,
+                "total": 1,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 3,
+                "s": 3
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/crop/ImageMagickCropEngine.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 3,
+                "s": 3
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.crop.ImageMagickCropEngine",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 4,
+                "DRelative": 0.8,
+                "SRelative": 0.2,
+                "total": 5,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/crop/CropEngine.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.crop.CropEngine",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 4,
+                "DRelative": 0.8,
+                "SRelative": 0.2,
+                "total": 5,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/crop/CropEngineFactory.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.crop.CropEngineFactory",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/crop/JaiCropEngine.groovy",
+            "localVariable": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.crop.JaiCropEngine",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 4,
+                "DRelative": 0.8,
+                "SRelative": 0.2,
+                "total": 5,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/text/TextEngineFactory.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.text.TextEngineFactory",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 4,
+                "s": 4
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/src/groovy/pl/burningice/plugins/image/engines/text/TextEngine.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.engines.text.TextEngine",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 3,
+                "s": 3
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/test/unit/pl/burningice/plugins/image/ImageFileTests.groovy",
+            "localVariable": {
+                "d": 1,
+                "DRelative": 0.04,
+                "SRelative": 0.96,
+                "total": 25,
+                "s": 24
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "pl.burningice.plugins.image.ImageFileTests",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 9,
+                "s": 9
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/grails-app/conf/DataSource.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378450922648",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/scripts/_Install.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378450928251",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/scripts/_Upgrade.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378450932683",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/inline-plugins/grails-burning-image/scripts/_Uninstall.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378450933660",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/test/unit/twivi/video/VideoProducerControllerTests.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "twivi.video.VideoProducerControllerTests",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/test/unit/twivi/stream/TwitterStreamControllerTests.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "twivi.stream.TwitterStreamControllerTests",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/test/unit/twivi/twitter/TwitterStreamServiceTests.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "twivi.twitter.TwitterStreamServiceTests",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/grails-app/services/twivi/crawler/CrawlerService.groovy",
+            "localVariable": {
+                "d": 2,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 4,
+                "s": 2
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "twivi.crawler.CrawlerService",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 3,
+                "s": 3
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 2,
+                "DRelative": 1.0,
+                "SRelative": 0.0,
+                "total": 2,
+                "s": 0
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/grails-app/conf/Config.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378450947290",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/grails-app/conf/ApplicationResources.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378450947865",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/grails-app/conf/spring/resources.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378450949849",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/grails-app/conf/AtmosphereConfig.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378450951048",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/grails-app/conf/BuildConfig.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378450956245",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/icemanftg_twivi/grails-app/conf/DataSource.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378450958036",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        }
+    ],
+    "name": ""
+}

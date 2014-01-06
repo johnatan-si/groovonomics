@@ -1,0 +1,2121 @@
+{
+    "id": "loboweissmann_itexto_curso_grails",
+    "classes": [
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 10,
+                "s": 10
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/Estoque/src/groovy/estoque/builder/ProdutoBuilder.groovy",
+            "localVariable": {
+                "d": 3,
+                "DRelative": 1.0,
+                "SRelative": 0.0,
+                "total": 3,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 5,
+                "s": 5
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "estoque.builder.ProdutoBuilder",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 5,
+                "s": 5
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/Estoque/test/unit/estoque/ProdutoBuilderTests.groovy",
+            "localVariable": {
+                "d": 2,
+                "DRelative": 1.0,
+                "SRelative": 0.0,
+                "total": 2,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "estoque.ProdutoBuilderTests",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/Estoque/test/unit/estoque/FornecedorControllerTests.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "estoque.FornecedorControllerTests",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/Estoque/test/unit/estoque/ProdutoTests.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "estoque.ProdutoTests",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/Estoque/test/unit/estoque/CategoriaControllerTests.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "estoque.CategoriaControllerTests",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/Estoque/test/unit/estoque/FornecedorTests.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "estoque.FornecedorTests",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/Estoque/test/unit/estoque/CategoriaTests.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "estoque.CategoriaTests",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/Estoque/test/unit/estoque/ProdutoControllerTests.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "estoque.ProdutoControllerTests",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/Estoque/test/unit/estoque/ItemEstoqueTests.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": false,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 0,
+            "className": "estoque.ItemEstoqueTests",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 2,
+                "s": 2
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodReturn": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/Estoque/grails-app/conf/Config.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378447409730",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/Estoque/grails-app/conf/spring/resources.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378447409736",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/Estoque/grails-app/conf/BuildConfig.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378447409739",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/Estoque/grails-app/conf/DataSource.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378447409743",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/groovy/pesadeloNumerico.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378447411322",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 3,
+                "DRelative": 0.42857142857142855,
+                "SRelative": 0.5714285714285714,
+                "total": 7,
+                "s": 4
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 1,
+                "DRelative": 0.3333333333333333,
+                "SRelative": 0.6666666666666666,
+                "total": 3,
+                "s": 2
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 2,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 4,
+                "s": 2
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        },
+        {
+            "privateField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateConstructorParameter": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemPrivateMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "privateMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "location": "/opt/groovonomics/temp_0/loboweissmann_itexto_curso_grails/src/groovy/testeScript.groovy",
+            "localVariable": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "isScript": true,
+            "publicField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "pureTypeSystemProtectedMethods": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPublicConstructors": 2,
+            "className": "script1378447416740",
+            "pureTypeSystemPrivateConstructors": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "protectedMethodReturn": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "publicMethodParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "pureTypeSystemPublicMethods": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicConstructorParameter": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "publicMethodReturn": {
+                "d": 1,
+                "DRelative": 0.5,
+                "SRelative": 0.5,
+                "total": 2,
+                "s": 1
+            },
+            "protectedField": {
+                "d": 0,
+                "DRelative": 0,
+                "SRelative": 0,
+                "total": 0,
+                "s": 0
+            },
+            "numberOfPrivateConstructors": 0,
+            "pureTypeSystemPublicConstructors": {
+                "d": 0,
+                "DRelative": 0.0,
+                "SRelative": 1.0,
+                "total": 1,
+                "s": 1
+            },
+            "numberOfProtectedConstructors": 0
+        }
+    ],
+    "name": ""
+}
