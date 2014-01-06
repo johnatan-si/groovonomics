@@ -103,18 +103,18 @@ Finally, tools can be developed or improved to overcome any weaknesses of a give
 
 This paper presents a large scale empirical study about how programmers use optional typing in Groovy in order to understand which factors actually influence the decision of a developer for unsing types or not. 
 This question was studied based on the analysis of a massive dataset with more than seven thousand Groovy projects.
-Through a static analysis of these projects, it was possible to understand when developers choose each used types and then extract what are the factors that influence this decision.
+Through a static analysis of these projects, it was possible to understand when developers use types and then extract what are the factors that influence this decision.
 
 Results show that programmers consider types as a means to document their code.
 This is even more evident on the definition of the interface of modules.
 Conversely, when readability or stability are not a concern, programmers tend to type their declarations less often.
 In addition to that, programmers seem to prefer the flexibility of untyped declarations in frequently changed code.
-Finally, the experience of a programmer with other languages has a relevant effect on his or her choice for typing a declaration or not.
+Finally, the experience of a programmer with other languages has a relevant influence on his or her choice for typing a declaration or not.
 
 The remainder of this paper is organized as follows. 
 Section \ref{groovy} introduces the main concepts of the Groovy programming language and Section \ref{settings} presents the study settings.
 Section \ref{results} describes the results of the study, which are then discussed in Section \ref{discussion}.
-Some threats to the validity of this study are presented in Section \ref{threats}.
+Some threats to the validity of this study are presented in Section \ref{threats} and related work are presented in Section \ref{related}.
 Finally, Section \ref{conclusion} concludes this study and suggests future works.
 
 
@@ -899,7 +899,7 @@ If these are the features considered in such choice, a programmer might end with
 %
 % RELATED WORK
 %
-\section{Related Work\label{sec:Trabalhos-Relacionados}}
+\section{Related Work\label{related}}
 This work is based on a series of studies that compare different typing strategies.
 Although we are not aware of any studies that analyze this question using a large scale case study as ours, we know of multiple controlled experiments with significant results.
 
@@ -952,10 +952,11 @@ Another important factor is the previous experience of programmers with a given 
 In future works we wish to analyze the influence of static and dynamic type systems over the robustness of software systems.
 In particular, we want to understand whether the use of dynamic typing, which limits the compiler's ability to find type problems, has any correlation with the occurrence of defects in the system and if the use of automated testing is able to reduce this correlation.
 
-\newpage 
-\acks
-This work was partially supported by FAPEMIG, grants APQ-02376-11 and APQ-02532-12. 
 
+\acks
+This work was partially supported by FAPEMIG, grants APQ-02376-11 and APQ-02532-12.
+
+\newpage 
 
 %
 % BIBLIOGRAPHY
