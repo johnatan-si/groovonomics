@@ -1,3 +1,4 @@
+package carlosgsouza.groovonomics.aws;
 import com.amazonaws.auth.PropertiesCredentials
 import com.amazonaws.services.sqs.AmazonSQSClient
 import com.amazonaws.services.sqs.model.SendMessageRequest

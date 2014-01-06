@@ -1,3 +1,4 @@
+package carlosgsouza.groovonomics.aws;
 import org.apache.commons.codec.binary.Base64
 
 import com.amazonaws.auth.PropertiesCredentials

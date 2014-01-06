@@ -7,7 +7,7 @@ class ProjectInspectorSpec extends Specification {
 
 	def "getTypeSystemUsageData should return a projectData object with data for all classes"() {
 		given:
-		def projectsFolder = new File("src/test/resources/carlosgsouza/groovonomics/typing_usage/projects_folder/0001")
+		def projectsFolder = new File("src/test/projects_folder/0001")
 		def inspector = new ProjectInspector(projectsFolder)
 		
 		when:
