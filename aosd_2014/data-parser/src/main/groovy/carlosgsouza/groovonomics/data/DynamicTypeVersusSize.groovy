@@ -1,3 +1,4 @@
+package carlosgsouza.groovonomics.data;
 import groovy.json.JsonSlurper
 
 import java.text.SimpleDateFormat

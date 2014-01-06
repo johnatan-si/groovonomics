@@ -1,3 +1,4 @@
+package carlosgsouza.groovonomics.data;
 import java.text.SimpleDateFormat
 
 import org.apache.commons.lang.exception.ExceptionUtils

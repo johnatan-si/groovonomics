@@ -1,4 +1,4 @@
-package carlosgsouza.groovonomics.typing_usage2
+package carlosgsouza.groovonomics.data
 import groovy.json.JsonSlurper
 import carlosgsouza.groovonomics.typing_usage.AgregateProjectData
 import carlosgsouza.groovonomics.typing_usage.ClassData
