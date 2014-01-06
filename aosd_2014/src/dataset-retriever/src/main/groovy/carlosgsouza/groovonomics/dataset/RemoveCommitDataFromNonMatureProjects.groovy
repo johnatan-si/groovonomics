@@ -1,4 +1,4 @@
-package carlosgsouza.groovonomics.typing_usage2
+package carlosgsouza.groovonomics.dataset
 import static groovyx.net.http.ContentType.*
 import static groovyx.net.http.Method.*
 import groovy.json.JsonBuilder
