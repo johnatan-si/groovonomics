@@ -1,9 +1,14 @@
 apply plugin: "groovy"
 
-buildscript { 
-	apply from: 'https://github.com/valkolovos/gradle_cobertura/raw/master/repo/gradle_cobertura/gradle_cobertura/1.0/coberturainit.gradle'
-	apply from: 'https://raw.github.com/carlosgsouza/gradle-console/master/build.gradle'
+buildscript {
+    repositories {
+    	mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.carlosgsouza', name: 'gradle-console', version: '1.0'
+    }
 }
+apply plugin:"console"
 
 configurations { compile.exclude module: "org.codehaus.groovy:groovy-all:2.0.4" }
 
@@ -12,8 +17,8 @@ repositories {
 }
 
 dependencies {
-	groovy 'org.codehaus.groovy:groovy:2.0.7'
-	groovy 'org.codehaus.groovy:groovy-all:2.0.7'
+	compile 'org.codehaus.groovy:groovy:2.0.7'
+	compile 'org.codehaus.groovy:groovy-all:2.0.7'
 
 	compile "org.codehaus.groovy.modules.http-builder:http-builder:0.5.2"
 	compile 'org.jsoup:jsoup:1.7.2'
@@ -70,4 +75,8 @@ task(emptyQueue, dependsOn: 'classes', type: JavaExec) {
 task(agregate, dependsOn: 'classes', type: JavaExec) {
 	main = 'AgregateDataFromClasses'
 	classpath = sourceSets.main.runtimeClasspath
+}
+
+task wrapper(type:Wrapper) {
+	gradleVersion = "1.9"
 }
