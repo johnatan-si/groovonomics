@@ -3,7 +3,7 @@ import groovy.json.JsonSlurper
 
 import java.text.SimpleDateFormat
 
-public class AgregateDataFromClasses {
+public class DatasetCharacterization {
 	
 	JsonSlurper slurper = new JsonSlurper()
 	SimpleDateFormat sdf = new SimpleDateFormat("y-M-dh:m:s")
@@ -69,7 +69,7 @@ public class AgregateDataFromClasses {
 
 	
 	public static void main(String[] args) {
-		def agregator = new AgregateDataFromClasses()
+		def agregator = new DatasetCharacterization()
 		agregator.rockTheWorld()
 	}
 }
