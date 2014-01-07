@@ -38,9 +38,32 @@ plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private meth
 plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")
 plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
 
-# Is the usage of types/declaration type normally distributed?
 
+compareSamples<-function(filename, columnsToCompare) {
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))
+	row = 1
+	
+	for(i in columnsToCompare) { 
+		for(j in columnsToCompare) { 
+			d_i=data[!is.na(data[i,]),c(i)]
+			d_j=data[!is.na(data[j,]),c(j)]
+			
+			describe(d)
+			
+			p=wilcox.test(d_i, d_j)$p.value
+			
+			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))
+			
+			row=row+1
+		}
+	}
+	
+	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))
+}
 
+compareSamples("declaration_type", 3:5)
+compareSamples("method_return_visibility", 6:8)
+compareSamples("method_parameter_visibility", 9:11)
 
 # executeTTest<-function(data){
 # 	t<-t.test(data[,2])
@@ -57,4 +80,3 @@ plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public method
 cor(data[!is.na(data$localVariable)&!is.na(data$methodParameter)&!is.na(data$methodReturn), 3:5])
 write.matrix(correlationOfDeclarationTypes ,file="result/correlationOfDeclarationTypes.txt")
 
-wilcox.test(localVariable[,2])
