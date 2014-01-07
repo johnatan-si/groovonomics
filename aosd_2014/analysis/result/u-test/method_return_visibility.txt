@@ -1,0 +1,10 @@
+colnames.data..i. colnames.data..j. pvalue
+privateMethodReturn   privateMethodReturn   1.0000000000         
+privateMethodReturn   protectedMethodReturn 0.7765047383         
+privateMethodReturn   publicMethodReturn    0.0006568873         
+protectedMethodReturn privateMethodReturn   0.7765047383         
+protectedMethodReturn protectedMethodReturn 1.0000000000         
+protectedMethodReturn publicMethodReturn    0.0010886662         
+publicMethodReturn    privateMethodReturn   0.0006568873         
+publicMethodReturn    protectedMethodReturn 0.0010886662         
+publicMethodReturn    publicMethodReturn    1.0000000000         
