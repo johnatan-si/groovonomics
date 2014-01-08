@@ -65,6 +65,21 @@ class ClassData {
 		result
 	}
 	
+	def declarationsOfType(String type) {
+		switch(type) {
+			case "field":
+				return [publicField, privateField, protectedField]
+			case "methodParameter":
+				return [publicMethodParameter, privateMethodParameter, protectedMethodParameter]
+			case "methodReturn":
+				return [publicMethodReturn, privateMethodReturn, protectedMethodReturn]
+			case "constructorParameter":
+				return [publicConstructorParameter, privateConstructorParameter, protectedConstructorParameter]
+			case "localVariable":
+				return [localVariable] 	
+		}
+	}
+	
 	def isTestClass() {
 		location.contains("/test/")
 	}

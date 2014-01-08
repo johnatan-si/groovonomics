@@ -38,9 +38,9 @@ class ClassDataFactory {
 //		result.numberOfPrivateConstructors = map.numberOfPrivateConstructors
 //		result.numberOfProtectedConstructors = map.numberOfProtectedConstructors
 //		
-//		result.className = map.className
-//		result.location = map.location
-//		result.isScript = map.isScript
+		result.className = map.className
+		result.location = map.location
+		result.isScript = map.isScript
 		
 		result
 	}
