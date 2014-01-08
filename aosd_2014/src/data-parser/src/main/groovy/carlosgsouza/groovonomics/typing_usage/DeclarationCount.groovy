@@ -39,6 +39,10 @@ class DeclarationCount {
 		new JsonBuilder(this).toPrettyString()
 	}
 	
+	boolean getIsEmpty() {
+		return DRelative + SRelative == 0
+	}
+	
 	String toString() {
 		toJson()
 	}

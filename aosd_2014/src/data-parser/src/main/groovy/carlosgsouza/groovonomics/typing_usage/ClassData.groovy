@@ -65,7 +65,7 @@ class ClassData {
 		result
 	}
 	
-	def declarationsOfType(String type) {
+	def getDeclarationData(String type) {
 		switch(type) {
 			case "field":
 				return [publicField, privateField, protectedField]
@@ -77,10 +77,24 @@ class ClassData {
 				return [publicConstructorParameter, privateConstructorParameter, protectedConstructorParameter]
 			case "localVariable":
 				return [localVariable] 	
+			case "public":
+				return [publicField, publicMethodParameter, publicMethodReturn]
+			case "protected":
+				return [protectedField, protectedMethodParameter, protectedMethodReturn]
+			case "private":
+				return [privateField, privateMethodParameter, privateMethodReturn]
+			case "all":
+				return getDeclarationData("public") + getDeclarationData("private") + getDeclarationData("protected") + localVariable
+			default:
+				return [getProperty(type)]
 		}
 	}
 	
-	def isTestClass() {
+	def getAgegateDeclarationData(String type) {
+		return getDeclarationData(type).inject(new DeclarationCount()) { result, value -> result + value} 
+	}
+	
+	def getIsTestClass() {
 		location.contains("/test/")
 	}
 	
