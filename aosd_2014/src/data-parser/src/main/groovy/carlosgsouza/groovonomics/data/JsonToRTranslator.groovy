@@ -73,11 +73,11 @@ public class JsonToRTranslator {
 		classDataHeaders.collect {
 			DeclarationCount declarationData = classData.getAgegateDeclarationData(it)
 			
-			if(it.contains("eturn")) {
-				return (declarationData.DRelative == 0 ? "NA" : Math.min(1.3 * declarationData.SRelative, 1.0))
-			} else {
+//			if(it.contains("eturn")) {
+//				return (declarationData.DRelative == 0 ? "NA" : Math.min(1.3 * declarationData.SRelative, 1.0))
+//			} else {
 				return (declarationData.isEmpty ? "NA" : declarationData.SRelative)
-			}
+//			}
 		}
 	}
 	
