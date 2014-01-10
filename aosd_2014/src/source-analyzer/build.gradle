@@ -46,32 +46,22 @@ task(listProjects, dependsOn: 'classes', type: JavaExec) {
 }
 
 task(analyzeTypeUsage, dependsOn: 'classes', type: JavaExec) {
-	main = 'AnalyzeTypingUsage'
-	classpath = sourceSets.main.runtimeClasspath
-}
-
-task(restoreFromGlacier, dependsOn: 'classes', type: JavaExec) {
-	main = 'RestoreProjectsFromGlacier'
+	main = 'carlosgsouza.groovonomics.typing_usage.AnalyzeTypingUsage'
 	classpath = sourceSets.main.runtimeClasspath
 }
 
 task(createArmy, dependsOn: 'classes', type: JavaExec) {
-	main = 'CreateAnArmyToProcessDataset'
+	main = 'carlosgsouza.groovonomics.aws.CreateAnArmyToProcessDataset'
 	classpath = sourceSets.main.runtimeClasspath
 }
 
 task(fillQueue, dependsOn: 'classes', type: JavaExec) {
-	main = 'FillQueue'
+	main = 'carlosgsouza.groovonomics.aws.FillQueue'
 	classpath = sourceSets.main.runtimeClasspath
 }
 
 task(emptyQueue, dependsOn: 'classes', type: JavaExec) {
-	main = 'EmptyQueue'
-	classpath = sourceSets.main.runtimeClasspath
-}
-
-task(agregate, dependsOn: 'classes', type: JavaExec) {
-	main = 'AgregateDataFromClasses'
+	main = 'carlosgsouza.groovonomics.aws.EmptyQueue'
 	classpath = sourceSets.main.runtimeClasspath
 }
 

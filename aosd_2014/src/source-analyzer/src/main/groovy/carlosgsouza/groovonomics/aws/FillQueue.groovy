@@ -11,13 +11,11 @@ class FillQueue {
 		
 		def queueUrl = "https://sqs.us-east-1.amazonaws.com/525294860386/groovonomics-projects"
 		
-		def projectsListFile = new File("/opt/groovonomics/dataset/projects/list.txt")
-		
-		//["12chakram_LearnGrails", "166MMX_dpdr", "3musket33rs_jsonp"].each{ projectId ->
+		def projects = new File("../../analysis/data/dataset/short_project_ids.txt").readLines()
 		
 		def count = 0
-		projectsListFile.eachLine { projectId ->
-			println "${count++}\t$projectId"
+		projects.each { projectId ->
+			println "${count++}/$projects.size\t$projectId"
 			
 			def sendMsgReq = new SendMessageRequest(queueUrl, projectId)
 			sqs.sendMessage sendMsgReq

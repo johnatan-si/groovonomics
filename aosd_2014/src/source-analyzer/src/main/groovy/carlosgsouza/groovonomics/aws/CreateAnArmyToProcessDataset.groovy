@@ -29,7 +29,7 @@ cd /opt/groovonomics/src
 git pull
 
 cd aosd_2014/src/source-analyzer
-gradle analyzeTypeUsage
+./gradlew analyzeTypeUsage
 """
 			
 		def userData = new String(Base64.encodeBase64(command.bytes))
