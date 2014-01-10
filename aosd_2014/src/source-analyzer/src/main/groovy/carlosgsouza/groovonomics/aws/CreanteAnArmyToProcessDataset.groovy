@@ -28,13 +28,14 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/ga
 cd /opt/groovonomics/src
 git pull
 
+cd aosd_2014/src/source-analyzer
 gradle analyzeTypeUsage
 """
 			
 		def userData = new String(Base64.encodeBase64(command.bytes))
 		
 		RunInstancesRequest runInstancesRequest = new RunInstancesRequest();
-		runInstancesRequest.withImageId("ami-f73c739e")
+		runInstancesRequest.withImageId("ami-89b781e0")
 				.withInstanceType("m1.small")
 				.withMinCount(ARMY_SIZE)
 				.withMaxCount(ARMY_SIZE)
