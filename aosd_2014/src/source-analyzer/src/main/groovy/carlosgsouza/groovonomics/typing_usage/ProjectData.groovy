@@ -9,9 +9,7 @@ class ProjectData {
 	
 	def agregateClasses(classFilter) {
 		def result = new ClassData()
-		classes.findAll(classFilter).each {
-			result += it
-		}
+		classes.findAll(classFilter).each { result += it }
 		result
 	}
 	

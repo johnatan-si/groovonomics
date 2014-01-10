@@ -16,8 +16,7 @@ repositories {
 }
 
 dependencies {
-	compile 'org.codehaus.groovy:groovy:2.0.7'
-	compile 'org.codehaus.groovy:groovy-all:2.0.7'
+	compile 'org.codehaus.groovy:groovy-all:1.8.8'
 
 	compile "org.codehaus.groovy.modules.http-builder:http-builder:0.5.2"
 	compile 'org.jsoup:jsoup:1.7.2'

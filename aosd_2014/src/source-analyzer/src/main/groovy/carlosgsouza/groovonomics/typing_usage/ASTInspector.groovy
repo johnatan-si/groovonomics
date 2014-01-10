@@ -27,7 +27,7 @@ class ASTInspector {
 	}
 
 	def getFieldsTypeSystemUsageData(fieldNode) {		
-		def access = getConfuseAccessModifier(fieldNode)
+		def access = getFieldAccessModifier(fieldNode)
 		
 		def fieldData = null
 		if(access == AccessModifier.PUBLIC) {
@@ -47,6 +47,10 @@ class ASTInspector {
 		} else {
 			fieldData.s++
 		}
+	}
+	
+	def getFieldAccessModifier(FieldNode fieldNode) {
+		return [1:AccessModifier.PUBLIC, 2:AccessModifier.PRIVATE, 4:AccessModifier.PROTECTED][fieldNode.modifiers]
 	}
 	
 
