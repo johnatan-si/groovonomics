@@ -125,11 +125,6 @@ class ASTInspectorSpec extends Specification {
 		data.privateMethodParameter.s == 0
 		data.privateMethodParameter.d == 0
 		
-		and: "the number of constructors is recorded"
-		data.numberOfPublicConstructors == 5
-		data.numberOfPrivateConstructors == 4
-		data.numberOfProtectedConstructors == 4
-		
 		and: "constructor parameter data is recorded"
 		data.publicConstructorParameter.s == 4
 		data.publicConstructorParameter.d == 5
@@ -137,31 +132,6 @@ class ASTInspectorSpec extends Specification {
 		data.privateConstructorParameter.d == 11
 		data.protectedConstructorParameter.s == 4
 		data.protectedConstructorParameter.d == 20
-		
-		and: "pure type constructors with at least one parameter are considered"
-		data.pureTypeSystemPublicConstructors.s == 1
-		data.pureTypeSystemPublicConstructors.d == 2
-		data.pureTypeSystemPrivateConstructors.s == 1
-		data.pureTypeSystemPrivateConstructors.d == 2
-		data.pureTypeSystemProtectedConstructors.s == 1
-		data.pureTypeSystemProtectedConstructors.d == 2
-	}
-	
-	def "counting methods that use only static or only dynamic declarations"() {
-		given: "a class with methods that have only static or only dynamic declarations"
-		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithMethodsWithOnlyOneTypeOfDeclaration.groovy"
-		
-		when:
-		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
-		
-		then: "you get the count of mthods with no parameters that, hence, use only one type system (for return type)"
-		data.pureTypeSystemPublicMethods.s == 1
-		data.pureTypeSystemPublicMethods.d == 1
-		data.pureTypeSystemPrivateMethods.s == 1
-		data.pureTypeSystemPrivateMethods.d == 1
-		data.pureTypeSystemProtectedMethods.s == 1
-		data.pureTypeSystemProtectedMethods.d == 1
-		
 	}
 	
 	def "counting local variable declarations of methods"() {

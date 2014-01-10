@@ -45,27 +45,6 @@ class ClassDataSpec extends Specification {
 		data.localVariable.s == 0
 		data.localVariable.d == 0
 		
-		and: "counters for pure type system methods that have at least one paramerter are equal to 0"
-		data.pureTypeSystemPublicMethods.s == 0
-		data.pureTypeSystemPublicMethods.d == 0
-		data.pureTypeSystemPrivateMethods.s == 0
-		data.pureTypeSystemPrivateMethods.d == 0
-		data.pureTypeSystemProtectedMethods.s == 0
-		data.pureTypeSystemProtectedMethods.d == 0
-		
-		and: "pure type system constructor counters are equal to 0"
-		data.pureTypeSystemPublicConstructors.s == 0
-		data.pureTypeSystemPublicConstructors.d == 0
-		data.pureTypeSystemPrivateConstructors.s == 0
-		data.pureTypeSystemPrivateConstructors.d == 0
-		data.pureTypeSystemProtectedConstructors.s == 0
-		data.pureTypeSystemProtectedConstructors.d == 0
-
-		and: "number of constructors are equal to 0"
-		data.numberOfPublicConstructors == 0
-		data.numberOfPrivateConstructors == 0
-		data.numberOfProtectedConstructors == 0
-		
 		and: "metadata is blank"
 		data.className == ""
 		data.location == ""
@@ -94,21 +73,7 @@ class ClassDataSpec extends Specification {
 		when:
 		def sum = data1 + data2
 		
-		then:
-		sum.publicMethodReturn.s == 1
-		sum.publicMethodReturn.d == 5
-		sum.protectedMethodReturn.d == 9
-		sum.protectedMethodReturn.s == 13
-		
-		and:
-		sum.publicConstructorParameter.s == 0
-		sum.publicConstructorParameter.d == 0
-		sum.protectedConstructorParameter.s == 0
-		sum.protectedConstructorParameter.s == 0
-		sum.privateConstructorParameter.s == 0
-		sum.privateConstructorParameter.d == 0
-		
-		and: 
+		then: 
 		sum.className == ""
 		sum.location == ""
 		sum.isScript == false

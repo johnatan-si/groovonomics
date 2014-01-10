@@ -11,7 +11,7 @@ class FillQueue {
 		
 		def queueUrl = "https://sqs.us-east-1.amazonaws.com/525294860386/groovonomics-projects"
 		
-		def projects = new File("../../analysis/data/dataset/short_project_ids.txt").readLines()
+		def projects = new File("../../analysis/data/dataset/project_ids.txt").readLines()
 		
 		def count = 0
 		projects.each { projectId ->

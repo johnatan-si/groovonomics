@@ -92,13 +92,6 @@ class ASTInspector {
 		def access = getSimpleAccessModifier(constructorNode)
 		
 		def methodData = null
-		if(access == AccessModifier.PUBLIC) {
-			classData.numberOfPublicConstructors++
-		} else if(access == AccessModifier.PRIVATE) {
-			classData.numberOfPrivateConstructors++
-		} else if(access == AccessModifier.PROTECTED) {
-			classData.numberOfProtectedConstructors++
-		}
 	
 		getConstructorParametersTypeSystemUsageData(constructorNode, access)
 	}
@@ -108,17 +101,13 @@ class ASTInspector {
 		def staticTypeParameters = methodNode.parameters.findAll{ !it.isDynamicTyped() }.size()
 		
 		def methodDeclarationTypeCounter = null
-		def pureTypeMethodDeclarationTypeCounter = null
 		
 		if(access == AccessModifier.PUBLIC) {
 			methodDeclarationTypeCounter = classData.publicMethodParameter
-			pureTypeMethodDeclarationTypeCounter = classData.pureTypeSystemPublicMethods
 		} else if(access == AccessModifier.PRIVATE) {
 			methodDeclarationTypeCounter = classData.privateMethodParameter
-			pureTypeMethodDeclarationTypeCounter = classData.pureTypeSystemPrivateMethods
 		} else if(access == AccessModifier.PROTECTED) {
 			methodDeclarationTypeCounter = classData.protectedMethodParameter
-			pureTypeMethodDeclarationTypeCounter = classData.pureTypeSystemProtectedMethods
 		} else {
 			println "WARNING: found method with no visibility information: $classData.location"
 		}
@@ -128,13 +117,6 @@ class ASTInspector {
 		
 		def hasOnlyDynamicTypeParameters = dynamicTypeParameters > 0 && staticTypeParameters == 0
 		def hasOnlyeStaticTypeParameters = dynamicTypeParameters == 0 && staticTypeParameters > 0
-		
-		if(methodNode.isDynamicReturnType() && hasOnlyDynamicTypeParameters) {
-			pureTypeMethodDeclarationTypeCounter.d++
-		} else if(!methodNode.isDynamicReturnType() && hasOnlyeStaticTypeParameters) {
-			pureTypeMethodDeclarationTypeCounter.s++
-		}
-		
 	}
 	
 	def getLocalVariableTypeSystemUsageData(declarationExpression) {
@@ -150,17 +132,13 @@ class ASTInspector {
 		def staticTypeParameters = methodNode.parameters.findAll{ !it.isDynamicTyped() }.size()
 		
 		def constructorDeclarationTypeCounter = null
-		def pureTypeConstructorDeclarationTypeCounter = null
 		
 		if(access == AccessModifier.PUBLIC) {
 			constructorDeclarationTypeCounter = classData.publicConstructorParameter
-			pureTypeConstructorDeclarationTypeCounter = classData.pureTypeSystemPublicConstructors
 		} else if(access == AccessModifier.PRIVATE) {
 			constructorDeclarationTypeCounter = classData.privateConstructorParameter
-			pureTypeConstructorDeclarationTypeCounter = classData.pureTypeSystemPrivateConstructors
 		} else if(access == AccessModifier.PROTECTED) {
 			constructorDeclarationTypeCounter = classData.protectedConstructorParameter
-			pureTypeConstructorDeclarationTypeCounter = classData.pureTypeSystemProtectedConstructors
 		} else {
 			println "WARNING: found parameter with no visibility information: $classData.location"
 		}
@@ -170,13 +148,6 @@ class ASTInspector {
 		
 		def hasOnlyDynamicTypeParameters = dynamicTypeParameters > 0 && staticTypeParameters == 0
 		def hasOnlyeStaticTypeParameters = dynamicTypeParameters == 0 && staticTypeParameters > 0
-		
-		if(hasOnlyDynamicTypeParameters) {
-			pureTypeConstructorDeclarationTypeCounter.d++
-		} else if(hasOnlyeStaticTypeParameters) {
-			pureTypeConstructorDeclarationTypeCounter.s++
-		}
-		
 	}
 	
 	def getTypeSystemUsageData() {

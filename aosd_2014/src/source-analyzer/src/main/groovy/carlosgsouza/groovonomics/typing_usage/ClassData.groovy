@@ -3,29 +3,24 @@ package carlosgsouza.groovonomics.typing_usage
 import groovy.json.JsonBuilder
 
 class ClassData {
+	
 	DeclarationCount publicMethodReturn = new DeclarationCount()
 	DeclarationCount privateMethodReturn = new DeclarationCount()
 	DeclarationCount protectedMethodReturn = new DeclarationCount()
+	
 	DeclarationCount publicField = new DeclarationCount()
 	DeclarationCount privateField = new DeclarationCount()
 	DeclarationCount protectedField = new DeclarationCount()
+	
 	DeclarationCount publicMethodParameter = new DeclarationCount() 
 	DeclarationCount privateMethodParameter = new DeclarationCount()
 	DeclarationCount protectedMethodParameter = new DeclarationCount()
-	DeclarationCount pureTypeSystemPublicMethods = new DeclarationCount()
-	DeclarationCount pureTypeSystemPrivateMethods = new DeclarationCount()
-	DeclarationCount pureTypeSystemProtectedMethods = new DeclarationCount()
+	
 	DeclarationCount publicConstructorParameter = new DeclarationCount()
 	DeclarationCount privateConstructorParameter = new DeclarationCount()
 	DeclarationCount protectedConstructorParameter = new DeclarationCount()
-	DeclarationCount pureTypeSystemPublicConstructors = new DeclarationCount()
-	DeclarationCount pureTypeSystemPrivateConstructors = new DeclarationCount()
-	DeclarationCount pureTypeSystemProtectedConstructors = new DeclarationCount()
-	DeclarationCount localVariable = new DeclarationCount()
 	
-	int numberOfPublicConstructors = 0
-	int numberOfPrivateConstructors = 0
-	int numberOfProtectedConstructors = 0
+	DeclarationCount localVariable = new DeclarationCount()
 	
 	String className = ""
 	String location = ""
@@ -45,20 +40,10 @@ class ClassData {
 		result.publicMethodParameter = this.publicMethodParameter + other.publicMethodParameter                     
 		result.privateMethodParameter = this.privateMethodParameter + other.privateMethodParameter                    
 		result.protectedMethodParameter = this.protectedMethodParameter + other.protectedMethodParameter                  
-		result.pureTypeSystemPublicMethods = this.pureTypeSystemPublicMethods + other.pureTypeSystemPublicMethods               
-		result.pureTypeSystemPrivateMethods = this.pureTypeSystemPrivateMethods + other.pureTypeSystemPrivateMethods              
-		result.pureTypeSystemProtectedMethods = this.pureTypeSystemProtectedMethods + other.pureTypeSystemProtectedMethods            
 		result.publicConstructorParameter = this.publicConstructorParameter + other.publicConstructorParameter                
 		result.privateConstructorParameter = this.privateConstructorParameter + other.privateConstructorParameter               
 		result.protectedConstructorParameter = this.protectedConstructorParameter + other.protectedConstructorParameter             
-		result.pureTypeSystemPublicConstructors = this.pureTypeSystemPublicConstructors + other.pureTypeSystemPublicConstructors          
-		result.pureTypeSystemPrivateConstructors = this.pureTypeSystemPrivateConstructors + other.pureTypeSystemPrivateConstructors         
-		result.pureTypeSystemProtectedConstructors = this.pureTypeSystemProtectedConstructors + other.pureTypeSystemProtectedConstructors       
 		result.localVariable = this.localVariable + other.localVariable                             
-		
-		result.numberOfPublicConstructors = this.numberOfPublicConstructors + other.numberOfPublicConstructors 
-		result.numberOfPrivateConstructors = this.numberOfPrivateConstructors + other.numberOfPrivateConstructors
-		result.numberOfProtectedConstructors = this.numberOfProtectedConstructors + other.numberOfProtectedConstructors
 		
 		result.className = ""
 		result.location = ""
