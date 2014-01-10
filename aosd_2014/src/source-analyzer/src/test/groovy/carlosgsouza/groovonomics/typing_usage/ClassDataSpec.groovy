@@ -69,6 +69,9 @@ class ClassDataSpec extends Specification {
 		and: "metadata is blank"
 		data.className == ""
 		data.location == ""
+		
+		data.importsJunit == false
+		data.importsSpock == false
 	}
 	
 	def "+ should return a classData with the sum of the counters of the two classData objects leaving other fields blank"() {
@@ -78,6 +81,7 @@ class ClassDataSpec extends Specification {
 		data1.publicMethodReturn.d = 2
 		data1.protectedMethodReturn.d = 4
 		data1.protectedMethodReturn.s = 6
+		data1.importsJunit = true
 		
 		and:
 		def data2 = new ClassData()
@@ -85,6 +89,7 @@ class ClassDataSpec extends Specification {
 		data2.publicMethodReturn.d = 3
 		data2.protectedMethodReturn.d = 5
 		data2.protectedMethodReturn.s = 7
+		data2.importsSpock = true
 		
 		when:
 		def sum = data1 + data2
@@ -107,5 +112,110 @@ class ClassDataSpec extends Specification {
 		sum.className == ""
 		sum.location == ""
 		sum.isScript == false
+		
+		and:
+		sum.importsJunit == true
+		sum.importsSpock == true
+	}
+	
+	def "should return agregate data by declaration type"() {
+		given:
+		def data = new ClassData()
+		
+		when:
+		data.publicMethodReturn.s = 1
+		data.publicMethodReturn.d = 2
+		data.privateMethodReturn.s = 3
+		data.privateMethodReturn.d = 4
+		data.protectedMethodReturn.s = 5
+		data.protectedMethodReturn.d = 6
+		
+		then:
+		data.methodReturn.s == 9
+		data.methodReturn.d == 12
+		
+		when:
+		data.publicMethodParameter.s = 1
+		data.publicMethodParameter.d = 2
+		data.privateMethodParameter.s = 3
+		data.privateMethodParameter.d = 4
+		data.protectedMethodParameter.s = 5
+		data.protectedMethodParameter.d = 6
+		
+		then:
+		data.methodParameter.s == 9
+		data.methodParameter.d == 12
+		
+		when:
+		data.publicConstructorParameter.s = 1
+		data.publicConstructorParameter.d = 2
+		data.privateConstructorParameter.s = 3
+		data.privateConstructorParameter.d = 4
+		data.protectedConstructorParameter.s = 5
+		data.protectedConstructorParameter.d = 6
+		
+		then:
+		data.constructorParameter.s == 9
+		data.constructorParameter.d == 12
+		
+		when:
+		data.publicField.s = 1
+		data.publicField.d = 2
+		data.privateField.s = 3
+		data.privateField.d = 4
+		data.protectedField.s = 5
+		data.protectedField.d = 6
+		
+		then:
+		data.field.s == 9
+		data.field.d == 12
+		
+	}
+	
+	def "should return agregate data by visibility"() {
+		given:
+		def data = new ClassData()
+		
+		when:
+		data.publicMethodReturn.s = 1
+		data.publicMethodReturn.d = 2
+		data.publicMethodParameter.s = 1
+		data.publicMethodParameter.d = 2
+		data.publicConstructorParameter.s = 1
+		data.publicConstructorParameter.d = 2
+		data.publicField.s = 1
+		data.publicField.d = 2
+		
+		then:
+		data.publicDeclarations.s == 4
+		data.publicDeclarations.d == 8
+		
+		when:
+		data.privateMethodReturn.s = 3
+		data.privateMethodReturn.d = 4
+		data.privateMethodParameter.s = 3
+		data.privateMethodParameter.d = 4
+		data.privateConstructorParameter.s = 3
+		data.privateConstructorParameter.d = 4
+		data.privateField.s = 3
+		data.privateField.d = 4
+		
+		then:
+		data.privateDeclarations.s == 12
+		data.privateDeclarations.d == 16
+		
+		when:
+		data.protectedMethodReturn.s = 5
+		data.protectedMethodReturn.d = 6
+		data.protectedMethodParameter.s = 5
+		data.protectedMethodParameter.d = 6
+		data.protectedConstructorParameter.s = 5
+		data.protectedConstructorParameter.d = 6
+		data.protectedField.s = 5
+		data.protectedField.d = 6
+		
+		then:
+		data.protectedDeclarations.s == 20
+		data.protectedDeclarations.d == 24
 	}
 }

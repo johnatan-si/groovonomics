@@ -34,7 +34,7 @@ class RestoreProjectsFromGlacier {
 			
 			while(attempts < 3) {
 				try {
-					def restoreReq = new RestoreObjectRequest("carlosgsouza.groovonomics", "dataset/projects/source/${projectId}.zip", 10)
+					def restoreReq = new RestoreObjectRequest("carlosgsouza.groovonomics", "dataset/projects/source/${projectId}.zip", 80)
 					s3.restoreObject(restoreReq)
 					
 					break

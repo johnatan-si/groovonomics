@@ -30,6 +30,8 @@ class ClassData {
 	String className = ""
 	String location = ""
 	Boolean isScript = false
+	Boolean importsJunit = false
+	Boolean importsSpock = false
 	
 	def plus(other) {
 		def result = new ClassData() 
@@ -58,14 +60,74 @@ class ClassData {
 		result.numberOfPrivateConstructors = this.numberOfPrivateConstructors + other.numberOfPrivateConstructors
 		result.numberOfProtectedConstructors = this.numberOfProtectedConstructors + other.numberOfProtectedConstructors
 		
-		String className = ""
-		String location = ""
-		Boolean isScript = false
+		result.className = ""
+		result.location = ""
+		result.isScript = false
+		
+		result.importsJunit = importsJunit || other.importsJunit
+		result.importsSpock = importsSpock || other.importsSpock 
 		
 		result
 	}
 	
-	def isTestClass() {
+	def getDeclarationData(String type) {
+		switch(type) {
+			case "field":
+				return [publicField, privateField, protectedField]
+			case "methodParameter":
+				return [publicMethodParameter, privateMethodParameter, protectedMethodParameter]
+			case "methodReturn":
+				return [publicMethodReturn, privateMethodReturn, protectedMethodReturn]
+			case "constructorParameter":
+				return [publicConstructorParameter, privateConstructorParameter, protectedConstructorParameter]
+			case "localVariable":
+				return [localVariable] 	
+			case "public":
+				return [publicField, publicMethodParameter, publicMethodReturn, publicConstructorParameter]
+			case "protected":
+				return [protectedField, protectedMethodParameter, protectedMethodReturn, protectedConstructorParameter]
+			case "private":
+				return [privateField, privateMethodParameter, privateMethodReturn, privateConstructorParameter]
+			case "all":
+				return getDeclarationData("public") + getDeclarationData("private") + getDeclarationData("protected") + localVariable
+			default:
+				return [getProperty(type)]
+		}
+	}
+	
+	def getPublicDeclarations() {
+		return getAgregateDeclarationData("public")
+	}
+	
+	def getPrivateDeclarations() {
+		return getAgregateDeclarationData("private")
+	}
+	
+	def getProtectedDeclarations() {
+		return getAgregateDeclarationData("protected")
+	}
+	
+	def getField() {
+		return getAgregateDeclarationData("field")
+	}
+	
+	def getMethodParameter() {
+		return getAgregateDeclarationData("methodParameter")
+	}
+	
+	def getMethodReturn() {
+		return getAgregateDeclarationData("methodReturn")
+	}
+	
+	def getConstructorParameter() {
+		return getAgregateDeclarationData("constructorParameter")
+	}
+	
+	def getAgregateDeclarationData(String type) {
+		return getDeclarationData(type).inject(new DeclarationCount()) { result, value -> result + value} 
+	}
+	
+	def getIsTestClass() {
 		location.contains("/test/")
 	}
 	

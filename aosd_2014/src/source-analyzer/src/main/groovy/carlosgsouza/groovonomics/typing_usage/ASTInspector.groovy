@@ -7,6 +7,7 @@ import org.codehaus.groovy.ast.CodeVisitorSupport
 import org.codehaus.groovy.ast.ConstructorNode
 import org.codehaus.groovy.ast.FieldNode
 import org.codehaus.groovy.ast.MethodNode
+import org.codehaus.groovy.ast.ModuleNode;
 import org.codehaus.groovy.ast.builder.AstBuilder
 import org.codehaus.groovy.ast.expr.ClosureExpression
 import org.codehaus.groovy.ast.expr.DeclarationExpression
@@ -50,7 +51,7 @@ class ASTInspector {
 	
 
 	def getMethodsTypeSystemUsageData(methodNode) {
-		if(methodNode.isSynthetic()) {
+		if(methodNode.isSynthetic() || (classData.isScript && generatedScriptMethod(methodNode))) {
 			return
 		}
 		
@@ -74,9 +75,13 @@ class ASTInspector {
 		
 		getMethodParametersTypeSystemUsageData(methodNode, access)
 	}
+	
+	def generatedScriptMethod(MethodNode methodNode) {
+		methodNode.name == "run" || methodNode.name == "main"
+	}
 
 	def getConstructorsTypeSystemUsageData(constructorNode) {		
-		if(constructorNode.isSynthetic()) {
+		if(constructorNode.isSynthetic() || classData.isScript) {
 			return
 		}
 		
@@ -173,15 +178,19 @@ class ASTInspector {
 	def getTypeSystemUsageData() {
 		def declarationsVisitor = new DeclarationsVisitor()
 		
-		List<ASTNode> nodes = new AstBuilder().buildFromString(CompilePhase.CONVERSION, false, sourceFile.text)
-		def classNode = nodes.find { it.class == ClassNode.class }
+		def classText = sourceFile.text
 		
-		declarationsVisitor.visitClass(classNode)
+		List<ASTNode> nodes = new AstBuilder().buildFromString(CompilePhase.CONVERSION, false, classText)
+		def classNode = nodes.find { it.class == ClassNode.class }
 		
 		classData.className = classNode.name
 		classData.isScript = classNode.isScript()
 		
-		classData
+		declarationsVisitor.visitClass(classNode)
+		
+		processTestFrameworkImports(classText)
+		
+		return classData
 	}
 	
 	def getConfuseAccessModifier(node) {
@@ -206,6 +215,13 @@ class ASTInspector {
 		} else {
 			println "WARNING: found node with no visibility information: $node"
 		}
+	}
+	
+	def processTestFrameworkImports(text) {
+		def t = text.toLowerCase()
+		
+		classData.importsJunit = t.contains("junit") 
+		classData.importsSpock = t.contains("spock")
 	}
 	
 	enum AccessModifier {
@@ -254,7 +270,6 @@ class ASTInspector {
 		protected SourceUnit getSourceUnit() {
 			return null // should I do anything here?
 		}
-		
 	}
 }
 

@@ -78,11 +78,11 @@ class ClassData {
 			case "localVariable":
 				return [localVariable] 	
 			case "public":
-				return [publicField, publicMethodParameter, publicMethodReturn]
+				return [publicField, publicMethodParameter, publicMethodReturn, publicConstructorParameter]
 			case "protected":
-				return [protectedField, protectedMethodParameter, protectedMethodReturn]
+				return [protectedField, protectedMethodParameter, protectedMethodReturn, publicConstructorParameter]
 			case "private":
-				return [privateField, privateMethodParameter, privateMethodReturn]
+				return [privateField, privateMethodParameter, privateMethodReturn, publicConstructorParameter]
 			case "all":
 				return getDeclarationData("public") + getDeclarationData("private") + getDeclarationData("protected") + localVariable
 			default:
@@ -90,7 +90,35 @@ class ClassData {
 		}
 	}
 	
-	def getAgegateDeclarationData(String type) {
+	def getPublicDeclarations() {
+		return getAgregateDeclarationData("public")
+	}
+	
+	def getPrivateDeclarations() {
+		return getAgregateDeclarationData("private")
+	}
+	
+	def getProtectedDeclarations() {
+		return getAgregateDeclarationData("protected")
+	}
+	
+	def getField() {
+		return getAgregateDeclarationData("field")
+	}
+	
+	def getMethodParameter() {
+		return getAgregateDeclarationData("methodParameter")
+	}
+	
+	def getMethodReturn() {
+		return getAgregateDeclarationData("methodReturn")
+	}
+	
+	def getConstructorParameter() {
+		return getAgregateDeclarationData("constructorParameter")
+	}
+	
+	def getAgregateDeclarationData(String type) {
 		return getDeclarationData(type).inject(new DeclarationCount()) { result, value -> result + value} 
 	}
 	

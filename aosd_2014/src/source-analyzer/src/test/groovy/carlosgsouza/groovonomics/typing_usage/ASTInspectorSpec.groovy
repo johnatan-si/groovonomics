@@ -9,7 +9,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with fields"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithFieldsOnly.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "you get the declaration counts for fields grouped by access modifiers"
@@ -26,7 +26,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with properties"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithPropertiesOnly.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "you get the declaration counts for properties as if they were private fields grouped by access modifiers"
@@ -42,7 +42,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with methods"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithMethodsOnly.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "you get the declaration counts for fields grouped by access modifiers"
@@ -59,7 +59,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with STATIC methods"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithStaticMethodsOnly.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "you get the declaration counts for fields grouped by access modifiers"
@@ -76,7 +76,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with methods with parameters"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithMethodsWithParameters.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "you get the declaration counts for parameters grouped by access modifiers of the methods (return type doesn't matter)"
@@ -92,7 +92,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with void methods"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithVoidMethods.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "the void methods are considered statically typed"
@@ -108,7 +108,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with constructors"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithConstructors.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "constructors are not considered methods"
@@ -151,7 +151,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with methods that have only static or only dynamic declarations"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithMethodsWithOnlyOneTypeOfDeclaration.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "you get the count of mthods with no parameters that, hence, use only one type system (for return type)"
@@ -168,7 +168,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with methods that have local variables"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithMethodsWithLocalVariables.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "you get the count of local variable declarations"
@@ -180,7 +180,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with methods that have local variables declared inside blocks such as if, while and do-while"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithMethodsWithLocalVariablesInsideBlocks.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "you get the count of local variable declarations"
@@ -192,7 +192,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with a variable declared inside a for loop"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithMethodsWithLocalVariablesInsideForLoop.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "you get the count of local variable declarations"
@@ -204,7 +204,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with a variable declared inside a for loop"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithMethodsWithLocalVariablesInsideClosures.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "you get the count of local variable declarations"
@@ -216,7 +216,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with a variable declared inside a for loop"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithMethodsWithClosureParameters.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "closure parameters are NOT considered local variables"
@@ -228,7 +228,7 @@ class ASTInspectorSpec extends Specification {
 		given: "a class with closures, parameters, fields and local variables"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithClosuresParametersFieldsAndLocals.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: 
@@ -253,10 +253,10 @@ class ASTInspectorSpec extends Specification {
 	}
 	
 	def "class metadata is stored"() {
-		given: "a class"
+		given:
 		def sourceFile = "src/test/projects_folder/0001/a_project/a/packagename/with/multiple/levels/Class.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "the path to the file"
@@ -267,10 +267,10 @@ class ASTInspectorSpec extends Specification {
 	}
 	
 	def "a class is not a script"() {
-		given: "a class"
+		given:
 		def sourceFile = "src/test/projects_folder/0001/a_project/a/packagename/with/multiple/levels/Class.groovy"
 		
-		when: "you ask for the type system usage data"
+		when:
 		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "it is not a script"
@@ -278,15 +278,56 @@ class ASTInspectorSpec extends Specification {
 	}
 	
 	def "should be able to get data for a script"() {
-		given: "a class"
+		given:
 		def sourceFile = "src/test/projects_folder/0001/a_project/Script.groovy"
 		
-		when: "you ask for the type system usage data"
-		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
+		when:
+		ClassData data = new ASTInspector(sourceFile).getTypeSystemUsageData()
 		
 		then: "it is a script"
 		data.isScript == true
 		data.localVariable.s == 1
 		data.localVariable.d == 2
+		
+		and: "generated methods are ignored"
+		data.methodReturn.total == 0
+		data.methodParameter.total == 0
+		data.field.total == 0
+		data.constructorParameter.total == 0
+	}
+	
+	def "should set a flag in case the class imports junit"() {
+		given:
+		def sourceFile = "src/test/test_classes/AClassThatImportsJunit.groovy"
+		
+		when:
+		ClassData data = new ASTInspector(sourceFile).getTypeSystemUsageData()
+		
+		then:
+		data.importsJunit == true
+	}
+	
+	def "should set a flag in case the class imports spock"() {
+		given:
+		def sourceFile = "src/test/test_classes/AClassThatImportsSpock.groovy"
+		
+		when:
+		ClassData data = new ASTInspector(sourceFile).getTypeSystemUsageData()
+		
+		then:
+		data.importsSpock == true
+	}
+	
+	
+	def "should set a flag in case the class imports spock or junit using static or star imports"() {
+		given:
+		def sourceFile = "src/test/test_classes/AClassWithStarAndStaticImportsOfJunitAndSpock.groovy"
+		
+		when:
+		ClassData data = new ASTInspector(sourceFile).getTypeSystemUsageData()
+		
+		then:
+		data.importsSpock == true
+		data.importsJunit == true
 	}
 }
