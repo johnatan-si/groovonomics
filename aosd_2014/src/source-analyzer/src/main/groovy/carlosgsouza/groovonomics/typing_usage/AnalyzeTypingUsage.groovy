@@ -108,7 +108,7 @@ class AnalyzeTypingUsage {
 	
 	class FileSystem {
 		
-		def SCRIPT_DIR = "/opt/groovonomics/src/scripts/carlosgsouza/groovonomics/typing_usage_2"
+		def SCRIPT_DIR = "scripts/carlosgsouza/groovonomics/typing_usage_2"
 		def tempDirPath
 		
 		def cleanWorkDir() {
