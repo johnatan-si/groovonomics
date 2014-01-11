@@ -20,7 +20,7 @@ import com.amazonaws.services.sqs.model.ReceiveMessageRequest
 
 class AnalyzeTypingUsage {
 	
-	String localhostname = java.net.InetAddress.getLocalHost().getHostName()
+	static String localhostname = java.net.InetAddress.getLocalHost().getHostName()
 	def id
 	def tempDir
 	
@@ -52,6 +52,14 @@ class AnalyzeTypingUsage {
 		3.times { id ->
 			threads << Thread.start {
 				new AnalyzeTypingUsage(id).justDoIt()
+			}
+		}
+		
+		def s3Log = new S3()
+		Thread.start {
+			while(true) {
+				s3Log.uploadLog(localhostname)
+				Thread.sleep(60000)	
 			}
 		}
 		
@@ -144,7 +152,7 @@ class AnalyzeTypingUsage {
 		
 	}
 	
-	class S3 {
+	static class S3 {
 		def credentials = new PropertiesCredentials(new File("/opt/groovonomics/conf/aws.properties"))
 		def scriptStart = new Date()
 		def tempDirPath
