@@ -22,7 +22,12 @@ class DeclarationType {
 		
 		result << translator.headers
 		
-		rawDataFolder.eachFile { file ->
+		def projectFiles = rawDataFolder.listFiles()
+		def c = 1
+		
+		projectFiles.each { file ->
+			println "${c++}/${projectFiles.size}"
+			
 			def projectId = file.name - ".json"
 			result << translator.translate(projectId, metadataFolder, file)
 		}
