@@ -46,7 +46,7 @@ task(listProjects, dependsOn: 'classes', type: JavaExec) {
 }
 
 task(analyze, dependsOn: 'classes', type: JavaExec) {
-	main = 'carlosgsouza.groovonomics.typing_usage.AnalyzeTypingUsage'
+	main = 'carlosgsouza.groovonomics.aws.AnalyzeTypingUsage'
 	classpath = sourceSets.main.runtimeClasspath
 }
 

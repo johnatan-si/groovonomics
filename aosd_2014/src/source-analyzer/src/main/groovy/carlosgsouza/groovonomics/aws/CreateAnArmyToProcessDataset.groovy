@@ -1,4 +1,6 @@
 package carlosgsouza.groovonomics.aws;
+import java.text.SimpleDateFormat
+
 import org.apache.commons.codec.binary.Base64
 
 import com.amazonaws.auth.PropertiesCredentials
@@ -14,7 +16,7 @@ public class CreateAnArmyToProcessDataset {
 	
 	public static void main(args) {
 		
-		def ARMY_SIZE = 98
+		def ARMY_SIZE = 10
 		
 		def credentials = new PropertiesCredentials(new File("/opt/groovonomics/conf/aws.properties"))
 		AmazonEC2Client ec2 = new AmazonEC2Client(credentials)
@@ -36,7 +38,7 @@ cd aosd_2014/src/source-analyzer
 		
 		RunInstancesRequest runInstancesRequest = new RunInstancesRequest();
 		runInstancesRequest.withImageId("ami-89b781e0")
-				.withInstanceType("m1.small")
+				.withInstanceType("m1.medium")
 				.withMinCount(ARMY_SIZE)
 				.withMaxCount(ARMY_SIZE)
 				.withKeyName("carlos")
@@ -45,10 +47,12 @@ cd aosd_2014/src/source-analyzer
 		
 		RunInstancesResult runInstances = ec2.runInstances runInstancesRequest
 		
+		def batch = new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date())
+		
 		def count = 1
 		runInstances.reservation.instances.each { instance ->
 			CreateTagsRequest createTagsRequest = new CreateTagsRequest()
-			createTagsRequest.withResources(instance.instanceId).withTags(new Tag("Name", "groovonomics.soldier.${count++}"))
+			createTagsRequest.withResources(instance.instanceId).withTags(new Tag("Name", "groovonomics.soldier.b${count++}"), new Tag("Batch", batch))
 			ec2.createTags createTagsRequest
 			
 			def detailedMonitoringRequest = new MonitorInstancesRequest()

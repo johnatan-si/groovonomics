@@ -12,7 +12,7 @@ matureData=data[data$loc>2000 & data$commits>100, ]
 nonMatureData=data[data$loc<=2000 | data$commits<=100, ]
 
 plotDeclarationTypeHistogram<-function(data, folder, index, declarationTypeStr){
-	values<-data[!is.na(data[,index]),index]
+ 	values<-data[!is.na(data[,index]),index]
 	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)
 	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)
 }

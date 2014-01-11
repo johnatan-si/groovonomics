@@ -1,7 +1,9 @@
-package carlosgsouza.groovonomics.typing_usage
+package carlosgsouza.groovonomics.aws
 import java.text.SimpleDateFormat
 
 import org.apache.commons.lang.exception.ExceptionUtils
+
+import carlosgsouza.groovonomics.typing_usage.ProjectInspector;
 
 import com.amazonaws.auth.PropertiesCredentials
 import com.amazonaws.services.s3.AmazonS3Client
