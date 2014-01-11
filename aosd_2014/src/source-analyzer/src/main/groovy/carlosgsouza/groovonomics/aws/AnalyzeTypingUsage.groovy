@@ -20,7 +20,9 @@ import com.amazonaws.services.sqs.model.ReceiveMessageRequest
 
 class AnalyzeTypingUsage {
 	
-	static String localhostname = java.net.InetAddress.getLocalHost().getHostName()
+	String localhostname = java.net.InetAddress.getLocalHost().getHostName()
+	static String ec2Id = java.net.InetAddress.getLocalHost().getHostName()
+	
 	def id
 	def tempDir
 	
@@ -28,6 +30,8 @@ class AnalyzeTypingUsage {
 	def sns = new SNS()
 	S3 s3  = new S3()
 	FileSystem fs  = new FileSystem()
+	
+	def sdf = new SimpleDateFormat()
 	
 	public AnalyzeTypingUsage(id) {
 		this.id = id
@@ -58,7 +62,7 @@ class AnalyzeTypingUsage {
 		def s3Log = new S3()
 		Thread.start {
 			while(true) {
-				s3Log.uploadLog(localhostname)
+				s3Log.uploadLog(ec2Id)
 				Thread.sleep( 3 * 60 * 1000)	
 			}
 		}
@@ -80,7 +84,7 @@ class AnalyzeTypingUsage {
 			
 			while(projectId) {
 				try {
-					println "STARTED TO PROCESS PROJECT $projectId (total=$projectsCount)"
+					println "${now()}	|	STARTED TO PROCESS PROJECT $projectId (total=$projectsCount)"
 					sns.log("DEBUG", projectId, "starting to process project")
 					
 					process projectId
@@ -92,7 +96,7 @@ class AnalyzeTypingUsage {
 					projectsCount++
 					processedProjects << projectId
 					
-					println "FINISHED TO PROCESS PROJECT $projectId  (total=$projectsCount)\n\n"
+					println "${now()}	|	FINISHED TO PROCESS PROJECT $projectId  (total=$projectsCount)\n\n"
 				} catch(e) {
 					handleError(e, projectId)
 				} finally {
@@ -152,6 +156,10 @@ class AnalyzeTypingUsage {
 		
 	}
 	
+	def now() {
+		sdf.format(new Date())
+	}
+	
 	static class S3 {
 		def credentials = new PropertiesCredentials(new File("/opt/groovonomics/conf/aws.properties"))
 		def scriptStart = new Date()
@@ -195,24 +203,23 @@ class AnalyzeTypingUsage {
 		}
 	}
 	
+	
 	class SNS {
 		def credentials = new PropertiesCredentials(new File("/opt/groovonomics/conf/aws.properties"))
 		def topicArn = "arn:aws:sns:us-east-1:525294860386:groovonomics-log"
 		
 		def localhostname = java.net.InetAddress.getLocalHost().getHostName()
 		
-		def sdf = new SimpleDateFormat()
-		
 		AmazonSNSClient sns = new AmazonSNSClient(credentials)
-		
-		def now() {
-			sdf.format(new Date())
-		}
 		
 		def log(type, projectId, message) {
 			def subject = "$type | ${now()} | " + (projectId ?: "unknown project")
+			def msg = "($localhostname | ${now()})\n\n$message"
 			
-			def publishRequest = new PublishRequest(topicArn, "($localhostname | ${now()})\n\n$message", subject)
+			println subject
+			println msg
+			
+			def publishRequest = new PublishRequest(topicArn, msg, subject)
 			
 			sns.publish(publishRequest)
 		}

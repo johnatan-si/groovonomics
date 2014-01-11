@@ -1,12 +1,16 @@
 package carlosgsouza.groovonomics.typing_usage
 
-import groovy.io.FileType;
+import groovy.io.FileType
+
+import java.text.SimpleDateFormat
 
 public class ProjectInspector {
 	
 	def projectFolder
 	def result
 	def projectData
+	
+	def sdf = new SimpleDateFormat()
 	
 	public ProjectInspector(projectFolder) {
 		this.projectFolder = projectFolder
@@ -15,16 +19,20 @@ public class ProjectInspector {
 		projectData.id = projectFolder.name
 	}
 	
+	def now() {
+		
+	}
+	
 	def getTypeSystemUsageData() {
 		projectFolder.eachFileRecurse(FileType.FILES) { 
 			if(it.name.endsWith(".groovy")) {
 				try {
-					println "Parsing $it.absolutePath"
+					println "${now()}	|	Parsing $it.absolutePath"
 					def astInspector = new ASTInspector(it.absolutePath)
 					projectData.classes.add astInspector.getTypeSystemUsageData()
 				} catch(Throwable e) {
 					
-					println "WARNING: The following file can't be compiled $it.absolutePath"
+					println "${now()}	|	WARNING: The following file can't be compiled $it.absolutePath"
 					println "--> $e.message"
 				}
 			}
