@@ -1,4 +1,7 @@
 package carlosgsouza.groovonomics.aws;
+import org.apache.log4j.Logger
+import org.apache.log4j.varia.NullAppender
+
 import com.amazonaws.auth.PropertiesCredentials
 import com.amazonaws.services.sqs.AmazonSQSClient
 import com.amazonaws.services.sqs.model.SendMessageRequest
@@ -6,6 +9,8 @@ import com.amazonaws.services.sqs.model.SendMessageRequest
 class FillQueue {
 
 	public static void main(args) {
+		removeAnnoyingLogs()
+		
 		def credentials = new PropertiesCredentials(new File("/opt/groovonomics/conf/aws.properties"))
 		AmazonSQSClient sqs = new AmazonSQSClient(credentials)
 		
@@ -20,5 +25,10 @@ class FillQueue {
 			def sendMsgReq = new SendMessageRequest(queueUrl, projectId)
 			sqs.sendMessage sendMsgReq
 		}
+	}
+	
+	private static removeAnnoyingLogs() {
+		Logger.rootLogger.removeAllAppenders();
+		Logger.rootLogger.addAppender(new NullAppender());
 	}
 }

@@ -56,7 +56,7 @@ cd aosd_2014/src/source-analyzer
 		
 		def count = 1
 		runInstances.reservation.instances.each { Instance instance ->
-			def name = "groovonomics.soldier.10"
+			def name = "groovonomics.soldier.${count++}"
 			
 			println "Configuring instance $name"
 			
