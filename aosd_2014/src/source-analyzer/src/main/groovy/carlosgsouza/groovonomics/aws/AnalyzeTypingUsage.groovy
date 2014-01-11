@@ -53,7 +53,7 @@ class AnalyzeTypingUsage {
 		
 		def threads = []
 		
-		2.times { id ->
+		1.times { id ->
 			threads << Thread.start {
 				new AnalyzeTypingUsage(id).justDoIt()
 			}
