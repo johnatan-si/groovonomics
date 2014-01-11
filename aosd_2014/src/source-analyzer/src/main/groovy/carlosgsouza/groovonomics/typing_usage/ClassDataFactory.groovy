@@ -23,20 +23,10 @@ class ClassDataFactory {
 		result.publicMethodParameter = declarationCountFactory.fromMap map.publicMethodParameter
 		result.privateMethodParameter = declarationCountFactory.fromMap map.privateMethodParameter
 		result.protectedMethodParameter = declarationCountFactory.fromMap map.protectedMethodParameter
-		result.pureTypeSystemPublicMethods = declarationCountFactory.fromMap map.pureTypeSystemPublicMethods
-		result.pureTypeSystemPrivateMethods = declarationCountFactory.fromMap map.pureTypeSystemPrivateMethods
-		result.pureTypeSystemProtectedMethods = declarationCountFactory.fromMap map.pureTypeSystemProtectedMethods
 		result.publicConstructorParameter = declarationCountFactory.fromMap map.publicConstructorParameter
 		result.privateConstructorParameter = declarationCountFactory.fromMap map.privateConstructorParameter
 		result.protectedConstructorParameter = declarationCountFactory.fromMap map.protectedConstructorParameter
-		result.pureTypeSystemPublicConstructors = declarationCountFactory.fromMap map.pureTypeSystemPublicConstructors
-		result.pureTypeSystemPrivateConstructors = declarationCountFactory.fromMap map.pureTypeSystemPrivateConstructors
-		result.pureTypeSystemProtectedConstructors = declarationCountFactory.fromMap map.pureTypeSystemProtectedConstructors
 		result.localVariable = declarationCountFactory.fromMap map.localVariable
-		
-//		result.numberOfPublicConstructors = map.numberOfPublicConstructors 
-//		result.numberOfPrivateConstructors = map.numberOfPrivateConstructors
-//		result.numberOfProtectedConstructors = map.numberOfProtectedConstructors
 //		
 //		result.className = map.className
 //		result.location = map.location
