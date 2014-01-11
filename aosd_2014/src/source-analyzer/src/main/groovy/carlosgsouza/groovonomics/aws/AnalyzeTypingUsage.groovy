@@ -53,7 +53,7 @@ class AnalyzeTypingUsage {
 		
 		def threads = []
 		
-		1.times { id ->
+		2.times { id ->
 			threads << Thread.start {
 				new AnalyzeTypingUsage(id).justDoIt()
 			}
@@ -80,14 +80,14 @@ class AnalyzeTypingUsage {
 		
 		try {
 			Message msg = sqs.nextMessage
-			projectId = "dnoseda_borrame-vip" //msg?.body
+			projectId = msg?.body
 			
 			while(projectId) {
 				try {
 					println "${now()}	|	STARTED TO PROCESS PROJECT $projectId (total=$projectsCount)"
 					process projectId
 					
-					// sqs.deleteMessage(msg)
+					sqs.deleteMessage(msg)
 					
 					projectsCount++
 					processedProjects << projectId
@@ -110,9 +110,9 @@ class AnalyzeTypingUsage {
 	}
 	
 	def process(projectId) {
-//		fs.cleanWorkDir()
-//		s3.downloadSource(projectId)
-//		fs.unzipSource(projectId)
+		fs.cleanWorkDir()
+		s3.downloadSource(projectId)
+		fs.unzipSource(projectId)
 		
 		def typeData = new ProjectInspector(new File("$tempDir/$projectId/")).getTypeSystemUsageData()
 		
