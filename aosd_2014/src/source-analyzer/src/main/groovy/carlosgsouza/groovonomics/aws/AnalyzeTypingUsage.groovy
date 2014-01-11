@@ -116,11 +116,19 @@ class AnalyzeTypingUsage {
 		
 		def typeData = new ProjectInspector(new File("$tempDir/$projectId/")).getTypeSystemUsageData()
 		
-		def w = new File("$tempDir/${projectId}.json").newWriter()
-		w << typeData
+		writeAndUploadResult("class", projectId, typeData)
+		writeAndUploadResult("project", projectId, typeData.agregate())
+	}
+	
+	def writeAndUploadResult(folder, projectId, data) {
+		def path = "$tempDir/$folder/${projectId}.json"
+		def file = new File(path)
+		
+		def w = file.newWriter()
+		w << data
 		w.close()
 		
-		s3.uploadResult(projectId)
+		s3.uploadResult(file)
 	}
 	
 	def handleError(e, projectId) {
@@ -164,8 +172,8 @@ class AnalyzeTypingUsage {
 		AmazonS3Client s3 = new AmazonS3Client(credentials)
 		TransferManager transferManager = new TransferManager(credentials) 
 		
-		def uploadResult(projectId) {
-			s3.putObject("carlosgsouza.groovonomics", "data/type_usage/class/${projectId}.json", new File("$tempDirPath/${projectId}.json"))
+		def uploadResult(File file) {
+			s3.putObject("carlosgsouza.groovonomics", "data/type_usage/${file.parentFile.name}/${file.name}", file)
 		}
 		
 		def uploadLog(hostname) {
