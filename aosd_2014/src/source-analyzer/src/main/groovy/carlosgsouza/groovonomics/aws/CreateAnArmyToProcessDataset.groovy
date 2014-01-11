@@ -21,7 +21,7 @@ public class CreateAnArmyToProcessDataset {
 		Logger.rootLogger.removeAllAppenders();
 		Logger.rootLogger.addAppender(new NullAppender());
 		
-		def ARMY_SIZE = 10
+		def ARMY_SIZE = 1
 		
 		def credentials = new PropertiesCredentials(new File("/opt/groovonomics/conf/aws.properties"))
 		AmazonEC2Client ec2 = new AmazonEC2Client(credentials)
@@ -56,7 +56,7 @@ cd aosd_2014/src/source-analyzer
 		
 		def count = 1
 		runInstances.reservation.instances.each { Instance instance ->
-			def name = "groovonomics.soldier.${count++}"
+			def name = "groovonomics.soldier.10"
 			
 			println "Configuring instance $name"
 			
