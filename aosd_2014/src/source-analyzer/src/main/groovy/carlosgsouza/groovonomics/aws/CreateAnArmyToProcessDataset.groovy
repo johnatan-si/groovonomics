@@ -1,7 +1,10 @@
 package carlosgsouza.groovonomics.aws;
+
 import java.text.SimpleDateFormat
 
 import org.apache.commons.codec.binary.Base64
+import org.apache.log4j.Logger
+import org.apache.log4j.varia.NullAppender
 
 import com.amazonaws.auth.PropertiesCredentials
 import com.amazonaws.services.ec2.AmazonEC2Client
@@ -11,12 +14,13 @@ import com.amazonaws.services.ec2.model.RunInstancesRequest
 import com.amazonaws.services.ec2.model.RunInstancesResult
 import com.amazonaws.services.ec2.model.Tag
 
-
 public class CreateAnArmyToProcessDataset {
 	
 	public static void main(args) {
+		Logger.rootLogger.removeAllAppenders();
+		Logger.rootLogger.addAppender(new NullAppender());
 		
-		def ARMY_SIZE = 50
+		def ARMY_SIZE = 1
 		
 		def credentials = new PropertiesCredentials(new File("/opt/groovonomics/conf/aws.properties"))
 		AmazonEC2Client ec2 = new AmazonEC2Client(credentials)

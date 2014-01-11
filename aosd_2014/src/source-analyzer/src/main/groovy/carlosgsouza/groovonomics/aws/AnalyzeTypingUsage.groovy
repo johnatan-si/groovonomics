@@ -2,8 +2,10 @@ package carlosgsouza.groovonomics.aws
 import java.text.SimpleDateFormat
 
 import org.apache.commons.lang.exception.ExceptionUtils
+import org.apache.log4j.Logger
+import org.apache.log4j.varia.NullAppender
 
-import carlosgsouza.groovonomics.typing_usage.ProjectInspector;
+import carlosgsouza.groovonomics.typing_usage.ProjectInspector
 
 import com.amazonaws.auth.PropertiesCredentials
 import com.amazonaws.services.s3.AmazonS3Client
@@ -37,8 +39,14 @@ class AnalyzeTypingUsage {
 		s3.tempDirPath = tempDir
 	}
 	
+	private removeAnnoyingLogs() {
+		Logger.rootLogger.removeAllAppenders();
+		Logger.rootLogger.addAppender(new NullAppender());
+	}
 	
 	public static void main(args) {
+		
+		
 		def threads = []
 		
 		3.times { id ->
@@ -65,7 +73,11 @@ class AnalyzeTypingUsage {
 			while(projectId) {
 				try {
 					println "STARTED TO PROCESS PROJECT $projectId (total=$projectsCount)"
+					sns.log("DEBUG", projectId, "starting to process project")
+					
 					process projectId
+					
+					sns.log("DEBUG", projectId, "finished to process project")
 					
 					sqs.deleteMessage(msg)
 					
