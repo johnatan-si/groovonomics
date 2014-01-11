@@ -65,6 +65,13 @@ task(emptyQueue, dependsOn: 'classes', type: JavaExec) {
 	classpath = sourceSets.main.runtimeClasspath
 }
 
+
+task(testLog, dependsOn: 'classes', type: JavaExec) {
+	main = 'carlosgsouza.groovonomics.aws.DynamoLog'
+	classpath = sourceSets.main.runtimeClasspath
+}
+
 task wrapper(type:Wrapper) {
 	gradleVersion = "1.9"
 }
+
