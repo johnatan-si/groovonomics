@@ -10,20 +10,14 @@ public class DynamoLog {
 		if(id == null) {
 			id = findInformationAboutThisEC2()
 		}
+		
+		new File("id.txt") << this.id
 	}
 	
 	def findInformationAboutThisEC2() {
 		try {
-			def metadataOutput = "ec2Metadata".execute()
-			
-			println metadataOutput
-			
-			println (metadataOutput =~ /^ami-id: (.+)$/)
-			println (metadataOutput =~ /^ami-id: (.+)$/)[0]
-			
+			def metadataOutput = "ec2Metadata".execute()			
 			this.id = (metadataOutput =~ /^ami-id: (.+)$/)[0][0]
-			
-						
 		} catch(Exception e) {
 			this.id = "NA"
 		}

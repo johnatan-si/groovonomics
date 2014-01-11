@@ -16,7 +16,7 @@ public class CreateAnArmyToProcessDataset {
 	
 	public static void main(args) {
 		
-		def ARMY_SIZE = 10
+		def ARMY_SIZE = 50
 		
 		def credentials = new PropertiesCredentials(new File("/opt/groovonomics/conf/aws.properties"))
 		AmazonEC2Client ec2 = new AmazonEC2Client(credentials)
