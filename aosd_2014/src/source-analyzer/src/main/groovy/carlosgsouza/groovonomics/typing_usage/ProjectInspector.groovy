@@ -20,7 +20,7 @@ public class ProjectInspector {
 	}
 	
 	def now() {
-		
+		return sdf.format(new Date())
 	}
 	
 	def getTypeSystemUsageData() {

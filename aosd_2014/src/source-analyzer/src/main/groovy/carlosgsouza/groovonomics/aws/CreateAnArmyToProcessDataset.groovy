@@ -9,6 +9,7 @@ import org.apache.log4j.varia.NullAppender
 import com.amazonaws.auth.PropertiesCredentials
 import com.amazonaws.services.ec2.AmazonEC2Client
 import com.amazonaws.services.ec2.model.CreateTagsRequest
+import com.amazonaws.services.ec2.model.Instance;
 import com.amazonaws.services.ec2.model.MonitorInstancesRequest
 import com.amazonaws.services.ec2.model.RunInstancesRequest
 import com.amazonaws.services.ec2.model.RunInstancesResult
@@ -20,7 +21,7 @@ public class CreateAnArmyToProcessDataset {
 		Logger.rootLogger.removeAllAppenders();
 		Logger.rootLogger.addAppender(new NullAppender());
 		
-		def ARMY_SIZE = 3
+		def ARMY_SIZE = 1
 		
 		def credentials = new PropertiesCredentials(new File("/opt/groovonomics/conf/aws.properties"))
 		AmazonEC2Client ec2 = new AmazonEC2Client(credentials)
@@ -54,10 +55,10 @@ cd aosd_2014/src/source-analyzer
 		def batch = new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date())
 		
 		def count = 1
-		runInstances.reservation.instances.each { instance ->
-			def name = "groovonomics.carlos.${count++}"
+		runInstances.reservation.instances.each { Instance instance ->
+			def name = "groovonomics.rainbow.${count++}"
 			
-			println "Configuring instance $name"
+			println "Configuring instance $name\t(${instance.publicDnsName})"
 			
 			CreateTagsRequest createTagsRequest = new CreateTagsRequest()
 			createTagsRequest.withResources(instance.instanceId).withTags(new Tag("Name", name), new Tag("Batch", batch))
