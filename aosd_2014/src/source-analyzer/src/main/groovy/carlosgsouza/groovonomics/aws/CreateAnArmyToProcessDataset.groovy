@@ -56,9 +56,9 @@ cd aosd_2014/src/source-analyzer
 		
 		def count = 1
 		runInstances.reservation.instances.each { Instance instance ->
-			def name = "groovonomics.rainbow.${count++}"
+			def name = "groovonomics.boyboy.${count++}"
 			
-			println "Configuring instance $name\t(${instance.publicDnsName})"
+			println "Configuring instance $name"
 			
 			CreateTagsRequest createTagsRequest = new CreateTagsRequest()
 			createTagsRequest.withResources(instance.instanceId).withTags(new Tag("Name", name), new Tag("Batch", batch))

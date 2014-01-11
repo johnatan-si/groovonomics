@@ -50,7 +50,9 @@ class ASTInspector {
 	}
 	
 	def getFieldAccessModifier(FieldNode fieldNode) {
-		return [1:AccessModifier.PUBLIC, 2:AccessModifier.PRIVATE, 4:AccessModifier.PROTECTED][fieldNode.modifiers]
+		// Visibility information is stored on the last 3 bits
+		def visibilityModifier = fieldNode.modifiers & 7
+		return [1:AccessModifier.PUBLIC, 2:AccessModifier.PRIVATE, 4:AccessModifier.PROTECTED][visibilityModifier]
 	}
 	
 

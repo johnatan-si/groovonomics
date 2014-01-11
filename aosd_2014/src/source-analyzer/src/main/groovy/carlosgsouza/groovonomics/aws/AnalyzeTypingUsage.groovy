@@ -28,7 +28,7 @@ class AnalyzeTypingUsage {
 	
 	def sqs = new SQS()
 	def sns = new SNS()
-	S3 s3  = new S3()
+	static S3 s3  = new S3()
 	FileSystem fs  = new FileSystem()
 	
 	def sdf = new SimpleDateFormat()
@@ -85,11 +85,7 @@ class AnalyzeTypingUsage {
 			while(projectId) {
 				try {
 					println "${now()}	|	STARTED TO PROCESS PROJECT $projectId (total=$projectsCount)"
-					sns.log("DEBUG", projectId, "starting to process project")
-					
 					process projectId
-					
-					sns.log("DEBUG", projectId, "finished to process project")
 					
 					sqs.deleteMessage(msg)
 					
@@ -215,9 +211,6 @@ class AnalyzeTypingUsage {
 		def log(type, projectId, message) {
 			def subject = "$type | ${now()} | " + (projectId ?: "unknown project")
 			def msg = "($localhostname | ${now()})\n\n$message"
-			
-			println subject
-			println msg
 			
 			def publishRequest = new PublishRequest(topicArn, msg, subject)
 			

@@ -31,7 +31,8 @@ public class ProjectInspector {
 					def astInspector = new ASTInspector(it.absolutePath)
 					projectData.classes.add astInspector.getTypeSystemUsageData()
 				} catch(Throwable e) {
-					
+					e.printStackTrace()	
+				
 					println "${now()}	|	WARNING: The following file can't be compiled $it.absolutePath"
 					println "--> $e.message"
 				}
