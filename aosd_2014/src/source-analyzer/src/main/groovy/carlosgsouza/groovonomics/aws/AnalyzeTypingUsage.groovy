@@ -63,7 +63,7 @@ class AnalyzeTypingUsage {
 		Thread.start {
 			while(true) {
 				s3Log.uploadLog(ec2Id)
-				Thread.sleep( 3 * 60 * 1000)	
+				Thread.sleep(1 * 60 * 1000)	
 			}
 		}
 		
