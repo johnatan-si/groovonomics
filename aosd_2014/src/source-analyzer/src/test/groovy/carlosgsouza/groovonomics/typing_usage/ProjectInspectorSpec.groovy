@@ -15,6 +15,6 @@ class ProjectInspectorSpec extends Specification {
 		
 		then:
 		projectData.id == "0001"
-		projectData.classes.size() == 19
+		projectData.classes.size() == 20
 	}
 }

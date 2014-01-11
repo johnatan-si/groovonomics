@@ -25,5 +25,4 @@ class ClassWithFieldsOnly {
 	protected int protected_s_field_4 = 4
 	protected int protected_s_field_5 = 4
 	protected int protected_s_field_6 = 4
-    
 }

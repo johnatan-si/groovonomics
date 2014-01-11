@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 class ASTInspectorSpec extends Specification {
 	
-	def "getting field declaration data"() {
+	def "should get data of declaration of fields"() {
 		given: "a class with fields"
 		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithFieldsOnly.groovy"
 		
@@ -19,6 +19,23 @@ class ASTInspectorSpec extends Specification {
 		data.privateField.d == 2
 		data.protectedField.s == 6
 		data.protectedField.d == 3
+		
+	}
+	
+	def "should get data of declaration of static fields"() {
+		given: "a class with fields"
+		def sourceFile = "src/test/projects_folder/0001/a_project/ClassWithStaticFieldsOnly.groovy"
+		
+		when:
+		def data = new ASTInspector(sourceFile).getTypeSystemUsageData()
+		
+		then: "you get the declaration counts for fields grouped by access modifiers"
+		data.publicField.s == 1
+		data.publicField.d == 2
+		data.privateField.s == 2
+		data.privateField.d == 3
+		data.protectedField.s == 3
+		data.protectedField.d == 4
 		
 	}
 	
