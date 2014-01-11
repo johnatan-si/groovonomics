@@ -156,6 +156,10 @@ class AnalyzeTypingUsage {
 			s3.putObject("carlosgsouza.groovonomics", "data/type_usage/class/${projectId}.json", new File("$tempDirPath/${projectId}.json"))
 		}
 		
+		def uploadLog(hostname) {
+			s3.putObject("carlosgsouza.groovonomics", "log/${hostname}.log", new File("/var/log/user-data/log"))
+		}
+		
 		def downloadSource(projectId) {
 			def req = new GetObjectRequest("carlosgsouza.groovonomics", "dataset/projects/source/${projectId}.zip")
 			def download = transferManager.download(req, new File("$tempDirPath/${projectId}.zip"))
