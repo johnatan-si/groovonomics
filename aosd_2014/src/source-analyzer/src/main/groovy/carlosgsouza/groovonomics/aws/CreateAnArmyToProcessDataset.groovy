@@ -55,8 +55,12 @@ cd aosd_2014/src/source-analyzer
 		
 		def count = 1
 		runInstances.reservation.instances.each { instance ->
+			def name = "groovonomics.hero.${count++}"
+			
+			println "Configuring instance $name"
+			
 			CreateTagsRequest createTagsRequest = new CreateTagsRequest()
-			createTagsRequest.withResources(instance.instanceId).withTags(new Tag("Name", "groovonomics.soldier.b${count++}"), new Tag("Batch", batch))
+			createTagsRequest.withResources(instance.instanceId).withTags(new Tag("Name", name), new Tag("Batch", batch))
 			ec2.createTags createTagsRequest
 			
 			def detailedMonitoringRequest = new MonitorInstancesRequest()

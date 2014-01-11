@@ -39,17 +39,17 @@ class AnalyzeTypingUsage {
 		s3.tempDirPath = tempDir
 	}
 	
-	private removeAnnoyingLogs() {
+	private static removeAnnoyingLogs() {
 		Logger.rootLogger.removeAllAppenders();
 		Logger.rootLogger.addAppender(new NullAppender());
 	}
 	
 	public static void main(args) {
-		
+		removeAnnoyingLogs()
 		
 		def threads = []
 		
-		3.times { id ->
+		2.times { id ->
 			threads << Thread.start {
 				new AnalyzeTypingUsage(id).justDoIt()
 			}
@@ -59,7 +59,7 @@ class AnalyzeTypingUsage {
 		Thread.start {
 			while(true) {
 				s3Log.uploadLog(localhostname)
-				Thread.sleep(60000)	
+				Thread.sleep( 3 * 60 * 1000)	
 			}
 		}
 		
@@ -165,7 +165,7 @@ class AnalyzeTypingUsage {
 		}
 		
 		def uploadLog(hostname) {
-			s3.putObject("carlosgsouza.groovonomics", "log/${hostname}.log", new File("/var/log/user-data/log"))
+			s3.putObject("carlosgsouza.groovonomics", "log/${hostname}.log", new File("/var/log/user-data.log"))
 		}
 		
 		def downloadSource(projectId) {
