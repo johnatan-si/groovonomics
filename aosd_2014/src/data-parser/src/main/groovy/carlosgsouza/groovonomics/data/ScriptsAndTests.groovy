@@ -57,8 +57,11 @@ class ScriptsAndTests {
 		def dataA = dataOfAllClasses.findAll(filter)
 		def dataB = dataOfAllClasses.findAll{ !filter(it) }
 		
-		if(dataA.size() > 0 && dataB.size() > 0) {
+		if(dataA.size() > 0) {
 			resultList << translator.translate(projectId, metadataFolder, agregateClassData(dataA)) + [condition]
+		} 
+
+		if(dataB.size() > 0) {
 			resultList << translator.translate(projectId, metadataFolder, agregateClassData(dataB)) + ["not-$condition"]
 		}
 	}

@@ -6,14 +6,16 @@ library(MASS)
 setwd("~/workspace_gg/groovonomics/aosd_2014/analysis")
 
 data_all<-read.table("parsed/declaration_by_type.txt", header=T)
-describe(data)
+describe(data_all)
 
 data_tests_all<-read.table("parsed/declaration_by_tests.txt", header=T)
-describe(data_tests)
+describe(data_tests_all)
 
 data_scripts_all<-read.table("parsed/declaration_by_scripts.txt", header=T)
-describe(data_scripts)
+describe(data_scripts_all)
 
+data_background_all<-read.table("parsed/declaration_by_background.txt", header=T)
+describe(data_background_all)
 
 data=data_all
 
@@ -25,6 +27,11 @@ mainData=data_tests_all[data_tests_all$condition=="not-test", ]
 
 scriptData=data_scripts_all[data_scripts_all$condition=="script", ]
 classData=data_scripts_all[data_scripts_all$condition=="not-script", ]
+
+groovyBackgroundData=data_background_all[data_background_all$condition=="groovy-only", ]
+staticBackgroundData=data_background_all[data_background_all$condition=="static-only", ]
+dynamicBackgroundData=data_background_all[data_background_all$condition=="dynamic-only", ]
+staticAndDynamicBackgroundData=data_background_all[data_background_all$condition=="static-and-dynamic", ]
 
 i<-data.frame(	
 				projectId=1,
@@ -205,14 +212,19 @@ boxPlot(nonMatureData, "non-mature", "all combinations", i$localVariable:i$publi
 
 analyzeSample(data, "all")
 
-analyzeSample(matureData, "mature")
-analyzeSample(nonMatureData, "non-mature")
+analyzeSample(matureData, "maturity/mature")
+analyzeSample(nonMatureData, "maturity/non-mature")
 
-analyzeSample(testData, "test")
-analyzeSample(mainData, "main")
+analyzeSample(testData, "test/test")
+analyzeSample(mainData, "test/main")
 
-analyzeSample(scriptData, "script")
-analyzeSample(classData, "class")
+analyzeSample(scriptData, "script/script")
+analyzeSample(classData, "script/class")
+
+analyzeSample(groovyBackgroundData, "background/groovy-only")
+analyzeSample(staticBackgroundData, "background/static-only")
+analyzeSample(dynamicBackgroundData, "background/dynamic-only")
+analyzeSample(staticAndDynamicBackgroundData, "background/static-and-dynamic")
 
 # Quasi experiment Tests x Non Tests and Scripts x Classes
 data_tests<-read.table("parsed/declaration_by_tests.txt", header=T)
