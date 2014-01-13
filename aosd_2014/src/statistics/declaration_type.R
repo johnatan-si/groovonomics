@@ -5,11 +5,26 @@ library(MASS)
 
 setwd("~/workspace_gg/groovonomics/aosd_2014/analysis")
 
-data<-read.table("parsed/declaration_by_type.txt", header=T)
+data_all<-read.table("parsed/declaration_by_type.txt", header=T)
 describe(data)
+
+data_tests_all<-read.table("parsed/declaration_by_tests.txt", header=T)
+describe(data_tests)
+
+data_scripts_all<-read.table("parsed/declaration_by_scripts.txt", header=T)
+describe(data_scripts)
+
+
+data=data_all
 
 matureData=data[data$loc>2000 & data$commits>100, ]
 nonMatureData=data[data$loc<=2000 | data$commits<=100, ]
+
+testData=data_tests_all[data_tests_all$condition=="test", ]
+mainData=data_tests_all[data_tests_all$condition=="not-test", ]
+
+scriptData=data_scripts_all[data_scripts_all$condition=="script", ]
+classData=data_scripts_all[data_scripts_all$condition=="not-script", ]
 
 i<-data.frame(	
 				projectId=1,
@@ -97,14 +112,12 @@ plotDeclarationTypeHistogram<-function(data, folder, index){
 }
 
 plotDeclarationTypeHistogramOfData<-function(data, folder){
-	for(it in declarationDataRange) {
+	for(it in filterColumnsWithData(data, i$localVariable:i$public )) {
 		print(it)
 		plotDeclarationTypeHistogram(data, folder, it )		
 	}
 }
-plotDeclarationTypeHistogramOfData(data, "all")
-plotDeclarationTypeHistogramOfData(matureData, "mature")
-plotDeclarationTypeHistogramOfData(nonMatureData, "non-mature")
+
 
 # Uses Mann Whitney tests to compare if two samples are equal
 uTest<-function(data, folder, description, columns) {
@@ -113,18 +126,20 @@ uTest<-function(data, folder, description, columns) {
 	
 	for(i in columns) { 
 		for(j in columns) { 
-			d_i=data[!is.na(data[i,]),i]
-			d_j=data[!is.na(data[j,]),j]
-			
-			test<-wilcox.test(d_i, d_j, conf.int=T)
-			print(test)
-			
-			p=test$p.value
-			difference=test$conf.int
-			
-			result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))
-			
-			row=row+1
+			if(i < j) {
+				d_i=data[!is.na(data[,i]),i]
+				d_j=data[!is.na(data[,i]),j]
+				
+				test<-wilcox.test(d_i, d_j, conf.int=T)
+				print(test)
+				
+				p=test$p.value
+				difference=test$conf.int
+				
+				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))
+				
+				row=row+1
+			}
 		}
 	}
 	
@@ -139,22 +154,39 @@ boxPlot<-function(data, folder, description, columns) {
 		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )
 	}
 	
-	plot<-ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")
+	plot<-ggplot(d, aes(label, value)) + 
+			geom_boxplot(notch=T) + 
+			coord_flip() + 
+			labs(y=paste("Use of types in", description), x="")
 	
 	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))
+}
+
+filterColumnsWithData<-function(data, columns) {
+	columnsWithData=numeric()
+	for(c in columns) {
+		if(length(data[!is.na(data[, c]), c]) > 1) {
+			columnsWithData <- c(columnsWithData, c)
+		}
+	}
+	columnsWithData
 }
 
 compareSamples<-function(data, folder, description, columnsToCompare) {
 	print(paste("Comparing samples of", description))
 	
-	uTest(data, folder, description, columnsToCompare)
-	boxPlot(data, folder, description, columnsToCompare)
+	columnsWithData<-filterColumnsWithData(data, columnsToCompare)
+	
+	if(length(columnsWithData) > 0) {
+		uTest(data, folder, description, columnsWithData)
+		boxPlot(data, folder, description, columnsWithData)	
+	}
 }
 
 compareAllSamples<-function(data, folder) {
 	print(paste("Processing", folder, "data"))
 	
-	compareSamples(data, folder, "declaration by type",			i$localVariable:i$field)
+	compareSamples(data, folder, "declarations by type",		i$localVariable:i$field)
 	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)
 	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)
 	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
@@ -162,13 +194,25 @@ compareAllSamples<-function(data, folder) {
 	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)
 }
 
+analyzeSample<-function(data, description) {
+	plotDeclarationTypeHistogramOfData(data, description)
+	compareAllSamples(data, description)	
+}
+
 boxPlot(data, "all", "all combinations", i$localVariable:i$public)
 boxPlot(matureData, "mature", "all combinations", i$localVariable:i$public)
 boxPlot(nonMatureData, "non-mature", "all combinations", i$localVariable:i$public)
 
-compareAllSamples(data, "all")
-compareAllSamples(matureData, "mature")
-compareAllSamples(nonMatureData, "non-mature")
+analyzeSample(data, "all")
+
+analyzeSample(matureData, "mature")
+analyzeSample(nonMatureData, "non-mature")
+
+analyzeSample(testData, "test")
+analyzeSample(mainData, "main")
+
+analyzeSample(scriptData, "script")
+analyzeSample(classData, "class")
 
 # Quasi experiment Tests x Non Tests and Scripts x Classes
 data_tests<-read.table("parsed/declaration_by_tests.txt", header=T)

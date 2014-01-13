@@ -24,17 +24,17 @@ class ScriptsAndTests {
 		def scriptResult = [translator.headers + ["condition"]]
 		
 		def projectFiles = rawDataFolder.listFiles()
-		def c = 0
+		def c = 1
 		
-		rawDataFolder.eachFile { file ->
-			def projectId = file.name - ".json"
+		projectFiles.each { file ->
+			println "${c++}/${projectFiles.size()}"
 			
-			println "${++c}/${projectFiles.size()} - ${projectId}"
+			def projectId = file.name - ".json"
 			
 			def data = slurper.parseText(file.text).classes.collect{ classDataFactory.fromMap(it) }
 
-			processProjectData(projectId, data, testResult, "test", {it.isTestClass})
-			processProjectData(projectId, data, scriptResult, "script", {it.isScript})
+			processProjectData(projectId, data, testResult, "test") {it.isTestClass}
+			processProjectData(projectId, data, scriptResult, "script") {it.isScript}
 		}
 		
 		writeResult("../../analysis/parsed/declaration_by_tests.txt", testResult)

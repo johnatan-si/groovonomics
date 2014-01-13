@@ -27,10 +27,10 @@ class ClassDataFactory {
 		result.privateConstructorParameter = declarationCountFactory.fromMap map.privateConstructorParameter
 		result.protectedConstructorParameter = declarationCountFactory.fromMap map.protectedConstructorParameter
 		result.localVariable = declarationCountFactory.fromMap map.localVariable
-//		
-//		result.className = map.className
-//		result.location = map.location
-//		result.isScript = map.isScript
+		
+		result.className = map.className
+		result.location = map.location
+		result.isScript = map.isScript
 		
 		result
 	}
