@@ -1,1451 +1,757 @@
-compareSamples<-function(filename, columnsToCompare) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
-	row = 1#
-	for(i in columnsToCompare) { #
-		for(j in columnsToCompare) { #
-			d=data[!is.na(data[i,])&!is.na(data[j,]),c(i,j)]#
-			describe(d)#
-			p=wilcox.test(d[,1], d[,2])$p.value#
-			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
-			row=row+1#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))#
-}#
-#
-compareSamples("declaration_type", 3:5)#
-compareSamples("method_return_visibility", 6:8)#
-compareSamples("method_parameter_visibility", 9:11)
-wilcox.test(localVariables[,2], methodReturn[,2])
-wilcox.test(localVariable[,2], methodReturn[,2])
-compareSamples<-function(filename, columnsToCompare) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
-	row = 1#
-	for(i in columnsToCompare) { #
-		for(j in columnsToCompare) { #
-			d_i=data[!is.na(data[i,]),c(i)]#
-			d_j=data[!is.na(data[j,]),c(j)]#
-			describe(d)#
-			p=wilcox.test(d_i, d_j)$p.value#
-			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
-			row=row+1#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))#
-}#
-#
-compareSamples("declaration_type", 3:5)#
-compareSamples("method_return_visibility", 6:8)#
-compareSamples("method_parameter_visibility", 9:11)
-compareSamples<-function(filename, columnsToCompare) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
-	row = 1#
-	for(i in columnsToCompare) { #
-		for(j in columnsToCompare) { #
-			d_i=data[!is.na(data[i,]),c(i)]#
-			d_j=data[!is.na(data[j,]),c(j)]#
-			p=wilcox.test(d_i, d_j)$p.value#
-			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
-			row=row+1#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))#
-}#
-#
-compareSamples("declaration_type", 3:5)#
-compareSamples("method_return_visibility", 6:8)#
-compareSamples("method_parameter_visibility", 9:11)
-kruskcal.test(localVariable[,2], methodParameter[,2])
-kruskal.test(localVariable[,2], methodParameter[,2])
-data<-read.table("parsed/declaration_by_type.txt", header=T)
-d<-read.table("parsed/declaration_type_tests.txt", header=T)
-d<-read.table("parsed/declaration_type_tests.txt", header=T)
-d<-read.table("parsed/declaration_type_tests.txt", header=T)
-d<-read.table("parsed/declaration_type_tests.txt", header=T)
-d<-read.table("parsed/declaration_type_tests.txt", header=T)
-d<-read.table("parsed/declaration_type_tests.txt", header=T)
-qplot(overal,data=d)
-qplot(overall,data=d)
-qplot(overall,data=d, fill=type)
-qplot(overall,data=d, facets=type~)
-qplot(overall,data=d, facets=type~.)
-qplot(localVariable,data=d, facets=type~.)
-qplot(methodParameter,data=d, facets=type~.)
-qplot(methodReturn,data=d, facets=type~.)
-qplot(localVariable,data=d, facets=type~.)
-qplot(methodParameter,data=d, facets=type~.)
-d<-read.table("parsed/declaration_by_scripts.txt", header=T)
-qplot(overall,data=d, facets=type~.)
-qplot(localVariable,data=d, facets=type~.)
-qplot(methodParameter,data=d, facets=type~.)
-d[d$methodParameter=1.0,]
-d[d$methodParameter==1.0,]
-d[d$methodParameter==1.0,1]
-qplot(methodParameter,data=d, facets=type~.)
-qplot(overall,data=d, facets=type~.)
-data<-read.table("parsed/declaration_by_type.txt", header=T)
+2+2
+package.install("psych")
+install.packages("psych")
+clear
+5ˆ5
+5^5
+v=c(1, 2, 34, 5,  "a")
+v
+d=data.frame(id=1:5, gender=c(2, 2, 3, 41, 0))
+d
+view(d)
+View(d)
+edit(d)
+d
+View(d)
+edit(d)
+getwd()
+install.packages(sm)
+install.packages("sm")
+search()
+install.packages("sm")
+search()
+defaults write org.R-project.R force.LANG en_US.UTF-8
+getwd()
+data<-read.table("minutes.txt")
 describe(data)
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-# Declaration Types#
-localVariable=data[!is.na(data$localVariable), c(3,4)]#
-methodReturn=data[!is.na(data$methodReturn), c(3,5)]#
-methodParameter=data[!is.na(data$methodParameter), c(3,6)]#
-#
-privateMethodReturn=data[!is.na(data$privateMethodReturn), c(3,7)]#
-protectedMethodReturn=data[!is.na(data$protectedMethodReturn), c(3,8)]#
-publicMethodReturn=data[!is.na(data$publicMethodReturn), c(3,9)]#
-#
-privateMethodParameter=data[!is.na(data$privateMethodParameter), c(3,10)]#
-protectedMethodParameter=data[!is.na(data$protectedMethodParameter), c(3,11)]#
-publicMethodParameter=data[!is.na(data$publicMethodParameter), c(3,12)]#
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")#
-compareSamples<-function(filename, columnsToCompare) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
-	row = 1#
-	for(i in columnsToCompare) { #
-		for(j in columnsToCompare) { #
-			d_i=data[!is.na(data[i,]),c(i)]#
-			d_j=data[!is.na(data[j,]),c(j)]#
-			p=wilcox.test(d_i, d_j)$p.value#
-			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
-			row=row+1#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))#
-}#
-#
-compareSamples("declaration_type", 4:6)#
-compareSamples("method_return_visibility", 7:9)#
-compareSamples("method_parameter_visibility", 10:12)
-data[ data$methodParameter>data$publicMethodParameter & data$methodParameter>data$privateMethodParameter  & data$methodParameter>data$protectedMethodParameter , ]
-describe(data[ data$methodParameter>data$publicMethodParameter & data$methodParameter>data$privateMethodParameter  & data$methodParameter>data$protectedMethodParameter , ])
-str(data[ data$methodParameter>data$publicMethodParameter & data$methodParameter>data$privateMethodParameter  & data$methodParameter>data$protectedMethodParameter , ])
-str(data[ data$methodParameter>data$publicMethodParameter & data$methodParameter>data$privateMethodParameter  & data$methodParameter>data$protectedMethodParameter , c(1,6,10,11,12)])
+library(psych)#
+library(sm)#
+library(ggplot2)#
+library(MASS)
 describe(data)
-data[,c(1,6,10,11,12)]
-describe(data)
-data<-read.table("parsed/declaration_by_type.txt", header=T)
-data<-read.table("parsed/declaration_by_type.txt", header=T)
-describe(data)
-data<-read.table("parsed/declaration_by_type.txt", header=T)
-describe(data)
-str(data)
-data[1,]
-data<-read.table("parsed/declaration_by_type.txt", header=T)
-data[1,]
-data<-read.table("parsed/declaration_by_type.txt", header=T)
-describe(data)
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-Declaration Types#
-localVariable=data[!is.na(data$localVariable), c(3,4)]#
-methodReturn=data[!is.na(data$methodReturn), c(3,5)]#
-methodParameter=data[!is.na(data$methodParameter), c(3,6)]#
+qplot(data, binwidth=5)
+qplot(data[,1], binwidth=5)
+data<-read.table("minutes.txt")
+qplot(data[,1], binwidth=5)
+data<-read.table("minutes.txt")
+qplot(data[,1], binwidth=5)
+data<-read.table("minutes.txt")
+qplot(data[,1], binwidth=5)
+library(psych)#
+library(sm)#
+library(ggplot2)#
+library(MASS)#
+#
+setwd("~/workspace_gg/groovonomics/aosd_2014/analysis")#
 #
-privateMethodReturn=data[!is.na(data$privateMethodReturn), c(3,7)]#
-protectedMethodReturn=data[!is.na(data$protectedMethodReturn), c(3,8)]#
-publicMethodReturn=data[!is.na(data$publicMethodReturn), c(3,9)]#
-#
-privateMethodParameter=data[!is.na(data$privateMethodParameter), c(3,10)]#
-protectedMethodParameter=data[!is.na(data$protectedMethodParameter), c(3,11)]#
-publicMethodParameter=data[!is.na(data$publicMethodParameter), c(3,12)]#
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-data[,c(1,6,10,11,12)]
-data[,c(1,5,7,8,9)]
-data<-data[data$loc>1000, ]
-describe(data)
-Declaration Types#
-localVariable=data[!is.na(data$localVariable), c(3,4)]#
-methodReturn=data[!is.na(data$methodReturn), c(3,5)]#
-methodParameter=data[!is.na(data$methodParameter), c(3,6)]#
-#
-privateMethodReturn=data[!is.na(data$privateMethodReturn), c(3,7)]#
-protectedMethodReturn=data[!is.na(data$protectedMethodReturn), c(3,8)]#
-publicMethodReturn=data[!is.na(data$publicMethodReturn), c(3,9)]#
-#
-privateMethodParameter=data[!is.na(data$privateMethodParameter), c(3,10)]#
-protectedMethodParameter=data[!is.na(data$protectedMethodParameter), c(3,11)]#
-publicMethodParameter=data[!is.na(data$publicMethodParameter), c(3,12)]#
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-data[,c(1,6,10,11,12)]
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-# Declaration Types#
-localVariable=data[!is.na(data$localVariable), c(3,4)]#
-methodReturn=data[!is.na(data$methodReturn), c(3,5)]#
-methodParameter=data[!is.na(data$methodParameter), c(3,6)]#
-#
-privateMethodReturn=data[!is.na(data$privateMethodReturn), c(3,7)]#
-protectedMethodReturn=data[!is.na(data$protectedMethodReturn), c(3,8)]#
-publicMethodReturn=data[!is.na(data$publicMethodReturn), c(3,9)]#
-#
-privateMethodParameter=data[!is.na(data$privateMethodParameter), c(3,10)]#
-protectedMethodParameter=data[!is.na(data$protectedMethodParameter), c(3,11)]#
-publicMethodParameter=data[!is.na(data$publicMethodParameter), c(3,12)]#
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-data[,c(1,6,10,11,12)]
-data[1:100,c(1,6,10,11,12)]
-data[1:1000,c(1,6,10,11,12)]
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)
-hist(commits)
-hist(data$commits)
-hist(log(data$commits))
-data[1:1000,c(1,5,7,8,9)]
-describe(data)
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]/length(data)#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-values<-data[1:100,2]/length(data)
-describe(values)
-describe(data[1:100,2]/length(data))
-describe(data[1:100,2])
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-data[1:100]
-data[1:100,]
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-# Declaration Types#
-localVariable=data[!is.na(data$localVariable), c(3,4)]#
-methodReturn=data[!is.na(data$methodReturn), c(3,5)]#
-methodParameter=data[!is.na(data$methodParameter), c(3,6)]#
-#
-privateMethodReturn=data[!is.na(data$privateMethodReturn), c(3,7)]#
-protectedMethodReturn=data[!is.na(data$protectedMethodReturn), c(3,8)]#
-publicMethodReturn=data[!is.na(data$publicMethodReturn), c(3,9)]#
-#
-privateMethodParameter=data[!is.na(data$privateMethodParameter), c(3,10)]#
-protectedMethodParameter=data[!is.na(data$protectedMethodParameter), c(3,11)]#
-publicMethodParameter=data[!is.na(data$publicMethodParameter), c(3,12)]#
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-# Declaration Types#
-localVariable=data[!is.na(data$localVariable), c(3,4)]#
-methodReturn=data[!is.na(data$methodReturn), c(3,5)]#
-methodParameter=data[!is.na(data$methodParameter), c(3,6)]#
-#
-privateMethodReturn=data[!is.na(data$privateMethodReturn), c(3,7)]#
-protectedMethodReturn=data[!is.na(data$protectedMethodReturn), c(3,8)]#
-publicMethodReturn=data[!is.na(data$publicMethodReturn), c(3,9)]#
-#
-privateMethodParameter=data[!is.na(data$privateMethodParameter), c(3,10)]#
-protectedMethodParameter=data[!is.na(data$protectedMethodParameter), c(3,11)]#
-publicMethodParameter=data[!is.na(data$publicMethodParameter), c(3,12)]#
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-# Declaration Types#
-localVariable=data[!is.na(data$localVariable), c(3,4)]#
-methodReturn=data[!is.na(data$methodReturn), c(3,5)]#
-methodParameter=data[!is.na(data$methodParameter), c(3,6)]#
-#
-privateMethodReturn=data[!is.na(data$privateMethodReturn), c(3,7)]#
-protectedMethodReturn=data[!is.na(data$protectedMethodReturn), c(3,8)]#
-publicMethodReturn=data[!is.na(data$publicMethodReturn), c(3,9)]#
-#
-privateMethodParameter=data[!is.na(data$privateMethodParameter), c(3,10)]#
-protectedMethodParameter=data[!is.na(data$protectedMethodParameter), c(3,11)]#
-publicMethodParameter=data[!is.na(data$publicMethodParameter), c(3,12)]#
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-# Declaration Types#
-localVariable=data[!is.na(data$localVariable), c(3,4)]#
-methodReturn=data[!is.na(data$methodReturn), c(3,5)]#
-methodParameter=data[!is.na(data$methodParameter), c(3,6)]#
-#
-privateMethodReturn=data[!is.na(data$privateMethodReturn), c(3,7)]#
-protectedMethodReturn=data[!is.na(data$protectedMethodReturn), c(3,8)]#
-publicMethodReturn=data[!is.na(data$publicMethodReturn), c(3,9)]#
-#
-privateMethodParameter=data[!is.na(data$privateMethodParameter), c(3,10)]#
-protectedMethodParameter=data[!is.na(data$protectedMethodParameter), c(3,11)]#
-publicMethodParameter=data[!is.na(data$publicMethodParameter), c(3,12)]#
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-# Declaration Types#
-localVariable=data[!is.na(data$localVariable), c(3,4)]#
-methodReturn=data[!is.na(data$methodReturn), c(3,5)]#
-methodParameter=data[!is.na(data$methodParameter), c(3,6)]#
-#
-privateMethodReturn=data[!is.na(data$privateMethodReturn), c(3,7)]#
-protectedMethodReturn=data[!is.na(data$protectedMethodReturn), c(3,8)]#
-publicMethodReturn=data[!is.na(data$publicMethodReturn), c(3,9)]#
-#
-privateMethodParameter=data[!is.na(data$privateMethodParameter), c(3,10)]#
-protectedMethodParameter=data[!is.na(data$protectedMethodParameter), c(3,11)]#
-publicMethodParameter=data[!is.na(data$publicMethodParameter), c(3,12)]#
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.10)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-describe(data)
-describe(data[data$loc>1000,])
-hist(data[data$loc>1000,]$methodReturn)
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)
-describe(data[data$loc>1000,])
-Declaration Types#
-localVariable=data[!is.na(data$localVariable), c(3,4)]#
-methodReturn=data[!is.na(data$methodReturn), c(3,5)]#
-methodParameter=data[!is.na(data$methodParameter), c(3,6)]#
-#
-privateMethodReturn=data[!is.na(data$privateMethodReturn), c(3,7)]#
-protectedMethodReturn=data[!is.na(data$protectedMethodReturn), c(3,8)]#
-publicMethodReturn=data[!is.na(data$publicMethodReturn), c(3,9)]#
-#
-privateMethodParameter=data[!is.na(data$privateMethodParameter), c(3,10)]#
-protectedMethodParameter=data[!is.na(data$protectedMethodParameter), c(3,11)]#
-publicMethodParameter=data[!is.na(data$publicMethodParameter), c(3,12)]#
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.10)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-compareSamples<-function(filename, columnsToCompare) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
-	row = 1#
-	for(i in columnsToCompare) { #
-		for(j in columnsToCompare) { #
-			d_i=data[!is.na(data[i,]),c(i)]#
-			d_j=data[!is.na(data[j,]),c(j)]#
-			p=wilcox.test(d_i, d_j)$p.value#
-			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
-			row=row+1#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))#
-}#
-#
-compareSamples("declaration_type", 4:6)#
-compareSamples("method_return_visibility", 7:9)#
-compareSamples("method_parameter_visibility", 10:12)
-data<-data[data$loc>1000,]
-describe(data)#
-#
-# Declaration Types#
-localVariable=data[!is.na(data$localVariable), c(3,4)]#
-methodReturn=data[!is.na(data$methodReturn), c(3,5)]#
-methodParameter=data[!is.na(data$methodParameter), c(3,6)]#
-#
-privateMethodReturn=data[!is.na(data$privateMethodReturn), c(3,7)]#
-protectedMethodReturn=data[!is.na(data$protectedMethodReturn), c(3,8)]#
-publicMethodReturn=data[!is.na(data$publicMethodReturn), c(3,9)]#
-#
-privateMethodParameter=data[!is.na(data$privateMethodParameter), c(3,10)]#
-protectedMethodParameter=data[!is.na(data$protectedMethodParameter), c(3,11)]#
-publicMethodParameter=data[!is.na(data$publicMethodParameter), c(3,12)]#
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.10)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")#
-compareSamples<-function(filename, columnsToCompare) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
-	row = 1#
-	for(i in columnsToCompare) { #
-		for(j in columnsToCompare) { #
-			d_i=data[!is.na(data[i,]),c(i)]#
-			d_j=data[!is.na(data[j,]),c(j)]#
-			p=wilcox.test(d_i, d_j)$p.value#
-			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
-			row=row+1#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))#
-}#
-#
-compareSamples("declaration_type", 4:6)#
-compareSamples("method_return_visibility", 7:9)#
-compareSamples("method_parameter_visibility", 10:12)
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)
-data<-data[data$loc>1000,]
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)
-Declaration Types#
-localVariable=data[!is.na(data$localVariable), c(3,4)]#
-methodReturn=data[!is.na(data$methodReturn), c(3,5)]#
-methodParameter=data[!is.na(data$methodParameter), c(3,6)]#
-#
-privateMethodReturn=data[!is.na(data$privateMethodReturn), c(3,7)]#
-protectedMethodReturn=data[!is.na(data$protectedMethodReturn), c(3,8)]#
-publicMethodReturn=data[!is.na(data$publicMethodReturn), c(3,9)]#
-#
-privateMethodParameter=data[!is.na(data$privateMethodParameter), c(3,10)]#
-protectedMethodParameter=data[!is.na(data$protectedMethodParameter), c(3,11)]#
-publicMethodParameter=data[!is.na(data$publicMethodParameter), c(3,12)]#
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.10)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-# Declaration Types#
-localVariable=data[!is.na(data$localVariable), c(3,4)]#
-methodReturn=data[!is.na(data$methodReturn), c(3,5)]#
-methodParameter=data[!is.na(data$methodParameter), c(3,6)]#
-#
-privateMethodReturn=data[!is.na(data$privateMethodReturn), c(3,7)]#
-protectedMethodReturn=data[!is.na(data$protectedMethodReturn), c(3,8)]#
-publicMethodReturn=data[!is.na(data$publicMethodReturn), c(3,9)]#
-#
-privateMethodParameter=data[!is.na(data$privateMethodParameter), c(3,10)]#
-protectedMethodParameter=data[!is.na(data$protectedMethodParameter), c(3,11)]#
-publicMethodParameter=data[!is.na(data$publicMethodParameter), c(3,12)]#
-plotDeclarationTypeHistogram<-function(data, declarationTypeStr){#
-	values<-data[,2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.10)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(localVariable, "local variables")#
-plotDeclarationTypeHistogram(methodReturn, "returns of methods")#
-plotDeclarationTypeHistogram(methodParameter, "parameters of methods")#
-plotDeclarationTypeHistogram(privateMethodReturn, "returns of private methods")#
-plotDeclarationTypeHistogram(protectedMethodReturn, "returns of protected methods")#
-plotDeclarationTypeHistogram(publicMethodReturn, "returns of public methods")#
-plotDeclarationTypeHistogram(privateMethodParameter, "parameters of private methods")#
-plotDeclarationTypeHistogram(protectedMethodParameter, "parameters of protected methods")#
-plotDeclarationTypeHistogram(publicMethodParameter, "parameters of public methods")
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-plotDeclarationTypeHistogram<-function(index, declarationTypeStr){#
-	values<-data[!is.na(data$index),2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.10)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(4, "local variables")#
-plotDeclarationTypeHistogram(5, "returns of methods")#
-plotDeclarationTypeHistogram(6, "parameters of methods")#
-plotDeclarationTypeHistogram(7, "returns of private methods")#
-plotDeclarationTypeHistogram(8, "returns of protected methods")#
-plotDeclarationTypeHistogram(9, "returns of public methods")#
-plotDeclarationTypeHistogram(10, "parameters of private methods")#
-plotDeclarationTypeHistogram(11, "parameters of protected methods")#
-plotDeclarationTypeHistogram(12, "parameters of public methods")
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-plotDeclarationTypeHistogram<-function(index, declarationTypeStr){#
-	values<-data[!is.na(data$index),2]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.10)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(4, "local variables")#
-plotDeclarationTypeHistogram(5, "returns of methods")#
-plotDeclarationTypeHistogram(6, "parameters of methods")#
-plotDeclarationTypeHistogram(7, "returns of private methods")#
-plotDeclarationTypeHistogram(8, "returns of protected methods")#
-plotDeclarationTypeHistogram(9, "returns of public methods")#
-plotDeclarationTypeHistogram(10, "parameters of private methods")#
-plotDeclarationTypeHistogram(11, "parameters of protected methods")#
-plotDeclarationTypeHistogram(12, "parameters of public methods")
-plotDeclarationTypeHistogram<-function(index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.10)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(4, "local variables")
-index<-4#
-describe(data[,index])
-describe(data[data[,index]<0.5,index])
-describe(data[!is.na(data[,index]),index])
-plotDeclarationTypeHistogram<-function(index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.10)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-plotDeclarationTypeHistogram(4, "local variables")
-plotDeclarationTypeHistogram<-function(index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.10)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-plotDeclarationTypeHistogram(4, "local variables")#
-plotDeclarationTypeHistogram(5, "returns of methods")#
-plotDeclarationTypeHistogram(6, "parameters of methods")#
-plotDeclarationTypeHistogram(7, "returns of private methods")#
-plotDeclarationTypeHistogram(8, "returns of protected methods")#
-plotDeclarationTypeHistogram(9, "returns of public methods")#
-plotDeclarationTypeHistogram(10, "parameters of private methods")#
-plotDeclarationTypeHistogram(11, "parameters of protected methods")#
-plotDeclarationTypeHistogram(12, "parameters of public methods")
-plotDeclarationTypeHistogram(13, "public declarations")#
-plotDeclarationTypeHistogram(14, "private declarations")#
-plotDeclarationTypeHistogram(14, "protected declarations")
-compareSamples("visibility", 13:15)
-compareSamples("declaration_type", 4:6)#
-compareSamples("method_return_visibility", 7:9)#
-compareSamples("method_parameter_visibility", 10:12)#
-compareSamples("visibility", 13:15)
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)
-plotDeclarationTypeHistogram(4, "local variables")#
-plotDeclarationTypeHistogram(5, "returns of methods")#
-plotDeclarationTypeHistogram(6, "parameters of methods")#
-plotDeclarationTypeHistogram(7, "returns of private methods")#
-plotDeclarationTypeHistogram(8, "returns of protected methods")#
-plotDeclarationTypeHistogram(9, "returns of public methods")#
-plotDeclarationTypeHistogram(10, "parameters of private methods")#
-plotDeclarationTypeHistogram(11, "parameters of protected methods")#
-plotDeclarationTypeHistogram(12, "parameters of public methods")#
-plotDeclarationTypeHistogram(13, "public declarations")#
-plotDeclarationTypeHistogram(14, "private declarations")#
-plotDeclarationTypeHistogram(14, "protected declarations")
-compareSamples("declaration_type", 4:6)#
-compareSamples("method_return_visibility", 7:9)#
-compareSamples("method_parameter_visibility", 10:12)
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-plotDeclarationTypeHistogram<-function(index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.10)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(4, "local variables")#
-plotDeclarationTypeHistogram(5, "returns of methods")#
-plotDeclarationTypeHistogram(6, "parameters of methods")#
-plotDeclarationTypeHistogram(7, "returns of private methods")#
-plotDeclarationTypeHistogram(8, "returns of protected methods")#
-plotDeclarationTypeHistogram(9, "returns of public methods")#
-plotDeclarationTypeHistogram(10, "parameters of private methods")#
-plotDeclarationTypeHistogram(11, "parameters of protected methods")#
-plotDeclarationTypeHistogram(12, "parameters of public methods")#
-plotDeclarationTypeHistogram(13, "public declarations")#
-plotDeclarationTypeHistogram(14, "private declarations")#
-plotDeclarationTypeHistogram(14, "protected declarations")#
-compareSamples<-function(filename, columnsToCompare) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
-	row = 1#
-	for(i in columnsToCompare) { #
-		for(j in columnsToCompare) { #
-			d_i=data[!is.na(data[i,]),c(i)]#
-			d_j=data[!is.na(data[j,]),c(j)]#
-			p=wilcox.test(d_i, d_j)$p.value#
-			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
-			row=row+1#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))#
-}#
-#
-compareSamples("declaration_type", 4:6)#
-compareSamples("method_return_visibility", 7:9)#
-compareSamples("method_parameter_visibility", 10:12)
-plotDeclarationTypeHistogram<-function(index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.09)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(4, "local variables")#
-plotDeclarationTypeHistogram(5, "returns of methods")#
-plotDeclarationTypeHistogram(6, "parameters of methods")#
-plotDeclarationTypeHistogram(7, "returns of private methods")#
-plotDeclarationTypeHistogram(8, "returns of protected methods")#
-plotDeclarationTypeHistogram(9, "returns of public methods")#
-plotDeclarationTypeHistogram(10, "parameters of private methods")#
-plotDeclarationTypeHistogram(11, "parameters of protected methods")#
-plotDeclarationTypeHistogram(12, "parameters of public methods")#
-plotDeclarationTypeHistogram(13, "public declarations")#
-plotDeclarationTypeHistogram(14, "private declarations")#
-plotDeclarationTypeHistogram(14, "protected declarations")
-plotDeclarationTypeHistogram<-function(index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.12)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(4, "local variables")#
-plotDeclarationTypeHistogram(5, "returns of methods")#
-plotDeclarationTypeHistogram(6, "parameters of methods")#
-plotDeclarationTypeHistogram(7, "returns of private methods")#
-plotDeclarationTypeHistogram(8, "returns of protected methods")#
-plotDeclarationTypeHistogram(9, "returns of public methods")#
-plotDeclarationTypeHistogram(10, "parameters of private methods")#
-plotDeclarationTypeHistogram(11, "parameters of protected methods")#
-plotDeclarationTypeHistogram(12, "parameters of public methods")
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)
-plotDeclarationTypeHistogram(4, "local variables")#
-plotDeclarationTypeHistogram(5, "returns of methods")#
-plotDeclarationTypeHistogram(6, "parameters of methods")#
-plotDeclarationTypeHistogram(7, "returns of private methods")#
-plotDeclarationTypeHistogram(8, "returns of protected methods")#
-plotDeclarationTypeHistogram(9, "returns of public methods")#
-plotDeclarationTypeHistogram(10, "parameters of private methods")#
-plotDeclarationTypeHistogram(11, "parameters of protected methods")#
-plotDeclarationTypeHistogram(12, "parameters of public methods")
-plotDeclarationTypeHistogram<-function(index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(4, "local variables")#
-plotDeclarationTypeHistogram(5, "returns of methods")#
-plotDeclarationTypeHistogram(6, "parameters of methods")#
-plotDeclarationTypeHistogram(7, "returns of private methods")#
-plotDeclarationTypeHistogram(8, "returns of protected methods")#
-plotDeclarationTypeHistogram(9, "returns of public methods")#
-plotDeclarationTypeHistogram(10, "parameters of private methods")#
-plotDeclarationTypeHistogram(11, "parameters of protected methods")#
-plotDeclarationTypeHistogram(12, "parameters of public methods")
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)
-plotDeclarationTypeHistogram(4, "local variables")
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-plotDeclarationTypeHistogram<-function(index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(4, "all")#
-plotDeclarationTypeHistogram(5, "local variables")#
-plotDeclarationTypeHistogram(6, "returns of methods")#
-plotDeclarationTypeHistogram(7, "parameters of methods")#
-plotDeclarationTypeHistogram(8, "returns of private methods")#
-plotDeclarationTypeHistogram(9, "returns of protected methods")#
-plotDeclarationTypeHistogram(10, "returns of public methods")#
-plotDeclarationTypeHistogram(11, "parameters of private methods")#
-plotDeclarationTypeHistogram(12, "parameters of protected methods")#
-plotDeclarationTypeHistogram(13, "parameters of public methods")
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)
-data_scripts<-read.table("parsed/declaration_by_tests.txt", header=T)
-describe(data_scripts)
-data_scripts<-read.table("parsed/declaration_by_tests.txt", header=T)#
-plot<-qplot(overall, data=data_scripts, ylab="Number of projects", binwidth=0.05)
-data_scripts<-read.table("parsed/declaration_by_tests.txt", header=T)#
-qplot(overall, data=data_scripts, ylab="Number of projects", binwidth=0.05)
-data_scripts<-read.table("parsed/declaration_by_tests.txt", header=T)#
-qplot(all, data=data_scripts, ylab="Number of projects", binwidth=0.05)
-data_scripts<-read.table("parsed/declaration_by_tests.txt", header=T)#
-qplot(all, data=data_scripts, ylab="Number of projects", binwidth=0.05, facet=condition~.)
-data_scripts<-read.table("parsed/declaration_by_tests.txt", header=T)#
-qplot(all, data=data_scripts, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-qplot(all, data=data_scripts, ylab="Number of projects", binwidth=0.05, facets=condition~., color=publicMethodReturn)
-data_scripts<-read.table("parsed/declaration_by_tests.txt", header=T)#
-qplot(all, data=data_scripts, ylab="Number of projects", binwidth=0.05, facets=condition~., fill=publicMethodReturn)
-data_scripts<-read.table("parsed/declaration_by_tests.txt", header=T)#
-qplot(all, data=data_scripts, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-data_scripts<-read.table("parsed/declaration_by_tests.txt", header=T)#
-qplot(methodReturn, data=data_scripts, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-data_scripts<-read.table("parsed/declaration_by_tests.txt", header=T)#
-qplot(methodReturn, data=data_scripts, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-data_scripts<-read.table("parsed/declaration_by_tests.txt", header=T)#
-qplot(localVariable, data=data_scripts, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-data_tests<-read.table("parsed/declaration_by_tests.txt", header=T)#
-data_scripts<-read.table("parsed/declaration_by_scripts.txt", header=T)
-wilcox.test( data_tests[data_tests$condition=="test",data_tests$localVariable], data_tests[data_tests$condition!="test",data_tests$localVariable] )
-desribe(data_tests)
-describe(data_tests)
-wilcox.test( data_tests[data_tests$condition=="test",5], data_tests[data_tests$condition!="test",5] )
-describe( data_tests[data_tests$condition=="test",5], data_tests[data_tests$condition!="test",5] )
-describe( data_tests[data_tests$condition=="test",5]) ; describe(data_tests[data_tests$condition!="test",5] )
-desribe(data$condition)
-describe(data$condition)
-str(data_test$condition)
-describe(data_tests$condition)
-str(data_tests$condition)
-hist(data_tests$condition)
-summary(data_tests$condition)
-summary(data_scripts$condition)
-data_background<-read.table("parsed/declaration_by_background.txt", header=T)
-summary(data_background)
-describe(data_background)
-summary(data_background$condition)
-data_background<-read.table("parsed/declaration_by_background.txt", header=T)
-summary(data_background$condition)
-qplot(all, data=data_background, ylab="Number of projects", binwidth=0.05, fill=condition)
-qplot(all, data=data_background, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-data_background<-read.table("parsed/declaration_by_background.txt", header=T)#
-qplot(all, data=data_background, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-data_background<-read.table("parsed/declaration_by_background.txt", header=T)#
-qplot(localVariable, data=data_background, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-data_background<-read.table("parsed/declaration_by_background.txt", header=T)#
-qplot(methodParameter, data=data_background, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-data_background<-read.table("parsed/declaration_by_background.txt", header=T)#
-qplot(methodReturn, data=data_background, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-cor(data[!is.na(data$localVariable), c(1,3)])
-cor(data[!is.na(data$localVariable), c(2,3)])
-cor(data[!is.na(data$localVariable), c(2,4)])#
-cor(data[!is.na(data$localVariable), c(3,4)])
-cor(data[!is.na(data$localVariable), c(2,5)])#
-cor(data[!is.na(data$localVariable), c(3,5)])
-cor(data[!is.na(data$all), c(2,4)])#
-cor(data[!is.na(data$all), c(3,4)])
-cor(data[!is.na(data$publicMethodParameter), c(2,13)])#
-cor(data[!is.na(data$publicMethodParameter), c(3,13)])
-cor(data[!is.na(data$publicMethodParameter), c(2,3,13)])
-cor(data[!is.na(data$publicMethodParameter), c(2,3,13)], method="spearman")
-describe(data)
-for(i in 4:13) {#
-	filteredData = data[ !is.na(data[, i]), ]#
-	describe(filteredData)#
-	#cor( data[,2]#
-	#data[!is.na(data$localVariable)&!is.na(data$methodParameter)&!is.na(data$methodReturn), 3:5])#
-}
-for(i in 4:13) {#
-	filteredData = data[ !is.na(data[, i]), ]#
-	print(describe(filteredData))#
-	#cor( data[,2]#
-	#data[!is.na(data$localVariable)&!is.na(data$methodParameter)&!is.na(data$methodReturn), 3:5])#
-}
-for(i in 4:13) {#
-	filteredData = data[ !is.na(data[, i]), ]#
-	print(cor( data[,2], data[, i], method="spearman"))#
-	#data[!is.na(data$localVariable)&!is.na(data$methodParameter)&!is.na(data$methodReturn), 3:5])#
-}
-for(i in 4:13) {#
-	filteredData = data[ !is.na(data[, i]), ]#
-	print(cor( filteredData[,2], filteredData[, i], method="spearman"))#
-}
-corLOC = data.frame(declaration=character(0), coefficient=numeric(0))#
-corCommits = data.frame(declaration=character(0), coefficient=numeric(0))#
-#
-for(i in 4:13) {#
-	filteredData=data[ !is.na(data[, i]), ]#
-	declarationType=colnames(data)[i]#
-	rank=cor(filteredData[,2], filteredData[, i], method="spearman")#
-	rbind(corLOC, data.frame(declarationType, rank))#
-}#
-#
-print(corLOC)
-corLOC = data.frame(declaration=character(0), coefficient=numeric(0))#
-corCommits = data.frame(declaration=character(0), coefficient=numeric(0))#
-#
-for(i in 4:13) {#
-	filteredData=data[ !is.na(data[, i]), ]#
-	declarationType=colnames(data)[i]#
-	rank=cor(filteredData[,2], filteredData[, i], method="spearman")#
-	corLOC=rbind(corLOC, data.frame(declarationType, rank))#
-}#
-#
-print(corLOC)
-corLOC = data.frame(declaration=character(0), coefficient=numeric(0))#
-corCommits = data.frame(declaration=character(0), coefficient=numeric(0))#
-#
-for(i in 4:13) {#
-	filteredData=data[ !is.na(data[, i]), ]#
-	declarationType=colnames(data)[i]#
-	rankLOC=cor(filteredData[,2], filteredData[, i], method="spearman")#
-	rankCommits=cor(filteredData[,2], filteredData[, i], method="spearman")#
-	corLOC=rbind(corLOC, data.frame(declarationType, rankLOC))#
-	corCommits=rbind(corCommits, data.frame(declarationType, rankCommits))#
-}#
-#
-print(corLOC)#
-print(corCommits)
-corLOC = data.frame(declaration=character(0), coefficient=numeric(0))#
-corCommits = data.frame(declaration=character(0), coefficient=numeric(0))#
-#
-for(i in 4:13) {#
-	filteredData=data[ !is.na(data[, i]), ]#
-	declarationType=colnames(data)[i]#
-	rankLOC=cor(filteredData[,2], filteredData[, i], method="spearman")#
-	rankCommits=cor(filteredData[,3], filteredData[, i], method="spearman")#
-	corLOC=rbind(corLOC, data.frame(declarationType, rankLOC))#
-	corCommits=rbind(corCommits, data.frame(declarationType, rankCommits))#
-}#
-#
-print(corLOC)#
-print(corCommits)
-Corrrelation between declarations and size#
-correlateLOCandCommits=function() {#
-	corLOC = data.frame(declaration=character(0), coefficient=numeric(0))#
-	corCommits = data.frame(declaration=character(0), coefficient=numeric(0))#
-#
-	for(i in 4:13) {#
-		filteredData=data[ !is.na(data[, i]), ]#
-		declarationType=colnames(data)[i]#
-		rankLOC=cor(filteredData[,2], filteredData[, i], method="spearman")#
-		rankCommits=cor(filteredData[,3], filteredData[, i], method="spearman")#
-		corLOC=rbind(corLOC, data.frame(declarationType, rankLOC))#
-		corCommits=rbind(corCommits, data.frame(declarationType, rankCommits))#
-	}#
-#
-	print(corLOC)#
-	write.matrix(corLOC ,"result/spearman/loc.txt")#
-	print(corCommits)#
-	write.matrix(corCommits ,"result/spearman/commits.txt")#
-}#
-correlateLOCandCommits()
-Corrrelation between declarations and size#
-correlateLOCandCommits=function() {#
-	corLOC = data.frame(declaration=character(0), coefficient=numeric(0))#
-	corCommits = data.frame(declaration=character(0), coefficient=numeric(0))#
-#
-	for(i in 4:13) {#
-		filteredData=data[ !is.na(data[, i]), ]#
-		declarationType=colnames(data)[i]#
-		rankLOC=cor(filteredData[,2], filteredData[, i], method="spearman")#
-		rankCommits=cor(filteredData[,3], filteredData[, i], method="spearman")#
-		corLOC=rbind(corLOC, data.frame(declarationType, rankLOC))#
-		corCommits=rbind(corCommits, data.frame(declarationType, rankCommits))#
-	}#
-#
-	print(corLOC)#
-	write.matrix(corLOC ,"result/correlation/loc.txt")#
-	print(corCommits)#
-	write.matrix(corCommits ,"result/correlation/commits.txt")#
-}#
-correlateLOCandCommits()
-matureData=data[data$loc>2000 & data$commits>1000]
-matureData=data[data$loc>2000 & data$commits>1000, ]
-describe(data)
-describe(matureData)
-matureData=data[data$loc>2000 | data$commits>1000, ]
-describe(matureData)
-matureData=data[data$loc>2000 | data$commits>100, ]
-describe(matureData)
-matureData=data[data$loc>2000 & data$commits>100, ]#
-describe(matureData)
-matureData=data[data$loc>2000 & data$commits>100, ]#
-nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
-describe(matureData)#
-#
-compareMatureProjectsToOthers=function() {#
-	result = data.frame(declaration=character(0), pvalue=numeric(0))#
-#
-	for(i in 4:13) {#
-		md = matureData[!is.na(matureData[,i]), i]#
-		nmd = nonMatureData[!is.na(nonMatureData[,i]), i]#
-		declarationType=colnames(data)[i]#
-		p=wilcox.test(md, nmd)$p.value#
-		print(declarationType)#
-		print(p)#
-	}#
-}#
-#
-compareMatureProjectsToOthers()
-matureData=data[data$loc>2000 & data$commits>100, ]#
-nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
-#
-compareMatureProjectsToOthers=function() {#
-	result = data.frame(declaration=character(0), pvalue=numeric(0))#
-#
-	for(i in 4:13) {#
-		md = matureData[!is.na(matureData[,i]), i]#
-		nmd = nonMatureData[!is.na(nonMatureData[,i]), i]#
-		declarationType=colnames(data)[i]#
-		p=wilcox.test(md, nmd)$p.value#
-		result <- rbind(result, declarationType, p))#
-	}#
-	write.matrix(corCommits ,"result/u-test/mature_and_others.txt")#
-}#
-#
-compareMatureProjectsToOthers()
-Mature Data Analysis#
-matureData=data[data$loc>2000 & data$commits>100, ]#
-nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
-#
-compareMatureProjectsToOthers=function() {#
-	result = data.frame(declaration=character(0), pvalue=numeric(0))#
-#
-	for(i in 4:13) {#
-		md = matureData[!is.na(matureData[,i]), i]#
-		nmd = nonMatureData[!is.na(nonMatureData[,i]), i]#
-		declarationType=colnames(data)[i]#
-		p=wilcox.test(md, nmd)$p.value#
-		result <- rbind(result, declarationType, p))#
-	}#
-	write.matrix(corCommits ,"result/u-test/mature_and_others.txt")#
-}#
-#
-compareMatureProjectsToOthers()
-compareMatureProjectsToOthers=function() {#
-	result = data.frame(declaration=character(0), pvalue=numeric(0))#
-#
-	for(i in 4:13) {#
-		md = matureData[!is.na(matureData[,i]), i]#
-		nmd = nonMatureData[!is.na(nonMatureData[,i]), i]#
-		declarationType=colnames(data)[i]#
-		p=wilcox.test(md, nmd)$p.value#
-		result <- rbind(result, declarationType, p)#
-	}#
-	write.matrix(corCommits ,"result/u-test/mature_and_others.txt")#
-}#
-#
-compareMatureProjectsToOthers()
-compareMatureProjectsToOthers=function() {#
-	result = data.frame(declaration=character(0), pvalue=numeric(0))#
-#
-	for(i in 4:13) {#
-		md = matureData[!is.na(matureData[,i]), i]#
-		nmd = nonMatureData[!is.na(nonMatureData[,i]), i]#
-		declarationType=colnames(data)[i]#
-		p=wilcox.test(md, nmd)$p.value#
-		print(declarationType)#
-		print(p)#
-		result <- rbind(result, declarationType, p)#
-	}#
-	write.matrix(corCommits ,"result/u-test/mature_and_others.txt")#
-}#
-#
-compareMatureProjectsToOthers()
-compareMatureProjectsToOthers=function() {#
-	result = data.frame(declaration=character(0), pvalue=numeric(0))#
-#
-	for(i in 4:13) {#
-		md = matureData[!is.na(matureData[,i]), i]#
-		nmd = nonMatureData[!is.na(nonMatureData[,i]), i]#
-		declarationType=colnames(data)[i]#
-		p=wilcox.test(md, nmd)$p.value#
-		print(declarationType)#
-		print(p)#
-		result <- rbind(result, declarationType, p)#
-	}#
-	write.matrix(result ,"result/u-test/mature_and_others.txt")#
-}#
-#
-compareMatureProjectsToOthers()
-compareMatureProjectsToOthers=function() {#
-	result = data.frame(declaration=character(0), pvalue=numeric(0))#
-#
-	for(i in 4:13) {#
-		md = matureData[!is.na(matureData[,i]), i]#
-		nmd = nonMatureData[!is.na(nonMatureData[,i]), i]#
-		declarationType=colnames(data)[i]#
-		p=wilcox.test(md, nmd)$p.value#
-		print(declarationType)#
-		print(p)#
-		result <- rbind(result, declration=declarationType, pvalue=p)#
-	}#
-	write.matrix(result ,"result/u-test/mature_and_others.txt")#
-}#
-#
-compareMatureProjectsToOthers()
-compareMatureProjectsToOthers=function() {#
-	result = data.frame(declaration=character(0), pvalue=numeric(0))#
-#
-	for(i in 4:13) {#
-		md = matureData[!is.na(matureData[,i]), i]#
-		nmd = nonMatureData[!is.na(nonMatureData[,i]), i]#
-		declarationType=colnames(data)[i]#
-		p=wilcox.test(md, nmd)$p.value#
-		print(declarationType)#
-		print(p)#
-		result <- rbind(result, declration=declarationType, pvalue=p)#
-		print(result)#
-	}#
-	write.matrix(result ,"result/u-test/mature_and_others.txt")#
-}#
-#
-compareMatureProjectsToOthers()
-describe(result)
-compareMatureProjectsToOthers=function() {#
-	result = data.frame(declaration=character(0), pvalue=numeric(0))#
-#
-	for(i in 4:13) {#
-		md = matureData[!is.na(matureData[,i]), i]#
-		nmd = nonMatureData[!is.na(nonMatureData[,i]), i]#
-		declarationType=colnames(data)[i]#
-		p=wilcox.test(md, nmd)$p.value#
-		print(declarationType)#
-		print(p)#
-		result <- rbind(result, declration=declarationType, pvalue=p)#
-		describe(result)#
-	}#
-	write.matrix(result ,"result/u-test/mature_and_others.txt")#
-}#
-#
-compareMatureProjectsToOthers()
-compareMatureProjectsToOthers=function() {#
-	result = data.frame(declaration=character(0), pvalue=numeric(0))#
-#
-	for(i in 4:13) {#
-		md = matureData[!is.na(matureData[,i]), i]#
-		nmd = nonMatureData[!is.na(nonMatureData[,i]), i]#
-		declarationType=colnames(data)[i]#
-		p=wilcox.test(md, nmd)$p.value#
-		print(declarationType)#
-		print(p)#
-		result <- rbind(result, declration=declarationType, pvalue=p)#
-		summary(result)#
-	}#
-	write.matrix(result ,"result/u-test/mature_and_others.txt")#
-}#
-#
-compareMatureProjectsToOthers()
-compareMatureProjectsToOthers=function() {#
-	result = data.frame(declaration=character(0), pvalue=numeric(0))#
-#
-	for(i in 4:13) {#
-		md = matureData[!is.na(matureData[,i]), i]#
-		nmd = nonMatureData[!is.na(nonMatureData[,i]), i]#
-		declarationType=colnames(data)[i]#
-		p=wilcox.test(md, nmd)$p.value#
-		print(declarationType)#
-		print(p)#
-		result <- rbind(result, data.frame(declration=declarationType, pvalue=p))#
-	}#
-	write.matrix(result ,"result/u-test/mature_and_others.txt")#
-}#
-#
-compareMatureProjectsToOthers()
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-plotDeclarationTypeHistogram<-function(index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path="result/histograms/", filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogram(4, "all declarations")#
-plotDeclarationTypeHistogram(5, "local variables")#
-plotDeclarationTypeHistogram(6, "returns of methods")#
-plotDeclarationTypeHistogram(7, "parameters of methods")#
-plotDeclarationTypeHistogram(8, "returns of private methods")#
-plotDeclarationTypeHistogram(9, "returns of protected methods")#
-plotDeclarationTypeHistogram(10, "returns of public methods")#
-plotDeclarationTypeHistogram(11, "parameters of private methods")#
-plotDeclarationTypeHistogram(12, "parameters of protected methods")#
-plotDeclarationTypeHistogram(13, "parameters of public methods")
-data_tests<-read.table("parsed/declaration_by_tests.txt", header=T)#
-data_scripts<-read.table("parsed/declaration_by_scripts.txt", header=T)
-data_background<-read.table("parsed/declaration_by_background.txt", header=T)#
-qplot(methodReturn, data=data_background, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-qplot(all, data=data_tests, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-qplot(all, data=data_tests, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-data_tests<-read.table("parsed/declaration_by_tests.txt", header=T)#
-qplot(localVariable, data=data_tests, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-describe(data_tests)
-data_scripts<-read.table("parsed/declaration_by_scripts.txt", header=T)
-qplot(localVariable, data=data_scripts, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-qplot(all, data=data_scripts, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-qplot(localVariable, data=data_scripts, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-qplot(methodReturn, data=data_background, ylab="Number of projects", binwidth=0.05, facets=condition~.)
-qplot(all, data=data_background, ylab="Number of projects", binwidth=0.05, facets=condition~.)
 data<-read.table("parsed/declaration_by_type.txt", header=T)#
 describe(data)#
 #
 matureData=data[data$loc>2000 & data$commits>100, ]#
 nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
 #
-plotDeclarationTypeHistogram<-function(data, folder, index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path=paste("result/histogram/", folder, sep=""), filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
+declarationDataRange=5:24#
+#
+i<-data.frame(	#
+				projectId=1,#
+				loc=2,#
+				commits=3,#
+				age=4,#
+#
+				all=4, #
+#
+				localVariable=5,#
+				methodReturn=6,#
+				methodParameter=7,#
+				field=8,#
+				constructorParameter=9,#
+				privateMethodReturn=10,#
+				protectedMethodReturn=11,#
+				publicMethodReturn=12,#
+				privateField=13,#
+				protectedField=14,#
+				publicField=15,#
+				privateMethodParameter=16,#
+				protectedMethodParameter=17,#
+				publicMethodParameter=18,#
+				privateConstructorParameter=19,#
+				protectedConstructorParameter=20,#
+				publicConstructorParameter=21,#
+				public=22,#
+				private=23,#
+				protected=24#
+			)#
+label<-c(#
+		"project id",#
+		"LOC",#
+		"number of commits",#
+		"age",#
+		"all types",#
+#
+		"local variables",#
+		"returns of methods",#
+		"parameters of methods",#
+		"fields",#
+		"parameters of constructors",#
+#
+		"returns of private methods",#
+		"returns of protected methods",#
+		"returns of public methods",#
+#
+		"private fields",#
+		"protected fields",#
+		"public fields",#
+#
+		"parameters of private methods",#
+		"parameters of protected methods",#
+		"parameters of public methods",#
+#
+		"parameters of private constructors",#
+		"parameters of protected constructors",#
+		"parameters of public constructors",#
+#
+		"public fields and methods",#
+		"private fields and methods",#
+		"protected fields and methods"#
+)#
+#
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),index]#
+	plot<-qplot(values, xlab=paste("Usage of types in declarations of ",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.1)#
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
 }#
 #
 plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	plotDeclarationTypeHistogram(data, folder, 4, "all declarations")#
-	plotDeclarationTypeHistogram(data, folder, 5, "local variables")#
-	plotDeclarationTypeHistogram(data, folder, 6, "returns of methods")#
-	plotDeclarationTypeHistogram(data, folder, 7, "parameters of methods")#
-	plotDeclarationTypeHistogram(data, folder, 8, "returns of private methods")#
-	plotDeclarationTypeHistogram(data, folder, 9, "returns of protected methods")#
-	plotDeclarationTypeHistogram(data, folder, 10, "returns of public methods")#
-	plotDeclarationTypeHistogram(data, folder, 11, "parameters of private methods")#
-	plotDeclarationTypeHistogram(data, folder, 12, "parameters of protected methods")#
-	plotDeclarationTypeHistogram(data, folder, 13, "parameters of public methods")#
+	for(it in declarationDataRange) {#
+		print(it)#
+		plotDeclarationTypeHistogram(data, folder, it )		#
+	}#
 }#
-plotDeclarationTypeHistogramOfData<-function(data, "all")
-plotDeclarationTypeHistogramOfData<-function(data, "all")
-plotDeclarationTypeHistogramOfData<-function(data, "all")
 plotDeclarationTypeHistogramOfData(data, "all")
-plotDeclarationTypeHistogram<-function(data, folder, index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path=paste("result/histogram/", folder, sep=""), filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),index]#
+	plot<-qplot(values, xlab=paste("Usage of types in declarations of",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.1)#
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
 }#
 #
 plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	plotDeclarationTypeHistogram(data, folder, 4, "all declarations")#
-	plotDeclarationTypeHistogram(data, folder, 5, "local variables")#
-	plotDeclarationTypeHistogram(data, folder, 6, "returns of methods")#
-	plotDeclarationTypeHistogram(data, folder, 7, "parameters of methods")#
-	plotDeclarationTypeHistogram(data, folder, 8, "returns of private methods")#
-	plotDeclarationTypeHistogram(data, folder, 9, "returns of protected methods")#
-	plotDeclarationTypeHistogram(data, folder, 10, "returns of public methods")#
-	plotDeclarationTypeHistogram(data, folder, 11, "parameters of private methods")#
-	plotDeclarationTypeHistogram(data, folder, 12, "parameters of protected methods")#
-	plotDeclarationTypeHistogram(data, folder, 13, "parameters of public methods")#
+	for(it in declarationDataRange) {#
+		print(it)#
+		plotDeclarationTypeHistogram(data, folder, it )		#
+	}#
 }#
 plotDeclarationTypeHistogramOfData(data, "all")#
 plotDeclarationTypeHistogramOfData(matureData, "mature")#
 plotDeclarationTypeHistogramOfData(nonMatureData, "non-mature")
-plotDeclarationTypeHistogram<-function(data, folder, index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path=paste("result/histogram/", folder, sep=""), filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
-}#
-#
-plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	plotDeclarationTypeHistogram(data, folder, 4, "all declarations")#
-	plotDeclarationTypeHistogram(data, folder, 5, "local variables")#
-	plotDeclarationTypeHistogram(data, folder, 6, "returns of methods")#
-	plotDeclarationTypeHistogram(data, folder, 7, "parameters of methods")#
-	plotDeclarationTypeHistogram(data, folder, 8, "returns of private methods")#
-	plotDeclarationTypeHistogram(data, folder, 9, "returns of protected methods")#
-	plotDeclarationTypeHistogram(data, folder, 10, "returns of public methods")#
-	plotDeclarationTypeHistogram(data, folder, 11, "parameters of private methods")#
-	plotDeclarationTypeHistogram(data, folder, 12, "parameters of protected methods")#
-	plotDeclarationTypeHistogram(data, folder, 13, "parameters of public methods")#
-}#
-plotDeclarationTypeHistogramOfData(data, "all")#
-plotDeclarationTypeHistogramOfData(matureData, "mature")#
-plotDeclarationTypeHistogramOfData(nonMatureData, "non-mature")
-plotDeclarationTypeHistogram<-function(data, folder, index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
+index=5
+declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),index]
+ggplot(values)
+ggplot(values, aes(x=declarationTypeStr)) + geom_histogram(binwidth=0.1)
+ggplot(data, aes(x=localVariable)) + geom_histogram(binwidth=0.1)
+qplot(values, xlab=paste("Usage of types in declarations of",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.1)
+qplot(values, xlab=paste("Usage of types in declarations of",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.1)
+describe(na.omit(data))
+values<-data[!is.na(data[,index]),]
+dexribe(values)
+describe(values)
+index
+ggplot(data, aes(x=all)) + geom_histogram(binwidth=0.1)
+ggplot(values, aes(x=all)) + geom_histogram(binwidth=0.1)
+ggplot(values, aes_string(x=all)) + geom_histogram(binwidth=0.1)
+ggplot(values, aes_string(x="all")) + geom_histogram(binwidth=0.1)
+ggplot(values, aes_string(x="all")) + geom_histogram(binwidth=0.1)
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	colname<-colnames(data)[i]#
+ 	ggplot(values, aes_string(x=colname)) + geom_histogram(binwidth=0.1)#
+	# plot<-qplot(values, xlab=paste("Usage of types in declarations of",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.1)#
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
 }
-plotDeclarationTypeHistogram<-function(data, folder, index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path=paste("result/histogram/", folder, sep=""), filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
+declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	colname<-colnames(data)[i]#
+ 	ggplot(values, aes_string(x=colname)) + geom_histogram(binwidth=0.1)
+colname<-colnames(data)[index]
+ggplot(values, aes_string(x=colname)) + geom_histogram(binwidth=0.1)
+ggplot(values, aes_string(x=colname)) + geom_histogram(binwidth=0.1) + geom_smooth()
+ggplot(values, aes_string(x=colname)) + geom_histogram(binwidth=0.1) + ylab("Number of projects")
+ggplot(values, aes_string(x=colname)) + geom_histogram(binwidth=0.1) + ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))
+ggplot(values, aes_string(x=colname)) #
+ 		+ geom_histogram(binwidth=0.1) #
+ 		+ ylab("Number of projects") #
+ 		+ xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))#
+ 		+ theme_bw()
+ggplot(values, aes_string(x=colname)) #
+ 		+ geom_histogram(binwidth=0.1) #
+ 		+ labs(y="Number of projects", x=paste("Usage of types in declarations of",  declarationTypeStr, "per project"))
+ggplot(values, aes_string(x=colname)) #
+ 		+ geom_histogram(binwidth=0.1) #
+ 		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))#
+ 		+ geom_vline(aes(xintercept=mean(rating, na.rm=T)), color="red", linetype="dashed", size=1)
+ggplot(values, aes_string(x=colname)) #
+ 		+ geom_histogram(binwidth=0.1) #
+ 		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))#
+ 		+ geom_vline(aes(xintercept=mean(colname, na.rm=T)), color="red", linetype="dashed", size=1)
+ggplot(values, aes_string(x=colname)) #
+ 		+ geom_histogram(binwidth=0.1) #
+ 		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))#
+ 		+ geom_vline(aes(xintercept=mean(all, na.rm=T)), color="red", linetype="dashed", size=1)
+ggplot(values, aes_string(x=colname)) #
+ 		+ geom_histogram(binwidth=0.1) #
+ 		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))#
+ 		+ geom_vline(#
+ 			aes(xintercept=mean(all, na.rm=T)), #
+ 			color="red", linetype="dashed", size=1)
+ggplot(values, aes_string(x=colname)) #
+ 		+ geom_histogram(binwidth=0.1) #
+ 		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))#
+ 		+ geom_vline(aes(xintercept=mean(all, na.rm=T)))
+ggplot(values, aes_string(x=colname)) #
+ 		+ geom_histogram(binwidth=0.1) #
+ 		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))#
+ 		+ geom_vline(aes(xintercept=0.5))
+ggplot(values, aes_string(x=colname)) #
+ 		+ geom_histogram(binwidth=0.1) #
+ 		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))#
+ 		+ geom_vline()
+ggplot(values, aes_string(x=colname)) #
+ 		+ geom_histogram(binwidth=0.1) #
+ 		 		+ geom_vline(aes(xintercept=0.5))#
+ 		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))
+ggplot(values, aes_string(x=colname)) #
+ 		+ geom_histogram(binwidth=0.1) #
+ 		 		+ geom_vline(aes(xintercept=0.5))
+ggplot(values, aes_string(x=colname))  		+ geom_vline(aes(xintercept=0.5))
+ggplot(values, aes_string(x=colname)) #
+ 		+ geom_histogram(binwidth=0.1)
+ggplot(values, aes_string(x=colname))
+ggplot(values, aes_string(x=colname)) + geom_histogram(binwidth=0.1)
+ggplot(values, aes_string(x=colname)) 		+ geom_histogram(binwidth=0.1)  		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))		+ geom_vline(aes(xintercept=mean(colname, na.rm=T)), color="red", linetype="dashed", size=1)
+ggplot(values, aes_string(x=colname)) 		+ geom_histogram(binwidth=0.1)  		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))		+ geom_vline(aes(xintercept=mean(all, na.rm=T)), color="red", linetype="dashed", size=1)
+ggplot(values, aes_string(x=colname)) 		+ geom_histogram(binwidth=0.1)  		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))		+ geom_vline(aes(xintercept=mean, color="red", linetype="dashed", size=1)
+"
+;
+1
+asd
+result
+ggplot(values, aes_string(x=colname)) 		+ geom_histogram(binwidth=0.1)  		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))		+ geom_vline(aes(xintercept=mean), color="red", linetype="dashed", size=1)
+class(mean)
+str(mean)
+mean
+mean<-mean(data[!is.na(data[,index]),index])
+mean
+ggplot(values, aes_string(x=colname)) 		+ geom_histogram(binwidth=0.1)  		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))		+ geom_vline(aes(xintercept=mean), color="red", linetype="dashed", size=1)
+ggplot(values, aes_string(x=colname)) 		+ geom_histogram(binwidth=0.1)  		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))		+ geom_vline(aes(xintercept=mean), color="grey", linetype="dashed", size=1)
+ggplot(values, aes_string(x=colname)) 		+ geom_histogram(binwidth=0.05)  		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))		+ geom_vline(aes(xintercept=mean), color="grey", linetype="dashed", size=1)
+index=6
+declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	mean<-mean(data[!is.na(data[,index]),index])#
+ 	colname<-colnames(data)[index]#
+ 	ggplot(values, aes_string(x=colname)) 		+ geom_histogram(binwidth=0.05)  		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))		+ geom_vline(aes(xintercept=mean), color="grey", linetype="dashed", size=1)
+ggplot(values, aes_string(x=colname)) + #
+ 	geom_histogram(binwidth=0.05)  		+ ylab("Number of projects") + xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project"))		+ geom_vline(aes(xintercept=mean), color="grey", linetype="dashed", size=1)
+ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		geom_vline(aes(xintercept=mean), color="grey", linetype="dashed", size=1) +#
+ 		xlim(0,1)
+ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		geom_vline(aes(xintercept=mean), color="grey", linetype="dashed", size=1) +#
+ 		xlim(0,2)
+ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		geom_vline(aes(xintercept=mean), color="grey", linetype="dashed", size=1) +#
+ 		xlim(0,1.1)
+ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		geom_vline(aes(xintercept=mean), color="grey", linetype="dashed", size=1) +#
+ 		xlim(0,1.1)
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	mean<-mean(data[!is.na(data[,index]),index])#
+ 	colname<-colnames(data)[index]#
+ 	plot<-ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		geom_vline(aes(xintercept=mean), color="grey", linetype="dashed", size=1) +#
+ 		xlim(0,1.1)#
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
 }#
 #
 plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	plotDeclarationTypeHistogram(data, folder, 4, "all declarations")#
-	plotDeclarationTypeHistogram(data, folder, 5, "local variables")#
-	plotDeclarationTypeHistogram(data, folder, 6, "returns of methods")#
-	plotDeclarationTypeHistogram(data, folder, 7, "parameters of methods")#
-	plotDeclarationTypeHistogram(data, folder, 8, "returns of private methods")#
-	plotDeclarationTypeHistogram(data, folder, 9, "returns of protected methods")#
-	plotDeclarationTypeHistogram(data, folder, 10, "returns of public methods")#
-	plotDeclarationTypeHistogram(data, folder, 11, "parameters of private methods")#
-	plotDeclarationTypeHistogram(data, folder, 12, "parameters of protected methods")#
-	plotDeclarationTypeHistogram(data, folder, 13, "parameters of public methods")#
+	for(it in declarationDataRange) {#
+		print(it)#
+		plotDeclarationTypeHistogram(data, folder, it )		#
+	}#
 }#
 plotDeclarationTypeHistogramOfData(data, "all")#
 plotDeclarationTypeHistogramOfData(matureData, "mature")#
 plotDeclarationTypeHistogramOfData(nonMatureData, "non-mature")
-plotDeclarationTypeHistogram<-function(data, folder, index, declarationTypeStr){#
-	values<-data[!is.na(data[,index]),index]#
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)#
-	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	colname<-colnames(data)[index]#
+ 	plot<-ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		xlim(0,1.1)#
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)#
 }#
 #
 plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	plotDeclarationTypeHistogram(data, folder, 4, "all declarations")#
-	plotDeclarationTypeHistogram(data, folder, 5, "local variables")#
-	plotDeclarationTypeHistogram(data, folder, 6, "returns of methods")#
-	plotDeclarationTypeHistogram(data, folder, 7, "parameters of methods")#
-	plotDeclarationTypeHistogram(data, folder, 8, "returns of private methods")#
-	plotDeclarationTypeHistogram(data, folder, 9, "returns of protected methods")#
-	plotDeclarationTypeHistogram(data, folder, 10, "returns of public methods")#
-	plotDeclarationTypeHistogram(data, folder, 11, "parameters of private methods")#
-	plotDeclarationTypeHistogram(data, folder, 12, "parameters of protected methods")#
-	plotDeclarationTypeHistogram(data, folder, 13, "parameters of public methods")#
+	for(it in declarationDataRange) {#
+		print(it)#
+		plotDeclarationTypeHistogram(data, folder, it )		#
+	}#
 }#
 plotDeclarationTypeHistogramOfData(data, "all")#
 plotDeclarationTypeHistogramOfData(matureData, "mature")#
 plotDeclarationTypeHistogramOfData(nonMatureData, "non-mature")
-Uses Mann Whitney tests to compare if two samples are equal#
-compareSamples<-function(filename, columnsToCompare) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
-	row = 1#
-	for(i in columnsToCompare) { #
-		for(j in columnsToCompare) { #
-			d_i=data[!is.na(data[i,]),c(i)]#
-			d_j=data[!is.na(data[j,]),c(j)]#
-			test<-wilcox.test(d_i, d_j)#
-			print(test)#
-			p=test$p.value#
-			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
-			row=row+1#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))#
+ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10, scale0.2)
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	colname<-colnames(data)[index]#
+ 	plot<-ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		xlim(0,1.1)#
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10, scale0.2)#
 }#
 #
-compareSamples("declaration_type", 5:7)#
-compareSamples("method_return_visibility", 8:10)#
-compareSamples("method_parameter_visibility", 11:13)
-Uses Mann Whitney tests to compare if two samples are equal#
-compareSamples<-function(filename, columnsToCompare) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
-	row = 1#
-	for(i in columnsToCompare) { #
-		for(j in columnsToCompare) { #
-			d_i=data[!is.na(data[i,]),c(i)]#
-			d_j=data[!is.na(data[j,]),c(j)]#
-			test<-wilcox.test(d_i, d_j)#
-			str(test)#
-			p=test$p.value#
-			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
-			row=row+1#
-		}#
+plotDeclarationTypeHistogramOfData<-function(data, folder){#
+	for(it in declarationDataRange) {#
+		print(it)#
+		plotDeclarationTypeHistogram(data, folder, it )		#
 	}#
-	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))#
+}#
+plotDeclarationTypeHistogramOfData(data, "all")
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	colname<-colnames(data)[index]#
+ 	plot<-ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		xlim(0,1.1)#
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10, scale=0.2)#
 }#
 #
-compareSamples("declaration_type", 5:7)
-Uses Mann Whitney tests to compare if two samples are equal#
-compareSamples<-function(filename, columnsToCompare) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
-	row = 1#
-	for(i in columnsToCompare) { #
-		for(j in columnsToCompare) { #
-			d_i=data[!is.na(data[i,]),c(i)]#
-			d_j=data[!is.na(data[j,]),c(j)]#
-			test<-wilcox.test(d_i, d_j)#
-			print(test$conf.int)#
-			p=test$p.value#
-			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
-			row=row+1#
-		}#
+plotDeclarationTypeHistogramOfData<-function(data, folder){#
+	for(it in declarationDataRange) {#
+		print(it)#
+		plotDeclarationTypeHistogram(data, folder, it )		#
 	}#
-	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))#
+}#
+plotDeclarationTypeHistogramOfData(data, "all")
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	colname<-colnames(data)[index]#
+ 	plot<-ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		xlim(0,1.1)#
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=2, width=5)#
 }#
 #
-compareSamples("declaration_type", 5:7)
-Uses Mann Whitney tests to compare if two samples are equal#
-compareSamples<-function(filename, columnsToCompare) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
-	row = 1#
-	for(i in columnsToCompare) { #
-		for(j in columnsToCompare) { #
-			d_i=data[!is.na(data[i,]),c(i)]#
-			d_j=data[!is.na(data[j,]),c(j)]#
-			test<-wilcox.test(d_i, d_j)#
-			print(test$conf.level)#
-			p=test$p.value#
-			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
-			row=row+1#
-		}#
+plotDeclarationTypeHistogramOfData<-function(data, folder){#
+	for(it in declarationDataRange) {#
+		print(it)#
+		plotDeclarationTypeHistogram(data, folder, it )		#
 	}#
-	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))#
+}#
+plotDeclarationTypeHistogramOfData(data, "all")
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	colname<-colnames(data)[index]#
+ 	plot<-ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		xlim(0,1.1)#
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=8)#
 }#
 #
-compareSamples("declaration_type", 5:7)
+plotDeclarationTypeHistogramOfData<-function(data, folder){#
+	for(it in declarationDataRange) {#
+		print(it)#
+		plotDeclarationTypeHistogram(data, folder, it )		#
+	}#
+}#
+plotDeclarationTypeHistogramOfData(data, "all")
+declarationDataRange=5:5#
+#
+i<-data.frame(	#
+				projectId=1,#
+				loc=2,#
+				commits=3,#
+				age=4,#
+#
+				all=4, #
+#
+				localVariable=5,#
+				methodReturn=6,#
+				methodParameter=7,#
+				field=8,#
+				constructorParameter=9,#
+				privateMethodReturn=10,#
+				protectedMethodReturn=11,#
+				publicMethodReturn=12,#
+				privateField=13,#
+				protectedField=14,#
+				publicField=15,#
+				privateMethodParameter=16,#
+				protectedMethodParameter=17,#
+				publicMethodParameter=18,#
+				privateConstructorParameter=19,#
+				protectedConstructorParameter=20,#
+				publicConstructorParameter=21,#
+				public=22,#
+				private=23,#
+				protected=24#
+			)#
+label<-c(#
+		"project id",#
+		"LOC",#
+		"number of commits",#
+		"age",#
+		"all types",#
+#
+		"local variables",#
+		"returns of methods",#
+		"parameters of methods",#
+		"fields",#
+		"parameters of constructors",#
+#
+		"returns of private methods",#
+		"returns of protected methods",#
+		"returns of public methods",#
+#
+		"private fields",#
+		"protected fields",#
+		"public fields",#
+#
+		"parameters of private methods",#
+		"parameters of protected methods",#
+		"parameters of public methods",#
+#
+		"parameters of private constructors",#
+		"parameters of protected constructors",#
+		"parameters of public constructors",#
+#
+		"public fields and methods",#
+		"private fields and methods",#
+		"protected fields and methods"#
+)#
+#
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	colname<-colnames(data)[index]#
+ 	plot<-ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		xlim(0,1.1)#
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)#
+}#
+#
+plotDeclarationTypeHistogramOfData<-function(data, folder){#
+	for(it in declarationDataRange) {#
+		print(it)#
+		plotDeclarationTypeHistogram(data, folder, it )		#
+	}#
+}#
+plotDeclarationTypeHistogramOfData(data, "all")
+declarationDataRange=5:24#
+#
+i<-data.frame(	#
+				projectId=1,#
+				loc=2,#
+				commits=3,#
+				age=4,#
+#
+				all=4, #
+#
+				localVariable=5,#
+				methodReturn=6,#
+				methodParameter=7,#
+				field=8,#
+				constructorParameter=9,#
+				privateMethodReturn=10,#
+				protectedMethodReturn=11,#
+				publicMethodReturn=12,#
+				privateField=13,#
+				protectedField=14,#
+				publicField=15,#
+				privateMethodParameter=16,#
+				protectedMethodParameter=17,#
+				publicMethodParameter=18,#
+				privateConstructorParameter=19,#
+				protectedConstructorParameter=20,#
+				publicConstructorParameter=21,#
+				public=22,#
+				private=23,#
+				protected=24#
+			)#
+label<-c(#
+		"project id",#
+		"LOC",#
+		"number of commits",#
+		"age",#
+		"all types",#
+#
+		"local variables",#
+		"returns of methods",#
+		"parameters of methods",#
+		"fields",#
+		"parameters of constructors",#
+#
+		"returns of private methods",#
+		"returns of protected methods",#
+		"returns of public methods",#
+#
+		"private fields",#
+		"protected fields",#
+		"public fields",#
+#
+		"parameters of private methods",#
+		"parameters of protected methods",#
+		"parameters of public methods",#
+#
+		"parameters of private constructors",#
+		"parameters of protected constructors",#
+		"parameters of public constructors",#
+#
+		"public fields and methods",#
+		"private fields and methods",#
+		"protected fields and methods"#
+)#
+#
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	colname<-colnames(data)[index]#
+ 	plot<-ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		xlim(0,1.1)#
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)#
+}#
+#
+plotDeclarationTypeHistogramOfData<-function(data, folder){#
+	for(it in declarationDataRange) {#
+		print(it)#
+		plotDeclarationTypeHistogram(data, folder, it )		#
+	}#
+}#
+plotDeclarationTypeHistogramOfData(data, "all")#
+plotDeclarationTypeHistogramOfData(matureData, "mature")#
+plotDeclarationTypeHistogramOfData(nonMatureData, "non-mature")
+data<-read.table("parsed/declaration_by_type.txt", header=T)#
+describe(data)#
+#
+matureData=data[data$loc>2000 & data$commits>100, ]#
+nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
+#
+declarationDataRange=5:25#
+#
+i<-data.frame(	#
+				projectId=1,#
+				loc=2,#
+				commits=3,#
+				age=4,#
+#
+				all=5, #
+#
+				localVariable=6,#
+				methodReturn=7,#
+				methodParameter=8,#
+				constructorParameter=9,#
+				field=10,#
+				privateMethodReturn=11,#
+				protectedMethodReturn=12,#
+				publicMethodReturn=13,#
+				privateMethodParameter=14,#
+				protectedMethodParameter=15,#
+				publicMethodParameter=16,#
+				privateConstructorParameter=17,#
+				protectedConstructorParameter=18,#
+				publicConstructorParameter=19,#
+				privateField=20,#
+				protectedField=21,#
+				publicField=22,#
+				public=23,#
+				private=24,#
+				protected=25#
+			)#
+label<-c(#
+		"project id",#
+		"LOC",#
+		"number of commits",#
+		"age",#
+		"all types",#
+#
+		"local variables",#
+		"returns of methods",#
+		"parameters of methods",#
+		"parameters of constructors",#
+		"fields",#
+#
+		"returns of private methods",#
+		"returns of protected methods",#
+		"returns of public methods",#
+#
+		"parameters of private methods",#
+		"parameters of protected methods",#
+		"parameters of public methods",#
+#
+		"parameters of private constructors",#
+		"parameters of protected constructors",#
+		"parameters of public constructors",#
+#
+		"private fields",#
+		"protected fields",#
+		"public fields",#
+#
+		"public fields and methods",#
+		"private fields and methods",#
+		"protected fields and methods"#
+)#
+#
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	colname<-colnames(data)[index]#
+ 	plot<-ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		xlim(0,1.1)#
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)#
+}#
+#
+plotDeclarationTypeHistogramOfData<-function(data, folder){#
+	for(it in declarationDataRange) {#
+		print(it)#
+		plotDeclarationTypeHistogram(data, folder, it )		#
+	}#
+}#
+plotDeclarationTypeHistogramOfData(data, "all")#
+plotDeclarationTypeHistogramOfData(matureData, "mature")#
+plotDeclarationTypeHistogramOfData(nonMatureData, "non-mature")
+i<-data.frame(	#
+				projectId=1,#
+				loc=2,#
+				commits=3,#
+				age=4,#
+#
+				all=5, #
+#
+				localVariable=6,#
+				methodReturn=7,#
+				methodParameter=8,#
+				constructorParameter=9,#
+				field=10,#
+				privateMethodReturn=11,#
+				protectedMethodReturn=12,#
+				publicMethodReturn=13,#
+				privateMethodParameter=14,#
+				protectedMethodParameter=15,#
+				publicMethodParameter=16,#
+				privateConstructorParameter=17,#
+				protectedConstructorParameter=18,#
+				publicConstructorParameter=19,#
+				privateField=20,#
+				protectedField=21,#
+				publicField=22,#
+				private=23,#
+				protected=24,#
+				public=25#
+			)#
+range<-data.frame(#
+					all=i$localVariable:i$public,#
+					declarationType=i$locarlVariable:i$field,#
+					methodReturn=i$privateMethodReturn:i$publicMethodReturn,#
+					methodParameter=i$privateMethodParameter:i$publicMethodParameter,#
+					constructorParameter=i$privateConstructorParameter:i$publicConstructorParameter,#
+					field=i$privateField:i$publicField,#
+					declarationVisibility=i$public:i$protected#
+				)#
+rangeLabel<-data.frame(#
+						"all combinations",#
+						"declaration by type",#
+						"returns of methods",#
+						"parameters of methods",#
+						"parameters of constructors",#
+						"fields",#
+						"declarations by visibiltiy"#
+					)#
+label<-c(#
+		"project id",#
+		"LOC",#
+		"number of commits",#
+		"age",#
+		"all types",#
+#
+		"local variables",#
+		"returns of methods",#
+		"parameters of methods",#
+		"parameters of constructors",#
+		"fields",#
+#
+		"returns of private methods",#
+		"returns of protected methods",#
+		"returns of public methods",#
+#
+		"parameters of private methods",#
+		"parameters of protected methods",#
+		"parameters of public methods",#
+#
+		"parameters of private constructors",#
+		"parameters of protected constructors",#
+		"parameters of public constructors",#
+#
+		"private fields",#
+		"protected fields",#
+		"public fields",#
+#
+		"private fields and methods",#
+		"protected fields and methods",#
+		"public fields and methods"#
+)
+compareAllSamples<-function() {#
+	for(r in range) {#
+		print(range)#
+	}#
+}#
+compareAllSamples()
+compareAllSamples<-function() {#
+	compareSamples("declaration_type", range$all)#
+}#
+compareAllSamples()
 Uses Mann Whitney tests to compare if two samples are equal#
 compareSamples<-function(filename, columnsToCompare) {#
 	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
@@ -1464,18 +770,783 @@ compareSamples<-function(filename, columnsToCompare) {#
 	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))#
 }#
 #
-compareSamples("declaration_type", 5:7)
-index=4
-data[!is.na(data[,index]),index]
-wilcox.test(data[!is.na(data[,index]),index], conf.int=T)
-index=5
-wilcox.test(data[!is.na(data[,index]),index], conf.int=T)
-describe(data[!is.na(data[,index]),index])
-describe(data)
-describe(data[!is.na(data[,index]),index])
-lv=data[!is.na(data[,index]),index]
-describe(lv)
-wilcox.test(lv)
-wilcox.test(lv, conf.int=T)
-lvm=matureData[!is.na(matureData[,index]),index]
-wilcox.test(lv, lvm, conf.int=T)
+compareSamples("declaration_type", 5:9)#
+compareSamples("method_return_visibility", 10:12)#
+compareSamples("method_return_visibility", 10:12)#
+compareSamples("method_parameter_visibility", 11:13)#
+#
+compareAllSamples<-function() {#
+	compareSamples("declaration_type", range$all)#
+}#
+compareAllSamples()
+compareAllSamples<-function() {#
+	compareSamples("declaration_type", range$all)#
+}#
+compareAllSamples()
+range$all
+range
+compareAllSamples<-function() {#
+	compareSamples("declaration_type", i$localVariable:i$field)#
+}#
+compareAllSamples()
+Uses Mann Whitney tests to compare if two samples are equal#
+compareSamples<-function(description, columnsToCompare) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
+	row = 1#
+	for(i in columnsToCompare) { #
+		for(j in columnsToCompare) { #
+			d_i=data[!is.na(data[i,]),c(i)]#
+			d_j=data[!is.na(data[j,]),c(j)]#
+			test<-wilcox.test(d_i, d_j, conf.int=T)#
+			print(test)#
+			p=test$p.value#
+			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
+			row=row+1#
+		}#
+	}#
+	write.matrix(result ,file=paste("result/u-test/", gsub(" ", "_", description), ".txt", sep=""))#
+}#
+#
+compareAllSamples<-function() {#
+	compareSamples("all combinations", 				i$localVariable:i$public)#
+	compareSamples("declaration by type",			i$localVariable:i$field)#
+	compareSamples("returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples("parameters of methods",			i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples("parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples("fields", 						i$privateField:i$publicField)#
+	compareSamples("declarations by visibiltiy", 	i$private:i$public)#
+}#
+compareAllSamples()
+Uses Mann Whitney tests to compare if two samples are equal#
+uTest<-function(description, columnsToCompare) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
+	row = 1#
+	for(i in columnsToCompare) { #
+		for(j in columnsToCompare) { #
+			d_i=data[!is.na(data[i,]),c(i)]#
+			d_j=data[!is.na(data[j,]),c(j)]#
+			test<-wilcox.test(d_i, d_j, conf.int=T)#
+			print(test)#
+			p=test$p.value#
+			difference=test$conf.int#
+			print(difference)#
+			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
+			row=row+1#
+		}#
+	}#
+	write.matrix(result ,file=paste("result/u-test/", gsub(" ", "_", description), ".txt", sep=""))#
+}#
+#
+compareSamples<-function(description, columnsToCompare) {#
+	uTest(description, columnsToCompare)#
+}
+compareSamples("fields", 						i$privateField:i$publicField)
+Uses Mann Whitney tests to compare if two samples are equal#
+uTest<-function(description, columnsToCompare) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))#
+	row = 1#
+	for(i in columnsToCompare) { #
+		for(j in columnsToCompare) { #
+			d_i=data[!is.na(data[i,]),c(i)]#
+			d_j=data[!is.na(data[j,]),c(j)]#
+			test<-wilcox.test(d_i, d_j, conf.int=T)#
+			print(test)#
+			p=test$p.value#
+			difference=test$conf.int#
+			print(class(difference))#
+			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))#
+			row=row+1#
+		}#
+	}#
+	write.matrix(result ,file=paste("result/u-test/", gsub(" ", "_", description), ".txt", sep=""))#
+}#
+#
+compareSamples("fields", 						i$privateField:i$publicField)
+Uses Mann Whitney tests to compare if two samples are equal#
+uTest<-function(description, columnsToCompare) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
+	row = 1#
+	for(i in columnsToCompare) { #
+		for(j in columnsToCompare) { #
+			d_i=data[!is.na(data[i,]),c(i)]#
+			d_j=data[!is.na(data[j,]),c(j)]#
+			test<-wilcox.test(d_i, d_j, conf.int=T)#
+			print(test)#
+			p=test$p.value#
+			difference=test$conf.int#
+			print(class(difference))#
+			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p, difference=difference))#
+			row=row+1#
+		}#
+	}#
+	write.matrix(result ,file=paste("result/u-test/", gsub(" ", "_", description), ".txt", sep=""))#
+}
+compareSamples("fields", 						i$privateField:i$publicField)
+Uses Mann Whitney tests to compare if two samples are equal#
+uTest<-function(description, columnsToCompare) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
+	row = 1#
+	for(i in columnsToCompare) { #
+		for(j in columnsToCompare) { #
+			d_i=data[!is.na(data[i,]),c(i)]#
+			d_j=data[!is.na(data[j,]),c(j)]#
+			test<-wilcox.test(d_i, d_j, conf.int=T)#
+			print(test)#
+			p=test$p.value#
+			difference=test$conf.int#
+			print(difference)#
+			print(class(difference))#
+			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p, difference=difference))#
+			row=row+1#
+		}#
+	}#
+	write.matrix(result ,file=paste("result/u-test/", gsub(" ", "_", description), ".txt", sep=""))#
+}
+compareSamples("declarations by visibiltiy", 	i$private:i$public)
+Uses Mann Whitney tests to compare if two samples are equal#
+uTest<-function(description, columnsToCompare) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
+	row = 1#
+	for(i in columnsToCompare) { #
+		for(j in columnsToCompare) { #
+			d_i=data[!is.na(data[i,]),c(i)]#
+			d_j=data[!is.na(data[j,]),c(j)]#
+			test<-wilcox.test(d_i, d_j, conf.int=T)#
+			print(test)#
+			p=test$p.value#
+			difference=test$conf.int#
+			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p, difference=difference))#
+			row=row+1#
+		}#
+	}#
+	write.matrix(result ,file=paste("result/u-test/", gsub(" ", "_", description), ".txt", sep=""))#
+}#
+#
+compareSamples<-function(description, columnsToCompare) {#
+	uTest(description, columnsToCompare)#
+}#
+#
+compareAllSamples<-function() {#
+	compareSamples("all combinations", 				i$localVariable:i$public)#
+	compareSamples("declaration by type",			i$localVariable:i$field)#
+	compareSamples("returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples("parameters of methods",			i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples("parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples("fields", 						i$privateField:i$publicField)#
+	compareSamples("declarations by visibiltiy", 	i$private:i$public)#
+}#
+compareAllSamples()
+ggplot(mtcars, aes(factor(cyl), mpg))
+ggplot(mtcars, aes(factor(cyl), mpg)) + geom_boxplot()
+ggplot(data, aes(all)) + geom_boxplot()
+ggplot(data, aes(all, loc)) + geom_boxplot()
+i=i$private
+j=i$public
+i=23
+j=25
+d_i=data[!is.na(data[i,]),i]#
+			d_j=data[!is.na(data[j,]),j]
+describe(d_i)
+describe(d_j)
+uTest<-function(description, columnsToCompare) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
+	row = 1#
+	for(i in columnsToCompare) { #
+		for(j in columnsToCompare) { #
+			d_i=data[!is.na(data[i,]),i]#
+			d_j=data[!is.na(data[j,]),j]#
+			test<-wilcox.test(d_i, d_j, conf.int=T)#
+			print(test)#
+			p=test$p.value#
+			difference=test$conf.int#
+			print(difference[0])#
+			print(difference[1])#
+			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p, difference=difference))#
+			row=row+1#
+		}#
+	}#
+	write.matrix(result ,file=paste("result/u-test/", gsub(" ", "_", description), ".txt", sep=""))#
+}
+compareSamples("declarations by visibiltiy", 	i$private:i$public)
+i<-data.frame(	#
+				projectId=1,#
+				loc=2,#
+				commits=3,#
+				age=4,#
+#
+				all=5, #
+#
+				localVariable=6,#
+				methodReturn=7,#
+				methodParameter=8,#
+				constructorParameter=9,#
+				field=10,#
+				privateMethodReturn=11,#
+				protectedMethodReturn=12,#
+				publicMethodReturn=13,#
+				privateMethodParameter=14,#
+				protectedMethodParameter=15,#
+				publicMethodParameter=16,#
+				privateConstructorParameter=17,#
+				protectedConstructorParameter=18,#
+				publicConstructorParameter=19,#
+				privateField=20,#
+				protectedField=21,#
+				publicField=22,#
+				private=23,#
+				protected=24,#
+				public=25#
+			)
+compareSamples("fields", 						i$privateField:i$publicField)
+Uses Mann Whitney tests to compare if two samples are equal#
+uTest<-function(description, columnsToCompare) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
+	row = 1#
+	for(i in columnsToCompare) { #
+		for(j in columnsToCompare) { #
+			d_i=data[!is.na(data[i,]),i]#
+			d_j=data[!is.na(data[j,]),j]#
+			test<-wilcox.test(d_i, d_j, conf.int=T)#
+			print(test)#
+			p=test$p.value#
+			difference=test$conf.int#
+			print(difference[0])#
+			print(difference[1])#
+			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p, difference=difference))#
+			row=row+1#
+		}#
+	}#
+	write.matrix(result ,file=paste("result/u-test/", gsub(" ", "_", description), ".txt", sep=""))#
+}
+compareSamples("fields", 						i$privateField:i$publicField)
+Uses Mann Whitney tests to compare if two samples are equal#
+uTest<-function(description, columnsToCompare) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), ci.min=numeric(0), ci.max=numeric(0))#
+	row = 1#
+	for(i in columnsToCompare) { #
+		for(j in columnsToCompare) { #
+			d_i=data[!is.na(data[i,]),i]#
+			d_j=data[!is.na(data[j,]),j]#
+			test<-wilcox.test(d_i, d_j, conf.int=T)#
+			print(test)#
+			p=test$p.value#
+			difference=test$conf.int#
+			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p, ci.min=difference[0], ci.max=difference[1]))#
+			row=row+1#
+		}#
+	}#
+	write.matrix(result ,file=paste("result/u-test/", gsub(" ", "_", description), ".txt", sep=""))#
+}#
+#
+compareSamples<-function(description, columnsToCompare) {#
+	uTest(description, columnsToCompare)#
+}
+compareSamples("declarations by visibiltiy", 	i$private:i$public)
+Uses Mann Whitney tests to compare if two samples are equal#
+uTest<-function(description, columnsToCompare) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
+	row = 1#
+	for(i in columnsToCompare) { #
+		for(j in columnsToCompare) { #
+			d_i=data[!is.na(data[i,]),i]#
+			d_j=data[!is.na(data[j,]),j]#
+			test<-wilcox.test(d_i, d_j, conf.int=T)#
+			print(test)#
+			p=test$p.value#
+			difference=test$conf.int#
+			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p, difference=difference))#
+			row=row+1#
+		}#
+	}#
+	write.matrix(result ,file=paste("result/u-test/", gsub(" ", "_", description), ".txt", sep=""))#
+}
+compareSamples("fields", 						i$privateField:i$publicField)
+data.frame(label="public", value=c(0.1, 0.2, 0.3))
+data.frame(label="public", value=c(0.1, 0.2, 0.3)) + data.frame(label="private", value=c(0.1, 0.2, 0.5))
+pub=data.frame(label="public", value=c(0.1, 0.2, 0.3))
+pri=data.frame(label="private", value=c(1, 2, 3))
+merge(pub, pri)
+rbind(pub, pri)
+boxPlot<-function(columns) {#
+	for(c in columns) {#
+		print(c)	#
+	}#
+}#
+boxPlot(i$private:i$public)
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=c, data[c, ]) )#
+	}#
+	describe(d)#
+}#
+boxPlot(i$private:i$public)
+data[23, ]
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=c, data[, c]) )#
+	}#
+	describe(d)#
+}#
+boxPlot(i$private:i$public)
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=c, data[, c]) )#
+	}#
+	str(d)#
+}#
+boxPlot(i$private:i$public)
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=colnames(data)[c], data[, c]) )#
+	}#
+	str(d)#
+}#
+boxPlot(i$private:i$public)
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=colnames(data)[c], data[, c]) )#
+	}#
+	describe(d$label)#
+}#
+boxPlot(i$private:i$public)
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=colnames(data)[c], data[, c]) )#
+	}#
+	str(d$label)#
+}#
+boxPlot(i$private:i$public)
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=colnames(data)[c], data[, c]) )#
+	}#
+	return d#
+}#
+d=boxPlot(i$private:i$public)
+d
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=colnames(data)[c], data[, c]) )#
+	}#
+	return d#
+}#
+d=boxPlot(i$private:i$public)
+d
+describe(d)
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=colnames(data)[c], data[, c]) )#
+	}#
+	d#
+}#
+d=boxPlot(i$private:i$public)
+d
+describe(d$label)
+str(d$label)
+qplot(d)
+qplot(value, data=d)
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=colnames(data)[c], data[!is.na(data[c]), c]) )#
+	}#
+	d#
+}#
+d=boxPlot(i$private:i$public)
+describe(d$value)
+describe(d)
+qplot(value, data=d)
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=colnames(data)[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	d#
+}#
+d=boxPlot(i$private:i$public)
+describe(d)
+qplot(value, data=d)
+qplot(value, data=d, facets=~.label)
+qplot(label, value, data=d)
+ggplot(d, aes(label, value)) + geom_boxplot()
+ggplot(d, aes(label, value, fill=label)) + geom_boxplot()
+ggplot(d, aes(label, value, outlier.size=0)) + geom_boxplot()
+ggplot(d, aes(label, value, outlier.size=1000)) + geom_boxplot()
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0)
+d
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=colnames(data)[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0)#
+}#
+d=boxPlot(i$localVariable:i$public)
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=colnames(data)[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0)#
+}#
+boxPlot(i$localVariable:i$public)
+data<-read.table("parsed/declaration_by_type.txt", header=T)#
+describe(data)#
+#
+matureData=data[data$loc>2000 & data$commits>100, ]#
+nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
+#
+i<-data.frame(	#
+				projectId=1,#
+				loc=2,#
+				commits=3,#
+				age=4,#
+#
+				all=5, #
+#
+				localVariable=6,#
+				methodReturn=7,#
+				methodParameter=8,#
+				constructorParameter=9,#
+				field=10,#
+				privateMethodReturn=11,#
+				protectedMethodReturn=12,#
+				publicMethodReturn=13,#
+				privateMethodParameter=14,#
+				protectedMethodParameter=15,#
+				publicMethodParameter=16,#
+				privateConstructorParameter=17,#
+				protectedConstructorParameter=18,#
+				publicConstructorParameter=19,#
+				privateField=20,#
+				protectedField=21,#
+				publicField=22,#
+				private=23,#
+				protected=24,#
+				public=25#
+			)#
+label<-c(#
+		"project id",#
+		"LOC",#
+		"number of commits",#
+		"age",#
+		"all types",#
+#
+		"local variables",#
+		"returns of methods",#
+		"parameters of methods",#
+		"parameters of constructors",#
+		"fields",#
+#
+		"returns of private methods",#
+		"returns of protected methods",#
+		"returns of public methods",#
+#
+		"parameters of private methods",#
+		"parameters of protected methods",#
+		"parameters of public methods",#
+#
+		"parameters of private constructors",#
+		"parameters of protected constructors",#
+		"parameters of public constructors",#
+#
+		"private fields",#
+		"protected fields",#
+		"public fields",#
+#
+		"private fields and methods",#
+		"protected fields and methods",#
+		"public fields and methods"#
+)
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=colnames(data)[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0)#
+}#
+boxPlot(i$localVariable:i$public)
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=colnames(data)[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0)#
+}#
+boxPlot(i$localVariable:i$methodReturn)
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=colnames(data)[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0)#
+	d#
+}#
+d=boxPlot(i$localVariable:i$methodReturn)
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0) + coordFlip()
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0) + coord_flip()
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0)#
+	d#
+}#
+d=boxPlot(i$localVariable:i$methodReturn)
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0) + coord_flip()
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=10) + coord_flip()
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=100) + coord_flip()
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0) + coord_flip() + labs(x="Use of types in declarations")
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0) + coord_flip() + labs(x="Use of types in declarations")
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0) + labs(x="Use of types in declarations")
+boxPlot<-function(columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=10)#
+	d#
+}#
+d=boxPlot(i$localVariable:i$field)
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0) + labs(x="Use of types in declarations")
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0) + coord_flip() + labs(x="Use of types in declarations")
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0) + coord_flip() + labs(y="Use of types in declarations")
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0) + coord_flip() + labs(y="Use of types in declarations", x=""")
+"
+ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=0) + coord_flip() + labs(y="Use of types in declarations", x="")
+ggplot(d, aes(label, value)) + geom_boxplot() + coord_flip() + labs(y="Use of types in declarations", x="")
+ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")
+plot<-ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")
+folder="all"
+boxPlot<-function(columns, description) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	plot<-ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=10)#
+	folder<-"all"#
+	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=4)#
+}#
+boxPlot("declarations by visibiltiy", 	i$private:i$public)
+boxPlot<-function(description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	plot<-ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=10)#
+	folder<-"all"#
+	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=4)#
+}#
+boxPlot("declarations by visibiltiy", 	i$private:i$public)
+boxPlot<-function(description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	plot<-ggplot(d, aes(label, value)) + geom_boxplot(outlier.size=10)#
+	folder<-"all"#
+	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=4)#
+}#
+boxPlot("declarations by visibiltiy", 	i$private:i$public)
+boxPlot<-function(description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	plot<-ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")#
+	folder<-"all"#
+	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=4)#
+}#
+boxPlot("declarations by visibiltiy", 	i$private:i$public)
+boxPlot<-function(description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	plot<-ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")#
+	folder<-"all"#
+	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7)#
+}#
+boxPlot("declarations by visibiltiy", 	i$private:i$public)
+boxPlot<-function(description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	plot<-ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")#
+	folder<-"all"#
+	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7)#
+}#
+#
+compareSamples<-function(description, columnsToCompare) {#
+	# uTest(description, columnsToCompare)#
+	boxPlot(description, columnsToCompare)#
+}#
+#
+compareAllSamples<-function() {#
+	compareSamples("all combinations", 				i$localVariable:i$public)#
+	compareSamples("declaration by type",			i$localVariable:i$field)#
+	compareSamples("returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples("parameters of methods",			i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples("parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples("fields", 						i$privateField:i$publicField)#
+	compareSamples("declarations by visibiltiy", 	i$private:i$public)#
+}#
+compareAllSamples()
+(1:3).size()
+size(1:3)
+class(1:3)
+count(1:3)
+length(1:3)
+boxPlot<-function(description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	plot<-ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")#
+	folder<-"all"#
+	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
+}#
+#
+compareSamples<-function(description, columnsToCompare) {#
+	# uTest(description, columnsToCompare)#
+	boxPlot(description, columnsToCompare)#
+}#
+#
+compareAllSamples<-function() {#
+	compareSamples("all combinations", 				i$localVariable:i$public)#
+	compareSamples("declaration by type",			i$localVariable:i$field)#
+	compareSamples("returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples("parameters of methods",			i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples("parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples("fields", 						i$privateField:i$publicField)#
+	compareSamples("declarations by visibiltiy", 	i$private:i$public)#
+}#
+compareAllSamples()
+for(t in c("a", "b", "c")) { print(t) }
+plotDeclarationTypeHistogramOfData<-function(data, folder){#
+	for(r in 1:nrow(subsets)) {#
+		label<-subsets[i, 1]#
+		subset<-subsets[i, 2]#
+		for(it in declarationDataRange) {#
+			print(it)#
+			plotDeclarationTypeHistogram(subset, label, it )		#
+		}#
+	}#
+}#
+plotDeclarationTypeHistogramOfData()
+subsets <- data.frame(label=c("all", "mature", "non-mature"), data=c(data, matureData, nonMatureData))
+subsets <- data.frame(label=c("all", "mature", "non-mature"), data=v(data, matureData, nonMatureData))
+boxPlot<-function(data, folder, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	plot<-ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")#
+	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
+}#
+#
+compareSamples<-function(data, folder, description, columnsToCompare) {#
+	# uTest(description, columnsToCompare)#
+	boxPlot(data, folder, description, columnsToCompare)#
+}#
+#
+compareAllSamples<-function(data, folder) {#
+	compareSamples(data, folder, "all combinations", 			i$localVariable:i$public)#
+	compareSamples(data, folder, "declaration by type",			i$localVariable:i$field)#
+	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
+	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
+}#
+#
+compareAllSamples(data, "all")#
+compareAllSamples(matureData, "mature")#
+compareAllSamples(nonMatureData, "non-mature")
+boxPlot<-function(data, folder, description, columns) {#
+	print(paste("Plotting boxplot of", description))#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	plot<-ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")#
+	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
+}#
+#
+compareSamples<-function(data, folder, description, columnsToCompare) {#
+	print(paste("Comparing samples of", folder, "data"))#
+	# uTest(description, columnsToCompare)#
+	boxPlot(data, folder, description, columnsToCompare)#
+}#
+#
+compareAllSamples<-function(data, folder) {#
+	compareSamples(data, folder, "all combinations", 			i$localVariable:i$public)#
+	compareSamples(data, folder, "declaration by type",			i$localVariable:i$field)#
+	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
+	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
+}#
+#
+compareAllSamples(data, "all")#
+compareAllSamples(matureData, "mature")#
+compareAllSamples(nonMatureData, "non-mature")
+Uses Mann Whitney tests to compare if two samples are equal#
+uTest<-function(data, folder, description, columns) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
+	row = 1#
+	for(i in columns) { #
+		for(j in columns) { #
+			d_i=data[!is.na(data[i,]),i]#
+			d_j=data[!is.na(data[j,]),j]#
+			test<-wilcox.test(d_i, d_j, conf.int=T)#
+			print(test)#
+			p=test$p.value#
+			difference=test$conf.int#
+			result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
+			row=row+1#
+		}#
+	}#
+	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
+}#
+boxPlot<-function(data, folder, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	plot<-ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")#
+	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
+}#
+#
+compareSamples<-function(data, folder, description, columnsToCompare) {#
+	print(paste("Comparing samples of", description))#
+	uTest(data, folder, description, columnsToCompare)#
+	boxPlot(data, folder, description, columnsToCompare)#
+}#
+#
+compareAllSamples<-function(data, folder) {#
+	print(paste("Processing", folder, "data"))#
+	compareSamples(data, folder, "all combinations", 			i$localVariable:i$public)#
+	compareSamples(data, folder, "declaration by type",			i$localVariable:i$field)#
+	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
+	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
+}#
+#
+compareAllSamples(data, "all")#
+compareAllSamples(matureData, "mature")#
+compareAllSamples(nonMatureData, "non-mature")

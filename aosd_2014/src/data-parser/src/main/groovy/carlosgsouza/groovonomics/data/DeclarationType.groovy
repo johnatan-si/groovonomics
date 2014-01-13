@@ -26,7 +26,7 @@ class DeclarationType {
 		def c = 1
 		
 		projectFiles.each { file ->
-			println "${c++}/${projectFiles.size}"
+			println "${c++}/${projectFiles.size()}"
 			
 			def projectId = file.name - ".json"
 			result << translator.translate(projectId, metadataFolder, file)

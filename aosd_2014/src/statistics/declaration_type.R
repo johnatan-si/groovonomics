@@ -11,56 +11,164 @@ describe(data)
 matureData=data[data$loc>2000 & data$commits>100, ]
 nonMatureData=data[data$loc<=2000 | data$commits<=100, ]
 
-plotDeclarationTypeHistogram<-function(data, folder, index, declarationTypeStr){
- 	values<-data[!is.na(data[,index]),index]
-	plot<-qplot(values, xlab=paste("Usage of types in",  declarationTypeStr, "per project"), ylab="Number of projects", binwidth=0.05)
-	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste("histogram_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=4, width=10)
+i<-data.frame(	
+				projectId=1,
+				loc=2,
+				commits=3,
+				age=4,
+
+				all=5, 
+
+				localVariable=6,
+				methodReturn=7,
+				methodParameter=8,
+				constructorParameter=9,
+				field=10,
+				
+				privateMethodReturn=11,
+				protectedMethodReturn=12,
+				publicMethodReturn=13,
+				
+				privateMethodParameter=14,
+				protectedMethodParameter=15,
+				publicMethodParameter=16,
+				
+				privateConstructorParameter=17,
+				protectedConstructorParameter=18,
+				publicConstructorParameter=19,
+				
+				privateField=20,
+				protectedField=21,
+				publicField=22,
+				
+				private=23,
+				protected=24,
+				public=25
+			)
+		
+label<-c(
+		"project id",
+		"LOC",
+		"number of commits",
+		"age",
+		
+		"all types",
+
+		"local variables",
+		"returns of methods",
+		"parameters of methods",
+		"parameters of constructors",
+		"fields",
+
+		"returns of private methods",
+		"returns of protected methods",
+		"returns of public methods",
+
+		"parameters of private methods",
+		"parameters of protected methods",
+		"parameters of public methods",
+
+		"parameters of private constructors",
+		"parameters of protected constructors",
+		"parameters of public constructors",
+
+		"private fields",
+		"protected fields",
+		"public fields",
+
+		"private fields and methods",
+		"protected fields and methods",
+		"public fields and methods"
+)
+
+plotDeclarationTypeHistogram<-function(data, folder, index){
+	declarationTypeStr<-label[index]
+ 	values<-data[!is.na(data[,index]),]
+ 	colname<-colnames(data)[index]
+ 	
+ 	plot<-ggplot(values, aes_string(x=colname)) + 
+ 		geom_histogram(binwidth=0.05) + 
+ 		ylab("Number of projects") + 
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + 
+ 		xlim(0,1.1)
+
+	
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)
 }
 
 plotDeclarationTypeHistogramOfData<-function(data, folder){
-	plotDeclarationTypeHistogram(data, folder, 4, "all declarations")
-	plotDeclarationTypeHistogram(data, folder, 5, "local variables")
-	plotDeclarationTypeHistogram(data, folder, 6, "returns of methods")
-	plotDeclarationTypeHistogram(data, folder, 7, "parameters of methods")
-	plotDeclarationTypeHistogram(data, folder, 8, "returns of private methods")
-	plotDeclarationTypeHistogram(data, folder, 9, "returns of protected methods")
-	plotDeclarationTypeHistogram(data, folder, 10, "returns of public methods")
-	plotDeclarationTypeHistogram(data, folder, 11, "parameters of private methods")
-	plotDeclarationTypeHistogram(data, folder, 12, "parameters of protected methods")
-	plotDeclarationTypeHistogram(data, folder, 13, "parameters of public methods")
+	for(it in declarationDataRange) {
+		print(it)
+		plotDeclarationTypeHistogram(data, folder, it )		
+	}
 }
 plotDeclarationTypeHistogramOfData(data, "all")
 plotDeclarationTypeHistogramOfData(matureData, "mature")
 plotDeclarationTypeHistogramOfData(nonMatureData, "non-mature")
 
 # Uses Mann Whitney tests to compare if two samples are equal
-compareSamples<-function(filename, columnsToCompare) {
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0))
+uTest<-function(data, folder, description, columns) {
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))
 	row = 1
 	
-	for(i in columnsToCompare) { 
-		for(j in columnsToCompare) { 
-			d_i=data[!is.na(data[i,]),c(i)]
-			d_j=data[!is.na(data[j,]),c(j)]
+	for(i in columns) { 
+		for(j in columns) { 
+			d_i=data[!is.na(data[i,]),i]
+			d_j=data[!is.na(data[j,]),j]
 			
 			test<-wilcox.test(d_i, d_j, conf.int=T)
 			print(test)
 			
 			p=test$p.value
+			difference=test$conf.int
 			
-			result <- rbind(result, data.frame(colnames(data)[i], colnames(data)[j], pvalue=p))
+			result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))
 			
 			row=row+1
 		}
 	}
 	
-	write.matrix(result ,file=paste("result/u-test/", filename, ".txt", sep=""))
+	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))
 }
 
-compareSamples("declaration_type", 5:7)
-compareSamples("method_return_visibility", 8:10)
-compareSamples("method_parameter_visibility", 11:13)
 
+boxPlot<-function(data, folder, description, columns) {
+	d <- data.frame(label=character(0), value=numeric(0))
+	
+	for(c in columns) {
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )
+	}
+	
+	plot<-ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")
+	
+	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))
+}
+
+compareSamples<-function(data, folder, description, columnsToCompare) {
+	print(paste("Comparing samples of", description))
+	
+	uTest(data, folder, description, columnsToCompare)
+	boxPlot(data, folder, description, columnsToCompare)
+}
+
+compareAllSamples<-function(data, folder) {
+	print(paste("Processing", folder, "data"))
+	
+	compareSamples(data, folder, "declaration by type",			i$localVariable:i$field)
+	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)
+	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)
+	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
+	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)
+	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)
+}
+
+boxPlot(data, "all", "all combinations", i$localVariable:i$public)
+boxPlot(matureData, "mature", "all combinations", i$localVariable:i$public)
+boxPlot(nonMatureData, "non-mature", "all combinations", i$localVariable:i$public)
+
+compareAllSamples(data, "all")
+compareAllSamples(matureData, "mature")
+compareAllSamples(nonMatureData, "non-mature")
 
 # Quasi experiment Tests x Non Tests and Scripts x Classes
 data_tests<-read.table("parsed/declaration_by_tests.txt", header=T)

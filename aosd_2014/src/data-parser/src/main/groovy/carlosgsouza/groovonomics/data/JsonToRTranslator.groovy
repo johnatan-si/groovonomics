@@ -1,6 +1,9 @@
 package carlosgsouza.groovonomics.data
 
 import groovy.json.JsonSlurper
+
+import java.text.SimpleDateFormat
+
 import carlosgsouza.groovonomics.typing_usage.ClassData
 import carlosgsouza.groovonomics.typing_usage.ClassDataFactory
 import carlosgsouza.groovonomics.typing_usage.DeclarationCount
@@ -9,43 +12,45 @@ public class JsonToRTranslator {
 	
 	JsonSlurper slurper = new JsonSlurper()
 	ClassDataFactory classDataFactory = new ClassDataFactory()
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd")
 
 	def DECLARATION_TYPES_AND_VISIBILITY = [
 		"privateMethodReturn",
 		"protectedMethodReturn",
 		"publicMethodReturn",
-		//								"privateField",
-		//								"protectedField",
-		//								"publicField",
 
 		"privateMethodParameter",
 		"protectedMethodParameter",
-		"publicMethodParameter"
-		//								,
-		//
-		//								"privateConstructorParameter",
-		//								"protectedConstructorParameter",
-		//								"publicConstructorParameter"
+		"publicMethodParameter",
+		
+		"privateConstructorParameter",
+		"protectedConstructorParameter",
+		"publicConstructorParameter",
+		
+		"privateField",
+		"protectedField",
+		"publicField"
 	]
 
 	def DECLARATION_TYPE = [
 		"localVariable",
 		"methodReturn",
-		"methodParameter"
-//		,
-//		field,
-//		constructorParameter
+		"methodParameter",
+		"constructorParameter",
+		"field"
 	]
 
 	def DECLARATION_VISIBILITY = [
-		"public",
 		"private",
-		"protected"
+		"protected",
+		"public"
 	]
 	
 	def METADATA = [
 			"loc",
-			"commits"
+			"commits",
+			"age"
 		]
 
 	public getHeaders() {
@@ -61,12 +66,19 @@ public class JsonToRTranslator {
 	}
 	
 	private getClassDataHeaders() {
-		(["all"] + DECLARATION_TYPE + DECLARATION_TYPES_AND_VISIBILITY)
+		(["all"] + DECLARATION_TYPE + DECLARATION_TYPES_AND_VISIBILITY + DECLARATION_VISIBILITY)
 	}
 	
 	public translateMetadata(projectId, metadataFolder) {
 		def metadata = slurper.parseText(new File(metadataFolder, "${projectId}.json").text)
-		return [projectId, metadata.loc, metadata.commits]
+		return [projectId, metadata.loc, metadata.commits, calculateAge(metadata)]
+	}
+	
+	def calculateAge(metadata) {
+		def createDay = sdf.parse(metadata.createdAt)
+		def updateDay = sdf.parse(metadata.updatedAt)
+		
+		return (updateDay - createDay)
 	}
 	
 	public translateClassData(ClassData classData) {

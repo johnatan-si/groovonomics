@@ -40,7 +40,7 @@ class DeclarationCount {
 	}
 	
 	def getIsEmpty() {
-		total > 0
+		total == 0
 	}
 	
 	String toString() {
