@@ -1,0 +1,11 @@
+sample1 sample2 pvalue conf.int.min conf.int.max
+localVariable        methodReturn         0.000                -0.503               -0.458              
+localVariable        methodParameter      0.000                -0.539               -0.463              
+localVariable        constructorParameter 0.000                -0.725               -0.619              
+localVariable        field                0.000                -0.201               -0.145              
+methodReturn         methodParameter      0.883                -0.006                0.000              
+methodReturn         constructorParameter 0.000                -0.176               -0.080              
+methodReturn         field                0.000                 0.291                0.351              
+methodParameter      constructorParameter 0.000                -0.111               -0.077              
+methodParameter      field                0.000                 0.267                0.347              
+constructorParameter field                0.000                 0.267                0.406              
