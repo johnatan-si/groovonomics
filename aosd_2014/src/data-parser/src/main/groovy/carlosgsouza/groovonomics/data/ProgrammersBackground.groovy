@@ -51,9 +51,7 @@ class ProgrammersBackground {
 		
 		def numberOfStaticallyTypedLanguages = languages.intersect(STATICALLY_TYPED_LANGUAGES).size()
 		
-		if(languages.size() == 0) {
-			return "groovy-only"
-		} else if(numberOfStaticallyTypedLanguages == 0) {
+		if(languages.size() == 0 || numberOfStaticallyTypedLanguages == 0) {
 			return "dynamic-only"
 		} else if(numberOfStaticallyTypedLanguages == languages.size()) {
 			return "static-only"

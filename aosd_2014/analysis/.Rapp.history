@@ -44,1809 +44,1193 @@ library(MASS)#
 #
 setwd("~/workspace_gg/groovonomics/aosd_2014/analysis")#
 #
-data<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-matureData=data[data$loc>2000 & data$commits>100, ]#
-nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
-#
-i<-data.frame(	#
-				projectId=1,#
-				loc=2,#
-				commits=3,#
-				age=4,#
-#
-				all=5, #
-#
-				localVariable=6,#
-				methodReturn=7,#
-				methodParameter=8,#
-				constructorParameter=9,#
-				field=10,#
-				privateMethodReturn=11,#
-				protectedMethodReturn=12,#
-				publicMethodReturn=13,#
-				privateMethodParameter=14,#
-				protectedMethodParameter=15,#
-				publicMethodParameter=16,#
-				privateConstructorParameter=17,#
-				protectedConstructorParameter=18,#
-				publicConstructorParameter=19,#
-				privateField=20,#
-				protectedField=21,#
-				publicField=22,#
-				private=23,#
-				protected=24,#
-				public=25#
-			)#
-label<-c(#
-		"project id",#
-		"LOC",#
-		"number of commits",#
-		"age",#
-		"all types",#
-#
-		"local variables",#
-		"returns of methods",#
-		"parameters of methods",#
-		"parameters of constructors",#
-		"fields",#
-#
-		"returns of private methods",#
-		"returns of protected methods",#
-		"returns of public methods",#
-#
-		"parameters of private methods",#
-		"parameters of protected methods",#
-		"parameters of public methods",#
-#
-		"parameters of private constructors",#
-		"parameters of protected constructors",#
-		"parameters of public constructors",#
-#
-		"private fields",#
-		"protected fields",#
-		"public fields",#
-#
-		"private fields and methods",#
-		"protected fields and methods",#
-		"public fields and methods"#
-)
-Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			d_i=data[!is.na(data[i,]),i]#
-			d_j=data[!is.na(data[j,]),j]#
-			test<-wilcox.test(d_i, d_j, conf.int=T)#
-			print(test)#
-			p=test$p.value#
-			difference=test$conf.int#
-			result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-			row=row+1#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}#
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-}#
-#
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	uTest(data, folder, description, columnsToCompare)#
-	boxPlot(data, folder, description, columnsToCompare)#
-}#
-#
-compareAllSamples<-function(data, folder) {#
-	print(paste("Processing", folder, "data"))#
-	compareSamples(data, folder, "declaration by type",			i$localVariable:i$field)#
-	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
-	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
-	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
-	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
-	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
-}#
-#
-boxPlot(data, folder, "all combinations", i$localVariable:i$public)#
-boxPlot(matureData, folder, "all combinations", i$localVariable:i$public)#
-boxPlot(nonMatureData, folder, "all combinations", i$localVariable:i$public)#
-compareAllSamples(data, "all")#
-compareAllSamples(matureData, "mature")#
-compareAllSamples(nonMatureData, "non-mature")
-boxPlot(data, "all", "all combinations", i$localVariable:i$public)#
-boxPlot(matureData, "mature", "all combinations", i$localVariable:i$public)#
-boxPlot(nonMatureData, "non-mature", "all combinations", i$localVariable:i$public)
-boxPlot(data, "all", "fields", i$localVariable:i$field)
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-#
-	plot#
-}
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + geom_boxplot(notch=T) + coord_flip() + labs(y="Use of types in declarations", x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-#
-	plot#
-}#
-boxPlot(data, "all", "fields", i$localVariable:i$field)
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + #
-			geom_boxplot(notch=T) + #
-			coord_flip() + #
-			labs(y=paste("Use of types in", description), x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-#
-	plot#
-}#
-boxPlot(data, "all", "fields", i$localVariable:i$field)
-boxPlot(data, "all", "returns of methods", i$localVariable:i$field)
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + #
-			geom_boxplot(notch=T) + #
-			coord_flip() + #
-			labs(y=paste("Use of types in", description), x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-#
-	plot#
-}#
-#
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	# uTest(data, folder, description, columnsToCompare)#
-	boxPlot(data, folder, description, columnsToCompare)#
-}#
-#
-compareAllSamples<-function(data, folder) {#
-	print(paste("Processing", folder, "data"))#
-	compareSamples(data, folder, "declarations by type",		i$localVariable:i$field)#
-	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
-	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
-	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
-	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
-	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
-}#
-#
-boxPlot(data, "all", "all combinations", i$localVariable:i$public)#
-boxPlot(matureData, "mature", "all combinations", i$localVariable:i$public)#
-boxPlot(nonMatureData, "non-mature", "all combinations", i$localVariable:i$public)#
-#
-compareAllSamples(data, "all")#
-compareAllSamples(matureData, "mature")
-compareAllSamples(nonMatureData, "non-mature")
-data_tests<-read.table("parsed/declaration_by_tests.txt", header=T)#
-describe(data_tests)#
-#
-data_scripts<-read.table("parsed/declaration_by_scripts.txt", header=T)#
-describe(data_scripts)
-data_tests<-read.table("parsed/declaration_by_tests.txt", header=T)#
-describe(data_tests)#
-#
-data_scripts<-read.table("parsed/declaration_by_scripts.txt", header=T)#
-describe(data_scripts)
-describe(data_scripts$condition)
-str(data_scripts$condition)
 data_all<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
+describe(data_all)#
 #
 data_tests_all<-read.table("parsed/declaration_by_tests.txt", header=T)#
-describe(data_tests)#
+describe(data_tests_all)#
 #
 data_scripts_all<-read.table("parsed/declaration_by_scripts.txt", header=T)#
-describe(data_scripts)#
-data=data_all#
+describe(data_scripts_all)#
 #
-matureData=data[data$loc>2000 & data$commits>100, ]#
-nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
-#
-testData=data_tests_all[data$condition="test", ]#
-mainData=data_tests_all[data$condition="not-test", ]#
-#
-scriptData=data_scripts_all[data$condition="script", ]#
-classData=data_scripts_all[data$condition="not-script", ]
-data_all<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-data_tests_all<-read.table("parsed/declaration_by_tests.txt", header=T)#
-describe(data_tests)#
-#
-data_scripts_all<-read.table("parsed/declaration_by_scripts.txt", header=T)#
-describe(data_scripts)#
-data=data_all#
-#
-matureData=data[data$loc>2000 & data$commits>100, ]#
-nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
-#
-testData=data_tests_all[data$condition=="test", ]#
-mainData=data_tests_all[data$condition=="not-test", ]#
-#
-scriptData=data_scripts_all[data$condition=="script", ]#
-classData=data_scripts_all[data$condition=="not-script", ]
-plotDeclarationTypeHistogram<-function(data, folder, index){#
-	declarationTypeStr<-label[index]#
- 	values<-data[!is.na(data[,index]),]#
- 	colname<-colnames(data)[index]#
- 	plot<-ggplot(values, aes_string(x=colname)) + #
- 		geom_histogram(binwidth=0.05) + #
- 		ylab("Number of projects") + #
- 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
- 		xlim(0,1.1)#
-	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)#
-}#
-#
-plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	for(it in declarationDataRange) {#
-		print(it)#
-		plotDeclarationTypeHistogram(data, folder, it )		#
-	}#
-}#
-plotDeclarationTypeHistogramOfData(data, "all")#
-#
-plotDeclarationTypeHistogramOfData(matureData, "mature")#
-plotDeclarationTypeHistogramOfData(nonMatureData, "non-mature")#
-#
-plotDeclarationTypeHistogramOfData(testData, "test")#
-plotDeclarationTypeHistogramOfData(mainData, "main")#
-#
-plotDeclarationTypeHistogramOfData(scriptData, "script")#
-plotDeclarationTypeHistogramOfData(classData, "class")
-setwd("~/workspace_gg/groovonomics/aosd_2014/analysis")#
-#
-data_all<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-data_tests_all<-read.table("parsed/declaration_by_tests.txt", header=T)#
-describe(data_tests)#
-#
-data_scripts_all<-read.table("parsed/declaration_by_scripts.txt", header=T)#
-describe(data_scripts)#
-data=data_all#
-#
-matureData=data[data$loc>2000 & data$commits>100, ]#
-nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
-#
-testData=data_tests_all[data$condition=="test", ]#
-mainData=data_tests_all[data$condition=="not-test", ]#
-#
-scriptData=data_scripts_all[data$condition=="script", ]#
-classData=data_scripts_all[data$condition=="not-script", ]#
-#
-i<-data.frame(	#
-				projectId=1,#
-				loc=2,#
-				commits=3,#
-				age=4,#
-#
-				all=5, #
-#
-				localVariable=6,#
-				methodReturn=7,#
-				methodParameter=8,#
-				constructorParameter=9,#
-				field=10,#
-				privateMethodReturn=11,#
-				protectedMethodReturn=12,#
-				publicMethodReturn=13,#
-				privateMethodParameter=14,#
-				protectedMethodParameter=15,#
-				publicMethodParameter=16,#
-				privateConstructorParameter=17,#
-				protectedConstructorParameter=18,#
-				publicConstructorParameter=19,#
-				privateField=20,#
-				protectedField=21,#
-				publicField=22,#
-				private=23,#
-				protected=24,#
-				public=25#
-			)#
-label<-c(#
-		"project id",#
-		"LOC",#
-		"number of commits",#
-		"age",#
-		"all types",#
-#
-		"local variables",#
-		"returns of methods",#
-		"parameters of methods",#
-		"parameters of constructors",#
-		"fields",#
-#
-		"returns of private methods",#
-		"returns of protected methods",#
-		"returns of public methods",#
-#
-		"parameters of private methods",#
-		"parameters of protected methods",#
-		"parameters of public methods",#
-#
-		"parameters of private constructors",#
-		"parameters of protected constructors",#
-		"parameters of public constructors",#
-#
-		"private fields",#
-		"protected fields",#
-		"public fields",#
-#
-		"private fields and methods",#
-		"protected fields and methods",#
-		"public fields and methods"#
-)#
-#
-plotDeclarationTypeHistogram<-function(data, folder, index){#
-	declarationTypeStr<-label[index]#
- 	values<-data[!is.na(data[,index]),]#
- 	colname<-colnames(data)[index]#
- 	plot<-ggplot(values, aes_string(x=colname)) + #
- 		geom_histogram(binwidth=0.05) + #
- 		ylab("Number of projects") + #
- 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
- 		xlim(0,1.1)#
-	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)#
-}#
-#
-plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	for(it in i$localVariable:i$public) {#
-		print(it)#
-		plotDeclarationTypeHistogram(data, folder, it )		#
-	}#
-}#
-plotDeclarationTypeHistogramOfData(data, "all")#
-#
-plotDeclarationTypeHistogramOfData(matureData, "mature")#
-plotDeclarationTypeHistogramOfData(nonMatureData, "non-mature")#
-#
-plotDeclarationTypeHistogramOfData(testData, "test")#
-plotDeclarationTypeHistogramOfData(mainData, "main")#
-#
-plotDeclarationTypeHistogramOfData(scriptData, "script")#
-plotDeclarationTypeHistogramOfData(classData, "class")
-setwd("~/workspace_gg/groovonomics/aosd_2014/analysis")#
-#
-data_all<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-data_tests_all<-read.table("parsed/declaration_by_tests.txt", header=T)#
-describe(data_tests)#
-#
-data_scripts_all<-read.table("parsed/declaration_by_scripts.txt", header=T)#
-describe(data_scripts)#
-data=data_all#
-#
-matureData=data[data$loc>2000 & data$commits>100, ]#
-nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
-#
-testData=data_tests_all[data$condition=="test", ]#
-mainData=data_tests_all[data$condition=="not-test", ]#
-#
-scriptData=data_scripts_all[data$condition=="script", ]#
-classData=data_scripts_all[data$condition=="not-script", ]#
-#
-i<-data.frame(	#
-				projectId=1,#
-				loc=2,#
-				commits=3,#
-				age=4,#
-#
-				all=5, #
-#
-				localVariable=6,#
-				methodReturn=7,#
-				methodParameter=8,#
-				constructorParameter=9,#
-				field=10,#
-				privateMethodReturn=11,#
-				protectedMethodReturn=12,#
-				publicMethodReturn=13,#
-				privateMethodParameter=14,#
-				protectedMethodParameter=15,#
-				publicMethodParameter=16,#
-				privateConstructorParameter=17,#
-				protectedConstructorParameter=18,#
-				publicConstructorParameter=19,#
-				privateField=20,#
-				protectedField=21,#
-				publicField=22,#
-				private=23,#
-				protected=24,#
-				public=25#
-			)#
-label<-c(#
-		"project id",#
-		"LOC",#
-		"number of commits",#
-		"age",#
-		"all types",#
-#
-		"local variables",#
-		"returns of methods",#
-		"parameters of methods",#
-		"parameters of constructors",#
-		"fields",#
-#
-		"returns of private methods",#
-		"returns of protected methods",#
-		"returns of public methods",#
-#
-		"parameters of private methods",#
-		"parameters of protected methods",#
-		"parameters of public methods",#
-#
-		"parameters of private constructors",#
-		"parameters of protected constructors",#
-		"parameters of public constructors",#
-#
-		"private fields",#
-		"protected fields",#
-		"public fields",#
-#
-		"private fields and methods",#
-		"protected fields and methods",#
-		"public fields and methods"#
-)#
-#
-plotDeclarationTypeHistogram<-function(data, folder, index){#
-	declarationTypeStr<-label[index]#
- 	values<-data[!is.na(data[,index]),]#
- 	colname<-colnames(data)[index]#
- 	plot<-ggplot(values, aes_string(x=colname)) + #
- 		geom_histogram(binwidth=0.05) + #
- 		ylab("Number of projects") + #
- 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
- 		xlim(0,1.1)#
-	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)#
-}#
-#
-plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	for(it in i$localVariable:i$public) {#
-		print(it)#
-		plotDeclarationTypeHistogram(data, folder, it )		#
-	}#
-}#
-# Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			d_i=data[!is.na(data[i,]),i]#
-			d_j=data[!is.na(data[j,]),j]#
-			test<-wilcox.test(d_i, d_j, conf.int=T)#
-			print(test)#
-			p=test$p.value#
-			difference=test$conf.int#
-			result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-			row=row+1#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}#
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + #
-			geom_boxplot(notch=T) + #
-			coord_flip() + #
-			labs(y=paste("Use of types in", description), x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-}#
-#
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	# uTest(data, folder, description, columnsToCompare)#
-	boxPlot(data, folder, description, columnsToCompare)#
-}#
-#
-compareAllSamples<-function(data, folder) {#
-	print(paste("Processing", folder, "data"))#
-	compareSamples(data, folder, "declarations by type",		i$localVariable:i$field)#
-	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
-	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
-	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
-	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
-	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
-}#
-#
-analyzeSample<-function(data, description) {#
-	compareSamples(data, description)	#
-	plotDeclarationTypeHistogramOfData(data, description)#
-}#
-#
-boxPlot(data, "all", "all combinations", i$localVariable:i$public)#
-boxPlot(matureData, "mature", "all combinations", i$localVariable:i$public)#
-boxPlot(nonMatureData, "non-mature", "all combinations", i$localVariable:i$public)#
-#
-analyzeSample(data, "all")#
-#
-analyzeSample(matureData, "mature")#
-analyzeSample(nonMatureData, "non-mature")#
-#
-analyzeSample(testData, "test")#
-analyzeSample(mainData, "main")#
-#
-analyzeSample(scriptData, "script")#
-analyzeSample(classData, "class")
-analyzeSample<-function(data, description) {#
-	compareAllSamples(data, description)	#
-	plotDeclarationTypeHistogramOfData(data, description)#
-}
-analyzeSample(data, "all")
-analyzeSample(testData, "test")#
-analyzeSample(mainData, "main")#
-#
-analyzeSample(scriptData, "script")#
-analyzeSample(classData, "class")
-describte(testData)
-describe(testData)
-describe(classData)
-describe(scriptData)
-str(testData)
-describe(testData)
-testData
-matureData=data[data$loc>2000 & data$commits>100, ]#
-nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
-#
-testData=data_tests_all[data_tests_all $condition=="test", ]#
-mainData=data_tests_all[data_tests_all $condition=="not-test", ]#
-#
-scriptData=data_scripts_all[data_scripts_all $condition=="script", ]#
-classData=data_scripts_all[data_scripts_all $condition=="not-script", ]
-testData
-describe(testData)
-analyzeSample(testData, "test")#
-analyzeSample(mainData, "main")
-analyzeSample(scriptData, "script")#
-analyzeSample(classData, "class")
-analyzeSample(scriptData, "script")
-testData=data_tests_all[data_tests_all$condition=="test", ]#
-mainData=data_tests_all[data_tests_all$condition=="not-test", ]#
-#
-scriptData=data_scripts_all[data_scripts_all$condition=="script", ]#
-classData=data_scripts_all[data_scripts_all$condition=="not-script", ]
-analyzeSample(testData, "test")#
-analyzeSample(mainData, "main")#
-#
-analyzeSample(scriptData, "script")#
-analyzeSample(classData, "class")
-describe(scriptData)
-analyzeSample(scriptData, "script")
-describe(scriptData)
-warnings()
-scriptData="""
-"
-scriptData=""
-analyzeSample(scriptData, "script")
-scriptData=data_scripts_all[data_scripts_all$condition=="script", ]
-scriptData=data_scripts_all[data_scripts_all$condition=="script", ]
-analyzeSample(scriptData, "script")
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData=c()#
-	for(c in columnsToCompare) {#
-		if(length(data[!is.na(data[c]), c]) > 0) {#
-			append(columnsWithData, c)#
-		}#
-	}#
-	print(columnsWithData)#
-	uTest(data, folder, description, columnsWithData)#
-	boxPlot(data, folder, description, columnsWithData)#
-}
-analyzeSample(scriptData, "script")
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData=c()#
-	for(c in columnsToCompare) {#
-		print(c)#
-		if(length(data[!is.na(data[c]), c]) > 0) {#
-			print(c)#
-			append(columnsWithData, c)#
-		}#
-	}#
-	print(columnsWithData)#
-	uTest(data, folder, description, columnsWithData)#
-	boxPlot(data, folder, description, columnsWithData)#
-}
-analyzeSample(scriptData, "script")
-describe(scriptData)
-analyzeSample(scriptData, "script")
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData=numeric()#
-	for(c in columnsToCompare) {#
-		if(length(data[!is.na(data[c]), c]) > 0) {#
-			columnsWithData <- c(columnsWithData, 1)#
-		}#
-	}#
-	print(columnsWithData)#
-	uTest(data, folder, description, columnsWithData)#
-	boxPlot(data, folder, description, columnsWithData)#
-}
-analyzeSample(scriptData, "script")
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData=numeric()#
-	for(c in columnsToCompare) {#
-		if(length(data[!is.na(data[c]), c]) > 0) {#
-			columnsWithData <- c(columnsWithData, c)#
-		}#
-	}#
-	print(columnsWithData)#
-	uTest(data, folder, description, columnsWithData)#
-	boxPlot(data, folder, description, columnsWithData)#
-}
-analyzeSample(scriptData, "script")
-Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i != j) {#
-				d_i=data[!is.na(data[i,]),i]#
-				d_j=data[!is.na(data[j,]),j]#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}
-analyzeSample(scriptData, "script")
-Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i != j) {#
-				print(i, j)#
-				d_i=data[!is.na(data[i,]),i]#
-				d_j=data[!is.na(data[j,]),j]#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}
-analyzeSample(scriptData, "script")
-Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i != j) {#
-				print(i)#
-				print(j)#
-				d_i=data[!is.na(data[i,]),i]#
-				d_j=data[!is.na(data[j,]),j]#
-				describe(d_i)#
-				describe(d_j)#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}
-analyzeSample(scriptData, "script")
-Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i != j) {#
-				print(i)#
-				print(j)#
-				d_i=data[!is.na(data[i,]),i]#
-				d_j=data[!is.na(data[j,]),j]#
-				describe(d_i)#
-				describe(d_j)#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}
-analyzeSample(scriptData, "script")
-describe(scriptData)
-Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i != j) {#
-				print(i)#
-				print(j)#
-				d_i=data[!is.na(data[i,]),i]#
-				d_j=data[!is.na(data[j,]),j]#
-				describe(d_i)#
-				describe(d_j)#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}
-analyzeSample(scriptData, "script")
-Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i != j) {#
-				print(i)#
-				print(j)#
-				d_i=data[!is.na(data[i,]),i]#
-				d_j=data[!is.na(data[j,]),j]#
-				str(d_i)#
-				str(d_j)#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}#
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + #
-			geom_boxplot(notch=T) + #
-			coord_flip() + #
-			labs(y=paste("Use of types in", description), x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-}#
-#
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData=numeric()#
-	for(c in columnsToCompare) {#
-		if(length(data[!is.na(data[c]), c]) > 0) {#
-			columnsWithData <- c(columnsWithData, c)#
-		}#
-	}#
-	print(columnsWithData)#
-	uTest(data, folder, description, columnsWithData)#
-	boxPlot(data, folder, description, columnsWithData)#
-}
-analyzeSample(scriptData, "script")
-Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i != j) {#
-				print(i)#
-				print(j)#
-				d_i=data[!is.na(data[i,]),i]#
-				d_j=data[!is.na(data[j,]),j]#
-				describe(d_i)#
-				describe(d_j)#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}#
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + #
-			geom_boxplot(notch=T) + #
-			coord_flip() + #
-			labs(y=paste("Use of types in", description), x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-}#
-#
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData=numeric()#
-	for(c in columnsToCompare) {#
-		if(length(data[!is.na(data[c]), c]) > 0) {#
-			columnsWithData <- c(columnsWithData, c)#
-		}#
-	}#
-	print(columnsWithData)#
-	uTest(data, folder, description, columnsWithData)#
-	boxPlot(data, folder, description, columnsWithData)#
-}#
-#
-compareAllSamples<-function(data, folder) {#
-	print(paste("Processing", folder, "data"))#
-	compareSamples(data, folder, "declarations by type",		i$localVariable:i$field)#
-	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
-	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
-	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
-	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
-	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
-}#
-#
-analyzeSample<-function(data, description) {#
-	compareAllSamples(data, description)	#
-	plotDeclarationTypeHistogramOfData(data, description)#
-}
-analyzeSample(scriptData, "script")
-analyzeSample(classData, "class")
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i < j) {#
-				print(i)#
-				print(j)#
-				d_i=data[!is.na(data[i,]),i]#
-				d_j=data[!is.na(data[j,]),j]#
-				describe(d_i)#
-				describe(d_j)#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}#
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + #
-			geom_boxplot(notch=T) + #
-			coord_flip() + #
-			labs(y=paste("Use of types in", description), x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-}#
-#
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData=numeric()#
-	for(c in columnsToCompare) {#
-		if(length(data[!is.na(data[c]), c]) > 0) {#
-			columnsWithData <- c(columnsWithData, c)#
-		}#
-	}#
-	print(columnsWithData)#
-	uTest(data, folder, description, columnsWithData)#
-	boxPlot(data, folder, description, columnsWithData)#
-}#
-#
-compareAllSamples<-function(data, folder) {#
-	print(paste("Processing", folder, "data"))#
-	compareSamples(data, folder, "declarations by type",		i$localVariable:i$field)#
-	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
-	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
-	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
-	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
-	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
-}#
-#
-analyzeSample<-function(data, description) {#
-	compareAllSamples(data, description)	#
-	plotDeclarationTypeHistogramOfData(data, description)#
-}
-analyzeSample(scriptData, "script")
-Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i < j) {#
-				print(i)#
-				print(j)#
-				d_i=data[!is.na(data[i,]),i]#
-				d_j=data[!is.na(data[j,]),j]#
-				describe(d_i)#
-				describe(d_j)#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}#
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + #
-			geom_boxplot(notch=T) + #
-			coord_flip() + #
-			labs(y=paste("Use of types in", description), x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-}#
-#
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData=numeric()#
-	for(c in columnsToCompare) {#
-		if(length(data[!is.na(data[c]), c]) > 1) {#
-			columnsWithData <- c(columnsWithData, c)#
-		}#
-	}#
-	uTest(data, folder, description, columnsWithData)#
-	boxPlot(data, folder, description, columnsWithData)#
-}#
-#
-compareAllSamples<-function(data, folder) {#
-	print(paste("Processing", folder, "data"))#
-	compareSamples(data, folder, "declarations by type",		i$localVariable:i$field)#
-	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
-	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
-	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
-	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
-	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
-}#
-#
-analyzeSample<-function(data, description) {#
-	compareAllSamples(data, description)	#
-	plotDeclarationTypeHistogramOfData(data, description)#
-}
-analyzeSample(scriptData, "script")
-Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i < j) {#
-				print(i)#
-				print(j)#
-				d_i=data[!is.na(data[i,]),i]#
-				d_j=data[!is.na(data[j,]),j]#
-				print(describe(d_i))#
-				print(describe(d_j))#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}
-analyzeSample(scriptData, "script")
-describe(scriptData)
-scriptData[!is.na(data[15,]),15]
-describe(scriptData[!is.na(data[15,]),15])
-describe(scriptData[!is.na(data[,14]),14])
-describe(scriptData[!is.na(data[,15]),15])
-describe(scriptData[!is.na(scriptData[,15]),15])
-describe(scriptData[!is.na(scriptData[,14]),14])
-describe(scriptData)
-plotDeclarationTypeHistogram<-function(data, folder, index){#
-	declarationTypeStr<-label[index]#
- 	values<-data[!is.na(data[,index]),]#
- 	colname<-colnames(data)[index]#
- 	plot<-ggplot(values, aes_string(x=colname)) + #
- 		geom_histogram(binwidth=0.05) + #
- 		ylab("Number of projects") + #
- 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
- 		xlim(0,1.1)#
-	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)#
-}#
-#
-plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	for(it in i$localVariable:i$public) {#
-		print(it)#
-		plotDeclarationTypeHistogram(data, folder, it )		#
-	}#
-}#
-# Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i < j) {#
-				print(i)#
-				print(j)#
-				d_i=data[!is.na(data[,i]),i]#
-				d_j=data[!is.na(data[,i]),j]#
-				print(describe(d_i))#
-				print(describe(d_j))#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}#
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + #
-			geom_boxplot(notch=T) + #
-			coord_flip() + #
-			labs(y=paste("Use of types in", description), x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-}#
-#
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData=numeric()#
-	for(c in columnsToCompare) {#
-		if(length(data[!is.na(data[, c]), c]) > 1) {#
-			columnsWithData <- c(columnsWithData, c)#
-		}#
-	}#
-	uTest(data, folder, description, columnsWithData)#
-	boxPlot(data, folder, description, columnsWithData)#
-}#
-#
-compareAllSamples<-function(data, folder) {#
-	print(paste("Processing", folder, "data"))#
-	compareSamples(data, folder, "declarations by type",		i$localVariable:i$field)#
-	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
-	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
-	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
-	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
-	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
-}#
-#
-analyzeSample<-function(data, description) {#
-	compareAllSamples(data, description)	#
-	plotDeclarationTypeHistogramOfData(data, description)#
-}
-analyzeSample(scriptData, "script")
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData=numeric()#
-	for(c in columnsToCompare) {#
-		if(length(data[!is.na(data[, c]), c]) > 1) {#
-			columnsWithData <- c(columnsWithData, c)#
-		}#
-	}#
-	if(columnsWithData > 0) {#
-		uTest(data, folder, description, columnsWithData)#
-		boxPlot(data, folder, description, columnsWithData)	#
-	}#
-}
-analyzeSample(scriptData, "script")
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData=numeric()#
-	for(c in columnsToCompare) {#
-		if(length(data[!is.na(data[, c]), c]) > 1) {#
-			columnsWithData <- c(columnsWithData, c)#
-		}#
-	}#
-	if(length(columnsWithData) > 0) {#
-		uTest(data, folder, description, columnsWithData)#
-		boxPlot(data, folder, description, columnsWithData)	#
-	}#
-}
-analyzeSample(scriptData, "script")
-plotDeclarationTypeHistogram<-function(data, folder, index){#
-	declarationTypeStr<-label[index]#
- 	values<-data[!is.na(data[,index]),]#
- 	colname<-colnames(data)[index]#
- 	plot<-ggplot(values, aes_string(x=colname)) + #
- 		geom_histogram(binwidth=0.05) + #
- 		ylab("Number of projects") + #
- 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
- 		xlim(0,1.1)#
-	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)#
-}#
-#
-plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	for(it in filterColumnsWithData(i$localVariable:i$public)) {#
-		print(it)#
-		plotDeclarationTypeHistogram(data, folder, it )		#
-	}#
-}#
-# Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i < j) {#
-				d_i=data[!is.na(data[,i]),i]#
-				d_j=data[!is.na(data[,i]),j]#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}#
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + #
-			geom_boxplot(notch=T) + #
-			coord_flip() + #
-			labs(y=paste("Use of types in", description), x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-}#
-#
-filterColumnsWithData<-function(data, columns) {#
-	columnsWithData=numeric()#
-	for(c in columnsToCompare) {#
-		if(length(data[!is.na(data[, c]), c]) > 1) {#
-			columnsWithData <- c(columnsWithData, c)#
-		}#
-	}#
-	columnsWithData#
-}#
-#
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData<-filterColumnsWithData(data, columnsToCompare)#
-	if(length(columnsWithData) > 0) {#
-		uTest(data, folder, description, columnsWithData)#
-		boxPlot(data, folder, description, columnsWithData)	#
-	}#
-}#
-#
-compareAllSamples<-function(data, folder) {#
-	print(paste("Processing", folder, "data"))#
-	compareSamples(data, folder, "declarations by type",		i$localVariable:i$field)#
-	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
-	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
-	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
-	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
-	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
-}#
-#
-analyzeSample<-function(data, description) {#
-	compareAllSamples(data, description)	#
-	plotDeclarationTypeHistogramOfData(data, description)#
-}
-i<-data.frame(	#
-				projectId=1,#
-				loc=2,#
-				commits=3,#
-				age=4,#
-#
-				all=5, #
-#
-				localVariable=6,#
-				methodReturn=7,#
-				methodParameter=8,#
-				constructorParameter=9,#
-				field=10,#
-				privateMethodReturn=11,#
-				protectedMethodReturn=12,#
-				publicMethodReturn=13,#
-				privateMethodParameter=14,#
-				protectedMethodParameter=15,#
-				publicMethodParameter=16,#
-				privateConstructorParameter=17,#
-				protectedConstructorParameter=18,#
-				publicConstructorParameter=19,#
-				privateField=20,#
-				protectedField=21,#
-				publicField=22,#
-				private=23,#
-				protected=24,#
-				public=25#
-			)#
-label<-c(#
-		"project id",#
-		"LOC",#
-		"number of commits",#
-		"age",#
-		"all types",#
-#
-		"local variables",#
-		"returns of methods",#
-		"parameters of methods",#
-		"parameters of constructors",#
-		"fields",#
-#
-		"returns of private methods",#
-		"returns of protected methods",#
-		"returns of public methods",#
-#
-		"parameters of private methods",#
-		"parameters of protected methods",#
-		"parameters of public methods",#
-#
-		"parameters of private constructors",#
-		"parameters of protected constructors",#
-		"parameters of public constructors",#
-#
-		"private fields",#
-		"protected fields",#
-		"public fields",#
-#
-		"private fields and methods",#
-		"protected fields and methods",#
-		"public fields and methods"#
-)#
-#
-plotDeclarationTypeHistogram<-function(data, folder, index){#
-	declarationTypeStr<-label[index]#
- 	values<-data[!is.na(data[,index]),]#
- 	colname<-colnames(data)[index]#
- 	plot<-ggplot(values, aes_string(x=colname)) + #
- 		geom_histogram(binwidth=0.05) + #
- 		ylab("Number of projects") + #
- 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
- 		xlim(0,1.1)#
-	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)#
-}#
-#
-plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	for(it in filterColumnsWithData(i$localVariable:i$public)) {#
-		print(it)#
-		plotDeclarationTypeHistogram(data, folder, it )		#
-	}#
-}#
-# Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i < j) {#
-				d_i=data[!is.na(data[,i]),i]#
-				d_j=data[!is.na(data[,i]),j]#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}#
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + #
-			geom_boxplot(notch=T) + #
-			coord_flip() + #
-			labs(y=paste("Use of types in", description), x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-}#
-#
-filterColumnsWithData<-function(data, columns) {#
-	columnsWithData=numeric()#
-	for(c in columnsToCompare) {#
-		if(length(data[!is.na(data[, c]), c]) > 1) {#
-			columnsWithData <- c(columnsWithData, c)#
-		}#
-	}#
-	columnsWithData#
-}#
-#
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData<-filterColumnsWithData(data, columnsToCompare)#
-	if(length(columnsWithData) > 0) {#
-		uTest(data, folder, description, columnsWithData)#
-		boxPlot(data, folder, description, columnsWithData)	#
-	}#
-}#
-#
-compareAllSamples<-function(data, folder) {#
-	print(paste("Processing", folder, "data"))#
-	compareSamples(data, folder, "declarations by type",		i$localVariable:i$field)#
-	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
-	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
-	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
-	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
-	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
-}#
-#
-analyzeSample<-function(data, description) {#
-	plotDeclarationTypeHistogramOfData(data, description)#
-	compareAllSamples(data, description)	#
-}
-analyzeSample(scriptData, "script")
-filterColumnsWithData<-function(data, columns) {#
-	columnsWithData=numeric()#
-	for(c in columns) {#
-		if(length(data[!is.na(data[, c]), c]) > 1) {#
-			columnsWithData <- c(columnsWithData, c)#
-		}#
-	}#
-	columnsWithData#
-}
-analyzeSample(scriptData, "script")
-plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	for(it in filterColumnsWithData(data, i$localVariable:i$public )) {#
-		print(it)#
-		plotDeclarationTypeHistogram(data, folder, it )		#
-	}#
-}
-analyzeSample(scriptData, "script")
-analyzeSample(testData, "test")#
-analyzeSample(mainData, "main")
-library(psych)#
-library(sm)#
-library(ggplot2)#
-library(MASS)#
-#
-setwd("~/workspace_gg/groovonomics/aosd_2014/analysis")#
-#
-data_all<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-data_tests_all<-read.table("parsed/declaration_by_tests.txt", header=T)#
-describe(data_tests)#
-#
-data_scripts_all<-read.table("parsed/declaration_by_scripts.txt", header=T)#
-describe(data_scripts)#
-data=data_all#
-#
-matureData=data[data$loc>2000 & data$commits>100, ]#
-nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
-#
-testData=data_tests_all[data_tests_all$condition=="test", ]#
-mainData=data_tests_all[data_tests_all$condition=="not-test", ]#
-#
-scriptData=data_scripts_all[data_scripts_all$condition=="script", ]#
-classData=data_scripts_all[data_scripts_all$condition=="not-script", ]#
-#
-i<-data.frame(	#
-				projectId=1,#
-				loc=2,#
-				commits=3,#
-				age=4,#
-#
-				all=5, #
-#
-				localVariable=6,#
-				methodReturn=7,#
-				methodParameter=8,#
-				constructorParameter=9,#
-				field=10,#
-				privateMethodReturn=11,#
-				protectedMethodReturn=12,#
-				publicMethodReturn=13,#
-				privateMethodParameter=14,#
-				protectedMethodParameter=15,#
-				publicMethodParameter=16,#
-				privateConstructorParameter=17,#
-				protectedConstructorParameter=18,#
-				publicConstructorParameter=19,#
-				privateField=20,#
-				protectedField=21,#
-				publicField=22,#
-				private=23,#
-				protected=24,#
-				public=25#
-			)#
-label<-c(#
-		"project id",#
-		"LOC",#
-		"number of commits",#
-		"age",#
-		"all types",#
-#
-		"local variables",#
-		"returns of methods",#
-		"parameters of methods",#
-		"parameters of constructors",#
-		"fields",#
-#
-		"returns of private methods",#
-		"returns of protected methods",#
-		"returns of public methods",#
-#
-		"parameters of private methods",#
-		"parameters of protected methods",#
-		"parameters of public methods",#
-#
-		"parameters of private constructors",#
-		"parameters of protected constructors",#
-		"parameters of public constructors",#
-#
-		"private fields",#
-		"protected fields",#
-		"public fields",#
-#
-		"private fields and methods",#
-		"protected fields and methods",#
-		"public fields and methods"#
-)#
-#
-plotDeclarationTypeHistogram<-function(data, folder, index){#
-	declarationTypeStr<-label[index]#
- 	values<-data[!is.na(data[,index]),]#
- 	colname<-colnames(data)[index]#
- 	plot<-ggplot(values, aes_string(x=colname)) + #
- 		geom_histogram(binwidth=0.05) + #
- 		ylab("Number of projects") + #
- 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
- 		xlim(0,1.1)#
-	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)#
-}#
-#
-plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	for(it in filterColumnsWithData(data, i$localVariable:i$public )) {#
-		print(it)#
-		plotDeclarationTypeHistogram(data, folder, it )		#
-	}#
-}#
-# Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i < j) {#
-				d_i=data[!is.na(data[,i]),i]#
-				d_j=data[!is.na(data[,i]),j]#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}#
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + #
-			geom_boxplot(notch=T) + #
-			coord_flip() + #
-			labs(y=paste("Use of types in", description), x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-}#
-#
-filterColumnsWithData<-function(data, columns) {#
-	columnsWithData=numeric()#
-	for(c in columns) {#
-		if(length(data[!is.na(data[, c]), c]) > 1) {#
-			columnsWithData <- c(columnsWithData, c)#
-		}#
-	}#
-	columnsWithData#
-}#
-#
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData<-filterColumnsWithData(data, columnsToCompare)#
-	if(length(columnsWithData) > 0) {#
-		uTest(data, folder, description, columnsWithData)#
-		boxPlot(data, folder, description, columnsWithData)	#
-	}#
-}#
-#
-compareAllSamples<-function(data, folder) {#
-	print(paste("Processing", folder, "data"))#
-	compareSamples(data, folder, "declarations by type",		i$localVariable:i$field)#
-	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
-	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
-	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
-	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
-	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
-}#
-#
-analyzeSample<-function(data, description) {#
-	plotDeclarationTypeHistogramOfData(data, description)#
-	compareAllSamples(data, description)	#
-}#
-#
-boxPlot(data, "all", "all combinations", i$localVariable:i$public)#
-boxPlot(matureData, "mature", "all combinations", i$localVariable:i$public)#
-boxPlot(nonMatureData, "non-mature", "all combinations", i$localVariable:i$public)#
-#
-analyzeSample(data, "all")#
-#
-analyzeSample(matureData, "mature")#
-analyzeSample(nonMatureData, "non-mature")#
-#
-analyzeSample(testData, "test")#
-analyzeSample(mainData, "main")#
-#
-analyzeSample(scriptData, "script")#
-analyzeSample(classData, "class")
-library(psych)#
-library(sm)#
-library(ggplot2)#
-library(MASS)#
-#
-setwd("~/workspace_gg/groovonomics/aosd_2014/analysis")#
-#
-data_all<-read.table("parsed/declaration_by_type.txt", header=T)#
-describe(data)#
-#
-data_tests_all<-read.table("parsed/declaration_by_tests.txt", header=T)#
-describe(data_tests)#
-#
-data_scripts_all<-read.table("parsed/declaration_by_scripts.txt", header=T)#
-describe(data_scripts)#
-data=data_all#
-#
-matureData=data[data$loc>2000 & data$commits>100, ]#
-nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
-#
-testData=data_tests_all[data_tests_all$condition=="test", ]#
-mainData=data_tests_all[data_tests_all$condition=="not-test", ]#
-#
-scriptData=data_scripts_all[data_scripts_all$condition=="script", ]#
-classData=data_scripts_all[data_scripts_all$condition=="not-script", ]#
-#
-i<-data.frame(	#
-				projectId=1,#
-				loc=2,#
-				commits=3,#
-				age=4,#
-#
-				all=5, #
-#
-				localVariable=6,#
-				methodReturn=7,#
-				methodParameter=8,#
-				constructorParameter=9,#
-				field=10,#
-				privateMethodReturn=11,#
-				protectedMethodReturn=12,#
-				publicMethodReturn=13,#
-				privateMethodParameter=14,#
-				protectedMethodParameter=15,#
-				publicMethodParameter=16,#
-				privateConstructorParameter=17,#
-				protectedConstructorParameter=18,#
-				publicConstructorParameter=19,#
-				privateField=20,#
-				protectedField=21,#
-				publicField=22,#
-				private=23,#
-				protected=24,#
-				public=25#
-			)#
-label<-c(#
-		"project id",#
-		"LOC",#
-		"number of commits",#
-		"age",#
-		"all types",#
-#
-		"local variables",#
-		"returns of methods",#
-		"parameters of methods",#
-		"parameters of constructors",#
-		"fields",#
-#
-		"returns of private methods",#
-		"returns of protected methods",#
-		"returns of public methods",#
-#
-		"parameters of private methods",#
-		"parameters of protected methods",#
-		"parameters of public methods",#
-#
-		"parameters of private constructors",#
-		"parameters of protected constructors",#
-		"parameters of public constructors",#
-#
-		"private fields",#
-		"protected fields",#
-		"public fields",#
-#
-		"private fields and methods",#
-		"protected fields and methods",#
-		"public fields and methods"#
-)#
-#
-plotDeclarationTypeHistogram<-function(data, folder, index){#
-	declarationTypeStr<-label[index]#
- 	values<-data[!is.na(data[,index]),]#
- 	colname<-colnames(data)[index]#
- 	plot<-ggplot(values, aes_string(x=colname)) + #
- 		geom_histogram(binwidth=0.05) + #
- 		ylab("Number of projects") + #
- 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
- 		xlim(0,1.1)#
-	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)#
-}#
-#
-plotDeclarationTypeHistogramOfData<-function(data, folder){#
-	for(it in filterColumnsWithData(data, i$localVariable:i$public )) {#
-		print(it)#
-		plotDeclarationTypeHistogram(data, folder, it )		#
-	}#
-}#
-# Uses Mann Whitney tests to compare if two samples are equal#
-uTest<-function(data, folder, description, columns) {#
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
-	row = 1#
-	for(i in columns) { #
-		for(j in columns) { #
-			if(i < j) {#
-				d_i=data[!is.na(data[,i]),i]#
-				d_j=data[!is.na(data[,i]),j]#
-				test<-wilcox.test(d_i, d_j, conf.int=T)#
-				print(test)#
-				p=test$p.value#
-				difference=test$conf.int#
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
-				row=row+1#
-			}#
-		}#
-	}#
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
-}#
-boxPlot<-function(data, folder, description, columns) {#
-	d <- data.frame(label=character(0), value=numeric(0))#
-	for(c in columns) {#
-		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
-	}#
-	plot<-ggplot(d, aes(label, value)) + #
-			geom_boxplot(notch=T) + #
-			coord_flip() + #
-			labs(y=paste("Use of types in", description), x="")#
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
-}#
-#
-filterColumnsWithData<-function(data, columns) {#
-	columnsWithData=numeric()#
-	for(c in columns) {#
-		if(length(data[!is.na(data[, c]), c]) > 1) {#
-			columnsWithData <- c(columnsWithData, c)#
-		}#
-	}#
-	columnsWithData#
-}#
-#
-compareSamples<-function(data, folder, description, columnsToCompare) {#
-	print(paste("Comparing samples of", description))#
-	columnsWithData<-filterColumnsWithData(data, columnsToCompare)#
-	if(length(columnsWithData) > 0) {#
-		uTest(data, folder, description, columnsWithData)#
-		boxPlot(data, folder, description, columnsWithData)	#
-	}#
-}#
-#
-compareAllSamples<-function(data, folder) {#
-	print(paste("Processing", folder, "data"))#
-	compareSamples(data, folder, "declarations by type",		i$localVariable:i$field)#
-	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
-	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
-	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
-	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)#
-	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
-}#
-#
-analyzeSample<-function(data, description) {#
-	plotDeclarationTypeHistogramOfData(data, description)#
-	compareAllSamples(data, description)	#
-}#
-#
-boxPlot(data, "all", "all combinations", i$localVariable:i$public)#
-boxPlot(matureData, "mature", "all combinations", i$localVariable:i$public)#
-boxPlot(nonMatureData, "non-mature", "all combinations", i$localVariable:i$public)#
-#
-analyzeSample(data, "all")#
-#
-analyzeSample(matureData, "mature")#
-analyzeSample(nonMatureData, "non-mature")#
-#
-analyzeSample(testData, "test")#
-analyzeSample(mainData, "main")#
-#
-analyzeSample(scriptData, "script")#
-analyzeSample(classData, "class")
 data_background_all<-read.table("parsed/declaration_by_background.txt", header=T)#
-str(data_background_all)
-groovyBackgroundData=data_background_all[data_scripts_all$condition=="groovy-only", ]#
-staticBackgroundData=data_background_all[data_scripts_all$condition=="static-only", ]#
-dynamicBackgroundData=data_background_all[data_scripts_all$condition=="dynamic-only", ]#
-staticAndDynamicBackgroundData=data_background_all[data_scripts_all$condition=="static-and-dynamic", ]
-describe(groovyBackgroundData)
-describe(data_background_all)
-describe(data)
+describe(data_background_all)#
+#
+data=data_all#
+#
+matureData=data[data$loc>2000 & data$commits>100, ]#
+nonMatureData=data[data$loc<=2000 | data$commits<=100, ]#
+#
+testData=data_tests_all[data_tests_all$condition=="test", ]#
+mainData=data_tests_all[data_tests_all$condition=="not-test", ]#
+#
+scriptData=data_scripts_all[data_scripts_all$condition=="script", ]#
+classData=data_scripts_all[data_scripts_all$condition=="not-script", ]#
+#
 groovyBackgroundData=data_background_all[data_background_all$condition=="groovy-only", ]#
 staticBackgroundData=data_background_all[data_background_all$condition=="static-only", ]#
 dynamicBackgroundData=data_background_all[data_background_all$condition=="dynamic-only", ]#
-staticAndDynamicBackgroundData=data_background_all[data_background_all$condition=="static-and-dynamic", ]
-describe(groovyBackgroundData)
-describe(staticBackgroundData)
-describe(dynamicBackgroundData)
+staticAndDynamicBackgroundData=data_background_all[data_background_all$condition=="static-and-dynamic", ]#
+#
+i<-data.frame(	#
+				projectId=1,#
+				loc=2,#
+				commits=3,#
+				age=4,#
+#
+				all=5, #
+#
+				localVariable=6,#
+				methodReturn=7,#
+				methodParameter=8,#
+				constructorParameter=9,#
+				field=10,#
+				privateMethodReturn=11,#
+				protectedMethodReturn=12,#
+				publicMethodReturn=13,#
+				privateMethodParameter=14,#
+				protectedMethodParameter=15,#
+				publicMethodParameter=16,#
+				privateConstructorParameter=17,#
+				protectedConstructorParameter=18,#
+				publicConstructorParameter=19,#
+				privateField=20,#
+				protectedField=21,#
+				publicField=22,#
+				private=23,#
+				protected=24,#
+				public=25#
+			)#
+label<-c(#
+		"project id",#
+		"LOC",#
+		"number of commits",#
+		"age",#
+		"all types",#
+#
+		"local variables",#
+		"returns of methods",#
+		"parameters of methods",#
+		"parameters of constructors",#
+		"fields",#
+#
+		"returns of private methods",#
+		"returns of protected methods",#
+		"returns of public methods",#
+#
+		"parameters of private methods",#
+		"parameters of protected methods",#
+		"parameters of public methods",#
+#
+		"parameters of private constructors",#
+		"parameters of protected constructors",#
+		"parameters of public constructors",#
+#
+		"private fields",#
+		"protected fields",#
+		"public fields",#
+#
+		"private fields and methods",#
+		"protected fields and methods",#
+		"public fields and methods"#
+)#
+#
+getConditionLabel<-function(condition) {#
+	if(condition == "test") {#
+		"Test class"#
+	} else if(condition == "not-test") {#
+		"Main class"#
+	} else if(condition == "script") {#
+		"Script file"#
+	} else if(condition == "not-script") {#
+		"Class file"#
+	} #
+}#
+#
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	colname<-colnames(data)[index]#
+ 	plot<-ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		xlim(0,1.1)#
+	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)#
+}#
+#
+plotDeclarationTypeHistogramOfData<-function(data, folder){#
+	for(it in filterColumnsWithData(data, i$localVariable:i$public )) {#
+		print(it)#
+		plotDeclarationTypeHistogram(data, folder, it )		#
+	}#
+}#
+# Uses Mann Whitney tests to compare if two samples are equal#
+uTest<-function(data, folder, description, columns) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
+	row = 1#
+	for(i in columns) { #
+		for(j in columns) { #
+			if(i < j) {#
+				d_i=data[!is.na(data[,i]),i]#
+				d_j=data[!is.na(data[,i]),j]#
+				test<-wilcox.test(d_i, d_j, conf.int=T)#
+				print(test)#
+				p=test$p.value#
+				difference=test$conf.int#
+				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
+				row=row+1#
+			}#
+		}#
+	}#
+	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))#
+}#
+boxPlot<-function(data, folder, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	plot<-ggplot(d, aes(label, value)) + #
+			geom_boxplot(notch=T) + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="")#
+	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
+}#
+#
+comparisonBoxPlot<-function(data, folder, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame(label=label[c], value=filteredData[,c], condition=lapply(filteredData$condition, getConditionLabel) ))#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1)#
+	plot#
+	# ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+comparisonBoxPlot(data_tests_all, "", "desc", 6:10)#
+#
+filterColumnsWithData<-function(data, columns) {#
+	columnsWithData=numeric()#
+	for(c in columns) {#
+		if(length(data[!is.na(data[, c]), c]) > 1) {#
+			columnsWithData <- c(columnsWithData, c)#
+		}#
+	}#
+	columnsWithData#
+}#
+#
+compareElementsOfASample<-function(data, folder, description, columnsToCompare) {#
+	print(paste("Comparing samples of", description))#
+	columnsWithData<-filterColumnsWithData(data, columnsToCompare)#
+	if(length(columnsWithData) > 0) {#
+		uTest(data, folder, description, columnsWithData)#
+		boxPlot(data, folder, description, columnsWithData)	#
+	}#
+}#
+#
+compareAllElementsOfASample<-function(data, folder) {#
+	print(paste("Processing", folder, "data"))#
+	compareElementsOfASample(data, folder, "declarations by type",			i$localVariable:i$field)#
+	compareElementsOfASample(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareElementsOfASample(data, folder, "parameters of methods",			i$privateMethodParameter:i$publicMethodParameter)#
+	compareElementsOfASample(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareElementsOfASample(data, folder, "fields", 						i$privateField:i$publicField)#
+	compareElementsOfASample(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
+}#
+#
+analyzeSample<-function(data, description) {#
+	plotDeclarationTypeHistogramOfData(data, description)#
+	compareAllElementsOfASample(data, description)	#
+}
+comparisonBoxPlot<-function(data, folder, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1)#
+	plot#
+	# ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+comparisonBoxPlot(data_tests_all, "", "desc", 6:10)
+data_tests_all$condition
+comparisonBoxPlot<-function(data, folder, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1)#
+	plot#
+	# ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+comparisonBoxPlot(data_tests_all, "", "desc", 6:10)
+data=data_tests_all
+d <- data.frame(label=character(0), value=numeric(0), condition=character(0))
+for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], filteredData$condition ) )#
+	}
+columns=6:10
+for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], filteredData$condition ) )#
+	}
+describe(d)
+33635/5
+comparisonBoxPlot<-function(data, folder, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1)#
+	plot#
+	# ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+comparisonBoxPlot(data_tests_all, "", "desc", 6:10)
+comparisonBoxPlot<-function(data, folder, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="Shake shake")#
+	plot#
+	# ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+comparisonBoxPlot(data_tests_all, "", "desc", 6:10)
+comparisonBoxPlot<-function(data, folder, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="")#
+	plot#
+	# ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+comparisonBoxPlot(data_tests_all, "", "desc", 6:10)
+comparisonBoxPlot<-function(data, folder, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="", labels=c("Main classes", "Test classes"))#
+	plot#
+	# ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+comparisonBoxPlot(data_tests_all, "", "desc", 6:10)
+comparisonBoxPlot<-function(data, folder, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="", labels=c("Main classes", "Test classes")) +#
+			theme(legend.position="bottom")#
+	plot#
+	# ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+comparisonBoxPlot(data_tests_all, "", "desc", 6:10)
+comparisonBoxPlot<-function(data, folder, description, columns, labels) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	plot#
+	# ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+comparisonBoxPlot(data_tests_all, "", "desc", 6:10, c("Main classes", "Test classes"))
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	plot#
+	# ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests X Classes#
+	compareSamples(data_tests_all, "test/comparison", c("Main classes", "Test classes"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_tests_all, "test/comparison", c("Main classes", "Test classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_tests_all, "test/comparison", c("Main classes", "Test classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_tests_all, "test/comparison", c("Main classes", "Test classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_tests_all, "test/comparison", c("Main classes", "Test classes"), "fields", 						i$privateField:i$publicField)#
+	compareSamples(data_tests_all, "test/comparison", c("Main classes", "Test classes"), "declarations by visibiltiy", 	i$private:i$public)#
+}#
+#
+compareAllSamples()
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "comparison/boxplot", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests X Classes#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "fields", 						i$privateField:i$publicField)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by visibiltiy", 	i$private:i$public)#
+}#
+#
+compareAllSamples()
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplot", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests X Classes#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "fields", 						i$privateField:i$publicField)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by visibiltiy", 	i$private:i$public)#
+}#
+#
+compareAllSamples()
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests X Classes#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "fields", 						i$privateField:i$publicField)#
+	compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by visibiltiy", 	i$private:i$public)#
+}#
+#
+compareAllSamples()
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="") +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests classes X Main classes#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by type",		i$localVariable:i$field)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "fields", 					i$privateField:i$publicField)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by visibiltiy", i$private:i$public)#
+	# Scripts X Classes#
+	compareSamples(data_scripts_all, "scripts", c("Script files", "Class files"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_scripts_all, "scripts", c("Script files", "Class files"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_scripts_all, "scripts", c("Script files", "Class files"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_scripts_all, "scripts", c("Script files", "Class files"), "declarations by visibiltiy", i$private:i$public)#
+}#
+#
+compareAllSamples()
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="") +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests classes X Main classes#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by type",		i$localVariable:i$field)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "fields", 					i$privateField:i$publicField)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by visibiltiy", i$private:i$public)#
+	# Scripts X Classes#
+	compareSamples(data_scripts_all, "script", c("Script files", "Class files"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_scripts_all, "script", c("Script files", "Class files"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_scripts_all, "script", c("Script files", "Class files"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_scripts_all, "script", c("Script files", "Class files"), "declarations by visibiltiy", i$private:i$public)#
+}#
+#
+compareAllSamples()
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="", labels=labes) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests classes X Main classes#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by type",		i$localVariable:i$field)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "fields", 					i$privateField:i$publicField)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by visibiltiy", i$private:i$public)#
+	# Scripts X Classes#
+	compareSamples(data_scripts_all, "script", c("Script files", "Class files"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_scripts_all, "script", c("Script files", "Class files"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_scripts_all, "script", c("Script files", "Class files"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_scripts_all, "scrips", c("Script files", "Class files"), "declarations by visibiltiy", i$private:i$public)#
+}#
+#
+compareAllSamples()
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests classes X Main classes#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by type",		i$localVariable:i$field)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "fields", 					i$privateField:i$publicField)#
+	# compareSamples(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by visibiltiy", i$private:i$public)#
+	# Scripts X Classes#
+	compareSamples(data_scripts_all, "script", c("Script files", "Class files"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_scripts_all, "script", c("Script files", "Class files"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_scripts_all, "script", c("Script files", "Class files"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_scripts_all, "scrips", c("Script files", "Class files"), "declarations by visibiltiy", i$private:i$public)#
+}#
+#
+compareAllSamples()
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests classes X Main classes#
+	# compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "declarations by type",			i$localVariable:i$field)#
+	# compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	# compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	# compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	# compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "fields", 						i$privateField:i$publicField)#
+	# compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "declarations by visibiltiy",	i$private:i$public)#
+	# Scripts X Classes#
+	compareSamples(data_scripts_all, "script", c("Class files", "Script files"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_scripts_all, "script", c("Class files", "Script files"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_scripts_all, "script", c("Class files", "Script files"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_scripts_all, "scrips", c("Class files", "Script files"), "declarations by visibiltiy",	i$private:i$public)#
+}
+compareAllSamples()
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests classes X Main classes#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "declarations by type",			i$localVariable:i$field)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "fields", 						i$privateField:i$publicField)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "declarations by visibiltiy",	i$private:i$public)#
+	# Scripts X Classes#
+	compareSamples(data_scripts_all, "script", c("Class files", "Script files"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_scripts_all, "script", c("Class files", "Script files"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_scripts_all, "script", c("Class files", "Script files"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_scripts_all, "scrips", c("Class files", "Script files"), "declarations by visibiltiy",	i$private:i$public)#
+}#
+#
+compareAllSamples()
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests classes X Main classes#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "fields", 					i$privateField:i$publicField)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "declarations by visibiltiy",	i$private:i$public)#
+	# Scripts X Classes#
+	compareSamples(data_scripts_all, "script", c("Class files", "Script files"), "declarations by type",		i$localVariable:i$methodParameter)#
+}#
+#
+compareAllSamples()
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.5, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests classes X Main classes#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "fields", 					i$privateField:i$publicField)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "declarations by visibiltiy",	i$private:i$public)#
+	# Scripts X Classes#
+	compareSamples(data_scripts_all, "script", c("Class files", "Script files"), "declarations by type",	i$localVariable:i$methodParameter)#
+}#
+#
+compareAllSamples()
+compareSamples(data_background_all, "background", c("Test classes", "Main classes"), "declarations by type",		i$localVariable:i$field)
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.25, end=1, name="") + #, labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}
+compareSamples(data_background_all, "background", c("Test classes", "Main classes"), "declarations by type",		i$localVariable:i$field)
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.25, end=1, name=""), labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}#
+#
+compareSamples<-function(data, folder, labels, description, columns) {#
+	comparisonBoxPlot(data, folder, labels, description, columns)#
+}
+compareSamples(data_background_all, "background", c("Statically Typed", "Statically and Dynamically Typed", "Groovy Only", "Dynamically Only"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_background_all, "background", c("Statically Typed", "Statically and Dynamically Typed", "Groovy Only", "Dynamically Only"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_background_all, "background", c("Statically Typed", "Statically and Dynamically Typed", "Groovy Only", "Dynamically Only"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_background_all, "background", c("Statically Typed", "Statically and Dynamically Typed", "Groovy Only", "Dynamically Only"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_background_all, "background", c("Statically Typed", "Statically and Dynamically Typed", "Groovy Only", "Dynamically Only"), "fields", 					i$privateField:i$publicField)#
+	compareSamples(data_background_all, "background", c("Statically Typed", "Statically and Dynamically Typed", "Groovy Only", "Dynamically Only"), "declarations by visibiltiy",	i$private:i$public)
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.25, end=1, name=""), labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.25, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=1.5*length(columns))#
+}
+Programmers background#
+	compareSamples(data_background_all, "background", c("Statically Typed", "Statically and Dynamically Typed", "Groovy Only", "Dynamically Only"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_background_all, "background", c("Statically Typed", "Statically and Dynamically Typed", "Groovy Only", "Dynamically Only"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_background_all, "background", c("Statically Typed", "Statically and Dynamically Typed", "Groovy Only", "Dynamically Only"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_background_all, "background", c("Statically Typed", "Statically and Dynamically Typed", "Groovy Only", "Dynamically Only"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_background_all, "background", c("Statically Typed", "Statically and Dynamically Typed", "Groovy Only", "Dynamically Only"), "fields", 					i$privateField:i$publicField)#
+	compareSamples(data_background_all, "background", c("Statically Typed", "Statically and Dynamically Typed", "Groovy Only", "Dynamically Only"), "declarations by visibiltiy",	i$private:i$public)
+compareSamples(data_background_all, "background", c("Dynamically Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically Typed"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_background_all, "background", c("Dynamically Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically Typed"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_background_all, "background", c("Dynamically Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically Typed"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_background_all, "background", c("Dynamically Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically Typed"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_background_all, "background", c("Dynamically Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically Typed"), "fields", 					i$privateField:i$publicField)#
+	compareSamples(data_background_all, "background", c("Dynamically Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically Typed"), "declarations by visibiltiy",	i$private:i$public)
+compareSamples(data_background_all, "background", c("Dynamically Type\nOnly", "Groovy Only\n(Dynamically Typed)", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_background_all, "background", c("Dynamically Type\nOnly", "Groovy Only\n(Dynamically Typed)", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_background_all, "background", c("Dynamically Type\nOnly", "Groovy Only\n(Dynamically Typed)", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_background_all, "background", c("Dynamically Type\nOnly", "Groovy Only\n(Dynamically Typed)", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_background_all, "background", c("Dynamically Type\nOnly", "Groovy Only\n(Dynamically Typed)", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "fields", 					i$privateField:i$publicField)#
+	compareSamples(data_background_all, "background", c("Dynamically Type\nOnly", "Groovy Only\n(Dynamically Typed)", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by visibiltiy",	i$private:i$public)
+Programmers background#
+	compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "fields", 					i$privateField:i$publicField)#
+	compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by visibiltiy",	i$private:i$public)
+compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "all declarations",			i$all)
+min(1,2)
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.25, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=min(3.0, 1.5*length(columns)))#
+}
+compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "all declarations",			i$all)
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.25, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=max(3.0, 1.5*length(columns)))#
+}
+compareAllSamples<-function() {#
+	# Tests classes X Main classes#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "fields", 					i$privateField:i$publicField)#
+	compareSamples(data_tests_all, "test", c("Test classes", "Main classes"), "declarations by visibiltiy",	i$private:i$public)#
+	# Scripts X Classes#
+	compareSamples(data_scripts_all, "script", c("Class files", "Script files"), "declarations by type",	i$localVariable:i$methodParameter)#
+	# Programmers background#
+	compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "all declarations",			i$all)#
+	compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by type",		i$localVariable:i$field)#
+	compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "fields", 					i$privateField:i$publicField)#
+	compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by visibiltiy",	i$private:i$public)#
+}
+compareSamples(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "all declarations",			i$all)
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.25, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=max(3.0, 1.5*length(columns)))#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests classes X Main classes#
+	comparisonBoxPlot(data_tests_all, "test", c("Test classes", "Main classes"), "all declarations",			i$all)#
+	comparisonBoxPlot(data_tests_all, "test", c("Test classes", "Main classes"), "declarations by type",		i$localVariable:i$field)#
+	comparisonBoxPlot(data_tests_all, "test", c("Test classes", "Main classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	comparisonBoxPlot(data_tests_all, "test", c("Test classes", "Main classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	comparisonBoxPlot(data_tests_all, "test", c("Test classes", "Main classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	comparisonBoxPlot(data_tests_all, "test", c("Test classes", "Main classes"), "fields", 					i$privateField:i$publicField)#
+	comparisonBoxPlot(data_tests_all, "test", c("Test classes", "Main classes"), "declarations by visibiltiy",	i$private:i$public)#
+	# Scripts X Classes#
+	comparisonBoxPlot(data_scripts_all, "script", c("Class files", "Script files"), "all declarations",		i$all)#
+	comparisonBoxPlot(data_scripts_all, "script", c("Class files", "Script files"), "declarations by type",	i$localVariable:i$methodParameter)#
+	# Programmers background#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "all declarations",			i$all)#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by type",		i$localVariable:i$field)#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "fields", 					i$privateField:i$publicField)#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by visibiltiy",	i$private:i$public)#
+}#
+#
+compareAllSamples()
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.25, end=1, name="") +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=max(3.0, 1.5*length(columns)))#
+}
+comparisonBoxPlot(data_tests_all, "test", c("Test classes", "Main classes"), "all declarations",			i$all)
+comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "all declarations",			i$all)
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.25, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=max(3.0, 1.5*length(columns)))#
+}
+comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "all declarations",			i$all)
+plotDeclarationTypeHistogram<-function(data, folder, index){#
+	declarationTypeStr<-label[index]#
+ 	values<-data[!is.na(data[,index]),]#
+ 	colname<-colnames(data)[index]#
+ 	plot<-ggplot(values, aes_string(x=colname)) + #
+ 		geom_histogram(binwidth=0.05) + #
+ 		ylab("Number of projects") + #
+ 		xlab(paste("Usage of types in declarations of",  declarationTypeStr, "per project")) + #
+ 		xlim(0,1.1)#
+	ggsave(path=paste("result/", folder, "/histograms/", sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)#
+}#
+#
+plotDeclarationTypeHistogramOfData<-function(data, folder){#
+	for(it in filterColumnsWithData(data, i$localVariable:i$public )) {#
+		print(it)#
+		plotDeclarationTypeHistogram(data, folder, it )		#
+	}#
+}#
+# Uses Mann Whitney tests to compare if two samples are equal#
+uTest<-function(data, folder, description, columns) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
+	row = 1#
+	for(i in columns) { #
+		for(j in columns) { #
+			if(i < j) {#
+				d_i=data[!is.na(data[,i]),i]#
+				d_j=data[!is.na(data[,i]),j]#
+				test<-wilcox.test(d_i, d_j, conf.int=T)#
+				print(test)#
+				p=test$p.value#
+				difference=test$conf.int#
+				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
+				row=row+1#
+			}#
+		}#
+	}#
+	write.matrix(result ,file=paste("result/", folder, "/u-test/", gsub(" ", "_", description), ".txt", sep=""))#
+}#
+boxPlot<-function(data, folder, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0))#
+	for(c in columns) {#
+		d <- rbind( d, data.frame(label=label[c], value=data[!is.na(data[c]), c]) )#
+	}#
+	plot<-ggplot(d, aes(label, value)) + #
+			geom_boxplot(notch=T) + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="")#
+	ggsave(path=paste("result/", folder, "/boxplots/",  sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))#
+}#
+#
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {#
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))#
+	for(c in columns) {#
+		filteredData <- data[!is.na(data[c]), ]#
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )#
+	}#
+	plot<-ggplot(d, aes(label, value, fill=condition)) + #
+			geom_boxplot() + #
+			coord_flip() + #
+			labs(y=paste("Use of types in", description), x="") + #
+			scale_fill_grey(start=0.25, end=1, name="", labels=labels) +#
+			theme(legend.position="bottom")#
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=max(3.0, 1.5*length(columns)))#
+}#
+#
+compareAllSamples<-function() {#
+	# Tests classes X Main classes#
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "all declarations",			i$all)#
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by type",		i$localVariable:i$field)#
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "fields", 						i$privateField:i$publicField)#
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by visibiltiy",	i$private:i$public)#
+	# Scripts X Classes#
+	comparisonBoxPlot(data_scripts_all, "script", c("Class files", "Script files"), "all declarations",		i$all)#
+	comparisonBoxPlot(data_scripts_all, "script", c("Class files", "Script files"), "declarations by type",	i$localVariable:i$methodParameter)#
+	# Programmers background#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "all declarations",			i$all)#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by type",		i$localVariable:i$field)#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "fields", 					i$privateField:i$publicField)#
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Groovy Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by visibiltiy",	i$private:i$public)#
+}
+filterColumnsWithData<-function(data, columns) {#
+	columnsWithData=numeric()#
+	for(c in columns) {#
+		if(length(data[!is.na(data[, c]), c]) > 1) {#
+			columnsWithData <- c(columnsWithData, c)#
+		}#
+	}#
+	columnsWithData#
+}#
+#
+compareElementsOfASample<-function(data, folder, description, columnsToCompare) {#
+	print(paste("Comparing samples of", description))#
+	columnsWithData<-filterColumnsWithData(data, columnsToCompare)#
+	if(length(columnsWithData) > 0) {#
+		uTest(data, folder, description, columnsWithData)#
+		boxPlot(data, folder, description, columnsWithData)	#
+	}#
+}#
+#
+compareAllElementsOfASample<-function(data, folder) {#
+	print(paste("Processing", folder, "data"))#
+	compareElementsOfASample(data, folder, "declarations by type",			i$localVariable:i$field)#
+	compareElementsOfASample(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)#
+	compareElementsOfASample(data, folder, "parameters of methods",			i$privateMethodParameter:i$publicMethodParameter)#
+	compareElementsOfASample(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)#
+	compareElementsOfASample(data, folder, "fields", 						i$privateField:i$publicField)#
+	compareElementsOfASample(data, folder, "declarations by visibiltiy", 	i$private:i$public)#
+}#
+#
+analyzeSample<-function(data, description) {#
+	plotDeclarationTypeHistogramOfData(data, description)#
+	compareAllElementsOfASample(data, description)	#
+}
+boxPlot(data, "all", "all combinations", i$localVariable:i$public)#
+boxPlot(matureData, "mature", "all combinations", i$localVariable:i$public)#
+boxPlot(nonMatureData, "non-mature", "all combinations", i$localVariable:i$public)#
+#
+analyzeSample(data, "all")
+analyzeSample(matureData, "maturity/mature")#
+analyzeSample(nonMatureData, "maturity/non-mature")#
+#
+analyzeSample(testData, "test/test")#
+analyzeSample(mainData, "test/main")#
+#
+analyzeSample(scriptData, "script/script")#
+analyzeSample(classData, "script/class")#
+#
 analyzeSample(groovyBackgroundData, "background/groovy-only")#
 analyzeSample(staticBackgroundData, "background/static-only")#
 analyzeSample(dynamicBackgroundData, "background/dynamic-only")#
 analyzeSample(staticAndDynamicBackgroundData, "background/static-and-dynamic")
-analyzeSample(groovyBackgroundData, "background/groovy-only")#
-analyzeSample(staticBackgroundData, "background/static-only")#
-analyzeSample(dynamicBackgroundData, "background/dynamic-only")#
-analyzeSample(staticAndDynamicBackgroundData, "background/static-and-dynamic")
+uTestSamples<-function(data1, data2, data1Description, data2Description, folder, columns) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
+	for(c in columns) { #
+		d_1=data1[!is.na(data[,c]),c]#
+		d_2=data2[!is.na(data[,c]),c]#
+		test<-wilcox.test(d_1, d_2, conf.int=T)#
+		print(test)#
+		p=test$p.value#
+		difference=test$conf.int#
+		result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
+	}#
+	write.matrix(result ,file=paste("result/", folder, "comparison/u-test/", data1description, "_", data2description, ".txt", sep=""))#
+}#
+uTestSamples(testData, mainData, "test", "main", folder, i$localVariable:i$field)
+uTestSamples<-function(data1, data2, data1Description, data2Description, folder, columns) {#
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))#
+	for(c in columns) { #
+		d_1=data1[!is.na(data[,c]),c]#
+		d_2=data2[!is.na(data[,c]),c]#
+		test<-wilcox.test(d_1, d_2, conf.int=T)#
+		print(test)#
+		p=test$p.value#
+		difference=test$conf.int#
+		result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))#
+	}#
+	write.matrix(result ,file=paste("result/", folder, "comparison/u-test/", data1description, "_", data2description, ".txt", sep=""))#
+}#
+uTestSamples(testData, mainData, "test", "main", folder, i$localVariable:i$field)
+uTestSamples<-function(data1, data2, data1Description, data2Description, folder, columns) {#
+	result = data.frame(element=character(0), pvalue=numeric(0), difference=numeric(0))#
+	for(c in columns) { #
+		d_1=data1[!is.na(data[,c]),c]#
+		d_2=data2[!is.na(data[,c]),c]#
+		test<-wilcox.test(d_1, d_2, conf.int=T)#
+		print(test)#
+		p=test$p.value#
+		difference=test$conf.int#
+		result <- rbind(result, data.frame(element=colnames(data1)[i], pvalue=p, difference=difference))#
+	}#
+	write.matrix(result ,file=paste("result/", folder, "comparison/u-test/", data1description, "_", data2description, ".txt", sep=""))#
+}#
+uTestSamples(testData, mainData, "test", "main", folder, i$localVariable:i$field)
+uTestSamples<-function(data1, data2, data1Description, data2Description, folder, columns) {#
+	result = data.frame(element=character(0), pvalue=numeric(0), difference=numeric(0))#
+	for(c in columns) { #
+		d_1=data1[!is.na(data[,c]),c]#
+		d_2=data2[!is.na(data[,c]),c]#
+		test<-wilcox.test(d_1, d_2, conf.int=T)#
+		print(test)#
+		p=test$p.value#
+		difference=test$conf.int#
+		result <- rbind(result, data.frame(element=colnames(data1)[c], pvalue=p, difference=difference))#
+	}#
+	write.matrix(result ,file=paste("result/", folder, "comparison/u-test/", data1description, "_", data2description, ".txt", sep=""))#
+}#
+uTestSamples(testData, mainData, "test", "main", folder, i$localVariable:i$field)
+uTestSamples<-function(data1, data2, data1Description, data2Description, folder, columns) {#
+	result = data.frame(element=character(0), pvalue=numeric(0), difference=numeric(0))#
+	for(c in columns) { #
+		d_1=data1[!is.na(data[,c]),c]#
+		d_2=data2[!is.na(data[,c]),c]#
+		test<-wilcox.test(d_1, d_2, conf.int=T)#
+		print(test)#
+		p=test$p.value#
+		difference=test$conf.int#
+		result <- rbind(result, data.frame(element=colnames(data1)[c], pvalue=p, difference=difference))#
+	}#
+	write.matrix(result ,file=paste("result/", folder, "comparison/u-test/", data1description, "_", data2description, ".txt", sep=""))#
+}#
+uTestSamples(testData, mainData, "test", "main", "test", i$localVariable:i$field)
+uTestSamples<-function(data1, data2, data1Description, data2Description, folder, columns) {#
+	result = data.frame(element=character(0), pvalue=numeric(0), difference=numeric(0))#
+	for(c in columns) { #
+		d_1=data1[!is.na(data[,c]),c]#
+		d_2=data2[!is.na(data[,c]),c]#
+		test<-wilcox.test(d_1, d_2, conf.int=T)#
+		print(test)#
+		p=test$p.value#
+		difference=test$conf.int#
+		result <- rbind(result, data.frame(element=colnames(data1)[c], pvalue=p, difference=difference))#
+	}#
+	write.matrix(result ,file=paste("result/", folder, "comparison/u-test/", data1Description, "_", data2Description, ".txt", sep=""))#
+}#
+uTestSamples(testData, mainData, "test", "main", "test", i$localVariable:i$field)
+uTestSamples<-function(data1, data2, data1Description, data2Description, folder, columns) {#
+	result = data.frame(element=character(0), pvalue=numeric(0), difference=numeric(0))#
+	for(c in columns) { #
+		d_1=data1[!is.na(data[,c]),c]#
+		d_2=data2[!is.na(data[,c]),c]#
+		test<-wilcox.test(d_1, d_2, conf.int=T)#
+		print(test)#
+		p=test$p.value#
+		difference=test$conf.int#
+		result <- rbind(result, data.frame(element=colnames(data1)[c], pvalue=p, difference=difference))#
+	}#
+	write.matrix(result ,file=paste("result/", folder, "/comparison/u-test/", data1Description, "_", data2Description, ".txt", sep=""))#
+}#
+uTestSamples(testData, mainData, "test", "main", "test", i$localVariable:i$field)
+print(1:3,5:10)
+print((1:3,5:10))
+print(c(1:3,5:10))
+uTestSamples(testData, mainData, "test", "main", "test", i$all:i$public)
+uTestSamples(testData, mainData, "test", "main", "test", i$all:i$public)

@@ -18,6 +18,7 @@ data_background_all<-read.table("parsed/declaration_by_background.txt", header=T
 describe(data_background_all)
 
 data=data_all
+allData=data
 
 matureData=data[data$loc>2000 & data$commits>100, ]
 nonMatureData=data[data$loc<=2000 | data$commits<=100, ]
@@ -28,10 +29,21 @@ mainData=data_tests_all[data_tests_all$condition=="not-test", ]
 scriptData=data_scripts_all[data_scripts_all$condition=="script", ]
 classData=data_scripts_all[data_scripts_all$condition=="not-script", ]
 
-groovyBackgroundData=data_background_all[data_background_all$condition=="groovy-only", ]
 staticBackgroundData=data_background_all[data_background_all$condition=="static-only", ]
 dynamicBackgroundData=data_background_all[data_background_all$condition=="dynamic-only", ]
 staticAndDynamicBackgroundData=data_background_all[data_background_all$condition=="static-and-dynamic", ]
+
+data_size=data_all
+data_size$condition=NA
+data_size[data_size$loc<=200, ]$condition="1-small"
+data_size[data_size$loc>200 & data_size$loc<=2000, ]$condition="2-medium"
+data_size[data_size$loc>2000 & data_size$loc<=20000, ]$condition="3-big"
+data_size[data_size$loc>20000, ]$condition="4-huge"
+
+smallData=data_size[data_size$condition=="1-small", ]
+mediumData=data_size[data_size$condition=="2-medium", ]
+bigData=data_size[data_size$condition=="3-big", ]
+hugeData=data_size[data_size$condition=="4-huge", ]
 
 i<-data.frame(	
 				projectId=1,
@@ -115,7 +127,7 @@ plotDeclarationTypeHistogram<-function(data, folder, index){
  		xlim(0,1.1)
 
 	
-	ggsave(path=paste("result/histograms/", folder, sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)
+	ggsave(path=paste("result/", folder, "/histograms/", sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=3, width=7)
 }
 
 plotDeclarationTypeHistogramOfData<-function(data, folder){
@@ -127,8 +139,8 @@ plotDeclarationTypeHistogramOfData<-function(data, folder){
 
 
 # Uses Mann Whitney tests to compare if two samples are equal
-uTest<-function(data, folder, description, columns) {
-	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), difference=numeric(0))
+uTestElementsOfASample<-function(data, folder, description, columns) {
+	result = data.frame(sample1=character(0), sample2=character(0), pvalue=numeric(0), conf.int.min=numeric(0), conf.int.max=numeric(0))
 	row = 1
 	
 	for(i in columns) { 
@@ -140,20 +152,49 @@ uTest<-function(data, folder, description, columns) {
 				test<-wilcox.test(d_i, d_j, conf.int=T)
 				print(test)
 				
-				p=test$p.value
-				difference=test$conf.int
+				p=round(test$p.value, 3)
+				conf.int.min=round(test$conf.int[1], 3)
+				conf.int.max=round(test$conf.int[2], 3)
 				
-				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, difference=difference))
+				result <- rbind(result, data.frame(sample1=colnames(data)[i], sample2=colnames(data)[j], pvalue=p, conf.int.min=conf.int.min, conf.int.max=conf.int.max))
 				
 				row=row+1
 			}
 		}
 	}
 	
-	write.matrix(result ,file=paste("result/u-test/", folder, "/", gsub(" ", "_", description), ".txt", sep=""))
+	write.matrix(result ,file=paste("result/", folder, "/u-test/", gsub(" ", "_", description), ".txt", sep=""))
 }
 
-
+uTestSamples<-function(data1, data2, data1Description, data2Description, folder, columns) {
+	print(paste("Comparing", data1Description, "and", data2Description))
+	
+	result = data.frame(element=character(0), pvalue=numeric(0), conf.int.min=numeric(0), conf.int.max=numeric(0))
+	
+	for(c in columns) { 
+		element=colnames(data1)[c]
+		print(element)
+		
+		d_1=data1[!is.na(data1[,c]),c]
+		d_2=data2[!is.na(data2[,c]),c]
+		
+		if(length(d_1) > 1 && length(d_2) > 1) {
+			test<-wilcox.test(d_1, d_2, conf.int=T)
+			print(test)
+			
+			
+			p=round(test$p.value, 3)
+			conf.int.min=round(test$conf.int[1], 3)
+			conf.int.max=round(test$conf.int[2], 3)
+			
+			result <- rbind(result, data.frame(element=element, pvalue=p, conf.int.min=conf.int.min, conf.int.max=conf.int.max))
+		}
+	}
+	
+	write.matrix(result ,file=paste("result/", folder, "/comparison/u-test/", data1Description, "_", data2Description, ".txt", sep=""))
+}
+uTestSamples(smallData, mediumData, "1-small", "2-medium", "size", i$all:i$public)
+	
 boxPlot<-function(data, folder, description, columns) {
 	d <- data.frame(label=character(0), value=numeric(0))
 	
@@ -166,7 +207,75 @@ boxPlot<-function(data, folder, description, columns) {
 			coord_flip() + 
 			labs(y=paste("Use of types in", description), x="")
 	
-	ggsave(path=paste("result/boxplots/", folder, sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))
+	ggsave(path=paste("result/", folder, "/boxplots/",  sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=length(columns))
+}
+
+comparisonBoxPlot<-function(data, folder, labels, description, columns) {
+	d <- data.frame(label=character(0), value=numeric(0), condition=character(0))
+	
+	for(c in columns) {
+		filteredData <- data[!is.na(data[c]), ]
+		d <- rbind( d, data.frame( label=label[c], value=filteredData[,c], condition=filteredData$condition ) )
+	}
+	
+	plot<-ggplot(d, aes(label, value, fill=condition)) + 
+			geom_boxplot() + 
+			coord_flip() + 
+			labs(y=paste("Use of types in", description), x="") + 
+			scale_fill_grey(start=0.25, end=1, name="", labels=labels) +
+			theme(legend.position="bottom")
+			
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=7, height=max(3.0, 1.5*length(columns)))
+}
+
+compareAllSamples<-function() {
+	
+	# Tests classes X Main classes
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "all declarations",			i$all)
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by type",		i$localVariable:i$field)
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "fields", 						i$privateField:i$publicField)
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by visibiltiy",	i$private:i$public)
+	
+	uTestSamples(testData, mainData, "test", "main", "test", i$all:i$public)
+	
+	# Scripts X Classes
+	comparisonBoxPlot(data_scripts_all, "script", c("Class files", "Script files"), "all declarations",		i$all)
+	comparisonBoxPlot(data_scripts_all, "script", c("Class files", "Script files"), "declarations by type",	i$localVariable:i$methodParameter)
+	
+	uTestSamples(scriptData, classData, "script", "class", "script", c(i$all, i$localVariable:i$methodParameter))
+	
+	# Programmers background
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "all declarations",			i$all)
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by type",		i$localVariable:i$field)
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "fields", 					i$privateField:i$publicField)
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by visibiltiy",	i$private:i$public)
+	
+	uTestSamples(staticBackgroundData, dynamicBackgroundData,			"static", "dynamic",			"background", i$all:i$public)
+	uTestSamples(staticBackgroundData, staticAndDynamicBackgroundData,	"static", "static-and-dynamic",	"background", i$all:i$public)
+	uTestSamples(dynamicBackgroundData, staticAndDynamicBackgroundData,	"dynamic", "static-and-dynamic","background", i$all:i$public)
+	
+	# Size
+	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "all declarations",			i$all)
+	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "declarations by type",		i$localVariable:i$field)
+	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)
+	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)
+	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
+	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "fields", 					i$privateField:i$publicField)
+	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "declarations by visibiltiy",	i$private:i$public)
+
+	uTestSamples(smallData, mediumData, "1-small", "2-medium", "size", i$all:i$public)
+	uTestSamples(smallData, bigData,	"1-small", "3-big", "size", i$all:i$public)
+	uTestSamples(smallData, hugeData,	"1-small", "4-huge", "size", i$all:i$public)
+	uTestSamples(mediumData, bigData,	"2-medium", "3-big", "size", i$all:i$public)
+	uTestSamples(mediumData, hugeData,	"2-medium", "4-huge", "size", i$all:i$public)
+	uTestSamples(bigData, hugeData,		"3-big", "4-huge", "size", i$all:i$public)
+
 }
 
 filterColumnsWithData<-function(data, columns) {
@@ -179,41 +288,43 @@ filterColumnsWithData<-function(data, columns) {
 	columnsWithData
 }
 
-compareSamples<-function(data, folder, description, columnsToCompare) {
+compareElementsOfASample<-function(data, folder, description, columnsToCompare) {
 	print(paste("Comparing samples of", description))
 	
 	columnsWithData<-filterColumnsWithData(data, columnsToCompare)
 	
 	if(length(columnsWithData) > 0) {
-		uTest(data, folder, description, columnsWithData)
+		uTestElementsOfASample(data, folder, description, columnsWithData)
 		boxPlot(data, folder, description, columnsWithData)	
 	}
 }
 
-compareAllSamples<-function(data, folder) {
+compareAllElementsOfASample<-function(data, folder) {
 	print(paste("Processing", folder, "data"))
 	
-	compareSamples(data, folder, "declarations by type",		i$localVariable:i$field)
-	compareSamples(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)
-	compareSamples(data, folder, "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)
-	compareSamples(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
-	compareSamples(data, folder, "fields", 						i$privateField:i$publicField)
-	compareSamples(data, folder, "declarations by visibiltiy", 	i$private:i$public)
+	compareElementsOfASample(data, folder, "declarations by type",			i$localVariable:i$field)
+	compareElementsOfASample(data, folder, "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)
+	compareElementsOfASample(data, folder, "parameters of methods",			i$privateMethodParameter:i$publicMethodParameter)
+	compareElementsOfASample(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
+	compareElementsOfASample(data, folder, "fields", 						i$privateField:i$publicField)
+	compareElementsOfASample(data, folder, "declarations by visibiltiy", 	i$private:i$public)
 }
 
 analyzeSample<-function(data, description) {
 	plotDeclarationTypeHistogramOfData(data, description)
-	compareAllSamples(data, description)	
+	compareAllElementsOfASample(data, description)	
 }
 
 boxPlot(data, "all", "all combinations", i$localVariable:i$public)
 boxPlot(matureData, "mature", "all combinations", i$localVariable:i$public)
 boxPlot(nonMatureData, "non-mature", "all combinations", i$localVariable:i$public)
 
-analyzeSample(data, "all")
+analyzeSample(allData, "all")
 
-analyzeSample(matureData, "maturity/mature")
-analyzeSample(nonMatureData, "maturity/non-mature")
+analyzeSample(smallData, "size/small")
+analyzeSample(mediumData, "size/medium")
+analyzeSample(bigData, "size/big")
+analyzeSample(hugeData, "size/huge")
 
 analyzeSample(testData, "test/test")
 analyzeSample(mainData, "test/main")
@@ -221,19 +332,14 @@ analyzeSample(mainData, "test/main")
 analyzeSample(scriptData, "script/script")
 analyzeSample(classData, "script/class")
 
-analyzeSample(groovyBackgroundData, "background/groovy-only")
 analyzeSample(staticBackgroundData, "background/static-only")
 analyzeSample(dynamicBackgroundData, "background/dynamic-only")
 analyzeSample(staticAndDynamicBackgroundData, "background/static-and-dynamic")
 
-# Quasi experiment Tests x Non Tests and Scripts x Classes
-data_tests<-read.table("parsed/declaration_by_tests.txt", header=T)
-data_scripts<-read.table("parsed/declaration_by_scripts.txt", header=T)
-qplot(localVariable, data=data_scripts, ylab="Number of projects", binwidth=0.05, facets=condition~.)
+analyzeSample(staticAndDynamicBackgroundData, "background/static-and-dynamic")
 
-# Quasi experiment - Programmers Background
-data_background<-read.table("parsed/declaration_by_background.txt", header=T)
-qplot(all, data=data_background, ylab="Number of projects", binwidth=0.05, facets=condition~.)
+compareAllSamples()
+
 
 # Corrrelation between declarations and size
 correlateLOCandCommits=function() {
