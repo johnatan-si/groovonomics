@@ -343,24 +343,26 @@ compareAllSamples()
 
 # Corrrelation between declarations and size
 correlateLOCandCommits=function() {
-	corLOC = data.frame(declaration=character(0), coefficient=numeric(0))
-	corCommits = data.frame(declaration=character(0), coefficient=numeric(0))
+	corLOC = data.frame(declaration=character(0), coefficient=numeric(0), p.value=numeric(0))
+	corCommits = data.frame(declaration=character(0), coefficient=numeric(0), p.value=numeric(0))
 
-	for(i in 4:13) {
+	for(i in i$localVariable:i$public) {
 		filteredData=data[ !is.na(data[, i]), ]
 		declarationType=colnames(data)[i]
 		
-		rankLOC=cor(filteredData[,2], filteredData[, i], method="spearman")
-		rankCommits=cor(filteredData[,3], filteredData[, i], method="spearman")
 		
-		corLOC=rbind(corLOC, data.frame(declarationType, rankLOC))
-		corCommits=rbind(corCommits, data.frame(declarationType, rankCommits))
+		locTest=cor.test(filteredData[,2], filteredData[, i], method="spearman")
+		corLOC=rbind(corLOC, data.frame(declaration=declarationType, coefficient=round(locTest$estimate, 3), p.value=round(locTest$p.value, 3)))
+		
+		
+		commitsTest=cor.test(filteredData[,3], filteredData[, i], method="spearman")
+		corCommits =rbind(corCommits, data.frame(declaration=declarationType, coefficient=round(commitsTest $estimate, 3), p.value=round(commitsTest $p.value, 3)))
 	}
 
 	print(corLOC)
-	write.matrix(corLOC ,"result/correlation/loc.txt")
+	write.matrix(corLOC ,"result/all/correlations/loc.txt")
 	print(corCommits)
-	write.matrix(corCommits ,"result/correlation/commits.txt")
+	write.matrix(corCommits ,"result/all/correlations/commits.txt")
 }
 correlateLOCandCommits()
 
