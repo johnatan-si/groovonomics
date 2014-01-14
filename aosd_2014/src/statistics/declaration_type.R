@@ -17,12 +17,6 @@ describe(data_scripts_all)
 data_background_all<-read.table("parsed/declaration_by_background.txt", header=T)
 describe(data_background_all)
 
-data=data_all
-allData=data
-
-matureData=data[data$loc>2000 & data$commits>100, ]
-nonMatureData=data[data$loc<=2000 | data$commits<=100, ]
-
 testData=data_tests_all[data_tests_all$condition=="test", ]
 mainData=data_tests_all[data_tests_all$condition=="not-test", ]
 
@@ -182,7 +176,6 @@ uTestSamples<-function(data1, data2, data1Description, data2Description, folder,
 			test<-wilcox.test(d_1, d_2, conf.int=T)
 			print(test)
 			
-			
 			p=round(test$p.value, 3)
 			conf.int.min=round(test$conf.int[1], 3)
 			conf.int.max=round(test$conf.int[2], 3)
@@ -193,7 +186,6 @@ uTestSamples<-function(data1, data2, data1Description, data2Description, folder,
 	
 	write.matrix(result ,file=paste("result/", folder, "/comparison/u-test/", data1Description, "_", data2Description, ".txt", sep=""))
 }
-uTestSamples(smallData, mediumData, "1-small", "2-medium", "size", i$all:i$public)
 	
 boxPlot<-function(data, folder, description, columns) {
 	d <- data.frame(label=character(0), value=numeric(0))
@@ -237,7 +229,7 @@ compareAllSamples<-function() {
 	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)
 	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
 	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "fields", 						i$privateField:i$publicField)
-	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by visibiltiy",	i$private:i$public)
+	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by visibility",	i$private:i$public)
 	
 	uTestSamples(testData, mainData, "test", "main", "test", i$all:i$public)
 	
@@ -254,7 +246,7 @@ compareAllSamples<-function() {
 	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)
 	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
 	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "fields", 					i$privateField:i$publicField)
-	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by visibiltiy",	i$private:i$public)
+	comparisonBoxPlot(data_background_all, "background", c("Dynamically\nTyped Only", "Statically and\nDynamically Typed", "Statically\nTyped Only"), "declarations by visibility",	i$private:i$public)
 	
 	uTestSamples(staticBackgroundData, dynamicBackgroundData,			"static", "dynamic",			"background", i$all:i$public)
 	uTestSamples(staticBackgroundData, staticAndDynamicBackgroundData,	"static", "static-and-dynamic",	"background", i$all:i$public)
@@ -267,7 +259,7 @@ compareAllSamples<-function() {
 	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)
 	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
 	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "fields", 					i$privateField:i$publicField)
-	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "declarations by visibiltiy",	i$private:i$public)
+	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "declarations by visibility",	i$private:i$public)
 
 	uTestSamples(smallData, mediumData, "1-small", "2-medium", "size", i$all:i$public)
 	uTestSamples(smallData, bigData,	"1-small", "3-big", "size", i$all:i$public)
@@ -307,7 +299,7 @@ compareAllElementsOfASample<-function(data, folder) {
 	compareElementsOfASample(data, folder, "parameters of methods",			i$privateMethodParameter:i$publicMethodParameter)
 	compareElementsOfASample(data, folder, "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
 	compareElementsOfASample(data, folder, "fields", 						i$privateField:i$publicField)
-	compareElementsOfASample(data, folder, "declarations by visibiltiy", 	i$private:i$public)
+	compareElementsOfASample(data, folder, "declarations by visibility", 	i$private:i$public)
 }
 
 analyzeSample<-function(data, description) {
@@ -315,11 +307,9 @@ analyzeSample<-function(data, description) {
 	compareAllElementsOfASample(data, description)	
 }
 
-boxPlot(data, "all", "all combinations", i$localVariable:i$public)
-boxPlot(matureData, "mature", "all combinations", i$localVariable:i$public)
-boxPlot(nonMatureData, "non-mature", "all combinations", i$localVariable:i$public)
+boxPlot(data_all, "all", "all combinations", i$localVariable:i$public)
 
-analyzeSample(allData, "all")
+analyzeSample(data_all, "all")
 
 analyzeSample(smallData, "size/small")
 analyzeSample(mediumData, "size/medium")
@@ -345,53 +335,61 @@ compareAllSamples()
 correlateLOCandCommits=function() {
 	corLOC = data.frame(declaration=character(0), coefficient=numeric(0), p.value=numeric(0))
 	corCommits = data.frame(declaration=character(0), coefficient=numeric(0), p.value=numeric(0))
+	corAge = data.frame(declaration=character(0), coefficient=numeric(0), p.value=numeric(0))
 
 	for(i in i$localVariable:i$public) {
-		filteredData=data[ !is.na(data[, i]), ]
-		declarationType=colnames(data)[i]
+		filteredData=data_all[ !is.na(data_all[, i]), ]
+		declarationType=colnames(data_all)[i]
 		
 		
 		locTest=cor.test(filteredData[,2], filteredData[, i], method="spearman")
 		corLOC=rbind(corLOC, data.frame(declaration=declarationType, coefficient=round(locTest$estimate, 3), p.value=round(locTest$p.value, 3)))
 		
-		
 		commitsTest=cor.test(filteredData[,3], filteredData[, i], method="spearman")
 		corCommits =rbind(corCommits, data.frame(declaration=declarationType, coefficient=round(commitsTest $estimate, 3), p.value=round(commitsTest $p.value, 3)))
+		
+		ageTest=cor.test(filteredData[,4], filteredData[, i], method="spearman")
+		corAge=rbind(corAge, data.frame(declaration=declarationType, coefficient=round(ageTest$estimate, 3), p.value=round(ageTest$p.value, 3)))		
 	}
 
 	print(corLOC)
 	write.matrix(corLOC ,"result/all/correlations/loc.txt")
 	print(corCommits)
 	write.matrix(corCommits ,"result/all/correlations/commits.txt")
+	print(corAge)
+	write.matrix(corAge ,"result/all/correlations/age.txt")
 }
 correlateLOCandCommits()
 
-# qplot(localVariable, data=data_scripts, ylab="Number of projects", binwidth=0.05, facets=condition~.)
 
-# Correlation between usage of types in different declaration types
-# Shows if I tend to use types in one kind of declaration, I tend to use types in others
-cor(data[!is.na(data$localVariable)&!is.na(data$methodParameter)&!is.na(data$methodReturn), 3:5])
-write.matrix(correlationOfDeclarationTypes ,file="result/correlationOfDeclarationTypes.txt")
-
-
-# Mature Data Analysis
-
-
-compareMatureProjectsToOthers=function() {
-	result = data.frame(declaration=character(0), pvalue=numeric(0))
-
-	for(i in 4:13) {
-		md = matureData[!is.na(matureData[,i]), i]
-		nmd = nonMatureData[!is.na(nonMatureData[,i]), i]
-		
-		declarationType=colnames(data)[i]
-		
-		p=wilcox.test(md, nmd)$p.value
-		
-		result <- rbind(result, data.frame(declration=declarationType, pvalue=p))
+correlationOfDeclarationsOfAProject<-function(description, columns) {
+	print(paste("Calculating intracorrelation of ", description))
+	
+	result = data.frame(element1=character(0), element2=character(0), correlation=numeric(0), p.value=numeric(0))
+	
+	for(i in columns) { 
+		for(j in columns) { 
+			if(i < j) {
+				e_i = colnames(data_all)[i]
+				e_j = colnames(data_all)[j]
+				
+				print(paste(e_i, "and", e_j))
+				
+				cd = data_all[!is.na(data_all[,i])&!is.na(data_all[,j]), ]
+				
+				test=cor.test(cd[,i], cd[,j], method="spearman")
+				result=rbind(result, data.frame(element1=e_i, element2=e_j, coefficient=round(test$estimate, 3), p.value=round(test$p.value, 3)))
+			}
+		}
 	}
 	
-	write.matrix(result ,"result/u-test/mature_and_others.txt")
+	print(result)
+	write.matrix(result, file=paste("result/all/intracorrelations/", description, ".txt", sep=""))
 }
 
-compareMatureProjectsToOthers()
+correlationOfDeclarationsOfAProject("type",						i$localVariable:i$field)
+correlationOfDeclarationsOfAProject("method_return",			i$privateMethodReturn:i$publicMethodReturn)
+correlationOfDeclarationsOfAProject("method_parameter",			i$privateMethodParameter:i$publicMethodParameter)
+correlationOfDeclarationsOfAProject("constructor_parameter",	i$privateConstructorParameter:i$publicConstructorParameter)
+correlationOfDeclarationsOfAProject("fields", 					i$privateField:i$publicField)
+correlationOfDeclarationsOfAProject("visibility", 				i$private:i$public)
