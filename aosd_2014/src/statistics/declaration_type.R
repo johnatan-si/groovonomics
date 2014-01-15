@@ -44,6 +44,8 @@ mediumData=data_size[data_size$condition=="2-medium", ]
 bigData=data_size[data_size$condition=="3-big", ]
 hugeData=data_size[data_size$condition=="4-huge", ]
 
+change_commit_spearman = read.table("parsed/change_commit_spearman.txt")
+
 i<-data.frame(	
 				projectId=1,
 				loc=2,
@@ -354,7 +356,6 @@ analyzeSample(staticBackgroundData, "background/static-only")
 analyzeSample(dynamicBackgroundData, "background/dynamic-only")
 analyzeSample(staticAndDynamicBackgroundData, "background/static-and-dynamic")
 
-analyzeSample(staticAndDynamicBackgroundData, "background/static-and-dynamic")
 
 compareAllSamples()
 
@@ -421,3 +422,18 @@ correlationOfDeclarationsOfAProject("method_parameter",			i$privateMethodParamet
 correlationOfDeclarationsOfAProject("constructor_parameter",	i$privateConstructorParameter:i$publicConstructorParameter)
 correlationOfDeclarationsOfAProject("fields", 					i$privateField:i$publicField)
 correlationOfDeclarationsOfAProject("visibility", 				i$private:i$public)
+
+plotSpearmanDistributionHistogram<-function(data){
+	print(describe(data))
+	
+	data = replace(data, data==1.0, 0.99)
+	data = replace(data, data==-1.0, -0.99)
+	plot<-ggplot(data, aes(x=V1)) + 
+ 		stat_ecdf() + 
+ 		ylab("Projects") + 
+ 		xlab(paste("Spearman Correlation")) + 
+ 		xlim(-1.00,1.00) +
+ 		theme(plot.margin=unit(c(0,0,0,0),"mm"))
+	ggsave(path=paste("result/", sep=""), filename="change_commits_distribution.png", height=2, width=4)
+}
+plotSpearmanDistributionHistogram(change_commit_spearman)

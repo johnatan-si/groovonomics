@@ -950,6 +950,13 @@ On the other side, in projects with over $65536$ lines of code, the average freq
 
 \subsection{Frequency of changes\label{res-changes}}
 
+\begin{figure}[hb]
+\centering \includegraphics[width=0.45\textwidth]{../analysis/result/change_commits_distribution.png} 
+\label{fig:change_spearman} 
+\caption{Spearman ranking for the relation between untyped declarations and frequency of changes for mature projects}
+\end{figure}
+
+
 The results in this section show how the frequency of changes in a file is related to the usage of types in the declarations in those files.
 For this analysis, we considered only mature projects since we would not be able to get significant results from small and young projects.
 
@@ -1110,11 +1117,7 @@ However, it is very unlikely that programmers would not notice that untyped decl
 
 An important conclusion that can be extracted from this analysis is that types are not absolutely necessary in order to build a maintainable system.
 At least, in most software projects written in Groovy, where there is a higher need for maintenance, programmers seem to prefer the flexibility of untyped declarations over the readability of types.
-\begin{figure}[hb]
-\centering \includegraphics[width=0.45\textwidth]{change_spearman} 
-\caption{Spearman ranking for the relation between untyped declarations and frequency of changes for mature projects}
-\label{fig:change_spearman} 
-\end{figure}
+
 
 % Q4
 \subsection{Programmers used to static typing use types more often\label{discussion-q4}}
