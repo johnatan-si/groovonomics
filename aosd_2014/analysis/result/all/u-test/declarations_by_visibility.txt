@@ -1,4 +1,10 @@
 sample1 sample2 pvalue conf.int.min conf.int.max
-private   protected 0         -0.565    -0.542   
-private   public    0         -0.318    -0.291   
-protected public    0          0.111     0.131   
+private   private   1          0.00      0.00    
+private   protected 0         -0.57     -0.54    
+private   public    0         -0.31     -0.28    
+protected private   0          0.54      0.57    
+protected protected 1          0.00      0.00    
+protected public    0          0.18      0.21    
+public    private   0          0.28      0.31    
+public    protected 0         -0.21     -0.18    
+public    public    1          0.00      0.00    

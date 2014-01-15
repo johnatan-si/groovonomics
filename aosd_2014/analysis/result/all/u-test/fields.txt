@@ -1,4 +1,10 @@
 sample1 sample2 pvalue conf.int.min conf.int.max
-privateField   protectedField 0.000          -0.500         -0.429        
-privateField   publicField    0.000          -0.571         -0.535        
-protectedField publicField    0.058           0.000          0.000        
+privateField   privateField   1               0.00           0.00         
+privateField   protectedField 0              -0.50          -0.43         
+privateField   publicField    0              -0.57          -0.53         
+protectedField privateField   0               0.43           0.50         
+protectedField protectedField 1               0.00           0.00         
+protectedField publicField    0               0.00           0.00         
+publicField    privateField   0               0.53           0.57         
+publicField    protectedField 0               0.00           0.00         
+publicField    publicField    1               0.00           0.00         

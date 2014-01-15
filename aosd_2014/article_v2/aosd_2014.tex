@@ -9,9 +9,11 @@
 \usepackage{adjustbox}
 \usepackage{multirow}
 \usepackage{color}
+\usepackage{pbox}
 
+\newcommand{\ts}{\textsuperscript}
 
-\newcommand{\lyxdot}{.}
+\newcommand{\cell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
 \floatstyle{ruled}
 \newfloat{Listing}{tbp}{loa}
@@ -493,96 +495,327 @@ Nevertheless, as shown in the next section, we were still able to obtain detaile
 % RESULTS
 %
 \section{Results\label{results}}
-As an overall result, Groovy programmers use types in 60\% of their declarations.
-This results is further detailed in this section.
+
 Subsection \ref{res-type-visibility} shows the type usage in different sorts of declarations and visibilities.
 Subsection \ref{res-test-scripts} shows results depending on the type of the file where a declaration was made, a script, a class or a test class.
 The effects of the programmers background and the project size are described in the Subsection \ref{res-background} and \ref{res-size}.
 Finally Subsection \ref{res-changes} presents results according to the number of changes of files.
 These results will be further discussed in Section \ref{discussion} in order to answer the research questions proposed in Section \ref{questions}.
 
-% TYPE
-\subsection{Declaration Type and Visibility\label{res-type-visibility}}
-The amount of typed and untyped declarations for each sort of declaration is shown on Figure \ref{fig:tipo_declaracao}.
-In this graph, each bar shows the frequency of typed and untyped declarations considering all declarations of all projects.
-Untyped declarations are far more frequent in local variables that in other elements.
-Fields, method returns and parameters on the other side are mostly typed. In particular, constructor parameters are typed in more than $90\%$ of the declarations.
+\subsection{Overall Result\label{res-overall}}
+Figure \ref{fig:all_histogram_all} gives an overview of the usage of types in all projects in our dataset.
+It shows the mean, standard deviation and the quartiles of the relative use of types in a project. 
+This value can vary from 0, in case a project doesn't declare any types, to 1, in case all declarations of a project are typed. 
+% TODO: show, show, show...
+This result is shown in more details on a histogram in , which shows the distribution of the values of relative use of types across all 6638 projects.
+% TODO: Discuss results a little more?
+
 
 \begin{figure}[h]
 \centering 
-\includegraphics[width=0.45\textwidth]{type} 
-\caption{Type Systems by Declaration Type.}
-\label{fig:tipo_declaracao} 
+\includegraphics[width=0.45\textwidth]{../analysis/result/all/histograms/5_all_types.png} 
+
+\vspace{0.3cm}
+\small
+\begin{tabular}{|c|c|c|cccc|}
+\hline
+{}		&  {}		&  {}			&  \multicolumn{4}{c|}{Quartiles}				\\
+n		& mean	& std. dev.	& 1\ts{st}	& 2\ts{nd}	& 3\ts{rd}	& 4\ts{th}		\\
+\hline
+\hline
+6638 	& 0.45	& 0.28		& 0.25	& 0.42		& 0.64	& 1.00		\\
+\hline
+\end{tabular}
+
+
+\caption{Usage of types in all declarations of all projects}
+\label{fig:all_histogram_all} 
 \end{figure}
 
-Figure \ref{fig:method_return_visibility} shows results for method returns.
-There is little difference in the usage of types on the declarations of the return in private and public methods, with $64.4\%$ and $67.3\%$ declarations typed respectively.
-On the other side, the return of protected methods typed in $91.8\%$ of the cases.
+
+
+% TYPE
+\subsection{Declaration Type\label{sub:res_all_type}}
+The relative use of types per type of declaration is show in Figure \ref{fig:all_boxplot_type} along with the corresponding descriptive statistics.
+This graph shows the lower quantile, the median, the upper quantile plus the values of minimum and maximum for five declaration types, fields, parameters of constructors, parameters and returns of methods and local variables.
+Note that the value of n is different for each element in the table since not all projects have all types of declarations. 
 
 \begin{figure}[h]
-\centering \includegraphics[width=0.45\textwidth]{method_return_visibility} 
-\caption{Method return declarations by visibility}
-\label{fig:method_return_visibility} 
+\centering 
+\includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/6_declarations_by_type.png} 
+\label{fig:all_boxplot_type} 
+
+\vspace{0.3cm}
+
+\renewcommand{\arraystretch}{1.2}
+\small
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Declaration Type		& n		& mean	& median		& std. dev.	\\
+\hline
+\hline
+Field					& 6000	& 0.43	& 0.39		& 0.33		\\ \hline
+Constructor Parameter	& 1670	& 0.80	& 1.00		& 0.35		\\ \hline
+Method Parameter		& 4867	& 0.67	& 0.86		& 0.36		\\ \hline
+Method Return			& 5881	& 0.68	& 0.75		& 0.31		\\ \hline
+Local Variable			& 5845	& 0.29	& 0.18		& 0.32		\\ \hline
+\end{tabular}
+
+\caption{Usage of types in all declarations by type of declaration}
+
 \end{figure}
 
-Figure \ref{fig:method_parameter_visibility} shows the results of the analysis of method parameter declarations. 
-Compared to the results for method returns shown in Figure \ref{fig:method_return_visibility}, declarations of public method parameters are typed more often.
-While public method returns have types in $67.3\%$ of the times, public method parameters have  $82.4\%$ of their declarations typed. 
-Parameters of constructors, shown in Figure \ref{fig:constructor_parameter_visibility}, present a similar behavior to what we observed in parameters of methods.
+The results presented in \ref{fig:all_boxplot_type} suggest that programmers use types differently depending on the type of a declaration.
+Local variables for example are typed less often.
+Half of the projects use types in local variables in less than 18\% of the declarations.
+Converselly, methods and constructors are typed most of the cases.
+
+In order to check wether these differences are significant we have to apply a significance test. We start by definining a hipothesis:
+\begin{description}
+\item[H0] The data of two declaration types come from the same population, i.e, there is no difference between the usage of types in two kinds of declaration
+\item[H1] Programmers type their declarations differently depending on the type of the declation
+\end{description}
+
+We can now use a significance test in order to reject or accept the null hipothesis. 
+Applying the hipothesis and the significance test to a pair of populations, such as fields and local variables, will tell us if these two populations are significantly different.
+
+We can't assume any underlying distribution of the data above.
+In fact, an analysis of the quartiles of the data of methods and constructors reveals that these populations are heavily negativelly skewed while local variables are heavily positvelly skewed.
+This indicates that these populations don't follow a Normal distribution.
+Thus we are required to use a non-parametric significance test, which doesn't require any underlying distribution.
+
+An appropriate test for our scenatio is the paired Mann-Whitney U test, which can be used to compare two populations.
+The Mann-Whitney U test returns a p value.
+The smaller the value of p, the "more significant" is the rejection of the hipothesys, i.e., the stronger the belief that these populations differ.
+Typically p values of 0.05 and 0.01 are used in similar researches, such that 0.01 indicates a very strong rejection.
+The Mann-Whitney U test also reveals how different two populations are.
+It gives us a confidence interval which tell us that, with a given probability of 1-p, the two means differ by the given confidence interval.
+
+The results of the U test are displayed on Table \ref{tab:all_utest_type}.
+The p value for all tests is close to 0, which allows us to reject the null hipothesys for all combinations of declaration types with a confidence of 0.01. Note however that although all populations are different from each other, the difference between some of them is not so big.
+It can be argued that the return and parameters of methods present very similar behavior.
+
+\begin{table}[ht]
+
+\centering{}%
+\renewcommand{\arraystretch}{1.2}
+
+\begin{tabular}{|c|c|c|c|}
+\hline 
+								& {}					& p  	      & conf. interval\\
+\hline
+\hline
+\multirow{4}{*}{Field}				& Constructor Parameter	& 0.000 & (-0.49, -0.45)\\
+								& Method Parameter	& 0.000 & (-0.32, -0.28)\\
+								& Method Return		& 0.000 & (-0.30, -0.27)\\
+								& Local Variable 		& 0.000 & (0.13, 0.16)\\
+\hline
+{}								& Field				& 0.000 & (0.45, 0.49)	\\
+Constructor						& Method Parameter	& 0.000 & (0.07, 0.09)	\\
+Parameter							& Method Return		& 0.000 & (0.09, 0.12)	\\
+{}								& Local Variable		& 0.000 & (0.62, 0.67)	\\
+\hline
+{}								& Field				& 0.000 & (0.28, 0.32)	\\
+Method							& Constructor Parameter	& 0.000 & (-0.09, -0.07	\\
+Parameter							& Method Return		& 0.005 & (0.00, 0.00)	\\
+{}								& Local Variable		& 0.000 & (0.45, 0.49)	\\
+\hline
+{}								& Field				& 0.000 & (0.27, 0.30)	\\
+Method							& Constructor Parameter	& 0.000 & (-0.12, -0.0	\\
+Return							& Method Parameter	& 0.005 & (0.00, 0.00)	\\
+{}								& Local Variable		& 0.000 & (0.44, 0.47)	\\
+\hline
+{}								& Field				& 0.000 & (-0.16, -0.13) \\
+Local							& Constructor Parameter	& 0.000 & (-0.67, -0.62) \\
+Variable							& Method Parame		& 0.000 & (-0.49, -0.45) \\
+{}								& Method Return		& 0.000 & (-0.47, -0.44) \\
+\hline  
+\end{tabular}
+\label{tab:all_utest_type}
+\caption{Mann-Whitney U test results for the usage of types in declarations of all projects by visibility}
+\end{table}
+
+\subsection{Declaration Visibility\label{sub:res_all_visibility}}
+In this section we analyze the usage of types depending on the visibility of a declaration.
+We analyze the same types of declarations analyzed in the previous section apart from local variables, which don't have visibility.
+Figure \ref{fig:all_boxplot_visibility_all} shows the usage of types in all declarations depending on their visibility along with the descriptive statiscs.
+We apply the same aproach of the previous section and Mann-Whitney U test to determine if these populations are different and how different they are.
+Resuls for this test are shown in Table and confirm that these are different populations.
+
+The results
+
 
 \begin{figure}[h]
-\centering \includegraphics[width=0.45\textwidth]{method_parameter_visibility} 
-\caption{Method parameter declarations by visibility}
-\label{fig:method_parameter_visibility} 
+\centering 
+\includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/23_declarations_by_visibility.png} 
+\label{fig:all_boxplot_visibility_all} 
+
+\vspace{0.3cm}
+
+\renewcommand{\arraystretch}{1.2}
+\small
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Declaration Visibility	& n		& mean	& median	& std. dev.	\\
+\hline
+\hline
+Public    				& 5852	& 0.69	& 0.75		& 0.29		\\ \hline
+Protected 				& 2387	& 0.93	& 1.00		& 0.19		\\ \hline
+Private   				& 6023	& 0.43	& 0.40		& 0.32		\\ \hline
+\end{tabular}
+
+\caption{Usage of types in all declarations by visibility}
+
 \end{figure}
+
+
+% \begin{table}[ht]
+% 
+% \centering{}%
+% \renewcommand{\arraystretch}{1.2}
+% 
+% \begin{tabular}{|c|cc|cc|cc|}
+% \hline
+% {}			& \multicolumn{2}{c|}{Public}	& \multicolumn{2}{c|}{Protected}	& \multicolumn{2}{c|}{Private}	\\
+% {}			& p 	& conf. interval			& p 	& conf. interval				& p 	& conf. interval			\\
+% \hline
+% \hline
+% Public		& \multicolumn{2}{c|}{-}		& 0 & (-0.21, -0.18)			& 0 & (0.28, 0.31)			\tabularnewline \hline
+% Protected		& 0 & (0.18,  0.21)			& \multicolumn{2}{c|}{-}			& 0 & (0.54,  0.57)			\tabularnewline \hline
+% Private		& 0 & (-0.31, -0.28)		& 0 & (-0.57, -0.54)			& \multicolumn{2}{c|}{-}		\tabularnewline \hline
+% \end{tabular}
+% \label{tab:all_utest_type}
+% \caption{Mann-Whitney U test results for the usage of types in declarations of all projects by visibility}
+% \end{table}
 
 
 \begin{figure}[h]
-\centering \includegraphics[width=0.45\textwidth]{constructor_parameter_visibility} 
-\caption{Constructor parameter declaration by visibility}
-\label{fig:constructor_parameter_visibility} 
+\centering 
+\includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/11_returns_of_methods.png} 
+\caption{Usage of types in declarations of returns of methods by visibility}
+\label{fig:all_boxplot_visibility_methodReturn} 
 \end{figure}
-
-
-The results for field declarations are shown on Figure \ref{fig:field_visibility}. 
-Differently from previous analyzed declarations, protected fields are significantly less typed than public fields. 
-While the first are typed in $80.5\%$ of the cases, $88.8\%$ of the latter are typed.
-Another difference is that private fields are slightly more typed than other private declarations.
-This frequency is $72.4\%$ for private fields, but for method returns, method parameters, and constructor parameters it does not exceed $67\%$.
-
 
 \begin{figure}[h]
-\centering \includegraphics[width=0.45\textwidth]{field_visibility} 
-\caption{Field declaration by visibility}
-\label{fig:field_visibility} 
+\centering 
+\includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/14_parameters_of_methods.png} 
+\caption{Usage of types in declarations of parameters of methods by visibility}
+\label{fig:all_boxplot_visibility_methodParameter} 
 \end{figure}
 
-In summary, for all types of declarations, private declarations are less typed than the public and protected counterparts.
-Protected declarations, on the other side, are usually the most typed. The only exception to this are fields, where the usage of types in public declarations surpasses those of protected declarations by $8\%$.
+\begin{figure}[h]
+\centering 
+\includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/17_parameters_of_constructors.png} 
+\caption{Usage of types in declarations of constructor parameters by visibility}
+\label{fig:all_boxplot_visibility_constructorParameter} 
+\end{figure}
 
-% TESTS AND SCRIPTS
-\subsection{Scripts and Test Classes\label{res-test-scripts}}
+\begin{figure}[h]
+\centering 
+\includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/20_fields.png} 
+\caption{Usage of types in declarations of fields by visibility}
+\label{fig:all_boxplot_visibility_field} 
+\end{figure}
+
+% TESTS
+\subsection{Test Classes and Main Classes\label{res-test-scripts}}
 In this section, we analyze how types are used in test classes and scripts.
-Figure \ref{fig:test_classes} shows that declarations in test classes are typed in 55.9\% of the cases.
-Meanwhile, main classes have 67.8\% of their declarations typed.
-The difference between these two types of classes is about $14\%$.
 
-\begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{test_classes} 
-\caption{Declarations in test classes and main classes}
-\label{fig:test_classes} 
-\end{figure}
-
-As shown in Figure \ref{fig:scripts}, scripts present a different behavior.
-Classes are typed in 58.6\% of the cases. This number is 63.6\%. for scripts.
-With a difference of less than ,5\%, we can say that classes and scripts present similar behaviors.
-
-\begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{scripts} 
-\caption{Declarations in scripts and classes}
+\begin{figure}[h]
+\centering 
+\includegraphics[width=0.45\textwidth]{../analysis/result/test/comparison/boxplots/6_declarations_by_type.png} 
 \label{fig:scripts} 
+\vspace{0.1cm}
+\renewcommand{\arraystretch}{1.2}
+\small
+\raggedleft
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\cell{Declaration\\Type}	& \cell{Class\\Type}& n		& mean		& median	& \cell{std.\\dev.}\\
+\hline
+\hline
+\multirow{2}{*}{Field}	& Test			& 1778	& 0.48 		& 0.47	& 0.43 \\                
+                			& Main			& 5857	& 0.43 		& 0.39	& 0.33 \\
+\hline                
+Constructor 			& Test			&  130	& 0.77 		& 1.00	& 0.40 \\                
+Parameter				& Main			& 1623	& 0.80 		& 1.00	& 0.34 \\                
+\hline
+Method      			& Test			& 1546	& 0.34 		& 0.00	& 0.44 \\                
+Parameter				& Main			& 4593	& 0.71 		& 0.91	& 0.35 \\                
+\hline
+Method      			& Test			& 4348	& 0.84 		& 1.00	& 0.31 \\                
+Return		         	& Main			& 5299	& 0.54 		& 0.60	& 0.39 \\                
+\hline
+Local				& Test			& 2896	& 0.23 		& 0.00	& 0.35 \\                
+Variable	        		& Main			& 5548	& 0.30 		& 0.19	& 0.32 \\                
+\hline
+\end{tabular}
+
+\caption{Usage of types in all declarations by visibility of declaration}
 \end{figure}
 
+\begin{table}[ht]
+\centering{}%
+\begin{tabular}{|c|c|c|}
+\hline 
+Declaration Type 		& p & conf. interval \\
+\hline 
+\hline 
+Field                             & 0.002	& (0.000, 0.000) \\ \hline
+Constructor Parameter  & 0.397	& (0.000, 0.000) \\ \hline
+Method Parameter         & 0.000	& (-0.500, -0.389) \\ \hline
+Method Return              & 0.000	& (0.231, 0.250) \\ \hline
+Local Variable               & 0.000	& (-0.058, -0.030) \\ 
+\hline 
+\end{tabular}
+\label{tab:number_of_developers}
+\caption{Mann-Whitney U test for tests}
+\end{table}
+
+% SCRIPTS
+\subsection{Script Files and Class Files\label{res-test-scripts}}
+In this section, we analyze how types are used in test classes and scripts.
+
+\begin{figure}[h]
+\centering 
+\includegraphics[width=0.45\textwidth]{../analysis/result/script/comparison/boxplots/6_declarations_by_type.png} 
+\vspace{0.1cm}
+\renewcommand{\arraystretch}{1.2}
+\small
+\raggedleft
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\cell{Declaration\\Type}&\cell{File\\Type}	& n		& mean		& median	& \cell{std.\\dev.}\\
+\hline
+\hline
+\hline	
+Method					& Script			& 504 	& 0.40	& 0.23	& 0.42	 \\                
+Parameter					& Class				& 4647	& 0.69	& 0.86	& 0.35	 \\                \hline	
+Method					& Script			& 583 	& 0.34	& 0.00	& 0.43	 \\                
+Return					& Class				& 5662	& 0.70	& 0.77	& 0.30	 \\                \hline	
+Local					& Script			& 1775	& 0.28	& 0.07	& 0.37	 \\                
+Variable	 				& Class				& 5246	& 0.30	& 0.18	& 0.32	 \\                
+\hline
+\end{tabular}
+\caption{Usage of types in all declarations by visibility of declaration}
+\label{fig:tests} 
+\end{figure}
+
+\begin{table}[ht]
+\centering{}%
+\begin{tabular}{|c|c|c|}
+\hline 
+Declaration Type & p & conf. interval \\
+\hline 
+\hline 
+Method Parameter              & 0	& (-0.365, -0.250) \\ \hline
+Method Return                 & 0	& (-0.500, -0.414) \\ \hline
+Local Variable                & 0	& (-0.016, 0.000)  \\ \hline
+\hline 
+\end{tabular}
+\label{tab:number_of_developers}
+\caption{Mann-Whitney U test of scripts}
+\end{table}
 
 % PROGRAMMERS BACKGROUND
 \subsection{Programmers Background\label{res-background}}
@@ -598,10 +831,18 @@ There is a clear distinction in the behavior of those whose all projects are wri
 These programmers use types in about 28\% of their statements compared to 40\% of the other programmers.
 Notice that the behavior of those programmers with only dynamic languages on their portfolio is no different from those with statically and dynamically typed languages.
 
-\begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{untyped_background} 
-\caption{Untyped declarations according to other languages used by programmers}
-\label{fig:untyped_background} 
+\begin{figure}[h]
+\centering 
+\includegraphics[width=0.45\textwidth]{../analysis/result/background/comparison/boxplots/6_declarations_by_type.png} 
+\caption{Usage of types in all declarations by visibility of declaration}
+\label{fig:tipo_declaracao} 
+\end{figure}
+
+\begin{figure}[h]
+\centering 
+\includegraphics[width=0.45\textwidth]{../analysis/result/background/comparison/boxplots/23_declarations_by_visibility.png} 
+\caption{Usage of types in all declarations by visibility of declaration}
+\label{fig:tipo_declaracao} 
 \end{figure}
 
 % PROJECT SIZE
@@ -621,49 +862,31 @@ While projects with less than $1024$ lines of code have almost $40\%$ of their d
 Figure \ref{fig:size_priMethodReturn} shows that, unlike public declarations, private declarations have no apparent correlation with the project size. 
 The same can be said for protected declarations, which are shown in Figure \ref{fig:size_proMethodReturn}.
 
-\begin{figure*}[ht]
-\centering 
-\includegraphics[width=1\textwidth]{size_pubMethodReturn} 
-\caption{Untyped public declarations}
-\label{fig:size_pubMethodReturn} 
-\end{figure*}
 
-\begin{figure*}[ht]
+\begin{figure}[h]
 \centering 
-\includegraphics[width=1\textwidth]{size_priMethodReturn} 
-\caption{Untyped private declarations}
-\label{fig:size_priMethodReturn} 
-\end{figure*}
+\includegraphics[width=0.45\textwidth]{../analysis/result/size/comparison/boxplots/6_declarations_by_type.png} 
+\caption{Usage of types in all declarations by visibility of declaration}
+\label{fig:tipo_declaracao} 
+\end{figure}
 
-\begin{figure*}[ht]
+\begin{figure}[h]
 \centering 
-\includegraphics[width=1\textwidth]{size_proMethodReturn} 
-\caption{Untyped private declarations}
-\label{fig:size_proMethodReturn} 
-\end{figure*}
+\includegraphics[width=0.45\textwidth]{../analysis/result/size/comparison/boxplots/23_declarations_by_visibility.png} 
+\caption{Usage of types in all declarations by visibility of declaration}
+\label{fig:tipo_declaracao} 
+\end{figure}
+
 
 Conversely, the use of untyped declarations in local variables increases with the project size. 
 This is shown in Figure \ref{fig:size_localVariable}. 
 The average frequency of untyped local variable declarations in projects with less than $512$ lines of code is less than $40\%$. 
 On the other side, in projects with over $65536$ lines of code, the average frequency for this type of declaration exceeds $70\%$.
 
-\begin{figure*}[ht]
-\centering 
-\includegraphics[width=1\textwidth]{size_localVariable} 
-\caption{Untyped local variables}
-\label{fig:size_localVariable} 
-\end{figure*}
 
 % FREQUENCYT OF CHANGES
 
 \subsection{Frequency of changes\label{res-changes}}
-
-\begin{figure*}[ht]
-\centering 
-\includegraphics[width=1\textwidth]{change_mean} 
-\caption{Untyped declarations according to the frequency of changes of files in mature projects}
-\label{fig:change_mean} 
-\end{figure*}
 
 The results in this section show how the frequency of changes in a file is related to the usage of types in the declarations in those files.
 For this analysis, we considered only mature projects since we would not be able to get significant results from small and young projects.
