@@ -207,7 +207,7 @@ comparisonBoxPlot<-function(data, folder, labels, description, columns) {
 			geom_boxplot(outlier.size=0) + 
 			coord_flip() + 
 			labs(y=paste("Use of types in", description), x="") + 
-			scale_fill_grey(start=0.25, end=1, name="", labels=labels) +
+			scale_fill_grey(start=0.4, end=1, name="", labels=labels) +
 			theme(legend.position="bottom", axis.title.y=element_blank(), plot.margin=unit(c(0,0,0,0),"mm"))
 			
 	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=4.5, height=max(3.0, 1.2*length(columns)*length(unique(d$condition))/2))

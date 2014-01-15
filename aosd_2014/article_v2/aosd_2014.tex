@@ -831,19 +831,81 @@ There is a clear distinction in the behavior of those whose all projects are wri
 These programmers use types in about 28\% of their statements compared to 40\% of the other programmers.
 Notice that the behavior of those programmers with only dynamic languages on their portfolio is no different from those with statically and dynamically typed languages.
 
+
 \begin{figure}[h]
 \centering 
 \includegraphics[width=0.45\textwidth]{../analysis/result/background/comparison/boxplots/6_declarations_by_type.png} 
+\label{fig:scripts} 
+\vspace{0.1cm}
+\renewcommand{\arraystretch}{1.2}
+\small
+\raggedleft
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\cell{Declaration\\Type}						& \cell{Background}	& n		& mean		& median	& \cell{std.\\dev.}\\
+\hline
+\hline
+{}												& Static			& 782	& 0.56		& 0.52 		& 0.35\\			 
+Field											& Both				& 3183	& 0.43		& 0.39 		& 0.34\\			 
+{}												& Dynamic			& 2035	& 0.38		& 0.36 		& 0.29\\
+\hline								 			
+\multirow{3}{*}{\cell{Constructor\\Parameter}}	& Static			& 224	& 0.83		& 1.00 		& 0.33\\			 
+												& Both				& 991	& 0.80		& 1.00 		& 0.35\\			 
+												& Dynamic			& 455	& 0.80		& 1.00 		& 0.34\\			 
+\hline								
+\multirow{3}{*}{\cell{Method\\Parameter}}		& Static			& 662	& 0.73		& 0.91 		& 0.34\\			 
+												& Both				& 2694	& 0.67		& 0.84 		& 0.36\\			 
+												& Dynamic	 		& 1511	& 0.65		& 0.83 		& 0.37\\	
+\hline						 			
+\multirow{3}{*}{\cell{Method\\Return}}			& Static			& 764	& 0.73		& 0.85 		& 0.30\\			 
+												& Both				& 3205	& 0.66		& 0.75 		& 0.32\\			 
+												& Dynamic	 		& 1912	& 0.68		& 0.74 		& 0.29\\ 
+\hline											
+\multirow{3}{*}{\cell{Local Variable}}			& Static			& 798	& 0.39		& 0.31 		& 0.36\\			 
+												& Both				& 3230	& 0.28		& 0.17 		& 0.32\\			 
+												& Dynamic			& 1817	& 0.25		& 0.14 		& 0.30\\ 
+\hline
+\end{tabular}
+\label{tab:number_of_developers}
 \caption{Usage of types in all declarations by visibility of declaration}
-\label{fig:tipo_declaracao} 
 \end{figure}
+
+
+
 
 \begin{figure}[h]
 \centering 
 \includegraphics[width=0.45\textwidth]{../analysis/result/background/comparison/boxplots/23_declarations_by_visibility.png} 
+\label{fig:scripts} 
+\vspace{0.1cm}
+\renewcommand{\arraystretch}{1.2}
+\small
+\raggedleft
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\cell{Declaration\\Type}						& \cell{Background}	& n		& mean		& median	& \cell{std.\\dev.}\\
+\hline
+\hline
+{}												& Static			& 757 	& 0.73		& 0.83 		& 0.29\\			 
+Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\			 
+{}												& Dynamic			& 1904	& 0.69		& 0.71 		& 0.27\\
+\hline								 								    	    		    		    						
+\multirow{3}{*}{\cell{Protected}}				& Static			& 287 	& 0.92		& 1.00 		& 0.20\\			 
+												& Both				& 1275	& 0.94		& 1.00 		& 0.18\\			 
+												& Dynamic			& 825 	& 0.93		& 1.00 		& 0.20\\			 
+\hline																    	    		    		    					
+\multirow{3}{*}{\cell{Private}}					& Static			& 787 	& 0.56		& 0.53 		& 0.34\\			 
+												& Both				& 3196	& 0.43		& 0.40 		& 0.33\\			 
+												& Dynamic	 		& 2040	& 0.38		& 0.37 		& 0.28\\	
+\hline						 			
+\end{tabular}
+\label{tab:number_of_developers}
 \caption{Usage of types in all declarations by visibility of declaration}
-\label{fig:tipo_declaracao} 
-\end{figure}
+\end{figure}	
+
+
+
+
 
 % PROJECT SIZE
 \subsection{Project Size\label{res-size}}
