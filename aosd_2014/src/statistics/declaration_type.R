@@ -437,3 +437,22 @@ plotSpearmanDistributionHistogram<-function(data){
 	ggsave(path=paste("result/", sep=""), filename="change_commits_distribution.png", height=2, width=4)
 }
 plotSpearmanDistributionHistogram(change_commit_spearman)
+
+characterizeDataset<-function() {
+	result = data.frame(element=character(0), mean=numeric(0), median=numeric(0), sd=numeric(0), total=numeric(0))
+	
+	for(c in columns) { 
+		d=data[!is.na(data[c]), c]
+		
+		element=colnames(data)[c]
+		mean=round(mean(d), 2)
+		sd=round(sd(d), 2)
+		median=round(median(d), 2)
+		
+		result <- rbind(result, data.frame(element=element, n=n, mean=mean, median=median, sd=sd) )
+	}
+	
+	write.matrix(result ,file=paste("result/", folder, "/descriptive/", gsub(" ", "_", description), ".txt", sep=""))
+	
+}
+
