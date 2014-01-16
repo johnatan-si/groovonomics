@@ -1,4 +1,10 @@
 sample1 sample2 pvalue conf.int.min conf.int.max
-privateConstructorParameter   protectedConstructorParameter 0.975                         0                             0.000                        
-privateConstructorParameter   publicConstructorParameter    0.061                         0                             0.000                        
-protectedConstructorParameter publicConstructorParameter    0.000                         0                             0.032                        
+privateConstructorParameter   privateConstructorParameter   1.000                         0                             0                            
+privateConstructorParameter   protectedConstructorParameter 0.219                         0                             0                            
+privateConstructorParameter   publicConstructorParameter    0.048                         0                             0                            
+protectedConstructorParameter privateConstructorParameter   0.219                         0                             0                            
+protectedConstructorParameter protectedConstructorParameter 1.000                         0                             0                            
+protectedConstructorParameter publicConstructorParameter    0.002                         0                             0                            
+publicConstructorParameter    privateConstructorParameter   0.048                         0                             0                            
+publicConstructorParameter    protectedConstructorParameter 0.002                         0                             0                            
+publicConstructorParameter    publicConstructorParameter    1.000                         0                             0                            

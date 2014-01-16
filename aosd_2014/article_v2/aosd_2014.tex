@@ -9,7 +9,6 @@
 \usepackage{adjustbox}
 \usepackage{multirow}
 \usepackage{color}
-\usepackage{cleveref}
 
 \newcommand{\ts}{\textsuperscript}
 
@@ -591,6 +590,9 @@ Typically values of 0.05 and 0.01 are used to determine if the null hypothesis c
 In addition to p, the Mann-Whitney U test also reports a confidence interval describing the difference of the medians of two populations.
 This confidence interval can be used to measure how different are two samples.
 
+% Use a super small significance level
+% Labovitz, Sanford. "Criteria for selecting a significance level: A note on the sacredness of. 05." The American Sociologist 3.3 (1968): 220-222.
+
 \begin{table}[ht]
 
 \centering{}%
@@ -639,8 +641,8 @@ Note however that the confidence interval for the comparison between method para
 
 % VISIBILITY
 \subsection{Declaration Visibility\label{sub:res_all_visibility}}
-In this section we analyze the usage of types depending on the visibility of a declaration.
-Results are presented in Figure \ref{fig:all_boxplot_visibility_all} for all declarations, except for local variables which don't have visibility. 
+Figure \ref{fig:all_boxplot_visibility_all} shows how programmers use types depending on the visibility of a declarations.
+Results consider all sorts of declaration, except for local variables which don't have visibility. 
 We follow the same approach from previous section and apply the Mann-Whitney U test to determine whether there is a significant difference between declarations of different visibilities.
 Results for the tests executions are displayed in Table \ref{tab:all_utest_visibility}.
 They show that the p value for all tests is equal to 0, which points out that all declarations visibilities are different from each other.
@@ -733,12 +735,31 @@ Conversely private declarations are those with the smallest relative use of type
 
 % TESTS
 \subsection{Test Classes and Main Classes\label{res-test-scripts}}
-In this section, we analyze how types are used in test classes and scripts.
+This sections investigates whether programmers type their declarations differently when they are writing test code.
+A comparison between the usage of types in different declarations is shown in Figure \ref{fig:test_boxplot_type}. 
+We also apply the Mann Whitney U test, but this time however we are not comparing declaration types to each other.
+Instead, we are comparing declarations from main classes and test classes.
+Results for the U test are shown in Table \ref{tab:test_utest_type}.
+% Why not visibility
+% TODO exaplin better how I segmented the data
+
+There is no significant difference in the usage of types in fields and constructor parameters across test classes and main classes.
+The p value reported by the U test comparing constructor parameters data is too high, 0.397, which doesn't allow us to reject the null hypothesis for this type of declaration.
+As for fields, p value for the test comparing fields is small enough, 0.002, but the reported confidence interval negligible.
+
+Local variables and method parameters are significantly less typed in test classes.
+The confidence intervals reported in Table \ref{tab:test_utest_type} show a difference of (-0.500, -0.389) and (-0.058, -0.030) respectively, both with p-value equal to 0.
+Method returns on the other side are significantly more typed.
+Figure \ref{fig:test_boxplot_type} shows a median equal to 1.00, which means that at least half of the projects type all of their method returns.
+Although counter intuitive this result can be easily explained.
+Automated testing frameworks usually enforce a certain method signature for test methods.
+JUnit for example, which is used in 2525 out of the 5299 projects with test classes, requires the type of the return of a test methods to be \emph{void}.
+Other popular test frameworks, such as TestNG, have similar requirements.
+This means that, in this case, developers type their methods not because they want to, but because they need to.
 
 \begin{figure}[h]
 \centering 
 \includegraphics[width=0.45\textwidth]{../analysis/result/test/comparison/boxplots/6_declarations_by_type.png} 
-\label{fig:scripts} 
 \vspace{0.1cm}
 \renewcommand{\arraystretch}{1.2}
 \small
@@ -765,10 +786,11 @@ Variable	        		& Main			& 5548	& 0.30 		& 0.19	& 0.32 \\
 \hline
 \end{tabular}
 
+\label{fig:test_boxplot_type} 
 \caption{Usage of types in all declarations by visibility of declaration}
 \end{figure}
 
-\begin{table}[ht]
+\begin{table}[h!]
 \centering{}%
 \begin{tabular}{|c|c|c|}
 \hline 
@@ -782,13 +804,17 @@ Method Return              & 0.000	& (0.231, 0.250) \\ \hline
 Local Variable               & 0.000	& (-0.058, -0.030) \\ 
 \hline 
 \end{tabular}
-\label{tab:number_of_developers}
+\label{tab:test_utest_type}
 \caption{Mann-Whitney U test for tests}
 \end{table}
 
 % SCRIPTS
 \subsection{Script Files and Class Files\label{res-test-scripts}}
-In this section, we analyze how types are used in test classes and scripts.
+We now analyze how programmers type their code in script files.
+Figure \ref{fig:script_boxplot_type} shows the relative usage of types in declarations of local variables and parameters and returns of methods.
+Constructors and fields are omitted since there is no way to declare those elements in scripts.
+Table \ref{tab:script_utest_all} shows the results of the Mann-Whitney U test for these elements.
+% Why not visibility
 
 \begin{figure}[h]
 \centering 
@@ -812,8 +838,16 @@ Variable	 				& Class				& 5246	& 0.30	& 0.18	& 0.32	 \\
 \hline
 \end{tabular}
 \caption{Usage of types in all declarations by visibility of declaration}
-\label{fig:tests} 
+\label{fig:script_boxplot_type} 
 \end{figure}
+
+The p value for all executions of the U test is equal to 0, allowing to reject the null hypothesis.
+The reported confidence interval for local variables however is too small and it can be argued that the difference in how programmers type these variables in scripts is insignificant.
+On the other side, parameters and returns of methods present a very different behavior.
+Different from classes, most of projects don't type these declarations very often in scripts.
+This is even more clear in method returns, where most of projects don't type any of these declarations.
+Note however that the value for the last quartile of these elements is very high, superior to 0.8.
+This indicates that there are a few projects that consistently type most of these declarations too.
 
 \begin{table}[ht]
 \centering{}%
@@ -822,34 +856,29 @@ Variable	 				& Class				& 5246	& 0.30	& 0.18	& 0.32	 \\
 Declaration Type & p & conf. interval \\
 \hline 
 \hline 
-Method Parameter              & 0	& (-0.365, -0.250) \\ \hline
-Method Return                 & 0	& (-0.500, -0.414) \\ \hline
-Local Variable                & 0	& (-0.016, 0.000)  \\ \hline
+Method Parameter              & 0.000	& (-0.365, -0.250) \\ \hline
+Method Return                 & 0.000	& (-0.500, -0.414) \\ \hline
+Local Variable                & 0.000	& (-0.016, 0.000)  \\ \hline
 \hline 
 \end{tabular}
-\label{tab:number_of_developers}
+\label{tab:script_utest_all}
 \caption{Mann-Whitney U test of scripts}
 \end{table}
 
 % PROGRAMMERS BACKGROUND
 \subsection{Programmers Background\label{res-background}}
-
-Figure \ref{fig:untyped_background} shows how programmers use types in their statements according to the type system of the languages they have used on GitHub.
-Developers are distributed in three groups.
-The first group contains those developers with only statically typed languages, such as Java or C\#.
-Those who have only dynamically typed languages, such as Ruby or JavaScript, are included in the second group.
-The third group includes those programmers with both dynamically and statically typed languages in their portfolio.
-We are not taking into account the Groovy projects to group programmers since all of them have worked with at least one Groovy project.
-
-There is a clear distinction in the behavior of those whose all projects are written in statically typed languages.
-These programmers use types in about 28\% of their statements compared to 40\% of the other programmers.
-Notice that the behavior of those programmers with only dynamic languages on their portfolio is no different from those with statically and dynamically typed languages.
-
+In this section, we analyze how programmers use types in their declarations according to their backgrounds.
+Projects are distributed in three groups based on the type system of the languages their developers have used on GitHub.
+The first group contains those projects of programmers who developed only in statically typed languages, such as Java or C\#.
+The projects of those who developed only in dynamically typed languages, such as Ruby or JavaScript, are included in the second group.
+Finally, the third group includes the project of those programmers with both dynamically and statically typed languages in their portfolio.
+Figures \ref{fig:background_boxplot_type} and \ref{fig:background_boxplot_visibility}  show results by declaration type and visibility respectively.
+Results for the Mann-Whitney U test are reported in Tables \ref{tab:background_utest_type} and \ref{tab:backgorund_utest_visibility}.
+Notice that these tables are divided in three groups, each one corresponding to the comparison between the data for the three different background groups.
 
 \begin{figure}[h]
 \centering 
 \includegraphics[width=0.45\textwidth]{../analysis/result/background/comparison/boxplots/6_declarations_by_type.png} 
-\label{fig:scripts} 
 \vspace{0.1cm}
 \renewcommand{\arraystretch}{1.2}
 \small
@@ -880,17 +909,14 @@ Field											& Both				& 3183	& 0.43		& 0.39 		& 0.34\\
 												& Dynamic			& 1817	& 0.25		& 0.14 		& 0.30\\ 
 \hline
 \end{tabular}
-\label{tab:number_of_developers}
-\caption{Usage of types in all declarations by visibility of declaration}
+\label{fig:background_boxplot_type}
+\caption{Usage of types in projects by declaration type depending on the background of the programmers of a projects}
 \end{figure}
 
-
-
-
-\begin{figure}[h]
+                
+\begin{figure}[ht]
 \centering 
 \includegraphics[width=0.45\textwidth]{../analysis/result/background/comparison/boxplots/23_declarations_by_visibility.png} 
-\label{fig:scripts} 
 \vspace{0.1cm}
 \renewcommand{\arraystretch}{1.2}
 \small
@@ -913,11 +939,79 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 												& Dynamic	 		& 2040	& 0.38		& 0.37 		& 0.28\\	
 \hline						 			
 \end{tabular}
-\label{tab:number_of_developers}
-\caption{Usage of types in all declarations by visibility of declaration}
+\label{fig:background_boxplot_visibility}
+\caption{Usage of types in projects by declaration visibility depending on the background of the programmers of a projects}
 \end{figure}	
 
+\begin{table}[h!]
+\centering{}%
+\renewcommand{\arraystretch}{1.2}
 
+\begin{tabular}{|c|c|c|c|}
+\hline 
+{}															& Declaration Type 		& p 		& conf. interval \\
+\hline 
+\hline 
+\multirow{5}{*}{\cell{Static\\vs.\\Static and\\Dynamic}}	& Field					& 0.0000	& (0.073, 0.163)	\\ \cline{2-4}
+															& Constructor Parameter	& 0.7281	& (0.000, 0.000)	\\ \cline{2-4}
+															& Method Parameter		& 0.0000	& (0.000, 0.036)	\\ \cline{2-4}
+															& Method Return			& 0.0000	& (0.000, 0.067)	\\ \cline{2-4}
+															& Local Variable		& 0.0000	& (0.038, 0.100)	\\ 
+\hline 
+\hline
+
+\multirow{5}{*}{\cell{Static\\vs.\\Dynamic}}				& Field					& 0.0000	& (0.139, 0.228)	\\ \cline{2-4}
+															& Constructor Parameter	& 0.9347	& (0.000, 0.000)	\\ \cline{2-4}
+															& Method Parameter		& 0.0000	& (0.005, 0.076)	\\ \cline{2-4}
+															& Method Return			& 0.0000	& (0.000, 0.062)	\\ \cline{2-4}
+															& Local Variable		& 0.0000	& (0.057, 0.126)	\\ 
+\hline 
+\hline
+\multirow{5}{*}{\cell{Static and\\Dynamic\\vs.\\Dynamic}}	& Field					& 0.0000	& (0.000, 0.050)	\\ \cline{2-4}
+															& Constructor Parameter	& 0.7531	& (0.000, 0.000)	\\ \cline{2-4}
+															& Method Parameter		& 0.0032	& (0.000, 0.013)	\\ \cline{2-4}
+															& Method Return			& 0.5269	& (0.000, 0.000)	\\ \cline{2-4}
+															& Local Variable		& 0.0071	& (0.000, 0.005)	\\ 
+\hline 
+\end{tabular}
+\label{tab:background_utest_type}
+\caption{Mann-Whitney U Test results for declaration types depending on the background of the programmers of a projects}
+\end{table}
+      
+\begin{table}[h!]
+\centering{}%
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+{}															& Declaration Visibility 	& p 		& conf. interval \\
+\hline 
+\hline 
+\multirow{3}{*}{\cell{Static vs.\\Static and\\Dynamic}}		& Public					& 0.0000	& (0.000, 0.058)	\\ \cline{2-4}
+															& Protected					& 0.1287	& (0.000, 0.000)	\\ \cline{2-4}
+															& Private					& 0.0000	& (0.082, 0.167)	\\ 
+\hline 
+\hline
+
+\multirow{3}{*}{\cell{Static\\vs.\\Dynamic}}				& Public					& 0.0000	& (0.000, 0.065)	\\ \cline{2-4}
+															& Protected					& 0.1130	& (0.000, 0.000)	\\ \cline{2-4}
+															& Private					& 0.0000	& (0.143, 0.229)	\\ 
+\hline 
+\hline
+\multirow{3}{*}{\cell{Static and\\Dynamic vs.\\Dynamic}}	& Public					& 0.0000	& (0.000, 0.051)	\\ \cline{2-4}
+															& Protected					& 0.8260	& (0.000, 0.000)	\\ \cline{2-4}
+															& Private					& 0.8328	& (0.000, 0.000)	\\ 
+\hline 
+\end{tabular}
+\label{tab:backgorund_utest_visibility}
+\caption{Mann-Whitney U Test results for declaration visibility depending on the background of the programmers of a projects}
+\end{table}
+              
+The usage of types by programmers with both statically and dynamically typed languages in their portfolio is similar to that of programmers with dynamically languages only.
+According to Tables \ref{tab:background_utest_type} and \ref{tab:backgorund_utest_visibility}, the only significant differences in the usage of types are in  declarations of fields or in those with public visibility.
+Still, the confidence interval is arguably small, between 0 and 0.051 in both cases.
+Conversely, programmers with only statically typed languages in their portfolio tend to use types more often than others.
+There are only two situations where the p value reported by the Mann-Whitney U test is big enough so the null hypothesis can't be rejected, protected declarations and declarations of constructor parameters.
+% Discuss a little bit more and add some conclusions
 
 
 

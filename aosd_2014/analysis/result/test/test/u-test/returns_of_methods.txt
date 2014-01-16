@@ -1,4 +1,10 @@
 sample1 sample2 pvalue conf.int.min conf.int.max
-privateMethodReturn   protectedMethodReturn 0.000                 0                     0                    
-privateMethodReturn   publicMethodReturn    0.233                 0                     0                    
-protectedMethodReturn publicMethodReturn    0.000                 0                     0                    
+privateMethodReturn   privateMethodReturn   1                     0                     0                    
+privateMethodReturn   protectedMethodReturn 0                     0                     0                    
+privateMethodReturn   publicMethodReturn    0                     0                     0                    
+protectedMethodReturn privateMethodReturn   0                     0                     0                    
+protectedMethodReturn protectedMethodReturn 1                     0                     0                    
+protectedMethodReturn publicMethodReturn    0                     0                     0                    
+publicMethodReturn    privateMethodReturn   0                     0                     0                    
+publicMethodReturn    protectedMethodReturn 0                     0                     0                    
+publicMethodReturn    publicMethodReturn    1                     0                     0                    

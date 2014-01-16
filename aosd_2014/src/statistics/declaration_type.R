@@ -157,7 +157,7 @@ uTestElementsOfASample<-function(data, folder, description, columns) {
 			d_i=data[!is.na(data[,i]),i]
 			d_j=data[!is.na(data[,j]),j]
 			
-			test<-wilcox.test(d_i, d_j, conf.int=T)
+			test<-wilcox.test(d_i, d_j, conf.int=T, conf.level=0.99)
 			
 			p=round(test$p.value, 3)
 			conf.int.min=round(test$conf.int[1], 2)
@@ -183,10 +183,10 @@ uTestSamples<-function(data1, data2, data1Description, data2Description, folder,
 		d_2=data2[!is.na(data2[,c]),c]
 		
 		if(length(d_1) > 1 && length(d_2) > 1) {
-			test<-wilcox.test(d_1, d_2, conf.int=T)
+			test<-wilcox.test(d_1, d_2, conf.int=T, conf.level=0.99)
 			print(test)
 			
-			p=round(test$p.value, 3)
+			p=round(test$p.value, 4)
 			conf.int.min=round(test$conf.int[1], 3)
 			conf.int.max=round(test$conf.int[2], 3)
 			
@@ -212,8 +212,13 @@ comparisonBoxPlot<-function(data, folder, labels, description, columns) {
 			scale_fill_grey(start=0.4, end=1, name="", labels=labels) +
 			theme(legend.position="bottom", axis.title.y=element_blank(), plot.margin=unit(c(0,0,0,0),"mm"))
 			
-	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=4.5, height=max(3.0, 1.2*length(columns)*length(unique(d$condition))/2))
+	n <- length(unique(d$condition))
+	height <- 1.0 + 0.3 * length(columns) * n
+	
+			
+	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=4.5, height=max(3.0, height))
 }
+comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by type",		i$localVariable:i$field)
 
 compareAllSamples<-function() {
 	
@@ -245,7 +250,7 @@ compareAllSamples<-function() {
 	
 	uTestSamples(staticBackgroundData, dynamicBackgroundData,			"static", "dynamic",			"background", i$all:i$public)
 	uTestSamples(staticBackgroundData, staticAndDynamicBackgroundData,	"static", "static-and-dynamic",	"background", i$all:i$public)
-	uTestSamples(dynamicBackgroundData, staticAndDynamicBackgroundData,	"dynamic", "static-and-dynamic","background", i$all:i$public)
+	uTestSamples(staticAndDynamicBackgroundData, dynamicBackgroundData,	"static-and-dynamic", "dynamic", "background", i$all:i$public)
 	
 	# Size
 	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "all declarations",			i$all)

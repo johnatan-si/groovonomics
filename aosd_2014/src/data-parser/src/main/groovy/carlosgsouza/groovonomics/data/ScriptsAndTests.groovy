@@ -33,8 +33,8 @@ class ScriptsAndTests {
 			
 			def data = slurper.parseText(file.text).classes.collect{ classDataFactory.fromMap(it) }
 
-			processProjectData(projectId, data, testResult, "test") {it.isTestClass}
-			processProjectData(projectId, data, scriptResult, "script") {it.isScript}
+			processProjectData(projectId, data, testResult, "test", {!it.isScript}, {it.isTestClass})
+			processProjectData(projectId, data, scriptResult, "script", {true}, {it.isScript})
 		}
 		
 		writeResult("../../analysis/parsed/declaration_by_tests.txt", testResult)
@@ -53,9 +53,9 @@ class ScriptsAndTests {
 		}
 	}
 	
-	def processProjectData(projectId, dataOfAllClasses, resultList, condition, filter) {
-		def dataA = dataOfAllClasses.findAll(filter)
-		def dataB = dataOfAllClasses.findAll{ !filter(it) }
+	def processProjectData(projectId, dataOfAllClasses, resultList, condition, generalFilter, filter) {
+		def dataA = dataOfAllClasses.findAll(generalFilter).findAll(filter)
+		def dataB = dataOfAllClasses.findAll(generalFilter).findAll{ !filter(it) }
 		
 		if(dataA.size() > 0) {
 			resultList << translator.translate(projectId, metadataFolder, agregateClassData(dataA)) + [condition]
