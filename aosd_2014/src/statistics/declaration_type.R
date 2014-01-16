@@ -281,7 +281,7 @@ compareElementsOfASample<-function(data, folder, description, columnsToCompare) 
 	columnsWithData<-filterColumnsWithData(data, columnsToCompare)
 	
 	if(length(columnsWithData) > 0) {
-		# uTestElementsOfASample(data, folder, description, columnsWithData)
+		uTestElementsOfASample(data, folder, description, columnsWithData)
 		# boxPlot(data, folder, description, columnsWithData)	
 		getDescriptiveStatistics(data, folder, description, columnsWithData)	
 	}

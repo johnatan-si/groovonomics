@@ -9,7 +9,7 @@
 \usepackage{adjustbox}
 \usepackage{multirow}
 \usepackage{color}
-\usepackage{pbox}
+\usepackage{cleveref}
 
 \newcommand{\ts}{\textsuperscript}
 
@@ -536,8 +536,9 @@ n		& mean	& std. dev.	& 1\ts{st}	& 2\ts{nd}	& 3\ts{rd}	& 4\ts{th}		\\
 
 % TYPE
 \subsection{Declaration Type\label{sub:res_all_type}}
-The relative use of types per type of declaration is show in Figure \ref{fig:all_boxplot_type} along with the corresponding descriptive statistics.
-This graph shows the lower quantile, the median, the upper quantile plus the values of minimum and maximum for five declaration types, fields, parameters of constructors, parameters and returns of methods and local variables.
+The relative use of types per type of declaration is shown in Figure \ref{fig:all_boxplot_type} along with the corresponding descriptive statistics.
+Each box plot in this graph describes relative use of types in five sorts of declarations: fields, parameters of constructors, parameters and returns of methods and local variables.
+It considers all declarations of all projects.
 Note that the value of n is different for each element in the table since not all projects have all types of declarations. 
 
 \begin{figure}[h]
@@ -565,35 +566,30 @@ Local Variable			& 5845	& 0.29	& 0.18		& 0.32		\\ \hline
 
 \end{figure}
 
-The results presented in \ref{fig:all_boxplot_type} suggest that programmers use types differently depending on the type of a declaration.
+The results presented in Figure \ref{fig:all_boxplot_type} suggest that programmers use types differently depending on the type of declaration.
 Local variables for example are typed less often.
-Half of the projects use types in local variables in less than 18\% of the declarations.
-Converselly, methods and constructors are typed most of the cases.
+Half of the projects have 18\% or less of their local variables typed.
+Conversely, methods and constructors are typed most of the cases.
+Note that the median for constructor parameters is equal to 1.00, which means that, at least, half of the projects with constructor parameters type all declarations of this kind.
 
-In order to check wether these differences are significant we have to apply a significance test. We start by definining a hipothesis:
+In order to check whether there is a significant difference in the use of types in two kinds of declaration, a significance test should be applied. 
+We start by defining a hypothesis below. A significance test can be applied to reject or accept the null hypothesis, H0, for any two declaration types. 
+
 \begin{description}
-\item[H0] The data of two declaration types come from the same population, i.e, there is no difference between the usage of types in two kinds of declaration
-\item[H1] Programmers type their declarations differently depending on the type of the declation
+\item[H0] The data for two declaration types are drawn from the same population, i.e., there is no difference in how programmers type different types of declarations
+\item[H1] Programmers type their declarations differently depending on the type of the declaration
 \end{description}
 
-We can now use a significance test in order to reject or accept the null hipothesis. 
-Applying the hipothesis and the significance test to a pair of populations, such as fields and local variables, will tell us if these two populations are significantly different.
+We can't assume that the data presented in Figure \ref{fig:all_boxplot_type} follows any particular distribution.
+In fact, an analysis of the data for declarations of local variables, methods and constructors shows that these samples are heavily skewed and thus don't follow a Normal distribution.
+Because of this, we are required to use a non-parametric test to analyze this data.
 
-We can't assume any underlying distribution of the data above.
-In fact, an analysis of the quartiles of the data of methods and constructors reveals that these populations are heavily negativelly skewed while local variables are heavily positvelly skewed.
-This indicates that these populations don't follow a Normal distribution.
-Thus we are required to use a non-parametric significance test, which doesn't require any underlying distribution.
-
-An appropriate test for our scenatio is the paired Mann-Whitney U test, which can be used to compare two populations.
-The Mann-Whitney U test returns a p value.
-The smaller the value of p, the "more significant" is the rejection of the hipothesys, i.e., the stronger the belief that these populations differ.
-Typically p values of 0.05 and 0.01 are used in similar researches, such that 0.01 indicates a very strong rejection.
-The Mann-Whitney U test also reveals how different two populations are.
-It gives us a confidence interval which tell us that, with a given probability of 1-p, the two means differ by the given confidence interval.
-
-The results of the U test are displayed on Table \ref{tab:all_utest_type}.
-The p value for all tests is close to 0, which allows us to reject the null hipothesys for all combinations of declaration types with a confidence of 0.01. Note however that although all populations are different from each other, the difference between some of them is not so big.
-It can be argued that the return and parameters of methods present very similar behavior.
+An appropriate test for our scenario is the paired Mann-Whitney U test.
+This test computes a p value indicating whether two samples are significantly different form each other.
+The smaller the value of p, the "more significant" is the difference and, consequently, the stronger the rejection of the null hypothesis.
+Typically values of 0.05 and 0.01 are used to determine if the null hypothesis can be rejected or not.
+In addition to p, the Mann-Whitney U test also reports a confidence interval describing the difference of the medians of two populations.
+This confidence interval can be used to measure how different are two samples.
 
 \begin{table}[ht]
 
@@ -635,15 +631,19 @@ Variable							& Method Parame		& 0.000 & (-0.49, -0.45) \\
 \caption{Mann-Whitney U test results for the usage of types in declarations of all projects by visibility}
 \end{table}
 
+Table \ref{tab:all_utest_type} shows the result of the Mann-Whitney U test for the data displayed in Figure \ref{fig:all_boxplot_type}.
+Confidence intervals are calculated with a confidence of 95\%.
+All p values are close to 0, allowing us to strongly reject the null hypothesis for all test executions.
+Note however that the confidence interval for the comparison between method parameters is negligible.
+
+
+% VISIBILITY
 \subsection{Declaration Visibility\label{sub:res_all_visibility}}
 In this section we analyze the usage of types depending on the visibility of a declaration.
-We analyze the same types of declarations analyzed in the previous section apart from local variables, which don't have visibility.
-Figure \ref{fig:all_boxplot_visibility_all} shows the usage of types in all declarations depending on their visibility along with the descriptive statiscs.
-We apply the same aproach of the previous section and Mann-Whitney U test to determine if these populations are different and how different they are.
-Resuls for this test are shown in Table and confirm that these are different populations.
-
-The results
-
+Results are presented in Figure \ref{fig:all_boxplot_visibility_all} for all declarations, except for local variables which don't have visibility. 
+We follow the same approach from previous section and apply the Mann-Whitney U test to determine whether there is a significant difference between declarations of different visibilities.
+Results for the tests executions are displayed in Table \ref{tab:all_utest_visibility}.
+They show that the p value for all tests is equal to 0, which points out that all declarations visibilities are different from each other.
 
 \begin{figure}[h]
 \centering 
@@ -669,53 +669,67 @@ Private   				& 6023	& 0.43	& 0.40		& 0.32		\\ \hline
 \end{figure}
 
 
-% \begin{table}[ht]
+\begin{table}[ht]
+
+\centering{}%
+\renewcommand{\arraystretch}{1.2}
+
+\begin{tabular}{|c|c|c|c|}
+\hline 
+								& {}		& p		& conf. interval	\\
+\hline
+\hline
+\multirow{2}{*}{Public}			& Protected	& 0.000 & (-0.21,-0.18)	\\ 
+								& Private	& 0.000 &   (0.28,0.31)	\\
+\hline  
+\multirow{2}{*}{Protected}		& Public	& 0.000 & (0.18,0.21)	\\
+								& Private	& 0.000 & (0.54,0.57)	\\
+\hline  
+\multirow{2}{*}{Private}		& Public	& 0.000 & (-0.31,-0.28)	\\
+								& Protected	& 0.000 & (-0.57,-0.54)	\\
+\hline  
+\end{tabular}
+\label{tab:all_utest_visibility}
+\caption{Mann-Whitney U test results for the usage of types in declarations of all projects by visibility}
+\end{table}
+
+Protected declarations are those typed most often.
+Notice how skewed is the distribution for these elements in Figure \ref{fig:all_boxplot_visibility_all}.
+Almost all 2387 projects which use protected visibility in their declarations type all of their protected fields, methods and constructors.
+The confidence intervals reported by the U tests show a large difference between these declarations and those with either private or public visibility.
+Although public declarations are not typed as much, they are also typed very often.
+At least half of the projects type 75\% or more of their declarations.
+Conversely private declarations are those with the smallest relative use of types.
+
+% BREAKING VISIBILITY BY DECLARATION TYPE
+% Figures \ref{fig:all_boxplot_visibility_methodReturn}-\ref{fig:all_boxplot_visibility_field} detail these results by declaration type.
+% \begin{figure}[h]
+% \centering 
+% \includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/11_returns_of_methods.png} 
+% \caption{Usage of types in declarations of returns of methods by visibility}
+% \label{fig:all_boxplot_visibility_methodReturn} 
+% \end{figure}
 % 
-% \centering{}%
-% \renewcommand{\arraystretch}{1.2}
+% \begin{figure}[h]
+% \centering 
+% \includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/14_parameters_of_methods.png} 
+% \caption{Usage of types in declarations of parameters of methods by visibility}
+% \label{fig:all_boxplot_visibility_methodParameter} 
+% \end{figure}
 % 
-% \begin{tabular}{|c|cc|cc|cc|}
-% \hline
-% {}			& \multicolumn{2}{c|}{Public}	& \multicolumn{2}{c|}{Protected}	& \multicolumn{2}{c|}{Private}	\\
-% {}			& p 	& conf. interval			& p 	& conf. interval				& p 	& conf. interval			\\
-% \hline
-% \hline
-% Public		& \multicolumn{2}{c|}{-}		& 0 & (-0.21, -0.18)			& 0 & (0.28, 0.31)			\tabularnewline \hline
-% Protected		& 0 & (0.18,  0.21)			& \multicolumn{2}{c|}{-}			& 0 & (0.54,  0.57)			\tabularnewline \hline
-% Private		& 0 & (-0.31, -0.28)		& 0 & (-0.57, -0.54)			& \multicolumn{2}{c|}{-}		\tabularnewline \hline
-% \end{tabular}
-% \label{tab:all_utest_type}
-% \caption{Mann-Whitney U test results for the usage of types in declarations of all projects by visibility}
-% \end{table}
-
-
-\begin{figure}[h]
-\centering 
-\includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/11_returns_of_methods.png} 
-\caption{Usage of types in declarations of returns of methods by visibility}
-\label{fig:all_boxplot_visibility_methodReturn} 
-\end{figure}
-
-\begin{figure}[h]
-\centering 
-\includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/14_parameters_of_methods.png} 
-\caption{Usage of types in declarations of parameters of methods by visibility}
-\label{fig:all_boxplot_visibility_methodParameter} 
-\end{figure}
-
-\begin{figure}[h]
-\centering 
-\includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/17_parameters_of_constructors.png} 
-\caption{Usage of types in declarations of constructor parameters by visibility}
-\label{fig:all_boxplot_visibility_constructorParameter} 
-\end{figure}
-
-\begin{figure}[h]
-\centering 
-\includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/20_fields.png} 
-\caption{Usage of types in declarations of fields by visibility}
-\label{fig:all_boxplot_visibility_field} 
-\end{figure}
+% \begin{figure}[h]
+% \centering 
+% \includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/17_parameters_of_constructors.png} 
+% \caption{Usage of types in declarations of constructor parameters by visibility}
+% \label{fig:all_boxplot_visibility_constructorParameter} 
+% \end{figure}
+% 
+% \begin{figure}[h]
+% \centering 
+% \includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/20_fields.png} 
+% \caption{Usage of types in declarations of fields by visibility}
+% \label{fig:all_boxplot_visibility_field} 
+% \end{figure}
 
 % TESTS
 \subsection{Test Classes and Main Classes\label{res-test-scripts}}
