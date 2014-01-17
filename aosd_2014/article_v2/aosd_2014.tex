@@ -448,36 +448,18 @@ Number of Developers & Fraction of Projects\tabularnewline
 %ANALYSIS
 \subsection{Analysis\label{analyzer}}
 In order to understand where programmers use types, a static code analyzer was built. 
-This analyzer is based on the Groovy metaprogramming library, which is capable of compiling Groovy files and generate an abstract syntax tree (AST) for them.
-The following types of declarations can be extracted
+This analyzer is based on the Groovy metaprogramming library, which can generate abstract syntax trees (AST) from Groovy files.
+It is capable of retrieving the declaration information of parameters and returns of methods, parameters of constructors, fields and local variables.
+In addition to that, it can tell if a declaration is part of a test class or a script and what is its visibility.
 
-\begin{itemize}
-	\item Method Returns
-	\item Method Parameters
-	\item Constructor Parameters
-	\item Fields
-	\item Local Variables
-\end{itemize}
-
-In addition to the declarations extracted, we rely on the static code analyzer to answer the following questions:
-
-\begin{itemize}
-	\item What is the typing system of the statement?
-	\item Is the statement part of a script or a class?
-	\item Is the statement part of a test class?
-	\item What is the visibility of the method or field?
-\end{itemize}
-
-
-A relevant decision we made was no to compile projects.
-We made this decision because compiling the projects would require all dependencies to be resolved, which would be unfeasible.
-This would be even harder when we consider the dimension of our dataset.
+A relevant decision we made was not to compile projects, which would require all dependencies to be resolved.
+This is not feasible given the dimensions of our dataset.
 Instead, we generated the AST for each file using the $CONVERSION$ phase of the Groovy compiler.
-At this phase, the compiler hasn not tried to resolve any dependencies yet, but it is capable of generating an AST with sufficient information to determine if a statement had its type defined by the programmer or not.
+At this phase, the compiler has not tried to resolve any dependencies yet, but it is capable of generating an AST with enough information to determine if a a declaration is typed or not.
 This makes it possible to analyze each Groovy file separately without having to compile the whole project.
 
 The downside of the approach described above is that we can not analyze Groovy code in conjunction with its dependencies. 
-For example, it is impossible to answer if programmers tend to type code that interacts with other typed modules since we haven not resolved any dependencies to these modules.
+For example, it is impossible to answer if programmers tend to type code that interacts with other typed modules since we have not resolved any dependencies to these modules.
 However, our choice was fundamental in order to execute a study with such an expressive dataset.
 Nevertheless, as shown in the next section, we were still able to obtain detailed and relevant results using this strategy.
 
@@ -604,34 +586,34 @@ This confidence interval can be used to measure how different are two samples.
 								& {}					& p  	      & conf. interval\\
 \hline
 \hline
-\multirow{4}{*}{Field}				& Constructor Parameter	& 0.000 & (-0.49, -0.45)\\
-								& Method Parameter	& 0.000 & (-0.32, -0.28)\\
-								& Method Return		& 0.000 & (-0.30, -0.27)\\
-								& Local Variable 		& 0.000 & (0.13, 0.16)\\
+\multirow{4}{*}{Field}			& Constructor Parameter	& 0.0000 & (-0.50,-0.44)\\
+								& Method Parameter		& 0.0000 & (-0.32,-0.27)\\
+								& Method Return			& 0.0000 & (-0.30,-0.26)\\
+								& Local Variable 		& 0.0000 & ( 0.13, 0.17)\\
 \hline
-{}								& Field				& 0.000 & (0.45, 0.49)	\\
-Constructor						& Method Parameter	& 0.000 & (0.07, 0.09)	\\
-Parameter							& Method Return		& 0.000 & (0.09, 0.12)	\\
-{}								& Local Variable		& 0.000 & (0.62, 0.67)	\\
+{}								& Field					& 0.0000 & (0.44, 0.50)	\\
+Constructor						& Method Parameter		& 0.0000 & (0.06, 0.09)	\\
+Parameter						& Method Return			& 0.0000 & (0.08, 0.13)	\\
+{}								& Local Variable		& 0.0000 & (0.62, 0.67)	\\
 \hline
-{}								& Field				& 0.000 & (0.28, 0.32)	\\
-Method							& Constructor Parameter	& 0.000 & (-0.09, -0.07	\\
-Parameter							& Method Return		& 0.005 & (0.00, 0.00)	\\
-{}								& Local Variable		& 0.000 & (0.45, 0.49)	\\
+{}								& Field					& 0.0000 & ( 0.27,  0.32)	\\
+Method							& Constructor Parameter	& 0.0000 & (-0.09, -0.06)	\\
+Parameter						& Method Return			& 0.0054 & ( 0.00,  0.00)	\\
+{}								& Local Variable		& 0.0000 & ( 0.44,  0.50)	\\
 \hline
-{}								& Field				& 0.000 & (0.27, 0.30)	\\
-Method							& Constructor Parameter	& 0.000 & (-0.12, -0.0	\\
-Return							& Method Parameter	& 0.005 & (0.00, 0.00)	\\
-{}								& Local Variable		& 0.000 & (0.44, 0.47)	\\
+{}								& Field					& 0.0000 & ( 0.26,  0.30)	\\
+Method							& Constructor Parameter	& 0.0000 & (-0.13, -0.08)	\\
+Return							& Method Parameter		& 0.0054 & ( 0.00,  0.00)	\\
+{}								& Local Variable		& 0.0000 & ( 0.44,  0.47)	\\
 \hline
-{}								& Field				& 0.000 & (-0.16, -0.13) \\
-Local							& Constructor Parameter	& 0.000 & (-0.67, -0.62) \\
-Variable							& Method Parame		& 0.000 & (-0.49, -0.45) \\
-{}								& Method Return		& 0.000 & (-0.47, -0.44) \\
+{}								& Field					& 0.0000 & (-0.17, -0.44) \\
+Local							& Constructor Parameter	& 0.0000 & (-0.67, -0.27) \\
+Variable						& Method Parame			& 0.0000 & (-0.50, -0.26) \\
+{}								& Method Return			& 0.0000 & (-0.47,  0.17) \\
 \hline  
 \end{tabular}
 \label{tab:all_utest_type}
-\caption{Mann-Whitney U test results for the usage of types in declarations of all projects by visibility}
+\caption{Mann-Whitney U Test results for the comparison between the usage of types by type of declaration}
 \end{table}
 
 Table \ref{tab:all_utest_type} shows the result of the Mann-Whitney U test for the data displayed in Figure \ref{fig:all_boxplot_type}.
@@ -666,13 +648,11 @@ Public    				& 5852	& 0.69	& 0.75		& 0.29		\\ \hline
 Protected 				& 2387	& 0.93	& 1.00		& 0.19		\\ \hline
 Private   				& 6023	& 0.43	& 0.40		& 0.32		\\ \hline
 \end{tabular}
-
-\caption{Usage of types in all declarations by visibility}
-
+\caption{Usage of types in all declarations by type of declaration}
 \end{figure}
 
 
-\begin{table}[ht]
+\begin{table}[h]
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
@@ -682,18 +662,18 @@ Private   				& 6023	& 0.43	& 0.40		& 0.32		\\ \hline
 								& {}		& p		& conf. interval	\\
 \hline
 \hline
-\multirow{2}{*}{Public}			& Protected	& 0.000 & (-0.21,-0.18)	\\ 
-								& Private	& 0.000 &   (0.28,0.31)	\\
+\multirow{2}{*}{Public}			& Protected	& 0.0000 & (-0.22,-0.18)	\\ 
+								& Private	& 0.0000 &  (0.28, 0.31)	\\
 \hline  
-\multirow{2}{*}{Protected}		& Public	& 0.000 & (0.18,0.21)	\\
-								& Private	& 0.000 & (0.54,0.57)	\\
+\multirow{2}{*}{Protected}		& Public	& 0.0000 & (0.18,0.22)	\\
+								& Private	& 0.0000 & (0.54,0.57)	\\
 \hline  
-\multirow{2}{*}{Private}		& Public	& 0.000 & (-0.31,-0.28)	\\
-								& Protected	& 0.000 & (-0.57,-0.54)	\\
+\multirow{2}{*}{Private}		& Public	& 0.0000 & (-0.31,-0.28)	\\
+								& Protected	& 0.0000 & (-0.57,-0.54)	\\
 \hline  
 \end{tabular}
 \label{tab:all_utest_visibility}
-\caption{Mann-Whitney U test results for the usage of types in declarations of all projects by visibility}
+\caption{Mann-Whitney U Test results for the comparison between the usage of types by visibility of declaration}
 \end{table}
 
 Protected declarations are those typed most often.
@@ -788,7 +768,7 @@ Variable	        		& Main			& 5548	& 0.30 		& 0.19	& 0.32 \\
 \end{tabular}
 
 \label{fig:test_boxplot_type} 
-\caption{Usage of types in all declarations by visibility of declaration}
+\caption{Usage of types by declaration type in test classes and main classes}
 \end{figure}
 
 \begin{table}[h!]
@@ -798,15 +778,15 @@ Variable	        		& Main			& 5548	& 0.30 		& 0.19	& 0.32 \\
 Declaration Type 		& p & conf. interval \\
 \hline 
 \hline 
-Field                             & 0.002	& (0.000, 0.000) \\ \hline
-Constructor Parameter  & 0.397	& (0.000, 0.000) \\ \hline
-Method Parameter         & 0.000	& (-0.500, -0.389) \\ \hline
-Method Return              & 0.000	& (0.231, 0.250) \\ \hline
-Local Variable               & 0.000	& (-0.058, -0.030) \\ 
+Field                             & 0.0020		& (0.000, 0.000) \\ \hline
+Constructor Parameter  & 0.3968	& (0.000, 0.000) \\ \hline
+Method Parameter         & 0.0000	& (-0.519, -0.409) \\ \hline
+Method Return              & 0.0000	& (0.200, 0.250) \\ \hline
+Local Variable               & 0.0000		& (-0.070, -0.032) \\ 
 \hline 
 \end{tabular}
 \label{tab:test_utest_type}
-\caption{Mann-Whitney U test for tests}
+\caption{Mann-Whitney U Test results for the comparison between the usage of types by test classes and main classes}
 \end{table}
 
 % SCRIPTS
@@ -838,7 +818,7 @@ Local					& Script			& 1775	& 0.28	& 0.07	& 0.37	 \\
 Variable	 				& Class				& 5246	& 0.30	& 0.18	& 0.32	 \\                
 \hline
 \end{tabular}
-\caption{Usage of types in all declarations by visibility of declaration}
+\caption{Usage of types by declaration type in script files and class files}
 \label{fig:script_boxplot_type} 
 \end{figure}
 
@@ -863,7 +843,7 @@ Local Variable                & 0.000	& (-0.016, 0.000)  \\ \hline
 \hline 
 \end{tabular}
 \label{tab:script_utest_all}
-\caption{Mann-Whitney U test of scripts}
+\caption{Mann-Whitney U Test results for the comparison between the usage of types by script files and class files}
 \end{table}
 
 % PROGRAMMERS BACKGROUND
@@ -911,7 +891,7 @@ Field											& Both				& 3183	& 0.43		& 0.39 		& 0.34\\
 \hline
 \end{tabular}
 \label{fig:background_boxplot_type}
-\caption{Usage of types in projects by declaration type depending on the background of the programmers of a projects}
+\caption{Usage of types by declaration type and programmer background}
 \end{figure}
 
                 
@@ -941,7 +921,7 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 \hline						 			
 \end{tabular}
 \label{fig:background_boxplot_visibility}
-\caption{Usage of types in projects by declaration visibility depending on the background of the programmers of a projects}
+\caption{Usage of types by declaration visibility and programmer background}
 \end{figure}	
 
 \begin{table}[h!]
@@ -976,7 +956,7 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 \hline 
 \end{tabular}
 \label{tab:background_utest_type}
-\caption{Mann-Whitney U Test results for declaration types depending on the background of the programmers of a projects}
+\caption{Mann-Whitney U Test results for the comparison between the usage of types by declaration type and programmers background}
 \end{table}
       
 \begin{table}[h!]
@@ -1004,7 +984,7 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 \hline 
 \end{tabular}
 \label{tab:backgorund_utest_visibility}
-\caption{Mann-Whitney U Test results for declaration visibility depending on the background of the programmers of a projects}
+\caption{Mann-Whitney U Test results for the comparison between the usage of types by declaration visibility and programmers background}
 \end{table}
               
 The usage of types by programmers with both statically and dynamically typed languages in their portfolio is similar to that of programmers with dynamically languages only.
@@ -1017,32 +997,21 @@ There are only two situations where the p value reported by the Mann-Whitney U t
 
 
 % PROJECT SIZE
-\subsection{Project Size and Maturity\label{res-size}}
-This section presents an analysis about how programmers use types in their code depending on the project size.
-We start by calculating the Spearman Rank Correlation Coefficient between the number of lines of code and the usage of types.
-This coefficient, which can go from -1 to 1, measures the correlation between two variables.
-A positive value means that, as the size of projects grows, so does the usage of types.
+\subsection{Project Maturity\label{res-size}}
+This section investigates whether programmers use types differently in their code depending on the project maturity.
+Three metrics are used to define the maturity of the project: age, number lines of code and number of commits.
+We start by analyzing the correlation between these metrics and the relative use of types in declarations by type and visibility.
+The Spearman rank correlation coefficient is used for this purpose.
+This coefficient, which can go from -1 to 1, is a measure of the dependence between two variables.
+A positive value means that, as the valuable of one variable grows, so does the value of the other.
 A negative value means the opposite.
-Values close to 1 or -1 denote the strongest relationship while values above 0.5 or below -0.5 can be considered strong correlations.
-Table \ref{tab:all_correlation_loc} shows the Spearman correlation for declarations grouped by type and visibility.
-There are no correlations in this table that seem to suggest a strong correlation.
-
-% The project size is a simple metric to measure the complexity of a project.
-% Usually, the larger the project, the greater the number of modules and the need for maintenance \cite{Fenton1998}. 
-
-We start by running an analysis
-In order for a project to be considered mature it has to have at least 2KLoC and 100 commits.
-These numbers were defined by manually inspecting our dataset and finding that there are popular and mature projects that barely exceed these two metrics.
-According to our criteria, there are 203 mature projects in our dataset.
-Together they a total of 83211 commits. 
-The most changed project had a total of 6545 commits.
-More than 43 thousand files were changed by these commits.
+Values close to 1 or -1 indicate very strong relationships while values above 0.5 or below -0.5 can be considered strong correlations.
 
 \begin{table}[h!]
 \centering{}%
 \begin{tabular}{|c|c|c|c|c|}
 \hline 
-Declaration Type/Visibility	& LoC		& Age	&	Commits\\
+Declaration Type/Visibility	& Size		& Age	&	Commits\\
 \hline 
 \hline 
 Field						&  0.221	& -0.063	&  0.153	\\ \hline
@@ -1056,13 +1025,34 @@ Public						& -0.063	&   0.119	& -0.024	\\ \hline
 Protected					& -0.286	&  -0.020	& -0.165	\\ \hline
 Private				 		&  0.213	&  -0.068	&  0.160	\\ \hline
 \end{tabular}
-\label{tab:all_correlation_loc}
+\label{tab:all_correlation_maturity}
 \caption{Spearman Correlation between the usage of types and the size, age and number of commits of projects}
 \end{table}	
 
 
+Table \ref{tab:all_correlation_maturity} shows the Spearman correlation coefficient between the usage of types and the three metrics of maturity.
+Most of values in this table are close to 0.
+There are a few which could indicate a weak relationship, such as \emph{Size} vs. \emph{protected} or \emph{commits} vs. \emph{private}, but these values are too small and could have happened by chance.
+Thus, we can't say that there is a correlation between the metrics of maturity and the usage of types.
 
+% The project size is a simple metric to measure the complexity of a project.
+% Usually, the larger the project, the greater the number of modules and the need for maintenance \cite{Fenton1998}. 
 
+The lack of correlation doesn't necessarily imply that the maturity of a project has no influence on the usage of types.
+This influence could appear only when the combination of the three metrics of maturity is big enough.
+In order to understand if this is true, we conduct now a comparison between mature projects and the rest of the data.
+In order for a project to be considered mature it has to have at least 2KLoC, 100 commits and be 100 days old.
+These numbers were defined by manually inspecting our dataset and finding that there are popular and mature projects that barely exceed these three metrics.
+According to our criteria, there are 223 mature projects in our dataset.
+% Together they a total of 83211 commits. 
+% The most changed project had a total of 6545 commits.
+% More than 43 thousand files were changed by these commits.
+
+Figure \ref{fig:size_boxplot_type}  and \label{fig:size_boxplot_visibility} compares the usage of types between mature projects and others and Tables \ref{tab:size_utest_type} and \ref{tab:size_utest_visibility} show the results for the Mann-Whitney U test for these comparisons.
+There are significant differences only in two declarations types, fields and local variables.
+As for the visibility, only protected declarations can be said to be significantly different.
+Note that for private declarations, the p-value is 0, but the confidence interval for the difference of medians is negligible.
+% comment on these differences
 
 \begin{figure}[h!]
 \centering 
@@ -1076,24 +1066,24 @@ Private				 		&  0.213	&  -0.068	&  0.160	\\ \hline
 \cell{Declaration\\Type}	& \cell{Project\\Type}& n	& mean	& median	& \cell{std.\\dev.}\\
 \hline
 \hline
-\multirow{2}{*}{Field}		& Other			& 5749	& 0.43 		& 0.39	& 0.33 \\                
-                			& Mature		& 251 	& 0.53 		& 0.48	& 0.27 \\
-\hline                	
-Constructor 				& Other			& 1484	& 0.80 		& 1.00	& 0.35 \\                
-Parameter					& Mature		& 186 	& 0.84 		& 1.00	& 0.29 \\                
-\hline	
-Method      				& Other			& 4616	& 0.67 		& 0.86	& 0.37 \\                
-Parameter					& Mature		& 251 	& 0.69 		& 0.80	& 0.30 \\                
-\hline	
-Method						& Other			& 5629	& 0.68 		& 0.75	& 0.32 \\                
-Return		         		& Mature		& 252 	& 0.71 		& 0.77	& 0.25 \\                
-\hline	
-Local						& Other			& 5592	& 0.29 		& 0.17	& 0.32 \\                
-Variable					& Mature		& 253 	& 0.32 		& 0.21	& 0.28 \\                
-\hline
+\multirow{2}{*}{Field}		& Other			& 5779	& 0.43 		& 0.39	& 0.33 \\                
+                			& Mature		& 221 	& 0.53 		& 0.48	& 0.27 \\
+\hline                																								
+Constructor 				& Other			& 1498	& 0.80 		& 1.00	& 0.35 \\                
+Parameter					& Mature		& 172 	& 0.83 		& 1.00	& 0.30 \\                
+\hline																								
+Method      				& Other			& 4645	& 0.67 		& 0.86	& 0.37 \\                
+Parameter					& Mature		& 222 	& 0.69 		& 0.78	& 0.29 \\                
+\hline																								
+Method						& Other			& 5659	& 0.68 		& 0.75	& 0.32 \\                
+Return		         		& Mature		& 222 	& 0.72 		& 0.79	& 0.24 \\                
+\hline																								
+Local						& Other			& 5622 	& 0.29 		& 0.17	& 0.32 \\                
+Variable					& Mature		& 223	& 0.32 		& 0.22	& 0.28 \\                
+\hline																								
 \end{tabular}
-\label{fig:test_boxplot_type} 
-\caption{Usage of types in all declarations by visibility of declaration}
+\label{fig:size_boxplot_type} 
+\caption{Usage of types in projects by declaration type and project maturity}
 \end{figure}
 
 
@@ -1109,59 +1099,47 @@ Variable					& Mature		& 253 	& 0.32 		& 0.21	& 0.28 \\
 \cell{Declaration\\Type}			& \cell{Project\\Type}	& n		& mean		& median	& \cell{std.\\dev.}\\
 \hline
 \hline
-\multirow{2}{*}{\cell{Public}}		& Other					& 5599	& 0.69		& 0.75 		& 0.29\\			 
-{}									& Mature				& 253 	& 0.71		& 0.75 		& 0.24\\
+\multirow{2}{*}{\cell{Public}}		& Other					& 5629	& 0.69		& 0.75 		& 0.29\\			 
+{}									& Mature				& 223 	& 0.72		& 0.76 		& 0.24\\
 \hline								 							  	  			  			  							
-\multirow{2}{*}{\cell{Protected}}	& Other					& 2186	& 0.94		& 1.00 		& 0.19\\			 
-									& Mature				& 201 	& 0.88		& 1.00 		& 0.21\\			 
+\multirow{2}{*}{\cell{Protected}}	& Other					& 2204	& 0.94		& 1.00 		& 0.19\\			 
+									& Mature				& 183 	& 0.88		& 1.00 		& 0.21\\			 
 \hline															  	  			  			  						
-\multirow{2}{*}{\cell{Private}}		& Other					& 5772	& 0.43		& 0.40 		& 0.32\\			 
-									& Mature				& 251 	& 0.53		& 0.50 		& 0.26\\			 
+\multirow{2}{*}{\cell{Private}}		& Other					& 5802	& 0.43		& 0.40 		& 0.32\\			 
+									& Mature				& 221 	& 0.53		& 0.48 		& 0.26\\			 
 \hline						 			
 \end{tabular}
-\label{fig:background_boxplot_visibility}
-\caption{Usage of types in projects by declaration visibility depending on the background of the programmers of a projects}
+\label{fig:size_boxplot_visibility}
+\caption{Usage of types in projects by declaration visibility and project maturity}
 \end{figure}	
 
 \begin{table}[h!]
 \centering{}%
 \begin{tabular}{|c|c|c|}
 \hline 
-Declaration Type 		& p & conf. interval \\
+Declaration Type/Visibility 		& p & conf. interval \\
 \hline 
 \hline 
-Field                  & 0.0000	& (0.058,0.169)	\\ \hline
-Constructor Parameter  & 0.4889	& (0.000,0.000) \\ \hline
-Method Parameter       & 0.1041	& (0.043,0.005) \\ \hline
-Method Return          & 0.5880	& (0.036,0.039) \\ \hline
-Local Variable         & 0.0001	& (0.015,0.077)	\\ 
+Field                  & 0.0000	& (0.053,0.173)	\\ \hline
+Constructor Parameter  & 0.3203	& (0.000,0.000) \\ \hline
+Method Parameter       & 0.0794	& (-0.051,0.002) \\ \hline
+Method Return          & 0.9373	& (-0.031,0.051) \\ \hline
+Local Variable         & 0.0002	& (0.012,0.078)	\\ \hline
 \hline 
-\end{tabular}
-\label{tab:test_utest_type}
-\caption{Mann-Whitney U Test results comparing mature projects to others by declaration type}
-\end{table}
-
-\begin{table}[ht]
-\centering{}%
-\begin{tabular}{|c|c|c|}
-\hline 
-Declaration Visibility	& p & conf. interval \\
-\hline 
-\hline
-Public		& 0.6330	& (0.034, 0.036) 	\\ \hline
-Private		& 0.0000	& (0.000, 0.000)	\\ \hline
-Protected	& 0.0000	& (0.060,0.167) 	\\ 
+Public		& 0.8540	& (-0.031,0.045)	\\ \hline
+Private		& 0.0000	& (0.000,0.000)		\\ \hline
+Protected	& 0.0000	& (0.055,0.169)		\\ 
 \hline 
 \end{tabular}
-\label{tab:test_utest_type}
-\caption{Mann-Whitney U Test results comparing mature projects to others by declaration visibility}
+\label{tab:size_utest_visibility}
+\caption{Mann-Whitney U Test results for the comparison between the usage of types by mature projects and others}
 \end{table}	
 
 
 
 
-% FREQUENCYT OF CHANGES
 
+% FREQUENCY OF CHANGES
 \subsection{Frequency of changes\label{res-changes}}
 
 \begin{figure}[h]
@@ -1172,51 +1150,13 @@ Protected	& 0.0000	& (0.060,0.167) 	\\
 
 
 The results in this section show how the frequency of changes in a file is related to the usage of types in the declarations in those files.
-For this analysis, we considered only mature projects since we would not be able to get significant results from small and young projects.
-
-In order for a project to be considered mature it has to have at least 2KLoC and 100 commits.
-These numbers were defined by manually inspecting our dataset and finding that there are popular and mature projects that barely exceed these two metrics.
-According to our criteria, there are 203 mature projects in our dataset.
-Together they a total of 83211 commits. 
-The most changed project had a total of 6545 commits.
-More than 43 thousand files were changed by these commits.
-
-Figure \ref{fig:change_mean} shows the average frequency of untyped declarations in files by the frequency of changes of those files.
-A file is considered in different groups depending on the relative number of commits that change this file in each project.
-Each group contains 10\% of the files in a project such that group 10 contains the top 10\% of files with the most changes of every project, while group 1 has the bottom 10\% of the files with the least.
-This means that the most changed files of two different projects, one file changed in 50 commits and the other changed in 800 commits, are both part of group 10.
-We avoided using the absolute number of changes in a file since this value might have different meanings in different projects.
-What might be considered a high number of commits for one project, may be low for another.
-By using the relative number of changes, we avoid this pitfall.
-
-It is possible to observe in Figure \ref{fig:change_mean} a slight correspondence between the frequency of changes and the use of untyped declarations.
-While the most changed files of each project have, on average, 34.7\% of their declarations untyped, this number is only 24\% for the least changed files.
-
-Figure \ref{fig:change_spearman} is capable of describing this relationship in more details.
+We want to understand if programmers consider the fact that untyped declarations are easy to change.
+For this analysis, we considered only the mature projects from previous section since we would not be able to get significant results from small and young projects.
+Figure \ref{fig:change_spearman} shows the Spearman correlation between the frequency of changes of files and the usage of types in those files.
 Each point in that graph represents the Spearman correlation between the number of changes in a file and the usage of untyped declarations for a project. 
-A positive value denotes a correlation between those two metrics while a negative value denotes an inverse relationship, i.e, the higher the number of changes the less untyped declarations are used.
-Values close to 1 or -1 the strongest the relationship while values above 0.5 or below -0.5 can be considered strong correlations.
-
-From the 203 mature projects in our dataset, only 65 present negative values for the Spearman ranking. 
-Most of the projects present a positive correlation between the frequency of changes and the usage of untyped declarations.
-A total of 64 of these present a strong relationship, i.e, a Spearman ranking value superior to 0.5, while only 20 present a strong inverse relationship.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Most of projects in our dataset type less the most changed files.
+About 65\% present a negative Spearman correlations coefficient and almost half of these present strong correlations, inferior to -0.5.
+On the other side, it can be said that only 10\% of the mature projects present strong positive correlations.
 
 
 %
