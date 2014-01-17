@@ -10,6 +10,10 @@ data_all<-read.table("parsed/declaration_by_type.txt", header=T)
 data_all<-data_all[data_all$loc>0 & !is.na(data_all$all), ]
 describe(data_all)
 
+declaration_metadata<-read.table("parsed/declaration_metadata.txt", header=T)
+declaration_metadata<-declaration_metadata[declaration_metadata$loc>0 & !is.na(data_all$all), ]
+describe(declaration_metadata)
+
 data_tests_all<-read.table("parsed/declaration_by_tests.txt", header=T)
 data_tests_all<-data_tests_all[data_tests_all$loc>0, ]
 describe(data_tests_all)
@@ -455,3 +459,25 @@ plotSpearmanDistributionHistogram<-function(data){
 }
 plotSpearmanDistributionHistogram(change_commit_spearman)
 
+characterizeDeclarationMetadata<-function() {
+	result = data.frame(element=character(0), mean=numeric(0), sd=numeric(0), q1=numeric(0), q3=numeric(0), max=numeric(0), total=numeric(0))
+	
+	for(c in i$all:i$public) { 
+		d=declaration_metadata[!is.na(declaration_metadata[c]), c]
+		
+		element=colnames(declaration_metadata)[c]
+		
+		mean=round(mean(d), 2)
+		sd=round(sd(d), 2)
+		q1=round(quantile(d, .25), 2)
+		median=round(median(d), 2)
+		q3=round(quantile(d, .75), 2)
+		max=round(max(d), 2)
+		total=sum(d)
+		
+		result <- rbind(result, data.frame(element=element, mean=mean, sd=sd, q1=q1, median=median, q3=q3, max=max, total=total) )
+	}
+	
+	write.matrix(result ,file=paste("result/all/characterization/declarations.txt", sep=""))
+}
+characterizeDeclarationMetadata()

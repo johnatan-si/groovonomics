@@ -88,8 +88,18 @@ public class JsonToRTranslator {
 		}
 	}
 	
+	public translateDeclarationMetadata(ClassData classData) {
+		classDataHeaders.collect {
+			return classData.getAgregateDeclarationData(it).total
+		}
+	}
+	
 	public translate(projectId, metadataFolder, classData) {
 		translateMetadata(projectId, metadataFolder) + translateClassData(classData)
+	}
+	
+	public translateDeclarationMetadata(projectId, metadataFolder, classDataFile) {
+		translateMetadata(projectId, metadataFolder) + translateDeclarationMetadata(classDataFactory.fromMap(slurper.parseText(classDataFile.text)))
 	}
 
 }
