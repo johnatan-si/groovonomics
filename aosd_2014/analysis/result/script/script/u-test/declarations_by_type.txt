@@ -1,4 +1,10 @@
 sample1 sample2 pvalue conf.int.min conf.int.max
-localVariable   methodReturn    0.223           0               0              
+localVariable   localVariable   1.000           0               0              
+localVariable   methodReturn    0.417           0               0              
 localVariable   methodParameter 0.000           0               0              
-methodReturn    methodParameter 0.008           0               0              
+methodReturn    localVariable   0.417           0               0              
+methodReturn    methodReturn    1.000           0               0              
+methodReturn    methodParameter 0.009           0               0              
+methodParameter localVariable   0.000           0               0              
+methodParameter methodReturn    0.009           0               0              
+methodParameter methodParameter 1.000           0               0              

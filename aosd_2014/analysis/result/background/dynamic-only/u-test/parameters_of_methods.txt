@@ -1,4 +1,10 @@
 sample1 sample2 pvalue conf.int.min conf.int.max
-privateMethodParameter   protectedMethodParameter 0.002                    -0.091                   0.000                   
-privateMethodParameter   publicMethodParameter    0.658                     0.000                   0.000                   
-protectedMethodParameter publicMethodParameter    0.007                     0.000                   0.049                   
+privateMethodParameter   privateMethodParameter   1.000                     0.00                    0.00                    
+privateMethodParameter   protectedMethodParameter 0.000                    -0.11                    0.00                    
+privateMethodParameter   publicMethodParameter    0.493                     0.00                    0.00                    
+protectedMethodParameter privateMethodParameter   0.000                     0.00                    0.11                    
+protectedMethodParameter protectedMethodParameter 1.000                     0.00                    0.00                    
+protectedMethodParameter publicMethodParameter    0.000                     0.00                    0.09                    
+publicMethodParameter    privateMethodParameter   0.493                     0.00                    0.00                    
+publicMethodParameter    protectedMethodParameter 0.000                    -0.09                    0.00                    
+publicMethodParameter    publicMethodParameter    1.000                     0.00                    0.00                    

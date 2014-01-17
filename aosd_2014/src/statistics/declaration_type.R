@@ -34,15 +34,12 @@ staticAndDynamicBackgroundData=data_background_all[data_background_all$condition
 
 data_size=data_all
 data_size$condition=NA
-data_size[data_size$loc<=200, ]$condition="1-small"
-data_size[data_size$loc>200 & data_size$loc<=2000, ]$condition="2-medium"
-data_size[data_size$loc>2000 & data_size$loc<=20000, ]$condition="3-big"
-data_size[data_size$loc>20000, ]$condition="4-huge"
+data_size[data_size$loc<=2000 | data_size$commits<=100, ]$condition="small"
+data_size[data_size$loc>2000 & data_size$commits>100, ]$condition="big"
 
-smallData=data_size[data_size$condition=="1-small", ]
-mediumData=data_size[data_size$condition=="2-medium", ]
-bigData=data_size[data_size$condition=="3-big", ]
-hugeData=data_size[data_size$condition=="4-huge", ]
+
+smallData=data_size[data_size$condition=="small", ]
+bigData=data_size[data_size$condition=="big", ]
 
 change_commit_spearman = read.table("parsed/change_commit_spearman.txt")
 
@@ -218,7 +215,6 @@ comparisonBoxPlot<-function(data, folder, labels, description, columns) {
 			
 	ggsave(path=paste("result/", folder, "/comparison/boxplots", sep=""), filename=paste(columns, "_", gsub(" ", "_", description), ".png", sep=""), plot, width=4.5, height=max(3.0, height))
 }
-comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by type",		i$localVariable:i$field)
 
 compareAllSamples<-function() {
 	
@@ -253,20 +249,14 @@ compareAllSamples<-function() {
 	uTestSamples(staticAndDynamicBackgroundData, dynamicBackgroundData,	"static-and-dynamic", "dynamic", "background", i$all:i$public)
 	
 	# Size
-	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "all declarations",			i$all)
-	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "declarations by type",		i$localVariable:i$field)
-	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)
-	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)
-	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
-	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "fields", 					i$privateField:i$publicField)
-	comparisonBoxPlot(data_size, "size", c("Small\nProjects", "Medium\nProjects", "Big\nProjects", "Very Big\nProjects"), "declarations by visibility",	i$private:i$public)
-
-	uTestSamples(smallData, mediumData, "1-small", "2-medium", "size", i$all:i$public)
-	uTestSamples(smallData, bigData,	"1-small", "3-big", "size", i$all:i$public)
-	uTestSamples(smallData, hugeData,	"1-small", "4-huge", "size", i$all:i$public)
-	uTestSamples(mediumData, bigData,	"2-medium", "3-big", "size", i$all:i$public)
-	uTestSamples(mediumData, hugeData,	"2-medium", "4-huge", "size", i$all:i$public)
-	uTestSamples(bigData, hugeData,		"3-big", "4-huge", "size", i$all:i$public)
+	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "all declarations",			i$all)
+	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "declarations by type",		i$localVariable:i$field)
+	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)
+	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)
+	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
+	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "fields", 					i$privateField:i$publicField)
+	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "declarations by visibility",	i$private:i$public)
+	uTestSamples(smallData, bigData,	"small", "big", "size", i$all:i$public)
 
 }
 
@@ -286,7 +276,7 @@ compareElementsOfASample<-function(data, folder, description, columnsToCompare) 
 	columnsWithData<-filterColumnsWithData(data, columnsToCompare)
 	
 	if(length(columnsWithData) > 0) {
-		uTestElementsOfASample(data, folder, description, columnsWithData)
+		# uTestElementsOfASample(data, folder, description, columnsWithData)
 		# boxPlot(data, folder, description, columnsWithData)	
 		getDescriptiveStatistics(data, folder, description, columnsWithData)	
 	}
