@@ -381,21 +381,49 @@ Figures \ref{fig:size_distribution} shows the cumulative distribution of the siz
 Notice that a logarithm scale is used.
 Although most of the projects are relatively small, there are projects with up to 150 KLoC. 
 
-% The age of a project, defined as the time between the first and last commits, varies form 1 day to 5 years. 
-% Figure \ref{fig:age_distribution} shows the cumulative distribution of the age of the projects in the dataset. 
+\begin{table}[h!]
 
+\centering{}%
+\renewcommand{\arraystretch}{1.2}
 
-\begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{size_distribution}
-\caption{Cumulative Distribution of the Size of the Projects}
-\label{fig:size_distribution} 
-\end{figure}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+{}		& mean	& median	& std. dev.	& max	& total		\\
+\hline
+\hline
+Size (LoC)	& 1471 	& 529  & 4545  & 149933	& 9770783	\\ \hline
+Commits   	& 31  	& 5    & 175   & 6545		& 203375	\\ \hline
+Age (Days)  & 361  	& 280  & 333   & 1717		& 2395441	\\ \hline
+\end{tabular}
+\caption{Dataset characterization}
+\label{tab:dataset_characterization}
+\end{table}
 
-% \begin{figure}[ht]
-% \centering \includegraphics[width=0.45\textwidth]{age_distribution}
-% \caption{Cumulative Distribution of the Age of the Projects}
-% \label{fig:age_distribution} 
-% \end{figure}
+\begin{table}[h!]
+
+\centering{}%
+\renewcommand{\arraystretch}{1.2}
+
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+{}		& Mean	& Median	& \cell{Std.\\Dev.}	& Max	& Total		\\
+\hline
+\hline
+\cell{Field}                      	&   54    &  19  &    163  &    5268 & 366148   \\ \hline                  
+\cell{Constructor\\Parameter}     	&    3    &   0  &     16  &     933 &  18956   \\ \hline                  
+\cell{Method\\Parameter}          	&   30    &   6  &    110  &    3554 & 202617   \\ \hline                  
+\cell{Method\\Return}             	&   53    &  15  &    165  &    4893 & 357997   \\ \hline                  
+\cell{Local\\Variable}            	&   88    &  21  &    361  &   16427 & 602645   \\ \hline                  
+\hline																			
+Public                    			&   74    &  20  &    239  &    7942 & 507296   \\ \hline                  
+Protected                 			&    6    &   0  &     32  &    1394 &  42646   \\ \hline                  
+Private                   			&   58    &  21  &    178  &    5268 & 395776   \\ \hline                  
+\hline																			
+All                       			&  227    &  71  &    744  &   29862 &1548363   \\ \hline                  
+\end{tabular}
+\caption{Number of Declarations}
+\label{tab:number_of_declarations}
+\end{table}
 
 The projects in our dataset were developed by 4481 different people. 
 Table \ref{tab:number_of_developers} shows that most projects were developed by a single person.
