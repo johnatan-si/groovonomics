@@ -378,7 +378,7 @@ More details about these declarations are shown in Table \ref{tab:number_of_decl
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-{}		& Mean	& Median	& Std. Dev.	& Max	& Total		\\
+{}		& Mean	& Median	& \cell{Std.\\Dev.}	& Max	& Total		\\
 \hline
 \hline
 Size (LoC)	& 1471 	& 529  & 4545  & 149933	& 9770783	\\ \hline
@@ -421,7 +421,7 @@ While 96\% of the projects were developed by small groups of 3 people or less, t
 These developers have different backgrounds.
 Figure \ref{fig:other_languages} shows what are the most popular languages used by these developers in other GitHub projects. 
 Java is the most popular among them.
-More than 50\% of the developers of projects in our dataset also have Java projects hosted on GitHub.
+About 40\% of the developers of projects in our dataset also have Java projects hosted on GitHub.
 
 % Figure \ref{fig:typeSystem_background} shows what is the type system of the languages the developers in our dataset have experience with.
 % Most of them have experience with both statically and dynamically typed languages.
@@ -535,10 +535,10 @@ n		& mean	& std. dev.	& 1\ts{st}	& 2\ts{nd}	& 3\ts{rd}	& 4\ts{th}		\\
 
 % TYPE
 \subsection{Declaration Type\label{sub:res_all_type}}
-The relative use of types per type of declaration is shown in Figure \ref{fig:all_boxplot_type} along with the corresponding descriptive statistics.
-Each box plot in this graph describes relative use of types in five sorts of declarations: fields, parameters of constructors, parameters and returns of methods and local variables.
-It considers all declarations of all projects.
-Note that the value of n is different for each element in the table since not all projects have all types of declarations. 
+This section investigates whether programmers use types differently depending on the type of the declaration.
+For each project, we measured the relative usage of types by declaration type, which can be a field, a constructor parameter, the return or a parameter of a method or a local variable.
+These results are displayed in box plots in Figure \ref{fig:all_boxplot_type} along with the corresponding descriptive statistics.
+Note that the size of each sample, \emph{n}, is different since not all projects have all types of declarations. 
 
 \begin{figure}[h]
 \centering 
@@ -565,30 +565,36 @@ Local Variable			& 5845	& 0.29	& 0.18		& 0.32		\\ \hline
 
 \end{figure}
 
-The results presented in Figure \ref{fig:all_boxplot_type} suggest that programmers use types differently depending on the type of declaration.
-Local variables for example are typed less often.
+The results presented in Figure \ref{fig:all_boxplot_type} suggest that programmers use types differently depending on the type of a declaration.
+Local variables, for example, are typed less often.
 Half of the projects have 18\% or less of their local variables typed.
 Conversely, methods and constructors are typed most of the cases.
 Note that the median for constructor parameters is equal to 1.00, which means that, at least, half of the projects with constructor parameters type all declarations of this kind.
 
-In order to check whether there is a significant difference in the use of types in two kinds of declaration, a significance test should be applied. 
-We start by defining a hypothesis below. A significance test can be applied to reject or accept the null hypothesis, H0, for any two declaration types. 
+The box plot graph and the descriptive statistics are not enough to determine whether the difference in the usage of types in any two types of declaration is significant.
+In order to do that, a significance test should be applied. 
+We start by defining a hypothesis below, which can then be rejected or accepted.
 
 \begin{description}
 \item[H0] The data for two declaration types are drawn from the same population, i.e., there is no difference in how programmers type different types of declarations
 \item[H1] Programmers type their declarations differently depending on the type of the declaration
 \end{description}
 
+The appropriate significance test should be chosen carefully.
 We can not assume that the data presented in Figure \ref{fig:all_boxplot_type} follows any particular distribution.
-In fact, an analysis of the data for declarations of local variables, methods and constructors shows that these samples are heavily skewed and thus do not follow a Normal distribution.
-Because of this, we are required to use a non-parametric test to analyze this data.
+In fact, an analysis of the box plots for declarations of local variables, methods and constructors shows that these samples are heavily skewed and thus do not follow a Normal distribution.
+Because of this, parametric tests such as the \emph{t-test} can't be applied.
 
-An appropriate test for our scenario is the paired Mann-Whitney U test.
-This test computes a p value indicating whether two samples are significantly different form each other.
-The smaller the value of p, the "more significant" is the difference and, consequently, the stronger the rejection of the null hypothesis.
+A valid alternative for our scenario is the paired Mann-Whitney U test, which works on ranks and doesn't require an underlying Normal distribution.
+It computes a \emph{p-value} indicating whether two samples are significantly different from each other.
+The smaller the value of \emph{p}, the "more significant" is the difference and, consequently, the stronger the rejection of the null hypothesis.
 Typically values of 0.05 and 0.01 are used to determine if the null hypothesis can be rejected or not.
-In addition to p, the Mann-Whitney U test also reports a confidence interval describing the difference of the medians of two populations.
-This confidence interval can be used to measure how different are two samples.
+In this study, we use 0.001 for this purpose.
+This value might seem too small at first, which would require the difference between two samples to be too high in order to consider them different from each other.
+However, due to the large size of our dataset, this \emph{p-value} seems reasonable \cite{labovitz68}.
+In addition to \emph{p}, the Mann-Whitney U test also reports a confidence interval describing the difference of the medians of the two  populations.
+This interval can be used to measure how different are two samples.
+All of the confidence intervals in this study are calculated with a confidence of 99\%.
 
 % Use a super small significance level
 % Labovitz, Sanford. "Criteria for selecting a significance level: A note on the sacredness of. 05." The American Sociologist 3.3 (1968): 220-222.
@@ -633,19 +639,26 @@ Variable						& Method Parame			& 0.0000 & (-0.50, -0.26) \\
 \caption{Mann-Whitney U Test results for the comparison between the usage of types by type of declaration}
 \end{table}
 
-Table \ref{tab:all_utest_type} shows the result of the Mann-Whitney U test for the data displayed in Figure \ref{fig:all_boxplot_type}.
-Confidence intervals are calculated with a confidence of 95\%.
-All p values are close to 0, allowing us to strongly reject the null hypothesis for all test executions.
-Note however that the confidence interval for the comparison between method parameters is negligible.
-
+The significance test results are displayed in Table \ref{tab:all_utest_type}.
+It shows the \emph{p} value and confidence interval reported by the Mann-Whitney U test for every two declaration types.
+%The confidence interval shows what is the difference of means between the declaration types shown in the first and second columns.
+%For example, the confidence interval of the first row indicates with a confidence level of 99\% that the difference between the medians of fields %and constructor parameters is between $-0.50$ and $-0.44$.
+There are only two types of declaration for which \emph{p} values different from zero are reported, parameters and returns of methods.
+This allows us to reject the null hypothesis and consider the usage of types in these two declarations not significantly different.
+This is reasonable since returns and parameters of methods are declared together as part of a method signature.
+All other declaration types, however, can be considered significantly different from each other.
+This includes parameters of methods and constructors.
+Although these are essentially the same type of declaration in Groovy, they seem to be perceived differently by programmers when it comes to typing.
+Nevertheless, the difference between these two declaration types reported by the confidence interval is relatively small, $(-0.09, -0.06)$.
+Other interesting insights provided by these results are that local variables are the least typed declarations while constructor parameters are the most typed.
 
 % VISIBILITY
 \subsection{Declaration Visibility\label{sub:res_all_visibility}}
-Figure \ref{fig:all_boxplot_visibility_all} shows how programmers use types depending on the visibility of a declarations.
-Results consider all sorts of declaration, except for local variables which do not have visibility. 
-We follow the same approach from previous section and apply the Mann-Whitney U test to determine whether there is a significant difference between declarations of different visibilities.
-Results for the tests executions are displayed in Table \ref{tab:all_utest_visibility}.
-They show that the p value for all tests is equal to 0, which points out that all declarations visibilities are different from each other.
+This sections presents an analysis about how programmers type their declarations according to the their visibilities.
+We follow the same approach from the previous section.
+Figure \ref{fig:all_boxplot_visibility_all} shows box plots for the usage of types per declaration type along with the descriptive statistics.
+Declarations of fields, parameters and returns of methods and parameters of constructors of all projects are considered.
+Mann-Whitney U test results are presented in Table \ref{tab:all_utest_visibility}.
 
 \begin{figure}[h]
 \centering 
@@ -668,6 +681,14 @@ Private   				& 6023	& 0.43	& 0.40		& 0.32		\\ \hline
 \caption{Usage of types in all declarations by type of declaration}
 \end{figure}
 
+The null hypothesis can be rejected for all cases since the reported \emph{p} values are always equal to $0$.
+Protected declarations are those typed most often.
+Notice how skewed is the distribution for these elements in Figure \ref{fig:all_boxplot_visibility_all}.
+Almost all 2387 projects which use protected visibility in their declarations have all of their protected fields, methods and constructors typed.
+The confidence intervals reported by the U tests show a large difference between these declarations and those with either private or public visibility.
+Although public declarations are not typed as much, they are also typed very often.
+At least half of the projects type 75\% or more of their declarations.
+Conversely private declarations are those with the smallest relative use of types.
 
 \begin{table}[h]
 
@@ -693,13 +714,6 @@ Private   				& 6023	& 0.43	& 0.40		& 0.32		\\ \hline
 \caption{Mann-Whitney U Test results for the comparison between the usage of types by visibility of declaration}
 \end{table}
 
-Protected declarations are those typed most often.
-Notice how skewed is the distribution for these elements in Figure \ref{fig:all_boxplot_visibility_all}.
-Almost all 2387 projects which use protected visibility in their declarations type all of their protected fields, methods and constructors.
-The confidence intervals reported by the U tests show a large difference between these declarations and those with either private or public visibility.
-Although public declarations are not typed as much, they are also typed very often.
-At least half of the projects type 75\% or more of their declarations.
-Conversely private declarations are those with the smallest relative use of types.
 
 % BREAKING VISIBILITY BY DECLARATION TYPE
 % Figures \ref{fig:all_boxplot_visibility_methodReturn}-\ref{fig:all_boxplot_visibility_field} detail these results by declaration type.
@@ -731,31 +745,18 @@ Conversely private declarations are those with the smallest relative use of type
 % \label{fig:all_boxplot_visibility_field} 
 % \end{figure}
 
+
+
+
+
 % TESTS
 \subsection{Test Classes and Main Classes\label{res-test-scripts}}
-This sections investigates whether programmers type their declarations differently when they are writing test code.
-A comparison between the usage of types in different declarations is shown in Figure \ref{fig:test_boxplot_type}. 
-We also apply the Mann Whitney U test, but this time however we are not comparing declaration types to each other.
-Instead, we are comparing declarations from main classes and test classes.
-Results for the U test are shown in Table \ref{tab:test_utest_type}.
-% Why not visibility
-% TODO exaplin better how I segmented the data
-% How do you identify test classes? Is a main class anything that is not a
-% test class? What is a script?
-
-There is no significant difference in the usage of types in fields and constructor parameters across test classes and main classes.
-The p value reported by the U test comparing constructor parameters data is too high, 0.397, which does not allow us to reject the null hypothesis for this type of declaration.
-As for fields, p value for the test comparing fields is small enough, 0.002, but the reported confidence interval negligible.
-
-Local variables and method parameters are significantly less typed in test classes.
-The confidence intervals reported in Table \ref{tab:test_utest_type} show a difference of (-0.500, -0.389) and (-0.058, -0.030) respectively, both with p-value equal to 0.
-Method returns on the other hand are significantly more typed.
-Figure \ref{fig:test_boxplot_type} shows a median equal to 1.00, which means that at least half of the projects type all of their method returns.
-Although counter intuitive this result can be easily explained.
-Automated testing frameworks usually enforce a certain method signature for test methods.
-JUnit for example, which is used in 2525 out of the 5299 projects with test classes, requires the type of the return of a test methods to be \emph{void}.
-Other popular test frameworks, such as TestNG, have similar requirements.
-This means that, in this case, developers type their methods not because they want to, but because they need to.
+We now analyze the use of types in test classes in comparison to main classes.
+A simple heuristic to determine if a class was written as a test class or a main class is used.
+In Groovy, like in Java, it's common to organize test classes and main classes in different source folders.
+The convention adopted by popular build tools among Groovy programmers, such as Gradle and Maven, assumes test classes and main classes are in the \emph{src/test/groovy} and \emph{src/main/groovy} directories respectively.
+Projects written in Grails, an extremely popular web framework in the Groovy community, use a slightly different convention and organize the test classes in the \emph{test} directory.
+Based on these conventions, we can assume that any classes inside a \emph{test} directory, but not in a \emph{main} directory, are test classes.
 
 \begin{figure}[h]
 \centering 
@@ -769,26 +770,54 @@ This means that, in this case, developers type their methods not because they wa
 \cell{Declaration\\Type}	& \cell{Class\\Type}& n		& mean		& median	& \cell{std.\\dev.}\\
 \hline
 \hline
-\multirow{2}{*}{Field}	& Test			& 1778	& 0.48 		& 0.47	& 0.43 \\                
-                			& Main			& 5857	& 0.43 		& 0.39	& 0.33 \\
+\multirow{2}{*}{Field}	& Test			& 1769	& 0.48 		& 0.47	& 0.43 \\ 
+                		& Main			& 5857	& 0.43 		& 0.39	& 0.33 \\
 \hline                
-Constructor 			& Test			&  130	& 0.77 		& 1.00	& 0.40 \\                
+Constructor 			& Test			&  124	& 0.77 		& 1.00	& 0.41 \\                
 Parameter				& Main			& 1623	& 0.80 		& 1.00	& 0.34 \\                
 \hline
-Method      			& Test			& 1546	& 0.34 		& 0.00	& 0.44 \\                
+Method      			& Test			& 1524	& 0.34 		& 0.00	& 0.43 \\                
 Parameter				& Main			& 4593	& 0.71 		& 0.91	& 0.35 \\                
 \hline
-Method      			& Test			& 4348	& 0.84 		& 1.00	& 0.31 \\                
+Method      			& Test			& 4334	& 0.85 		& 1.00	& 0.31 \\                
 Return		         	& Main			& 5299	& 0.54 		& 0.60	& 0.39 \\                
 \hline
-Local				& Test			& 2896	& 0.23 		& 0.00	& 0.35 \\                
-Variable	        		& Main			& 5548	& 0.30 		& 0.19	& 0.32 \\                
+Local					& Test			& 2842	& 0.23 		& 0.00	& 0.35 \\                
+Variable	        	& Main			& 5548	& 0.30 		& 0.19	& 0.32 \\                
 \hline
 \end{tabular}
 
 \label{fig:test_boxplot_type} 
 \caption{Usage of types by declaration type in test classes and main classes}
 \end{figure}
+
+For every project, we measured the usage of types in test classes and main classes.
+Script files are not considered in this analysis.
+We found test classes in 4350 of the 6638 projects in our dataset.
+Results are displayed in Figure \ref{fig:test_boxplot_type} and show the relative usage of types by declaration type.
+White and gray box plots correspond to test classes and main classes respectively.
+We also applied the Mann Whitney U test, but this time however we are not comparing declaration types to each other.
+Instead, we are comparing declarations in test classes to declarations in main classes.
+Results for the U test are shown in Table \ref{tab:test_utest_type}.
+We don't show results grouped by visibility since this is usually not a concern when writing test classes.
+
+According to Figure \ref{fig:test_boxplot_type} and Table \ref{tab:test_utest_type}, the usage of types in test classes is very different for declarations of local variables and methods.
+While local variables in main classes are not typed very often, they are typed even less in test classes.
+At least half of the projects type none of the declarations of this type in test classes.
+The difference in declarations of parameters of methods is even more evident since they are often typed in main classes, but almost never typed in test classes.
+The confidence interval reported by the U test in this case is $(-0.533, -0.420)$.
+The large width of the box plots for fields and method parameters is noteworthy.
+This indicates that many projects type either almost all or none of these declarations.
+
+Curiously, method returns are significantly more typed in test classes.
+The difference reported by the confidence interval in Table \ref{tab:test_utest_type} for this case is (0.200, 0.250).
+At least half of the projects type all of their method returns in test classes.
+Although counter intuitive this result can be easily explained.
+Automated testing frameworks usually enforce a certain method signature for test methods.
+JUnit for example, which is used in 2525 of the 4350 projects with test classes, requires test methods to be typed as \emph{void}.
+Other popular test frameworks, such as TestNG, have similar requirements.
+This implies that, in this case, developers type their methods not because they want to, but because they need to.
+
 
 \begin{table}[h!]
 \centering{}%
@@ -798,8 +827,8 @@ Declaration Type 		& p & conf. interval \\
 \hline 
 \hline 
 Field                             & 0.0020		& (0.000, 0.000) \\ \hline
-Constructor Parameter  & 0.3968	& (0.000, 0.000) \\ \hline
-Method Parameter         & 0.0000	& (-0.519, -0.409) \\ \hline
+Constructor Parameter  & 0.4389	& (0.000, 0.000) \\ \hline
+Method Parameter         & 0.0000	& (-0.533, -0.420) \\ \hline
 Method Return              & 0.0000	& (0.200, 0.250) \\ \hline
 Local Variable               & 0.0000		& (-0.070, -0.032) \\ 
 \hline 
@@ -810,12 +839,15 @@ Local Variable               & 0.0000		& (-0.070, -0.032) \\
 
 % SCRIPTS
 \subsection{Script Files and Class Files\label{res-test-scripts}}
-We now analyze how programmers type their code in script files.
-Figure \ref{fig:script_boxplot_type} shows the relative usage of types in declarations of local variables and parameters and returns of methods.
-Constructors and fields are omitted since there is no way to declare those elements in scripts.
-Table \ref{tab:script_utest_all} shows the results of the Mann-Whitney U test for these elements.
-% Why not visibility
-% When you compare classes to scripts, do you include test classes?
+This section investigates how programmers type their code in script files.
+Similar to what was done in the previous section, we measured the usage of types in script files and class files in all projects and compared the obtained data.
+Determining whether a file corresponds to a script or a class is fairly simple.
+In Groovy, a script file is compiled into a class extending \emph{groovy.lang.Script}.
+We consider all classes extending this class to be scripts.
+
+Figure \ref{fig:script_boxplot_type} and Table \ref{tab:script_utest_all} show the results of our analysis.
+Note that constructors and fields are not considered since there is no way to declare those elements in scripts.
+Also, we don't present an analysis of declarations grouped by visibility since, although allowed, defining the visibility of a declaration inside a script doesn't make sense.
 
 \begin{figure}[h]
 \centering 
@@ -827,7 +859,6 @@ Table \ref{tab:script_utest_all} shows the results of the Mann-Whitney U test fo
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
 \cell{Declaration\\Type}&\cell{File\\Type}	& n		& mean		& median	& \cell{std.\\dev.}\\
-\hline
 \hline
 \hline	
 Method					& Script			& 504 	& 0.40	& 0.23	& 0.42	 \\                
@@ -842,13 +873,15 @@ Variable	 				& Class				& 5246	& 0.30	& 0.18	& 0.32	 \\
 \label{fig:script_boxplot_type} 
 \end{figure}
 
-The p value for all executions of the U test is equal to 0, allowing to reject the null hypothesis.
-The reported confidence interval for local variables however is too small and it can be argued that the difference in how programmers type these variables in scripts is insignificant.
-On the other hand, parameters and returns of methods present a very different behavior.
-Different from classes, most of projects do not type these declarations very often in scripts.
+Programmers type all kinds of declarations differently in scripts.
+According to the \emph{p} values shown in Table \ref{tab:script_utest_all}, the null hypothesis can be rejected for all cases.
+The confidence interval reported for local variable declarations though is relatively small.
+This indicates a small difference for this type of declaration between scritps and classes.
+On the other hand, declarations of methods present a very different behavior.
+Unlike in classes, most of these declarations are not typed in scripts.
 This is even more clear in method returns, where most of projects do not type any of these declarations.
-Note however that the value for the last quartile of these elements is very high, superior to 0.8.
-This indicates that there are a few projects that consistently type most of these declarations too.
+Note however that the value for the last quartile of these declarations is very high, superior to 0.8.
+This indicates that, although most projects prefer not to use types in these declarations, there are a few projects that consistently type most of them.
 
 \begin{table}[ht]
 \centering{}%
@@ -857,13 +890,13 @@ This indicates that there are a few projects that consistently type most of thes
 Declaration Type & p & conf. interval \\
 \hline 
 \hline 
-Method Parameter              & 0.000	& (-0.365, -0.250) \\ \hline
-Method Return                 & 0.000	& (-0.500, -0.414) \\ \hline
-Local Variable                & 0.000	& (-0.016, 0.000)  \\ \hline
+Method Parameter              & 0.0000	& (-0.385, -0.234) \\ \hline
+Method Return                 & 0.0000	& (-0.500, -0.400) \\ \hline
+Local Variable                & 0.0000	& (-0.021, 0.000)  \\ \hline
 \hline 
 \end{tabular}
 \label{tab:script_utest_all}
-\caption{Mann-Whitney U Test results for the comparison between the usage of types by script files and class files}
+\caption{Mann-Whitney U Test results for the comparison between the usage of types in script files and class files}
 \end{table}
 
 % PROGRAMMERS BACKGROUND
@@ -1523,6 +1556,9 @@ Siek, J.,Andtaha, W. Gradual typing for objects. In European Conference on Objec
 Takikawa, Asumu, et al. "Gradual typing for first-class classes." ACM SIGPLAN Notices. Vol. 47. No. 10. ACM, 2012.
 \bibitem[Fowler(2010)]{fowler10}
 Fowler, Martin. Domain-specific languages. Pearson Education, 2010.
+
+\bibitem[Labovitz(1968)]{labovitz68}
+Labovitz, Sanford. "Criteria for selecting a significance level: A note on the sacredness of. 05." The American Sociologist 3.3 (1968): 220-222.
 
 % Types help on the definition of a contract
 \bibitem[Meijer(2004)]{Meijer04}

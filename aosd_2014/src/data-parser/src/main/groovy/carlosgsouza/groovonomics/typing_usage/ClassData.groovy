@@ -117,7 +117,7 @@ class ClassData {
 	}
 	
 	def getIsTestClass() {
-		location.contains("/test/")
+		location.contains("/test/") && !location.contains("/main/")
 	}
 	
 	def agregate() {

@@ -91,7 +91,7 @@ label<-c(
 		"number of commits",
 		"age",
 		
-		"all types",
+		"all",
 
 		"Local\nVariable",
 		"Method\nReturn",
@@ -136,7 +136,7 @@ plotDeclarationTypeHistogram<-function(data, folder, index){
  		xlim(0,1.00) +
  		theme(plot.margin=unit(c(0,0,0,0),"mm"))
 	
-	ggsave(path=paste("result/", folder, "/histograms/", sep=""), filename=paste(index, "_", gsub(" ", "_", declarationTypeStr), ".png", sep=""), plot, height=2.5, width=5)
+	ggsave(path=paste("result/", folder, "/histograms/", sep=""), filename=paste(index, "_", gsub("\n", "_", declarationTypeStr), ".png", sep=""), plot, height=2.5, width=5)
 }
 
 
@@ -291,7 +291,7 @@ compareAllSamples<-function() {
 	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "fields", 						i$privateField:i$publicField)
 	comparisonBoxPlot(data_tests_all, "test", c("Main classes", "Test classes"), "declarations by visibility",	i$private:i$public)
 	
-	# uTestSamples(testData, mainData, "test", "main", "test", i$all:i$public)
+	uTestSamples(testData, mainData, "test", "main", "test", i$all:i$public)
 	
 	# Scripts X Classes
 	comparisonBoxPlot(data_scripts_all, "script", c("Class files", "Script files"), "all declarations",		i$all)
@@ -332,8 +332,8 @@ compareElementsOfASample<-function(data, folder, description, columnsToCompare) 
 	
 	if(length(columnsWithData) > 0) {
 		# uTestElementsOfASample(data, folder, description, columnsWithData)
-		boxPlot(data, folder, description, columnsWithData)	
-		# getDescriptiveStatistics(data, folder, description, columnsWithData)	
+		# boxPlot(data, folder, description, columnsWithData)	
+		getDescriptiveStatistics(data, folder, description, columnsWithData)	
 	}
 }
 characterizeDataset<-function(data, folder) {
@@ -360,9 +360,9 @@ characterizeDataset<-function(data, folder) {
 }
 
 analyzeSample<-function(data, description) {
-	characterizeDataset(data, description)
+	# characterizeDataset(data, description)
 	# plotDeclarationTypeHistogramOfData(data, description)
-	# compareAllElementsOfASample(data, description)	
+	compareAllElementsOfASample(data, description)	
 }
 
 analyzeSample(data_all, "all")
@@ -489,7 +489,7 @@ plotLanguageDistribution<-function(){
 	plot<-qplot(V2, data=languages) + 
 			coord_flip() +
 			ylab(paste("Number of Developers")) + 
-			theme(plot.margin=unit(c(0,0,0,0),"mm"), axis.title.y=element_blank())
+			theme(plot.margin=unit(c(0,5,0,0),"mm"), axis.title.y=element_blank())
 			
 	ggsave(path=paste("result/", sep=""), filename="languages.png", height=3.5, width=4.4)
 }
