@@ -137,7 +137,7 @@ Finally, Section \ref{conclusion} concludes this study and suggests future work.
 %
 
 \section{The Groovy Language\label{groovy}}
-The syntax of the Groovy language is similar to Java's and most of Java code is also valid in Groovy.
+Groovy is a dynamically typed programming language designed to run on the Java Virtual Machine.
 Its adoption has grown remarkably over the last years.
 According to the TIOBE Programming Index, Groovy is the 22\textsuperscript{nd} most popular language in the software industry \cite{tiobe}, ahead of languages like Prolog, Haskell and Scala. 
 It builds upon the strengths of Java, but has additional features inspired by dynamic languages such as Python and Ruby.
@@ -327,24 +327,23 @@ In the remainder of this text, we refer to declarations with type annotations as
 
 \section{Setudy Settings\label{settings}}
 % Be more objective in the begining. DRY
-In this paper, we conduct a empirical study with the goal of understanding what are the factors that have an actual influence over the decision of a developer to type their declarations or not. 
-We analyze the source code of 6638 Groovy projects and find where types are used.
-In the remainder of this section, we present the research questions, the data collection procedure, dataset characterization and the analysis procedure.
+The study presented in this paper consists in the static analysis of the source code of a corpus of 6638 Groovy projects with the goal of finding the factors that have an actual influence over the decision of a developer to type their declarations or not. 
+In this section we present the research questions we want to answer, the data collection and analysis procedures as well as the characterization of the studied dataset.
 
 \subsection{Research Questoins\label{questions}}
 Static and dynamic type system have known advantages and disadvantages.
 We propose some research questions below in order to find which ones are actually considered by programmers in their code.
 
 \begin{itemize}
-	\item \textbf{Question Q1: Do programmers use types to implicitly document their code?} By typing their declarations, developers are telling their colleagues about the nature of those declarations. This increases the readability and, hence, the maintainability of their code. If we are able to observe a higher usage of types in declarations that usually require more documentation, then we can assume that these developers indeed consider types as a means to document their code.
-	\item \textbf{Question Q2: Are untyped declarations preferred when neither readability nor stability is a concern?} Besides readability, typing also contributes to stability. It reduces the risk of unexpected effects of modifications increasing the maintainability of the software system \cite{Iso2004}. Our hypothesis is that, where these are not important factors, typing becomes less necessary and developers prefer the flexibility and objectivity offered by dynamic typing. 
+	\item \textbf{Question Q1: Do programmers use types to implicitly document their code?} By typing their declarations, developers are telling their colleagues (or themselves) about the nature of those declarations. This increases the readability and, hence, the maintainability of their code. If we are able to observe a higher usage of types in declarations that usually require more documentation, then we can assume that these developers indeed consider types as a means to document their code.
+	\item \textbf{Question Q2: Are untyped declarations preferred when neither readability nor stability is a concern?} Besides readability, typing also contributes to stability. It reduces the risk of unexpected effects of modifications increasing the maintainability of the software system \cite{Iso2004}. Our hypothesis is that, where these are not important factors, typing becomes less necessary and developers prefer the simplicity and flexibility offered by dynamic typing. 
 	\item \textbf{Question Q3: In frequently changed code, do developers prefer typed or untyped declarations?} It makes sense to assume that developers try to increase the maintainability of frequently changed files. One way to achieve that is improving the readability of such code with the use of types. On the other hand, the flexibility of untyped declarations is capable of increasing the changeability of those files. We want to understand which one of these strategies is actually preferred by developers in the end.
 	\item \textbf{Question Q4: Does the previous experience of programmers with other languages influence their choice for typing their code?} We believe that programmers familiar with a statically typed language keep using types since they are used to it. 
 \end{itemize}
 
 \subsection{Data Collection Procedure\label{dataCollection}}
 The projects used in this study were obtained from GitHub, a popular source control service based on Git.
-For each project, it was necessary to retrieve its source code, its metadata, its commit history, and the metadata of all developers involved in that project.
+For each project, it was necessary to retrieve its source code, metadata, commit history, and the metadata of all of its developers.
 GitHub does not offer a listing of all hosted projects, but it offers two search mechanisms, a REST API and a web based search page.
 Unfortunately the GitHub API is too limited for our requirements.
 It imposes a limit of one thousand results and does not allow filtering projects by their programming language.
@@ -359,7 +358,7 @@ By adding a 10 seconds delay between requests, it was possible to overcome this 
 
 With the name of all projects in hands, it was then possible to use the GitHub REST API to query their metadata.
 That metadata also contains the identifiers of the developers and of the commits of that project.
-Using those identificators we once again used GitHub REST API and obtained the background of all developers and the file changes of all projects.
+Using those identifiers we once again used GitHub REST API and obtained the background of all developers and the file changes of all projects.
 
 
 %DATASET
@@ -367,12 +366,10 @@ Using those identificators we once again used GitHub REST API and obtained the b
 
 % count scripts, main classes and test classes
 
-Our dataset consists of 7268 Groovy projects obtained from GitHub. 
-These projects include a total of 9.8 million lines of code and approximately 169 thousand Groovy files. 
-There are about 412 thousand declarations considering variables, methods and fields. 
-Figures \ref{fig:size_distribution} shows the cumulative distribution of the size of all these projects.
-Notice that a logarithm scale is used.
-Although most of the projects are relatively small, there are projects with up to 150 KLoC. 
+Our dataset consists of 6638 projects with almost 9.8 million lines of code.
+Table \ref{tab:dataset_characterization} shows descriptive statistics for the size, age and number of commits of these projects.
+There are more than 1.5 million declarations of all types and visibilities in our dataset.
+More details about these declarations are shown in Table \ref{tab:number_of_declarations}.
 
 \begin{table}[h!]
 
@@ -381,7 +378,7 @@ Although most of the projects are relatively small, there are projects with up t
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-{}		& mean	& median	& std. dev.	& max	& total		\\
+{}		& Mean	& Median	& Std. Dev.	& Max	& Total		\\
 \hline
 \hline
 Size (LoC)	& 1471 	& 529  & 4545  & 149933	& 9770783	\\ \hline
@@ -418,59 +415,57 @@ All                       			&  227    &  71  &    744  &   29862 &1548363   \\ 
 \label{tab:number_of_declarations}
 \end{table}
 
-The projects in our dataset were developed by 4481 different people. 
-Table \ref{tab:number_of_developers} shows that most projects were developed by a single person.
-96\% of the projects were developed by small groups of 3 people or less.
-However, there were projects with up to 58 people.
 
-The developers of the 6638projects have different backgrounds.
-Figure \ref{fig:other_languages} shows what are the languages used by these developers in other GitHub projects. 
+More than 4 thousand developers were involved in the projects in our dataset.
+While 96\% of the projects were developed by small groups of 3 people or less, there were projects with up to 58 people.
+These developers have different backgrounds.
+Figure \ref{fig:other_languages} shows what are the most popular languages used by these developers in other GitHub projects. 
 Java is the most popular among them.
 More than 50\% of the developers of projects in our dataset also have Java projects hosted on GitHub.
 
-Figure \ref{fig:typeSystem_background} shows what is the type system of the languages the developers in our dataset have experience with.
-Most of them have experience with both statically and dynamically typed languages.
-There are two small groups however that have experience with only one type system outside Groovy.
+% Figure \ref{fig:typeSystem_background} shows what is the type system of the languages the developers in our dataset have experience with.
+% Most of them have experience with both statically and dynamically typed languages.
+% There are two small groups however that have experience with only one type system outside Groovy.
  
-\begin{table}[ht]
-\caption{Distribution of the Number of Developers in a Project}
-\centering{}%
-\begin{tabular}{|c|c|c|}
-\hline 
-Number of Developers & Fraction of Projects\tabularnewline
-\hline 
-\hline 
-1 & 84\%\tabularnewline
-\hline 
-2 & 9\%\tabularnewline
-\hline 
-3 & 3\%\tabularnewline
-\hline 
-4 or more & 4\%\tabularnewline
-\hline 
-\end{tabular}
-\label{tab:number_of_developers}
-\end{table}
+% \begin{table}[ht]
+% \caption{Distribution of the Number of Developers in a Project}
+% \centering{}%
+% \begin{tabular}{|c|c|c|}
+% \hline 
+% Number of Developers & Fraction of Projects\tabularnewline
+% \hline 
+% \hline 
+% 1 & 84\%\tabularnewline
+% \hline 
+% 2 & 9\%\tabularnewline
+% \hline 
+% 3 & 3\%\tabularnewline
+% \hline 
+% 4 or more & 4\%\tabularnewline
+% \hline 
+% \end{tabular}
+% \label{tab:number_of_developers}
+% \end{table}
 
-\begin{figure}[ht]
+\begin{figure}[h]
 \centering \includegraphics[width=0.45\textwidth]{other_languages}
 \caption{Usage of other languages by Groovy developers on GitHub}
 \label{fig:other_languages} 
 \end{figure}
 
-\begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{typeSystem_background}
-\caption{Type System of other languages used by programmers}
-\label{fig:typeSystem_background} 
-\end{figure}
+% \begin{figure}[ht]
+% \centering \includegraphics[width=0.45\textwidth]{typeSystem_background}
+% \caption{Type System of other languages used by programmers}
+% \label{fig:typeSystem_background} 
+% \end{figure}
 
 
 
 %ANALYSIS
 \subsection{Analysis\label{analyzer}}
-In order to understand where programmers use types, we developed a static code analyzer based on the Groovy metaprogramming library
+In order to understand where programmers use types, we developed a static code analyzer based on the Groovy metaprogramming library.
 It is capable of retrieving the declaration information of parameters and returns of methods, parameters of constructors, fields and local variables.
-In addition to that, it can tell if a declaration is part of a test class or a script and what is its visibility.
+In addition, it can tell if a declaration is part of a test class or a script and what is its visibility.
 
 A relevant decision we made was not to compile projects, which would require all dependencies to be resolved.
 This is not feasible given the size of our dataset.
