@@ -10,6 +10,9 @@ data_all<-read.table("parsed/declaration_by_type.txt", header=T)
 data_all<-data_all[data_all$loc>0 & !is.na(data_all$all), ]
 describe(data_all)
 
+languages<-read.table("parsed/languages.txt")
+languages$V2 <- factor(languages$V1, as.character(languages$V1))
+
 declaration_metadata<-read.table("parsed/declaration_metadata.txt", header=T)
 declaration_metadata<-declaration_metadata[declaration_metadata$loc>0 & !is.na(data_all$all), ]
 describe(declaration_metadata)
@@ -481,3 +484,13 @@ characterizeDeclarationMetadata<-function() {
 	write.matrix(result ,file=paste("result/all/characterization/declarations.txt", sep=""))
 }
 characterizeDeclarationMetadata()
+
+plotLanguageDistribution<-function(){
+	plot<-qplot(V2, data=languages) + 
+			coord_flip() +
+			ylab(paste("Number of Developers")) + 
+			theme(plot.margin=unit(c(0,0,0,0),"mm"), axis.title.y=element_blank())
+			
+	ggsave(path=paste("result/", sep=""), filename="languages.png", height=3.5, width=4.4)
+}
+plotLanguageDistribution()
