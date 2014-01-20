@@ -893,22 +893,23 @@ Declaration Type & p & conf. interval \\
 Method Parameter              & 0.0000	& (-0.385, -0.234) \\ \hline
 Method Return                 & 0.0000	& (-0.500, -0.400) \\ \hline
 Local Variable                & 0.0000	& (-0.021, 0.000)  \\ \hline
-\hline 
 \end{tabular}
 \label{tab:script_utest_all}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types in script files and class files}
 \end{table}
 
+
+
 % PROGRAMMERS BACKGROUND
 \subsection{Programmers' Background\label{res-background}}
 In this section, we analyze how programmers use types in their declarations according to their backgrounds.
 Projects are distributed in three groups based on the type system of the languages their developers have used on GitHub.
-The first group contains those projects of programmers who developed only in statically typed languages, such as Java or C\#.
+The first group comprises those projects of programmers who developed only in statically typed languages, such as Java or C\#.
 The projects of those who developed only in dynamically typed languages, such as Ruby or JavaScript, comprise the second group.
-Finally, the third group includes the project of those programmers with both dynamically and statically typed languages in their portfolio.
+Finally, the third group is formed by the project of those programmers with both dynamically and statically typed languages in their portfolio.
 Figures \ref{fig:background_boxplot_type} and \ref{fig:background_boxplot_visibility}  show results by declaration type and visibility respectively.
 Results for the Mann-Whitney U test are reported in Tables \ref{tab:background_utest_type} and \ref{tab:backgorund_utest_visibility}.
-Notice that these tables are divided in three groups, each one corresponding to the comparison between the data for the three different background groups.
+Notice that these tables are divided in three groups, each one corresponding to the comparison between the data of two of the three different groups.
 
 \begin{figure}[h]
 \centering 
@@ -919,7 +920,7 @@ Notice that these tables are divided in three groups, each one corresponding to 
 \raggedleft
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\cell{Declaration\\Type}						& \cell{Background}	& n		& mean		& median	& \cell{std.\\dev.}\\
+\cell{Declaration\\Type}						& \cell{Background}	& N		& Mean		& Median	& \cell{Std.\\Dev.}\\
 \hline
 \hline
 {}												& Static			& 782	& 0.56		& 0.52 		& 0.35\\			 
@@ -1042,12 +1043,10 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
               
 The usage of types by programmers with both statically and dynamically typed languages in their portfolio is similar to that of programmers with dynamically languages only.
 According to Tables \ref{tab:background_utest_type} and \ref{tab:backgorund_utest_visibility}, the only significant differences in the usage of types are in  declarations of fields or in those with public visibility.
-Still, the confidence interval is arguably small, between 0 and 0.051 in both cases.
-Conversely, programmers with only statically typed languages in their portfolio tend to use types more often than others.
+Still, the difference indicated by the confidence interval in these cases is arguably small, between 0 and 0.05 in both cases.
+On the other hand, there is evidence that programmers with only statically typed languages in their portfolio tend to use types differently from all others.
 There are only two situations where the p value reported by the Mann-Whitney U test is big enough so the null hypothesis can not be rejected, protected declarations and declarations of constructor parameters.
-% Discuss a little bit more and add some conclusions
-
-
+In all other cases, these programmers use type more often than the others.
 
 % PROJECT MATURITY
 \subsection{Project Maturity\label{res-size}}
@@ -1089,7 +1088,7 @@ Private				 		&  0.213	&  -0.068	&  0.160	\\ \hline
 \label{tab:all_correlation_maturity}
 \caption{Spearman Correlation between the usage of types and the size, age and number of commits of projects}
 \end{table}	
-
+% TODO characterization
 
 Table \ref{tab:all_correlation_maturity} shows the Spearman correlation coefficient between the usage of types and the three metrics of maturity.
 Most of values in this table are close to 0.
