@@ -41,12 +41,12 @@ staticAndDynamicBackgroundData=data_background_all[data_background_all$condition
 
 data_size=data_all
 data_size$condition=NA
-data_size[data_size$loc<=2000 | data_size$commits<=100 | data_size$age<=100, ]$condition="small"
-data_size[data_size$loc>2000 & data_size$commits>100 & data_size$age>100, ]$condition="big"
+data_size[data_size$loc<=2000 | data_size$commits<=100 | data_size$age<=100, ]$condition="1-small"
+data_size[data_size$loc>2000 & data_size$commits>100 & data_size$age>100, ]$condition="2-big"
 
 
-smallData=data_size[data_size$condition=="small", ]
-bigData=data_size[data_size$condition=="big", ]
+smallData=data_size[data_size$condition=="1-small", ]
+bigData=data_size[data_size$condition=="2-big", ]
 
 change_commit_spearman = read.table("parsed/change_commit_spearman.txt")
 
@@ -313,13 +313,13 @@ compareAllSamples<-function() {
 	# uTestSamples(staticAndDynamicBackgroundData, dynamicBackgroundData,	"static-and-dynamic", "dynamic", "background", i$all:i$public)
 	
 	# Size
-	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "all declarations",			i$all)
-	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "declarations by type",		i$localVariable:i$field)
-	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)
-	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)
-	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
-	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "fields", 					i$privateField:i$publicField)
-	comparisonBoxPlot(data_size, "size", c("Mature Projects", "Other Projects"), "declarations by visibility",	i$private:i$public)
+	comparisonBoxPlot(data_size, "size", c("Other Projects", "Mature Projects"), "all declarations",			i$all)
+	comparisonBoxPlot(data_size, "size", c("Other Projects", "Mature Projects"), "declarations by type",		i$localVariable:i$field)
+	comparisonBoxPlot(data_size, "size", c("Other Projects", "Mature Projects"), "returns of methods",			i$privateMethodReturn:i$publicMethodReturn)
+	comparisonBoxPlot(data_size, "size", c("Other Projects", "Mature Projects"), "parameters of methods",		i$privateMethodParameter:i$publicMethodParameter)
+	comparisonBoxPlot(data_size, "size", c("Other Projects", "Mature Projects"), "parameters of constructors",	i$privateConstructorParameter:i$publicConstructorParameter)
+	comparisonBoxPlot(data_size, "size", c("Other Projects", "Mature Projects"), "fields", 					i$privateField:i$publicField)
+	comparisonBoxPlot(data_size, "size", c("Other Projects", "Mature Projects"), "declarations by visibility",	i$private:i$public)
 	
 	# uTestSamples(bigData, smallData,	"big", "small", "size", i$all:i$public)
 
