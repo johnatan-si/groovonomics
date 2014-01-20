@@ -1059,12 +1059,12 @@ In all other cases, these programmers use type more often than the others.
 
 
 This section investigates whether programmers use types differently in their code depending on the project maturity.
-Three metrics are used to define the maturity of the project: age, number lines of code and number of commits.
+In this study, we consider three metrics to define the maturity of a project: age, number of lines of code and number of commits, which measures the level of activity of the project.
 We start by analyzing the correlation between these metrics and the relative use of types in declarations by type and visibility.
 The Spearman rank correlation coefficient is used for this purpose.
 This coefficient, which can go from -1 to 1, is a measure of the dependence between two variables.
-A positive value means that, as the valuable of one variable grows, so does the value of the other.
-A negative value means the opposite.
+A positive value means that two variables are correlated, i.e, as the value of one grows, so does the value of the other.
+A negative value means an inverse correlation.
 Values close to 1 or -1 indicate very strong relationships while values above 0.5 or below -0.5 can be considered strong correlations.
 
 \begin{table}[h!]
@@ -1093,21 +1093,7 @@ Private				 		&  0.213	&  -0.068	&  0.160	\\ \hline
 Table \ref{tab:all_correlation_maturity} shows the Spearman correlation coefficient between the usage of types and the three metrics of maturity.
 Most of values in this table are close to 0.
 There are a few which could indicate a weak relationship, such as \emph{Size} vs. \emph{protected} or \emph{commits} vs. \emph{private}, but these values are too small and could have happened by chance.
-Thus, we can not say that there is a correlation between the metrics of maturity and the usage of types.
-
-% The project size is a simple metric to measure the complexity of a project.
-% Usually, the larger the project, the greater the number of modules and the need for maintenance \cite{Fenton1998}. 
-
-The lack of correlation does not necessarily imply that the maturity of a project has no influence on the usage of types.
-This influence could appear only when the combination of the three metrics of maturity is big enough.
-In order to understand if this is true, we conduct now a comparison between mature projects and the rest of the data.
-In order for a project to be considered mature it has to have at least 2KLoC, 100 commits and be 100 days old.
-These numbers were defined by manually inspecting our dataset and finding that there are popular and mature projects that barely exceed these three metrics.
-According to our criteria, there are 223 mature projects in our dataset
-These projects are detailed in Table \ref{tab:mature_dataset_characterization}.
-
-
-
+All in all, we can not say that there is a correlation between the metrics of maturity and the usage of types in Groovy projects.
 \begin{table}[h!]
 
 \centering{}%
@@ -1126,11 +1112,20 @@ Age (Days)  & 600  	& 574  & 350   & 1469		& 133697	\\ \hline
 \label{tab:mature_dataset_characterization}
 \end{table}
 
-Figure \ref{fig:size_boxplot_type}  and \label{fig:size_boxplot_visibility} compares the usage of types between mature projects and others and Tables \ref{tab:size_utest_type} and \ref{tab:size_utest_visibility} show the results for the Mann-Whitney U test for these comparisons.
-There are significant differences only in two declarations types, fields and local variables.
-As for the visibility, only protected declarations can be said to be significantly different.
-Note that for private declarations, the p-value is 0, but the confidence interval for the difference of medians is negligible.
-% comment on these differences
+The lack of correlation does not necessarily imply that the maturity of a project has no influence on the usage of types.
+A possibility is that this influence appears only in the most mature projects, where the values of all of these three metrics are high enough.
+In order to determine whether this is true, we conduct now a comparison between the most mature projects and the rest of the dataset.
+We define a mature project as a project that is 100 days old or more and has, at least, 2KLoC and 100 commits.
+These numbers were defined by manually inspecting our dataset and finding that there are popular and mature projects that barely exceed these three metrics.
+According to our criteria, there are 223 mature projects in our dataset, which are detailed in Table \ref{tab:mature_dataset_characterization}.
+
+
+Figures \ref{fig:size_boxplot_type}  and \ref{fig:size_boxplot_visibility} show the box plots for the usage of types in mature projects and others by declaration type and visibility respectively.
+Mann-Whitney U test results for the samples presented in these graphs are displayed in Table \ref{tab:size_utest_type+visibility}.
+There are significant differences in the usage of types only in two cases, declarations of fields and protected declarations.
+For private declarations, although the value of \emph{p} is $0$, the confidence interval for the difference of medians is negligible.
+These differences are too small, specially when compared to the differences found when analyzing programmers' background, script files and test classes.
+Hence, we can not conclude that programmers type their declarations differently depending on the maturity of a project, at least, when considering our definition of maturity, based on size, age and number of commits.
 
 \begin{figure}[h!]
 \centering 
@@ -1209,7 +1204,7 @@ Private		& 0.0000	& (0.000,0.000)		\\ \hline
 Protected	& 0.0000	& (0.055,0.169)		\\ 
 \hline 
 \end{tabular}
-\label{tab:size_utest_visibility}
+\label{tab:size_utest_type+visibility}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types by mature projects and others}
 \end{table}	
 
@@ -1227,10 +1222,10 @@ This section investigates what points of view are considered more often by Groov
 Only the mature projects defined in the previous section are considered since we would not be able to obtain meaningful results from small and young projects.
 
 We found that most of the mature projects prefer untyped declarations in frequently changed code.
-We calculated the Spearman correlation coefficient between the frequency of changes of a file and the usage of types in that file for all those projects.
+We calculated the Spearman correlation coefficient between the frequency of changes of a file and the usage of types in that file for all mature projects.
 In projects where programmers prefer the usage of types in frequently changed files, this coefficient is positive, and negative in case programmers prefer untyped declarations.
 Figure \ref{fig:change_spearman} displays the cumulative distribution of the coefficient across the mature projects dataset.
-It shows that 65\% of them present a negative Spearman correlations coefficient and almost half of these present strong correlations, inferior to -0.5.
+It shows that 65\% of them present a negative Spearman correlation coefficient and that almost half of these present strong correlations, inferior to -0.5.
 On the other hand, it can be said that only 10\% of the mature projects present strong positive correlations.
 
 \begin{figure}[h]
@@ -1391,7 +1386,7 @@ In Section \ref{res-background} we consider that the GitHub portfolio of a progr
 They may have projects in their portfolio that they have not worked on or projects hosted somewhere else written in other languages.
 There is still the possibility of a programmer having multiple GitHub accounts with different languages in each one, causing this programmer to be counted twice with different inferred backgrounds.
 Due to the large number of programmers considered in our study, we expect these special cases not to have a large influence over the results.
-
+% Definition of maturity
 % TODO
 I% n Section \ref{res-size}, we consider that the project size is a metric capable of representing the complexity of a project, but this is not always true \cite{Fenton1998}.
 % However that was the most effective metric we could use without requiring projects to be compiled, which would drastically reduce the number of % projects in our dataset.
