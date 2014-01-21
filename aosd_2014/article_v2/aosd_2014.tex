@@ -501,7 +501,7 @@ Nevertheless, as shown in the next section, we were still able to obtain detaile
 % Finally Subsection \ref{res-changes} presents results according to the number of changes of files.
 % These results will be further discussed in Section \ref{discussion} in order to answer the research questions proposed in Section \ref{questions}.
 
-\subsection{Overall Result\label{res-overall}}
+\subsection{Overall Result\label{sec:results-overall}}
 Figure \ref{fig:all_histogram_all} gives an overview of the usage of types in all projects in our dataset.
 It shows the mean, standard deviation and the quartiles of the relative use of types in a project. 
 This value can vary from 0, in case a project does not declare any types, to 1, in case all declarations of a project are typed. 
@@ -534,7 +534,7 @@ n		& mean	& std. dev.	& 1\ts{st}	& 2\ts{nd}	& 3\ts{rd}	& 4\ts{th}		\\
 
 
 % TYPE
-\subsection{Declaration Type\label{sub:res_all_type}}
+\subsection{Declaration Type\label{sec:results-type}}
 This section investigates whether programmers use types differently depending on the type of the declaration.
 For each project, we measured the relative usage of types by declaration type, which can be a field, a constructor parameter, the return or a parameter of a method or a local variable.
 These results are displayed in box plots in Figure \ref{fig:all_boxplot_type} along with the corresponding descriptive statistics.
@@ -543,8 +543,6 @@ Note that the size of each sample, \emph{n}, is different since not all projects
 \begin{figure}[h]
 \centering 
 \includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/6_declarations_by_type.png} 
-\label{fig:all_boxplot_type} 
-
 \vspace{0.3cm}
 
 \renewcommand{\arraystretch}{1.2}
@@ -562,7 +560,7 @@ Local Variable			& 5845	& 0.29	& 0.18		& 0.32		\\ \hline
 \end{tabular}
 
 \caption{Usage of types in all declarations by type of declaration}
-
+\label{fig:all_boxplot_type} 
 \end{figure}
 
 The results presented in Figure \ref{fig:all_boxplot_type} suggest that programmers use types differently depending on the type of a declaration.
@@ -635,8 +633,8 @@ Variable						& Method Parame			& 0.0000 & (-0.50, -0.26) \\
 {}								& Method Return			& 0.0000 & (-0.47,  0.17) \\
 \hline  
 \end{tabular}
-\label{tab:all_utest_type}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types by type of declaration}
+\label{tab:all_utest_type}
 \end{table}
 
 The significance test results are displayed in Table \ref{tab:all_utest_type}.
@@ -653,7 +651,7 @@ Nevertheless, the difference between these two declaration types reported by the
 Other interesting insights provided by these results are that local variables are the least typed declarations while constructor parameters are the most typed.
 
 % VISIBILITY
-\subsection{Declaration Visibility\label{sub:res_all_visibility}}
+\subsection{Declaration Visibility\label{sec:results-visibility}}
 This sections presents an analysis about how programmers type their declarations according to the their visibilities.
 We follow the same approach from the previous section.
 Figure \ref{fig:all_boxplot_visibility_all} shows box plots for the usage of types per declaration type along with the descriptive statistics.
@@ -663,7 +661,7 @@ Mann-Whitney U test results are presented in Table \ref{tab:all_utest_visibility
 \begin{figure}[h]
 \centering 
 \includegraphics[width=0.45\textwidth]{../analysis/result/all/boxplots/23_declarations_by_visibility.png} 
-\label{fig:all_boxplot_visibility_all} 
+
 
 \vspace{0.3cm}
 
@@ -679,6 +677,7 @@ Protected 				& 2387	& 0.93	& 1.00		& 0.19		\\ \hline
 Private   				& 6023	& 0.43	& 0.40		& 0.32		\\ \hline
 \end{tabular}
 \caption{Usage of types in all declarations by type of declaration}
+\label{fig:all_boxplot_visibility_all} 
 \end{figure}
 
 The null hypothesis can be rejected for all cases since the reported \emph{p} values are always equal to $0$.
@@ -710,8 +709,8 @@ Conversely private declarations are those with the smallest relative use of type
 								& Protected	& 0.0000 & (-0.57,-0.54)	\\
 \hline  
 \end{tabular}
-\label{tab:all_utest_visibility}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types by visibility of declaration}
+\label{tab:all_utest_visibility}
 \end{table}
 
 
@@ -750,7 +749,7 @@ Conversely private declarations are those with the smallest relative use of type
 
 
 % TESTS
-\subsection{Test Classes and Main Classes\label{res-test-scripts}}
+\subsection{Test Classes and Main Classes\label{sec:results-tests}}
 We now analyze the use of types in test classes in comparison to main classes.
 A simple heuristic to determine if a class was written as a test class or a main class is used.
 In Groovy, like in Java, it's common to organize test classes and main classes in different source folders.
@@ -787,8 +786,8 @@ Variable	        	& Main			& 5548	& 0.30 		& 0.19	& 0.32 \\
 \hline
 \end{tabular}
 
-\label{fig:test_boxplot_type} 
 \caption{Usage of types by declaration type in test classes and main classes}
+\label{fig:test_boxplot_type} 
 \end{figure}
 
 For every project, we measured the usage of types in test classes and main classes.
@@ -833,12 +832,12 @@ Method Return              & 0.0000	& (0.200, 0.250) \\ \hline
 Local Variable               & 0.0000		& (-0.070, -0.032) \\ 
 \hline 
 \end{tabular}
-\label{tab:test_utest_type}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types by test classes and main classes}
+\label{tab:test_utest_type}
 \end{table}
 
 % SCRIPTS
-\subsection{Script Files and Class Files\label{res-test-scripts}}
+\subsection{Script Files and Class Files\label{sec:results-scripts}}
 This section investigates how programmers type their code in script files.
 Similar to what was done in the previous section, we measured the usage of types in script files and class files in all projects and compared the obtained data.
 Determining whether a file corresponds to a script or a class is fairly simple.
@@ -894,14 +893,14 @@ Method Parameter              & 0.0000	& (-0.385, -0.234) \\ \hline
 Method Return                 & 0.0000	& (-0.500, -0.400) \\ \hline
 Local Variable                & 0.0000	& (-0.021, 0.000)  \\ \hline
 \end{tabular}
-\label{tab:script_utest_all}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types in script files and class files}
+\label{tab:script_utest_all}
 \end{table}
 
 
 
 % PROGRAMMERS BACKGROUND
-\subsection{Programmers' Background\label{res-background}}
+\subsection{Programmers' Background\label{sec:results-background}}
 In this section, we analyze how programmers use types in their declarations according to their backgrounds.
 Projects are distributed in three groups based on the type system of the languages their developers have used on GitHub.
 The first group comprises those projects of programmers who developed only in statically typed languages, such as Java or C\#.
@@ -944,8 +943,8 @@ Field											& Both				& 3183	& 0.43		& 0.39 		& 0.34\\
 												& Dynamic			& 1817	& 0.25		& 0.14 		& 0.30\\ 
 \hline
 \end{tabular}
-\label{fig:background_boxplot_type}
 \caption{Usage of types by declaration type and programmer background}
+\label{fig:background_boxplot_type}
 \end{figure}
 
                 
@@ -974,8 +973,8 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 												& Dynamic	 		& 2040	& 0.38		& 0.37 		& 0.28\\	
 \hline						 			
 \end{tabular}
-\label{fig:background_boxplot_visibility}
 \caption{Usage of types by declaration visibility and programmer background}
+\label{fig:background_boxplot_visibility}
 \end{figure}	
 
 \begin{table}[h!]
@@ -1009,8 +1008,8 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 															& Local Variable		& 0.0071	& (0.000, 0.005)	\\ 
 \hline 
 \end{tabular}
-\label{tab:background_utest_type}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types by declaration type and programmers background}
+\label{tab:background_utest_type}
 \end{table}
       
 \begin{table}[h!]
@@ -1037,19 +1036,24 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 															& Private					& 0.8328	& (0.000, 0.000)	\\ 
 \hline 
 \end{tabular}
-\label{tab:backgorund_utest_visibility}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types by declaration visibility and programmers background}
+\label{tab:backgorund_utest_visibility}
 \end{table}
               
 The usage of types by programmers with both statically and dynamically typed languages in their portfolio is similar to that of programmers with dynamically languages only.
 According to Tables \ref{tab:background_utest_type} and \ref{tab:backgorund_utest_visibility}, the only significant differences in the usage of types are in  declarations of fields or in those with public visibility.
 Still, the difference indicated by the confidence interval in these cases is arguably small, between 0 and 0.05 in both cases.
-On the other hand, there is evidence that programmers with only statically typed languages in their portfolio tend to use types differently from all others.
-There are only two situations where the p value reported by the Mann-Whitney U test is big enough so the null hypothesis can not be rejected, protected declarations and declarations of constructor parameters.
+
+Programmers with only statically typed languages in their portfolio tend to use more types than the others.
+There are only two situations where the \emph{p} value reported by the Mann-Whitney U test is big enough so the null hypothesis can not be rejected, protected declarations and declarations of constructor parameters.
 In all other cases, these programmers use type more often than the others.
 
+% It is important to say that 75\% of the programmers with projects in this group only have Java projects in GitHub besides their Groovy projects.
+% This suggests that these projects are more typed 
+
+
 % PROJECT MATURITY
-\subsection{Project Maturity\label{res-size}}
+\subsection{Project Maturity\label{sec:results-maturity}}
 % TODO: Discuss mature selection and mitigate threatens
 % You mention that some clearly mature projects are only 2K lines of code or
 % have only 100 commits. But would a 100 000 line project with only 100
@@ -1085,8 +1089,8 @@ Public						& -0.063	&   0.119	& -0.024	\\ \hline
 Protected					& -0.286	&  -0.020	& -0.165	\\ \hline
 Private				 		&  0.213	&  -0.068	&  0.160	\\ \hline
 \end{tabular}
-\label{tab:all_correlation_maturity}
 \caption{Spearman Correlation between the usage of types and the size, age and number of commits of projects}
+\label{tab:all_correlation_maturity}
 \end{table}	
 % TODO characterization
 
@@ -1155,8 +1159,8 @@ Local						& Mature		& 223	& 0.32 		& 0.22	& 0.28 \\
 Variable					& Other			& 5622 	& 0.29 		& 0.17	& 0.32 \\                
 \hline																								
 \end{tabular}
-\label{fig:size_boxplot_type} 
 \caption{Usage of types in projects by declaration type and project maturity}
+\label{fig:size_boxplot_type} 
 \end{figure}
 
 
@@ -1182,8 +1186,8 @@ Variable					& Other			& 5622 	& 0.29 		& 0.17	& 0.32 \\
 									& Other					& 5802	& 0.43		& 0.40 		& 0.32\\			 
 \hline						 			
 \end{tabular}
-\label{fig:size_boxplot_visibility}
 \caption{Usage of types in projects by declaration visibility and project maturity}
+\label{fig:size_boxplot_visibility}
 \end{figure}	
 
 \begin{table}[h!]
@@ -1204,8 +1208,8 @@ Private		& 0.0000	& (0.000,0.000)		\\ \hline
 Protected	& 0.0000	& (0.055,0.169)		\\ 
 \hline 
 \end{tabular}
-\label{tab:size_utest_type+visibility}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types by mature projects and others}
+\label{tab:size_utest_type+visibility}
 \end{table}	
 
 
@@ -1213,56 +1217,62 @@ Protected	& 0.0000	& (0.055,0.169)		\\
 
 
 % FREQUENCY OF CHANGES
-\subsection{Frequency of changes\label{res-changes}}
-
-In frequently changed code, there are arguments in favor and against using types.
-Since types act as documentation, programmers might use them to make code more maintainable and easier to change.
-On the other hand, untyped code is simpler and potentially faster to change.
-This section investigates what points of view are considered more often by Groovy programmers.
+\subsection{Frequency of changes\label{sec:results-changes}}
+This section investigates whether programmers prefer to type their declarations in frequently changed code or not.
 Only the mature projects defined in the previous section are considered since we would not be able to obtain meaningful results from small and young projects.
 
-We found that most of the mature projects prefer untyped declarations in frequently changed code.
+We found that in most of the mature projects programmers prefer untyped declarations in frequently changed code.
 We calculated the Spearman correlation coefficient between the frequency of changes of a file and the usage of types in that file for all mature projects.
 In projects where programmers prefer the usage of types in frequently changed files, this coefficient is positive, and negative in case programmers prefer untyped declarations.
-Figure \ref{fig:change_spearman} displays the cumulative distribution of the coefficient across the mature projects dataset.
+Figure \ref{fig:change_spearman} displays the cumulative distribution of this coefficient across the mature projects dataset.
 It shows that 65\% of them present a negative Spearman correlation coefficient and that almost half of these present strong correlations, inferior to -0.5.
 On the other hand, it can be said that only 10\% of the mature projects present strong positive correlations.
 
 \begin{figure}[h]
 \centering \includegraphics[width=0.45\textwidth]{../analysis/result/change_commits_distribution.png} 
-\label{fig:change_spearman} 
 \caption{Spearman ranking for the correlation between frequency of changes of files and the usage of types in mature projects}
+\label{fig:change_spearman} 
 \end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %
 % DISCUSSION
 %
 \section{Discussion\label{discussion}}
-% TODO: Tell the reader that this sections is speculative
 
-In this section, we discuss the questions proposed in Section \ref{questions} based on the results above.
-Section \ref{discussion-q1} shows that documentation is the main reason why Groovy developers use types, specially on the definition of their modules.
-An analysis of local variables, private declarations and test classes in Section \ref{discussion-q2} supports the hypothesis that untyped declarations are used more frequently when readability or stability are not a concern
-Section \ref{discussion-q3} discusses the higher usage of untyped declarations in most Groovy projects.
-Finally, Section \ref{discussion-q4} shows how programmers with experience using statically typed languages use types more frequently than other programmers.
-
-
+% TODO: Explain this mess
+In this section, we discuss the research questions proposed earlier in this study.
+This is a very speculative section, where we try to understand the obtained results based on the knowledge found in the related literature.
+The results found
 
 % Q1
 \subsection{Types as implicit documentation\label{discussion-q1}}
-Well documented code plays an important role in making code more readable, hence improving the code overall maintainability \cite{Iso2004}.
+Well documented code plays an important role in making code more readable, hence improving its overall maintainability \cite{Iso2004}.
 By analyzing the results presented in Section \ref{results}, we were able to find evidence that this is an important factor considered by Groovy programmers.
-
-
-% The second paragraph of this section says that the only motivation
-% developers may have for putting in types is documentation, because you are
-% ignoring the annotation that causes the compiler to check types. But how
-% do you know that the developer was ignoring it? How can you conclude
-% something about the developers motivation while ignoring one of the
-% possibilities?
-
 It is well known that the main advantages of using statically typed languages are implicit code documentation, static type verification and execution performance \cite{type_systems,mayer2012static}.
 Groovy however is not a statically typed language, but a dynamically typed language with optional typing (we are not considering the $@TypeChecked$ annotation in this study).
-This means that Groovy compiler can not verify types statically and that types still have to be checked during execution, which degrades runtime performance.
+The Groovy compiler can not verify types statically.
+They still have to be checked during execution, which degrades runtime performance.
 Hence from the usual advantages of using a statically typed language, only code documentation holds true for Groovy.
 Considering the result shown on previous section, which shows that 60\% of all declarations are typed, this means that code documentation is an important matter for Groovy developers.
 
@@ -1304,53 +1314,49 @@ They stop typing their declarations unless they understand they are really neces
 
 % Q2
 \subsection{Less typing when readability and stability are not a concern\label{discussion-q2}}
-When readability or stability are not a concern, the advantages of typing become less apparent and  programmers seem to prefer the flexibility of untyped declarations.
-This is what we found when we analyzed how typing is used in local variables, private declarations and test classes.
+When neither readability nor stability is a concern, using types is not as advantageous and programmers seem to prefer the simplicity and flexibility of untyped declarations.
+This is what we found analyzing the usage of types in local variables, private declarations, test classes and script files.
 These are scenarios where we consider readability and stability to be less relevant.
 
-Most local variables are untyped.
-Figure \ref{fig:tipo_declaracao} shows that less than 30\% of these variables are declared with a type, a value significantly smaller than the overall result for all declaration types, 60\%.
+Declarations of local variables are the ones with the least frequent use of types.
+This is clearly shown in Section \ref{sec:results-type}.
 It can be assumed that typing local variables does not aid in the readability of the code as much as in other types of declarations.
 The value of a local variable is defined very close to its declaration, usually in the same statement.
-This makes it easier for a reader to understand the nature of a given variable and even infer its type.
+This makes it easier for a reader to understand the nature of a given variable even if its type is not explicitly declared.
 Programmers can be more objective in this scenario and eliminate the repetitive work of typing their variables.
-
-Local variables have a smaller scope.
+Also, local variables have a smaller scope.
 They are only visible inside the block where they were instantiated and are destroyed once the execution of that block is over.
-Stability in this scenario is not as critical making the flexibility of untyped declarations more clear.
-For example, one can easily change the type of a local variable without having to worry about its use anywhere else.
+Stability in this scenario is not as critical, making the flexibility of untyped declarations more clear.
+For example, the type of an untyped variable can be changed easily without requiring the programmer to worry about its use anywhere outside the block where it was declared.
 
-A similar conclusion can be derived for declarations of private methods, fields and constructors.
-As shown in Figures \ref{fig:method_return_visibility}, \ref{fig:method_parameter_visibility}, \ref{fig:constructor_parameter_visibility} and \ref{fig:field_visibility}, untyped declarations are much more common in in these declarations that in their public or private counterparts.
-Private elements are usually more stable than others.
+A similar conclusion can be derived for private declarations.
+According to the results presented in Section \ref{sec:results-visibility}, declarations of methods, fields and constructors are significantly less typed than their public or protected counterparts.
+It can be said that private elements are more stable than others.
 Since they are only visible inside the class they were defined in, they can often be changed without having any unexpected effects outside that class.
-Also, since those elements are only referenced inside the class where they were defined, a reader can easily find those references and use them as a means to understand the code.
+Also, a reader can easily find those references and use them as a means to understand the code.
 
-Another scenario with smaller need for readability and stability are test classes.
-These classes usually have simple relationships with the rest of the project, not having any clients and depending only on the classes under test.
-Test code is frequently considered a peripheral artifact of a software project and programmers usually do not worry about maintaining the quality of such code \cite{Meszaros07}.
+Stability is also not a concern in test classes and script files.
+In both scenarios, one can change the code without worrying too much about undesired collateral effects.
+Scripts can not be referenced by other modules and are hardly designed to be reused.
+Test code is also not designed with this goal in mind since they sit outside the project with the sole purpose of verifying the correctness of the program, but not to interfere with its actual work.
+The results presented in Sections \ref{sec:results-tests} and \ref{sec:results-scripts} showed that declarations in both scripts and tests were significantly less typed than in other scenarios.
 
-Test classes are also typed less often than the average.
-Figure \ref{fig:test_classes} shows that declarations made inside the main classes of a project are typed in 68\% of the cases.
-On the other hand, only 56\% of the test classes are typed.
-
-% TODO If scripts are as throwaway as the text suggests, then why are they stored in Github?
-A counter example to this analysis is the usage of types in scripts.
-It can also be said that readability and stability are not big concerns in scripts.
-These are pieces of code usually written to solve punctual problems.
-They do not establish complex relationships with other modules and are not reused very often.
-Nevertheless, as shown in Table \ref{fig:scripts}, there is no significant difference between the overall usage of types in scripts and classes.
+A counter example was observed in our study about the influence of the maturity of projects, in Section \ref{sec:results-maturity}.
+It can be argued that maintainability is a very important matter in mature projects, even more than in young and small projects.
+Thus, it is reasonable to expect programmers to try and improve the readability and stability of the code of a mature project.
+However, we were not able to find any significant results showing any influence of the size and the age of projects over the usage of types.
+A possible explanation in this case is that, once projects start growing and aging, programmers rarely change existing source code just to make it more maintainable.
 
 % Q3
 \subsection{Frequently changed files have more untyped declarations\label{discussion-q3}}
-As stated in Question Q3, there are reasons to use typed and reasons to use untyped declarations in files that change often.
-Types improve the readability of code by implicitly documenting statements \cite{should_your_specification_language_be_typed}.
-On the other hand, it is easier to change untyped code \cite{gradual_typing}.
-The results presented in Section \ref{res-changes} however show that the latter is considered more often than the first.
+In frequently changed code, there are arguments in favor and against using types.
+Since types act as documentation, programmers might use them to make code more maintainable and easier to change  \cite{should_your_specification_language_be_typed}.
+On the other hand, untyped code is simpler and can potentially be changed faster \cite{gradual_typing}.
+The results presented in Section \ref{sec:results-changes} however show that the latter is considered more often than the first.
 
 Figure \ref{fig:change_spearman} shows clearly that for most projects, the usage of untyped declarations grows as the frequency of changes in a file increases.
 Apparently, programmers understand that untyped code makes maintenance tasks easier.
-One can argue that the causal relationship is inverted, i.e., these files have to be changed more often because of problems generated by the use of untyped declarations.
+One can argue that the causal relationship is the opposite, i.e., these files have to be changed more often because of problems generated by the use of untyped declarations.
 However, it is very unlikely that programmers would not notice that untyped declarations would be causing such problems and would not add types to those declarations in order to fix them.
 
 An important conclusion that can be extracted from this analysis is that types are not absolutely necessary in order to build a maintainable system.
@@ -1359,13 +1365,15 @@ At least, in most software projects written in Groovy, where there is a higher n
 
 % Q4
 \subsection{Programmers used to static typing use types more often\label{discussion-q4}}
-Results indicate that the answer for Question Q4 is affirmative.
-The choice for using types on a language with optional typing, such a Groovy, is in fact influenced by the experience  with other languages.
-Those developers who have only static languages on their GitHub portfolio leave their declarations untyped less often than other developers.
-Figure \ref{fig:untyped_background} shows that these developers have only 28.7\% of their declarations untyped compared to 40\% of those developers with dynamic languages on their portfolio. 
+The analysis presented in Section \ref{sec:results-background} indicates that the answer for Question Q4 is affirmative.
+The choice for using types on a language with optional typing, such a Groovy, is in fact influenced by the programmers' experience with other languages.
+However, this influence is only visible on programmers who have only static languages on their GitHub portfolio.
+In most cases, these programmers type their declarations more often than others.
 
-
-
+For programmers who have any experience with dynamically typed languages, it does not matter whether they also have used statically typed languages or not.
+The usage of types by the two groups of programmers is not significantly different from each other.
+These results suggest that programmers who work with dynamically typed languages get used to the lack of types.
+When they develop in a language with optional typing, such as Groovy, they are comfortable using types less often than those who have only statically typed languages in their portfolio.
 
 
 
@@ -1574,9 +1582,6 @@ Meyer, Bertrand. Object-oriented software construction. Vol. 2. New York: Prenti
 
 \bibitem[Furr(2009)]{Furr09}
 Furr, Michael, et al. "Static type inference for Ruby." Proceedings of the 2009 ACM symposium on Applied Computing. ACM, 2009.
-
-\bibitem[Meszaros(2007)]{Meszaros07}
-Meszaros, Gerard. xUnit test patterns: Refactoring test code. Pearson Education, 2007.
 
 % Coupling is high for inheritance
 % interaction coupling, component coupling and inheritance coupling
