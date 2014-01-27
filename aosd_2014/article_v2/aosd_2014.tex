@@ -337,12 +337,16 @@ In this section we present the research questions we want to answer, the data co
 We propose the following research questions about the points of views of programmers about the usage of types.
 
 \begin{itemize}
-	\item \textbf{Question Q1: Do programmers use types to implicitly document the interface of their modules?} When programmers use types in the interface of a module, they are specifying how other modules should interact with it. This potentially improves the readability and maintainability of their programs. While, the usage of types in the definition of modules has been previously addressed by experimental studies, we want to find if programmers in fact consider this strategy when writing their programs.
+	\item \textbf{Question Q1: Do programmers use types more often in the interface of their modules?} We believe that the benefits of the use of types are more clear in declarations that define the interface of modules. In such cases programmers are specifying how the rest of the program should interact with a module, potentially causing positive impacts on the readability and maintainability. On the other hand, in declarations that are hidden from external modules programmer could benefit from the simplicity and flexibility offered by dynamic typing. 
+	
+	\item \textbf{Question Q2: Do programmers use types less often in test classes and scripts?} Many studies analyze the impact of the use of types in the main classes of a program, but little is known about this for code written as scripts or test classes. There are reasons to believe that types are not considered as often in these scenarios since they have simpler relationships with the rest of the program potentially require less documentation.
 
+	\item \textbf{Question Q3: Does the previous experience of programmers with other languages influence their choice for typing their code?} We believe that programmers familiar with a statically typed language keep using types since they are used to it. 
 
-	\item \textbf{Question Q2: Are untyped declarations preferred when neither readability nor stability is a concern?} Besides readability, typing also contributes to stability. It reduces the risk of unexpected effects of modifications increasing the maintainability of the software system \cite{Iso2004}. Our hypothesis is that, where these are not important factors, typing becomes less necessary and developers prefer the simplicity and flexibility offered by dynamic typing. 
-	\item \textbf{Question Q3: In frequently changed code, do developers prefer typed or untyped declarations?} It makes sense to assume that developers try to increase the maintainability of frequently changed code. One way to achieve that is improving the readability of such code with the use of types. On the other hand, the flexibility of untyped declarations is capable of increasing the changeability of those files. We want to understand which one of these strategies is actually preferred by developers in the end.
-	\item \textbf{Question Q4: Does the previous experience of programmers with other languages influence their choice for typing their code?} We believe that programmers familiar with a statically typed language keep using types since they are used to it. 
+	\item \textbf{Question Q3: Does the size, age or level of activity have any influence on the usage of types?} 
+
+	\item \textbf{Question Q5: In frequently changed code, do developers prefer typed or untyped declarations?} It makes sense to assume that developers try to increase the maintainability of frequently changed code. One way to achieve that is improving the readability of such code with the use of types. On the other hand, the flexibility of untyped declarations is capable of increasing the changeability of those files. We want to understand which one of these strategies is actually preferred by developers in the end.
+
 \end{itemize}
 
 \subsection{Data Collection Procedure\label{dataCollection}}
@@ -1089,14 +1093,6 @@ In all other cases, these programmers use type more often than the others.
 
 % PROJECT MATURITY
 \subsection{Project Maturity\label{sec:results-maturity}}
-% TODO: Discuss mature selection and mitigate threatens
-% You mention that some clearly mature projects are only 2K lines of code or
-% have only 100 commits. But would a 100 000 line project with only 100
-% commits be considered mature?
-% It is surprising that from over 7000 projects, only 203 have both more than
-% 2000 lines and 100 commits. Why is that?
-
-
 This section investigates whether programmers use types differently in their code depending on the project maturity.
 In this study, we consider three metrics to define the maturity of a project: age, number of lines of code and number of commits.
 The latter measures the level of activity of the project.
@@ -1299,56 +1295,44 @@ In this section, we discuss the results presented in the previous section in ord
 This is a very speculative section where we present our interpretation of the results based on the knowledge found in the related literature.
 
 % Q1
-\subsection*{Q1: Do programmers use types to implicitly document the interface of their modules?\label{discussion-q1}}
-The results presented in this paper show that declarations that define the interface of a module are typed much more frequently than others.
-We believe that the main motivation for this is the implicit documentation provided by the use of types.
-Type declarations in module interfaces provide useful hints about the behavior of these modules \cite{Curtis1987}, potentially improving the readability and maintainability of programs \cite{Iso2004}.
-
-The results presented in Section \ref{sec:results-type} reveal that methods and constructors, which can be part of a module interface, are the most typed declarations.
-In particular, constructors, which are extremely important members of a module definition, have their parameters always typed typed in most projects.
+\subsection*{Q1: Do programmers use types more often in the interface of their modules?\label{discussion-q1}}
+The results presented in this paper show evidence that the answer for Q1 is affirmative.
+Section \ref{sec:results-type} reveals that methods and constructors, which can be part of a module interface, are the most typed declarations.
+In particular, constructors, which are extremely important members of a module definition, have their parameters always typed in most projects.
 Fields can also be part of a module definition, but are significantly less typed than methods and constructors.
 This can be explained by the fact that, in Groovy, similar to what happens with Java, interactions with fields of other modules usually happen through accessor methods.
-This is supported by the fact that the great majority of field declarations are private, as shown in Section \ref{dataset}.
-% TODO characterize declaration types by visibility
-Local variables, on the other hand, which are not exposed as part of a module interface, are frequently untyped.
+This is supported by Section \ref{dataset}, which shows that the great majority of field declarations are private.
 
-% Users of well typed modules may learn how to use them faster and make less mistakes when interacting with them.
-%  \cite{Meyer88, Meijer04, Wadler04, Plosch97, Flanagan2006, Furr09}
-
-Section \ref{sec:results-visibility} shows that private declarations, which are hidden from other modules, are typed much less than public and protected declarations.
+The analysis of the influence of the declaration visibility presented in Section \ref{sec:results-visibility} also provided a positive answer for Q1.
+Public and protected declarations, which compose the interface of a module, are typed more often than private declarations
 It is interesting to notice that protected declarations are typed with a frequency much higher than public declarations.
 These declarations give subclasses and other classes in the same package access to internal elements of a class, forming a tightly coupled relationship \cite{Chidamber94}.
-In addition, protected methods are usually designed to be overwritten by the subclasses of a module.
-Apparently programmers understand that the contract defined by protected declarations are more delicate than others and that hey should be well document with the use of types.
+In addition, protected methods are frequently designed to be overwritten by subclasses.
 
-It is very important to say that  documentation might not be the only reason why programmers type declarations in modules interfaces.
-For example, a programmer might type a declaration of a method parameter so he can get code completion to work for that parameter inside the method.
-Another possibility is that, even though Groovy is actually a dynamically typed language, programmers might type their declarations thinking that the compiler will check for type errors.
+While it is clear that module definitions are typed more often, the cause for such phenomena is still open to discussion.
+We believe that the main motivation for this is the implicit documentation provided by types.
+In these scenarios, types provide useful hints about the behavior of modules \cite{Curtis1987} and define pre and post condition of contracts
+\cite{Meyer88, Meijer04, Wadler04, Plosch97, Flanagan2006, Furr09}.
+Users of an well defined module learn how to use it faster and do not need to read its implementation to understand how to use it.
+Delicate contracts, such as those defined by protected methods, may require more documentation and thus are typed more often.
 
-% Q2
-\subsection*{Q2: Are untyped declarations preferred when neither readability nor stability is a concern?\label{discussion-q2}}
-Programmers type their declarations less frequently when neither readability nor stability is a concern.
-This is what we found analyzing the usage of types in local variables, private declarations, test classes and script files.
-We believe that in these scenarios, using types is not as advantageous and programmers seem to prefer the simplicity and flexibility of untyped declarations.
 
-As discussed in the previous section, local variables and private declarations, which are not part a module interface, are typed less frequently.
-Both stability and readability are not a concern for these declarations.
-Since they are not exposed to other modules, changing them causes less impacts in the program.
-Also, it is easier to read code with untyped declarations in these scenarios.
-The value of a local variable is defined very close to its declaration, usually in the same statement, making it easier to infer its type.
-A reader might have more work to do the same for private elements, but this is potentially easier than in the case of public or protected declarations.
+It can be argued that programmers need less documentation in declarations that are not part of a module.
+All the references to local variables are inside the same block of code, while all the references for elements declared privately are in the same file.
+Programmers can easily find all the references to a given declaration, making it easier for them to infer their types.
 
+Documentation is not be the only reason why programmers type declarations in modules interfaces.
+For example, a programmer might type a declaration of a method parameter so he can get code completion for that parameter inside the method.
+Another possibility is that, even though Groovy is actually a dynamically typed language, programmers might type their declarations thinking that the compiler will check for type errors, which would lead to safer interactions between modules
+
+
+
+\subsection*{Q2: Do programmers use types less often in test classes and scripts?\label{discussion-q2}}
 Stability is also not a concern in test classes and script files.
 In both scenarios, one can change the code without worrying too much about undesired collateral effects.
 Scripts can not be referenced by other modules and are hardly designed to be reused.
 Test code is also not designed with this goal in mind since they sit outside the project with the sole purpose of verifying the correctness of the program, but not to interfere with its actual work.
 The results presented in Sections \ref{sec:results-tests} and \ref{sec:results-scripts} showed that declarations in both scripts and tests were significantly less typed than in other scenarios.
-
-A counter example was observed in our study about the influence of the maturity of projects, in Section \ref{sec:results-maturity}.
-It can be argued that maintainability is a very important matter in mature projects, even more than in young and small projects.
-Thus, it is reasonable to expect programmers to try and improve the readability and stability of the code of a mature project.
-However, we were not able to find any significant results showing any influence of the size and the age of projects over the usage of types.
-A possible explanation in this case is that, once projects start growing and aging, programmers rarely change existing source code just to make it more maintainable.
 
 % Q3
 \subsection*{Q3: In frequently changed code, do developers prefer typed or untyped declarations?\label{discussion-q3}}
@@ -1365,6 +1349,12 @@ However, it is very unlikely that programmers would not notice that untyped decl
 An important conclusion that can be extracted from this analysis is that types are not absolutely necessary in order to build a maintainable system.
 At least, in most software projects written in Groovy, where there is a higher need for maintenance, programmers seem to prefer the flexibility of untyped declarations over the readability of types.
 
+
+A counter example was observed in our study about the influence of the maturity of projects, in Section \ref{sec:results-maturity}.
+It can be argued that maintainability is a very important matter in mature projects, even more than in young and small projects.
+Thus, it is reasonable to expect programmers to try and improve the readability and stability of the code of a mature project.
+However, we were not able to find any significant results showing any influence of the size and the age of projects over the usage of types.
+A possible explanation in this case is that, once projects start growing and aging, programmers rarely change existing source code just to make it more maintainable.
 
 % Q4
 \subsection*{Q4: Does the previous experience of programmers with other languages influence their choice for typing their code?\label{discussion-q4}}
@@ -1392,19 +1382,21 @@ When they develop in a language with optional typing, such as Groovy, they are c
 In this section, we discuss potential threats to validity. As usual, we have arranged possible threats in two categories, internal and external validity \cite{Wohlin2012}. 
 
 \subsection*{Internal Validity}
-The main threats to the internal validity involve the fact that, in such a large scale empirical study, we can not analyze data in much detail. 
+Perhaps the most relevant threat to our study is that in a large scale empirical study such as ours, it is difficult to analyze data in much detail.
+In particular, it is difficult to determine what are the causes for the behavior we found in our data.
+
+how we discussed the obtained results in Section \ref{discussion}.
+
+
+
 In Section \ref{res-background} we consider that the GitHub portfolio of a programmer represents well his experience with other languages and type systems, but this might not be true for all programmers.
 They may have projects in their portfolio that they have not worked on or projects hosted somewhere else written in other languages.
-There is still the possibility of a programmer having multiple GitHub accounts with different languages in each one, causing this programmer to be counted twice with different inferred backgrounds.
+There is still the possibility of a programmer having multiple GitHub accounts with different languages in each one, causing this programmer to be measured twice with different inferred backgrounds.
 Due to the large number of programmers considered in our study, we expect these special cases not to have a large influence over the results.
-% Definition of maturity
-% TODO
-I% n Section \ref{res-size}, we consider that the project size is a metric capable of representing the complexity of a project, but this is not always true \cite{Fenton1998}.
-% However that was the most effective metric we could use without requiring projects to be compiled, which would drastically reduce the number of % projects in our dataset.
 
 There are other factors which might have influenced programmers besides the ones considered in this study.
 Some frameworks require programmers to use typed or untyped declarations in some cases.
-For example, one of the ways a programmer can create a stub object in Spock, a popular Groovy testing framework, requires programmers to type the mock declaration.
+For example, one of the ways a programmer can create a stub object in Spock, a popular Groovy testing framework, requires programmers to type its declaration.
 In addition to that, the previous experience of programmers, which we have shown to have influence over programmers, might interfere with the analysis of other influencing factors.
 
 In order to overcome the threats shown above, we are planning a controlled study as a future work.
