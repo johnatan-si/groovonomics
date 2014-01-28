@@ -1394,7 +1394,7 @@ In this section, we discuss potential threats to validity. As usual, we have arr
 
 \subsection*{Internal Validity}
 Perhaps the most relevant internal threat to our study is that in a large scale empirical study such as ours, there might be many confounds which are difficult to identify.
-In Section \ref{res-background} we consider that the GitHub portfolio of a programmer represents well his experience with other languages and type systems, but this might not be true for all programmers.
+In Section \ref{sec:results-background} we consider that the GitHub portfolio of a programmer represents well his experience with other languages and type systems, but this might not be true for all programmers.
 They may have projects in their portfolio that they have not worked on or projects hosted somewhere else written in other languages.
 There is still the possibility of a programmer having multiple GitHub accounts with different languages in each one, causing this programmer to be measured twice with different inferred backgrounds.
 Due to the large number of programmers considered in our study, we expect these special cases not to have a large influence over the results.
@@ -1405,7 +1405,7 @@ For example, we found that the data collected in test classes is biased by the f
 There might be other similar cases that we were not able to indentify.
 In addition to that, the programmers' background, which we have shown to have influence over programmers, might interfere with the analysis of other influencing factors.
 
-In our discussion, in Section \ref{sec:discussion}, we avoided providing definitive answers for what caused the behavior we found in our analysis.
+In our discussion, in Section \ref{discussion}, we avoided providing definitive answers for what caused the behavior we found in our analysis.
 Instead, we raised many hypothesis to explain these results.
 It is difficult however to state whether these hypothesis make sense or not.
 In order to overcome this uncertainty, we are planning a series of controlled and qualitative studies which will complement the findings in this study in order to validate or reject these hypothesis.
@@ -1483,22 +1483,30 @@ It shows that those programmers which have worked with dynamically typed languag
 % CONCLUSION AND FUTURE WORK
 %
 \section{Conclusions and Future Work\label{conclusion}}
-In this study, we investigated, from a practical point of view, what are the most influential factors on the choice of a programmer for using or not types.
-Understanding these factors can help programmers choosing the most appropriate programming language for a given context.
-This information can also be valuable for programming language designers who can base their design on real user data.
-To answer this question, we conducted a large scale case study with almost 7000 software projects written in Groovy, a dynamically typed language with optional type annotations. 
+In this paper we conducted a large scale case study in order to investigate what are the factors that influence programmers of Groovy, an optionally typed language, on their choice whether to use types or not.
+Our goal is to find what are the points of views of programmers about what typing strategies are more suitable to which contexts.
+The main findings of this study are:
+\begin{itemize}
+	\item Groovy programmers type declarations that define the interface of modules more often than other declarations
+	\item Types are less popular in test classes and script files
+	\item Those programmers who have developed in at least one dynamically typed language use types less frequently than those who have only worked with statically typed languages
+	\item Apparently, there is no influence of the size, age or level of activity of a project on how programmers use types
+	\item In most projects, the files that change more frequently are also those files with a lower usage of types
+\end{itemize}
 
-We found evidence that programmers use types as a means to implicitly document their code.
-This tends to grow in the presence of some factors, such as the visibility, the complexity of the contract defined by such declaration and the size of the project where it was defined. 
-Conversely, when readability or stability are not a concern, the simplicity and flexibility of untyped declarations seems to be preferred, as seen on local variables, private declarations and test classes.
-Another important factor is the previous experience of programmers with a given type system.
+We believe that these results are valuable to developers of programming languages and development tools who can base their designs on real user data.
+Also, programmers can understand the tradeoffs between using or not types in their projects.
+Finally, our results provide a different point of view and complement previous studies which analyzed typing strategies through the use of controlled experiments. 
 
-In future work we wish to analyze the influence of static and dynamic type systems over the robustness of software systems.
-In particular, we want to understand whether the use of dynamic typing, which limits the compiler's ability to find type problems, has any correlation with the occurrence of defects in the system and if the use of automated testing is able to reduce this correlation.
-
+We have raised many hypothesis trying to explain the causes for our results.
+In future work we want to conduct controlled experiments and qualitative studies to evaluate such hypothesis.
+In particular, we have started a new study with the goal of finding what are the impacts of the use of the documentation provided by types and the documentation provided by unit tests on the development time of maintenance tasks.
+Another work in progress is a framework for the analysis of large numbers of source code repositories called ERA (Elastic Repository Analysis).
+This framework is based on the artifacts we built in order to obtain and process our large dataset.
+ERA will help other researchers to retrieve large numbers of projects from GItHub as well as process these projects quickly on the cloud using Amazon Web Services.
 
 \acks
-This work was partially supported by FAPEMIG, grants APQ-02376-11 and APQ-02532-12.
+Many thank to Stefan Hanenberg for the invaluable contributions.
 
 %
 % BIBLIOGRAPHY
