@@ -388,6 +388,7 @@ This is explained by the fact that, different from Java, in Groovy, the default 
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
+\small
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
@@ -414,6 +415,7 @@ Age (Days)  & 361  	& 280  & 333   & 1717		& 2395441	\\ \hline
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
+\small
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
@@ -448,6 +450,7 @@ About 40\% of the developers of projects in our dataset also have Java projects 
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
+\small
 
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -640,45 +643,33 @@ All of the confidence intervals in this study are calculated with a confidence o
 % Use a super small significance level
 % Labovitz, Sanford. "Criteria for selecting a significance level: A note on the sacredness of. 05." The American Sociologist 3.3 (1968): 220-222.
 
+% ETA 0.2797227
 \begin{table}[ht]
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
-
+\small
 \begin{tabular}{|c|c|c|c|}
 \hline 
-								& {}					& p  	      & conf. interval\\
+								& {}					& p  	      & Difference \\
 \hline
 \hline
-\multirow{4}{*}{Field}			& Constructor Parameter	& 0.0000 & (-0.50, -0.44)\\
-								& Method Parameter		& 0.0000 & (-0.32, -0.27)\\
-								& Method Return			& 0.0000 & (-0.30, -0.26)\\
-								& Local Variable 		& 0.0000 & ( 0.13, 0.17)\\
-\hline
-{}								& Field					& 0.0000 & (0.44, 0.50)	\\
-Constructor						& Method Parameter		& 0.0000 & (0.06, 0.09)	\\
-Parameter						& Method Return			& 0.0000 & (0.08, 0.13)	\\
-{}								& Local Variable		& 0.0000 & (0.62, 0.67)	\\
-\hline
-{}								& Field					& 0.0000 & ( 0.27,  0.32)	\\
-Method							& Constructor Parameter	& 0.0000 & (-0.09, -0.06)	\\
-Parameter						& Method Return			& 0.0054 & ( 0.00,  0.00)	\\
-{}								& Local Variable		& 0.0000 & ( 0.44,  0.50)	\\
-\hline
-{}								& Field					& 0.0000 & ( 0.26,  0.30)	\\
-Method							& Constructor Parameter	& 0.0000 & (-0.13, -0.08)	\\
-Return							& Method Parameter		& 0.0054 & ( 0.00,  0.00)	\\
-{}								& Local Variable		& 0.0000 & ( 0.44,  0.47)	\\
-\hline
-{}								& Field					& 0.0000 & (-0.17, -0.44) \\
-Local							& Constructor Parameter	& 0.0000 & (-0.67, -0.27) \\
-Variable						& Method Parame			& 0.0000 & (-0.50, -0.26) \\
-{}								& Method Return			& 0.0000 & (-0.47,  0.17) \\
-\hline  
+Field & Contructor Parameter & 0      & (-0.40, -0.34) \\ \hline
+Local Variable & Contructor Parameter & 0      & (-0.54, -0.48) \\ \hline
+Method Parameter & Contructor Parameter & 0      & (-0.16, -0.10) \\ \hline
+Method Return & Contructor Parameter & 0      & (-0.15, -0.09) \\ \hline
+Local Variable & Field & 0      & (-0.15, -0.11) \\ \hline
+Method Parameter & Field & 0      & ( 0.22,  0.26) \\ \hline
+Method Return & Field & 0      & ( 0.22,  0.26) \\ \hline
+Method Parameter& Local Variable & 0      & ( 0.35,  0.40) \\ \hline
+Method Return & Local Variable & 0      & ( 0.36,  0.40) \\ \hline
+Method Return & Method Parameter& 0.95 & (-0.01,  0.02) \\ \hline
 \end{tabular}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types by type of declaration}
 \label{tab:all_utest_type}
 \end{table}
+
+
 
 The significance test results are displayed in Table \ref{tab:all_utest_type}.
 It shows the \emph{p} value and confidence interval reported by the Mann-Whitney U test for every two declaration types.
@@ -734,25 +725,20 @@ Although public declarations are not typed as much, they are also typed very oft
 At least half of the projects type 75\% or more of their declarations.
 Conversely private declarations are those with the smallest relative use of types.
 
+% ETA=0.279
 \begin{table}[h]
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
-
+\small
 \begin{tabular}{|c|c|c|c|}
 \hline 
-								& {}		& p		& conf. interval	\\
+								& {}		& p		& Difference	\\
 \hline
 \hline
-\multirow{2}{*}{Public}			& Protected	& 0.0000 & (-0.22, -0.18)	\\ 
-								& Private	& 0.0000 &  (0.28, 0.31)	\\
-\hline  
-\multirow{2}{*}{Protected}		& Public	& 0.0000 & (0.18, 0.22)	\\
-								& Private	& 0.0000 & (0.54, 0.57)	\\
-\hline  
-\multirow{2}{*}{Private}		& Public	& 0.0000 & (-0.31, -0.28)	\\
-								& Protected	& 0.0000 & (-0.57, -0.54)	\\
-\hline  
+Protected & Private & 0 & ( 0.47,  0.52) \\ \hline
+Public & Private & 0 & ( 0.24,  0.27) \\ \hline
+Public & Protected & 0 & (-0.26, -0.22) \\ \hline
 \end{tabular}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types by visibility of declaration}
 \label{tab:all_utest_visibility}
@@ -861,20 +847,20 @@ JUnit for example, which is used in 2525 of the 4350 projects with test classes,
 Other popular test frameworks, such as TestNG, have similar requirements.
 This implies that, in this case, developers type their methods not because they want to, but because they need to.
 
-
+% ETA=0.072
 \begin{table}[h!]
 \centering{}%
+\small
 \begin{tabular}{|c|c|c|}
 \hline 
-Declaration Type 		& p & conf. interval \\
+Declaration Type 		& p & Difference \\
 \hline 
 \hline 
-Field                             & 0.0020		& (0.000, 0.000) \\ \hline
-Constructor Parameter  & 0.4389	& (0.000, 0.000) \\ \hline
-Method Parameter         & 0.0000	& (-0.533, -0.420) \\ \hline
-Method Return              & 0.0000	& (0.200, 0.250) \\ \hline
-Local Variable               & 0.0000		& (-0.070, -0.032) \\ 
-\hline 
+Constructor Parameter &  0.98     & (-0.08,  0.16) \\ \hline
+Field &  0          & (-0.08, -0.015)  \\ \hline
+Local Variable &  0          & ( 0.047,  0.11) \\ \hline
+Method Parameter &  0          & ( 0.36,  0.44) \\ \hline
+Method Return &  0          & (-0.31, -0.26) \\ \hline
 \end{tabular}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types by test classes and main classes}
 \label{tab:test_utest_type}
@@ -926,16 +912,18 @@ This is even more clear in method returns, where most of projects do not type an
 Note however that the value for the last quartile of these declarations is very high, superior to 0.8.
 This indicates that, although most projects prefer not to use types in these declarations, there are a few projects that consistently type most of them.
 
+% ETA=0.067
 \begin{table}[ht]
 \centering{}%
+\small
 \begin{tabular}{|c|c|c|}
 \hline 
-Declaration Type & p & conf. interval \\
+Declaration Type & p & Difference \\
 \hline 
 \hline 
-Method Parameter              & 0.0000	& (-0.385, -0.234) \\ \hline
-Method Return                 & 0.0000	& (-0.500, -0.400) \\ \hline
-Local Variable                & 0.0000	& (-0.021, 0.000)  \\ \hline
+Local Variable   & 0.39 & (-0.01, 0.04) \\ \hline
+Method Parameter & 0    & ( 0.24, 0.35) \\ \hline
+Method Return    & 0    & ( 0.30, 0.40) \\ \hline
 \end{tabular}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types in script files and class files}
 \label{tab:script_utest_all}
@@ -1021,35 +1009,36 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 \label{fig:background_boxplot_visibility}
 \end{figure}	
 
+
 \begin{table}[h!]
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
-
+\small
 \begin{tabular}{|c|c|c|c|}
 \hline 
-{}															& Declaration Type 		& p 		& conf. interval \\
+{}															& Declaration Type 		& p 		& Difference  \\
 \hline 
 \hline 
-\multirow{5}{*}{\cell{Static\\vs.\\Static and\\Dynamic}}	& Field					& 0.0000	& (0.073, 0.163)	\\ \cline{2-4}
-															& Constructor Parameter	& 0.7281	& (0.000, 0.000)	\\ \cline{2-4}
-															& Method Parameter		& 0.0000	& (0.000, 0.036)	\\ \cline{2-4}
-															& Method Return			& 0.0000	& (0.000, 0.067)	\\ \cline{2-4}
-															& Local Variable		& 0.0000	& (0.038, 0.100)	\\ 
+\multirow{5}{*}{\cell{Static and\\Dynamic\\vs.\\Static}}	& Field					& 0    & (-0.17, -0.07)	\\ \cline{2-4}
+															& Constructor Parameter	& 1.0  & (-0.12,  0.06)	\\ \cline{2-4}
+															& Method Parameter		& 0    & (-0.11, -0.00)	\\ \cline{2-4}
+															& Method Return			& 0    & (-0.11, -0.01)	\\ \cline{2-4}
+															& Local Variable		& 0    & (-0.15, -0.05)	\\ 
 \hline 
 \hline
 
-\multirow{5}{*}{\cell{Static\\vs.\\Dynamic}}				& Field					& 0.0000	& (0.139, 0.228)	\\ \cline{2-4}
-															& Constructor Parameter	& 0.9347	& (0.000, 0.000)	\\ \cline{2-4}
-															& Method Parameter		& 0.0000	& (0.005, 0.076)	\\ \cline{2-4}
-															& Method Return			& 0.0000	& (0.000, 0.062)	\\ \cline{2-4}
-															& Local Variable		& 0.0000	& (0.057, 0.126)	\\ 
+\multirow{5}{*}{\cell{Dynamic\\vs.\\Static}}				& Field					& 0    & (-0.23, -0.12)	\\ \cline{2-4}
+															& Constructor Parameter	& 0.99 & (-0.12,  0.07)	\\ \cline{2-4}
+															& Method Parameter		& 0    & (-0.14, -0.02)	\\ \cline{2-4}
+															& Method Return			& 0.01 & (-0.10,  0.00)	\\ \cline{2-4}
+															& Local Variable		& 0    & (-0.18, -0.07)	\\ 
 \hline 
 \hline
-\multirow{5}{*}{\cell{Static and\\Dynamic\\vs.\\Dynamic}}	& Field					& 0.0000	& (0.000, 0.050)	\\ \cline{2-4}
-															& Constructor Parameter	& 0.7531	& (0.000, 0.000)	\\ \cline{2-4}
-															& Method Parameter		& 0.0032	& (0.000, 0.013)	\\ \cline{2-4}
-															& Method Return			& 0.5269	& (0.000, 0.000)	\\ \cline{2-4}
-															& Local Variable		& 0.0071	& (0.000, 0.005)	\\ 
+\multirow{5}{*}{\cell{Static and\\Dynamic\\vs.\\Dynamic}}	& Field					& 0    & ( 0.01,  0.08)	\\ \cline{2-4}
+															& Constructor Parameter	& 1.00 & (-0.07,  0.06)	\\ \cline{2-4}
+															& Method Parameter		& 0.84 & (-0.02,  0.06)	\\ \cline{2-4}
+															& Method Return			& 0.94 & (-0.05,  0.02)	\\ \cline{2-4}
+															& Local Variable		& 0.12 & (-0.00,  0.06)	\\ 
 \hline 
 \end{tabular}
 \caption{Mann-Whitney U Test results for the comparison between the usage of types by declaration type and programmers background}
@@ -1057,11 +1046,12 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 \end{table}
       
 \begin{table}[h!]
+\small
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{|c|c|c|c|}
 \hline 
-{}															& Declaration Visibility 	& p 		& conf. interval \\
+{}															& Declaration Visibility 	& p 		& Difference \\
 \hline 
 \hline 
 \multirow{3}{*}{\cell{Static vs.\\Static and\\Dynamic}}		& Public					& 0.0000	& (0.000, 0.058)	\\ \cline{2-4}
@@ -1109,6 +1099,7 @@ A negative value means an inverse correlation.
 Values close to 1 or -1 indicate very strong relationships while values above 0.5 or below -0.5 can be considered strong correlations.
 
 \begin{table}[h!]
+\small
 \centering{}%
 \begin{tabular}{|c|c|c|c|c|}
 \hline 
@@ -1139,7 +1130,7 @@ All in all, we can not say that there is a correlation between the metrics and t
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
-
+\small
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
 {}		& mean	& median	& std. dev.	& max	& total		\\
@@ -1229,9 +1220,10 @@ Variable					& Other			& 5622 	& 0.29 		& 0.17	& 0.32 \\
 
 \begin{table}[h!]
 \centering{}%
+\small
 \begin{tabular}{|c|c|c|}
 \hline 
-Declaration Type/Visibility 		& p & conf. interval \\
+Declaration Type/Visibility 		& p & Difference \\
 \hline 
 \hline 
 Field                  & 0.0000	& (0.053,0.173)	\\ \hline

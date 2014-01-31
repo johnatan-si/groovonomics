@@ -3,6 +3,7 @@ library(sm)
 library(ggplot2)
 library(MASS)
 library(grid)
+library(BaylorEdPsych)
 
 setwd("~/workspace_gg/groovonomics/aosd_2014/analysis")
 
@@ -494,3 +495,183 @@ plotLanguageDistribution<-function(){
 	ggsave(path=paste("result/", sep=""), filename="languages.png", height=3.5, width=4.4)
 }
 plotLanguageDistribution()
+
+
+
+
+anova<-function(d, folder) {
+	aov.model <- aov(U~T, data=d)	
+	
+	sink(file=paste("result/all/anova/", folder, "/summary.txt", sep=""))
+	print(summary(aov.model))
+	sink()
+		
+	sink(file=paste("result/all/anova/", folder, "/eta_sq.txt", sep=""))
+	print(EtaSq(aov.model))
+	sink()
+		
+	sink(file=paste("result/all/anova/", folder, "/tukey_hsd.txt", sep=""))
+	print(TukeyHSD(aov.model, conf.level=0.99))
+	sink()
+}
+
+
+anovaDeclarationType<-function() {
+	lv <- data_all[!is.na(data_all[,6]),6]
+	mr <- data_all[!is.na(data_all[,7]),7]
+	mp <- data_all[!is.na(data_all[,8]),8]
+	cp <- data_all[!is.na(data_all[,9]),9]
+	fd <- data_all[!is.na(data_all[,10]),10]
+
+	d <- data.frame(
+			U=c(lv, mr, mp, cp, fd),
+			T=factor(rep(c("LV", "MR", "MP", "CP", "Fd"), times=c( length(lv), length(mr), length(mp), length(cp), length(fd) ) ))
+		)
+		
+	anova(d, "declaration_type")
+}
+
+anovaDeclarationVisibility<-function() {
+	pri <- data_all[!is.na(data_all[,23]),23]
+	pro <- data_all[!is.na(data_all[,24]),24]
+	pub <- data_all[!is.na(data_all[,25]),25]
+
+	d <- data.frame(
+			U=c(pri, pro, pub),
+			T=factor(rep(c("pri", "pro", "pub"), times=c( length(pri), length(pro), length(pub) ) ))
+		)
+	anova(d, "visibility")
+}
+
+anovaDeclarationType()
+anovaDeclarationVisibility()
+
+
+
+factorialAnova<-function(d, folder) {
+	aov.model <- aov(U~C*T, data=d)	
+	
+	sink(file=paste("result/", folder, "/summary.txt", sep=""))
+	print(summary(aov.model))
+	sink()
+	
+	sink(file=paste("result/", folder, "/eta_sq.txt", sep=""))
+	print(EtaSq(aov.model))
+	sink()
+	
+	sink(file=paste("result/", folder, "/tukey_hsd.txt", sep=""))
+	print(TukeyHSD(aov.model, conf.level=0.99))
+	sink()
+}
+
+factorialAnovaTests<-function() {
+	lv <- data_tests_all[!is.na(data_tests_all[,6]), 6]
+	mr <- data_tests_all[!is.na(data_tests_all[,7]), 7]
+	mp <- data_tests_all[!is.na(data_tests_all[,8]), 8]
+	cp <- data_tests_all[!is.na(data_tests_all[,9]), 9]
+	fd <- data_tests_all[!is.na(data_tests_all[,10]),10]
+	
+
+	lv_condition <- factor(data_tests_all[!is.na(data_tests_all[,6]), 26], levels=c("test", "not-test"), labels=c("test", "not-test"))
+	mr_condition <- factor(data_tests_all[!is.na(data_tests_all[,7]), 26], levels=c("test", "not-test"), labels=c("test", "not-test"))
+	mp_condition <- factor(data_tests_all[!is.na(data_tests_all[,8]), 26], levels=c("test", "not-test"), labels=c("test", "not-test"))
+	cp_condition <- factor(data_tests_all[!is.na(data_tests_all[,9]), 26], levels=c("test", "not-test"), labels=c("test", "not-test"))
+	fd_condition <- factor(data_tests_all[!is.na(data_tests_all[,10]),26], levels=c("test", "not-test"), labels=c("test", "not-test"))
+
+	d <- data.frame(
+			U=c(lv, mr, mp, cp, fd),
+			C=factor(c(lv_condition, mr_condition, mp_condition, cp_condition, fd_condition), levels=1:2, labels=c("test","not-test")),
+			T=factor(rep(c("LV", "MR", "MP", "CP", "Fd"), times=c( length(lv), length(mr), length(mp), length(cp), length(fd) ) ))
+		)
+		
+	factorialAnova(d, "test/comparison/anova")
+}
+factorialAnovaTests()
+
+factorialAnovaScripts<-function() {
+	lv <- data_scripts_all[!is.na(data_scripts_all[,6]), 6]
+	mr <- data_scripts_all[!is.na(data_scripts_all[,7]), 7]
+	mp <- data_scripts_all[!is.na(data_scripts_all[,8]), 8]
+	
+
+	lv_condition <- factor(data_scripts_all[!is.na(data_scripts_all[,6]), 26], levels=c("script", "not-script"), labels=c("script", "not-script"))
+	mr_condition <- factor(data_scripts_all[!is.na(data_scripts_all[,7]), 26], levels=c("script", "not-script"), labels=c("script", "not-script"))
+	mp_condition <- factor(data_scripts_all[!is.na(data_scripts_all[,8]), 26], levels=c("script", "not-script"), labels=c("script", "not-script"))
+
+	d <- data.frame(
+			U=c(lv, mr, mp),
+			C=factor(c(lv_condition, mr_condition, mp_condition), levels=1:2, labels=c("script","not-script")),
+			T=factor(rep(c("LV", "MR", "MP"), times=c( length(lv), length(mr), length(mp) ) ))
+		)
+		
+	factorialAnova(d, "script/comparison/anova")
+}
+factorialAnovaScripts()
+
+factorialAnovaBackground<-function() {
+	lv <- data_background_all[!is.na(data_background_all[,6]), 6]
+	mr <- data_background_all[!is.na(data_background_all[,7]), 7]
+	mp <- data_background_all[!is.na(data_background_all[,8]), 8]
+	cp <- data_background_all[!is.na(data_background_all[,9]), 9]
+	fd <- data_background_all[!is.na(data_background_all[,10]),10]
+	
+
+	lv_condition <- factor(data_background_all[!is.na(data_background_all[,6]), 26], levels=c("static-only", "dynamic-only", "static-and-dynamic"), labels=c("static-only", "dynamic-only", "static-and-dynamic"))
+	mr_condition <- factor(data_background_all[!is.na(data_background_all[,7]), 26], levels=c("static-only", "dynamic-only", "static-and-dynamic"), labels=c("static-only", "dynamic-only", "static-and-dynamic"))
+	mp_condition <- factor(data_background_all[!is.na(data_background_all[,8]), 26], levels=c("static-only", "dynamic-only", "static-and-dynamic"), labels=c("static-only", "dynamic-only", "static-and-dynamic"))
+	cp_condition <- factor(data_background_all[!is.na(data_background_all[,9]), 26], levels=c("static-only", "dynamic-only", "static-and-dynamic"), labels=c("static-only", "dynamic-only", "static-and-dynamic"))
+	fd_condition <- factor(data_background_all[!is.na(data_background_all[,10]),26], levels=c("static-only", "dynamic-only", "static-and-dynamic"), labels=c("static-only", "dynamic-only", "static-and-dynamic"))
+
+	d <- data.frame(
+			U=c(lv, mr, mp, cp, fd),
+			C=factor(c(lv_condition, mr_condition, mp_condition, cp_condition, fd_condition), levels=1:3, labels=c("static-only", "dynamic-only", "static-and-dynamic")),
+			T=factor(rep(c("LV", "MR", "MP", "CP", "Fd"), times=c( length(lv), length(mr), length(mp), length(cp), length(fd) ) ))
+		)
+		
+	factorialAnova(d, "background/comparison/anova/type")
+}
+factorialAnovaBackground()
+
+factorialAnovaSize<-function() {
+	lv <- data_size[!is.na(data_size[,6]), 6]
+	mr <- data_size[!is.na(data_size[,7]), 7]
+	mp <- data_size[!is.na(data_size[,8]), 8]
+	cp <- data_size[!is.na(data_size[,9]), 9]
+	fd <- data_size[!is.na(data_size[,10]),10]
+	
+
+	lv_condition <- factor(data_size[!is.na(data_size[,6]), 26], levels=c("1-small", "2-big"), labels=c("1-small", "2-big"))
+	mr_condition <- factor(data_size[!is.na(data_size[,7]), 26], levels=c("1-small", "2-big"), labels=c("1-small", "2-big"))
+	mp_condition <- factor(data_size[!is.na(data_size[,8]), 26], levels=c("1-small", "2-big"), labels=c("1-small", "2-big"))
+	cp_condition <- factor(data_size[!is.na(data_size[,9]), 26], levels=c("1-small", "2-big"), labels=c("1-small", "2-big"))
+	fd_condition <- factor(data_size[!is.na(data_size[,10]),26], levels=c("1-small", "2-big"), labels=c("1-small", "2-big"))
+
+	d <- data.frame(
+			U=c(lv, mr, mp, cp, fd),
+			C=factor(c(lv_condition, mr_condition, mp_condition, cp_condition, fd_condition), levels=1:2, labels=c("1-small","2-big")),
+			T=factor(rep(c("LV", "MR", "MP", "CP", "Fd"), times=c( length(lv), length(mr), length(mp), length(cp), length(fd) ) ))
+		)
+		
+	factorialAnova(d, "size")
+}
+factorialAnovaSize()
+
+factorialAnovaBackgroundByVisibility<-function() {
+	pri <- data_background_all[!is.na(data_background_all[,23]),23]
+	pro <- data_background_all[!is.na(data_background_all[,24]),24]
+	pub <- data_background_all[!is.na(data_background_all[,25]),25]
+	
+	pri_condition <- factor(data_background_all[!is.na(data_background_all[,23]),26], levels=c("static-only", "dynamic-only", "static-and-dynamic"), labels=c("static-only", "dynamic-only", "static-and-dynamic"))
+	pro_condition <- factor(data_background_all[!is.na(data_background_all[,24]),26], levels=c("static-only", "dynamic-only", "static-and-dynamic"), labels=c("static-only", "dynamic-only", "static-and-dynamic"))
+	pub_condition <- factor(data_background_all[!is.na(data_background_all[,25]),26], levels=c("static-only", "dynamic-only", "static-and-dynamic"), labels=c("static-only", "dynamic-only", "static-and-dynamic"))
+	
+
+	d <- data.frame(
+			U=c(pri, pro, pub),
+			C=factor(c(pri_condition, pro_condition, pub_condition), levels=1:3, labels=c("static-only", "dynamic-only", "static-and-dynamic")),
+			T=factor(rep(c("pri", "pro", "pub"), times=c( length(pri), length(pro), length(pub) ) ))
+		)
+		
+	factorialAnova(d, "background/comparison/anova/visibility")
+}
+factorialAnovaBackgroundByVisibility()
