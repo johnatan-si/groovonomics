@@ -1,0 +1,33 @@
+  Tukey multiple comparisons of means
+    99% family-wise confidence level
+
+Fit: aov(formula = U ~ C * T, data = d)
+
+$C
+                       diff       lwr       upr p adj
+not-script-script 0.2471092 0.2296052 0.2646132     0
+
+$T
+              diff         lwr        upr     p adj
+MP-LV 0.3317719515  0.31391368 0.34963023 0.0000000
+MR-LV 0.3321090644  0.31517707 0.34904106 0.0000000
+MR-MP 0.0003371129 -0.01798468 0.01865891 0.9984165
+
+$`C:T`
+                                    diff          lwr         upr     p adj
+not-script:LV-script:LV      0.017577945 -0.013283181  0.04843907 0.3920723
+script:MP-script:LV          0.117582613  0.060856460  0.17430877 0.0000000
+not-script:MP-script:LV      0.412008037  0.380648095  0.44336798 0.0000000
+script:MR-script:LV          0.064788922  0.011139622  0.11843822 0.0006925
+not-script:MR-script:LV      0.417581531  0.387008367  0.44815470 0.0000000
+script:MP-not-script:LV      0.100004668  0.047592741  0.15241659 0.0000000
+not-script:MP-not-script:LV  0.394430091  0.371789428  0.41707075 0.0000000
+script:MR-not-script:LV      0.047210977 -0.001854297  0.09627625 0.0153284
+not-script:MR-not-script:LV  0.400003586  0.378465897  0.42154127 0.0000000
+not-script:MP-script:MP      0.294425424  0.241718243  0.34713260 0.0000000
+script:MR-script:MP         -0.052793691 -0.121151926  0.01556454 0.0976567
+not-script:MR-script:MP      0.299998918  0.247756031  0.35224181 0.0000000
+script:MR-not-script:MP     -0.347219115 -0.396599656 -0.29783857 0.0000000
+not-script:MR-not-script:MP  0.005573494 -0.016673053  0.02782004 0.9594638
+not-script:MR-script:MR      0.352792609  0.303907946  0.40167727 0.0000000
+

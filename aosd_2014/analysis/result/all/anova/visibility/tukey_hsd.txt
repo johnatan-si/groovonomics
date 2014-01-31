@@ -1,0 +1,11 @@
+  Tukey multiple comparisons of means
+    99% family-wise confidence level
+
+Fit: aov(formula = U ~ T, data = d)
+
+$T
+              diff        lwr        upr p adj
+pro-pri  0.4980158  0.4774857  0.5185460     0
+pub-pri  0.2566933  0.2411127  0.2722740     0
+pub-pro -0.2413225 -0.2619376 -0.2207074     0
+
