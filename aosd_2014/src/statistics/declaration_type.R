@@ -128,7 +128,7 @@ plotDeclarationTypeHistogram<-function(data, folder, index){
  	
  	# Unify the intervals of [0.95,1.0[ and [1.0,1.05[ since this last one only contains values == 1.0.
  	# This is used on these histograms only
- 	values<-replace(values, values==1.0, 0.99)
+ 	values<-replace(values, values==1.0, 0.999)
  	
  	plot<-ggplot(values, aes_string(x=colname)) + 
  		geom_histogram(binwidth=0.05) + 
@@ -161,7 +161,7 @@ uTestElementsOfASample<-function(data, folder, description, columns) {
 			d_i=data[!is.na(data[,i]),i]
 			d_j=data[!is.na(data[,j]),j]
 			
-			test<-wilcox.test(d_i, d_j, conf.int=T, conf.level=0.99)
+			test<-wilcox.test(d_i, d_j, conf.int=T, conf.level=0.999)
 			
 			p=round(test$p.value, 4)
 			conf.int.min=round(test$conf.int[1], 2)
@@ -187,7 +187,7 @@ uTestSamples<-function(data1, data2, data1Description, data2Description, folder,
 		d_2=data2[!is.na(data2[,c]),c]
 		
 		if(length(d_1) > 1 && length(d_2) > 1) {
-			test<-wilcox.test(d_1, d_2, conf.int=T, conf.level=0.99)
+			test<-wilcox.test(d_1, d_2, conf.int=T, conf.level=0.999)
 			print(test)
 			
 			p=round(test$p.value, 4)
@@ -511,7 +511,7 @@ anova<-function(d, folder) {
 	sink()
 		
 	sink(file=paste("result/all/anova/", folder, "/tukey_hsd.txt", sep=""))
-	print(TukeyHSD(aov.model, conf.level=0.99))
+	print(TukeyHSD(aov.model, conf.level=0.999))
 	sink()
 }
 
@@ -560,7 +560,7 @@ factorialAnova<-function(d, folder) {
 	sink()
 	
 	sink(file=paste("result/", folder, "/tukey_hsd.txt", sep=""))
-	print(TukeyHSD(aov.model, conf.level=0.99))
+	print(TukeyHSD(aov.model, conf.level=0.999))
 	sink()
 }
 

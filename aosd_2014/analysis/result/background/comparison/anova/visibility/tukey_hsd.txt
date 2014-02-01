@@ -1,56 +1,56 @@
   Tukey multiple comparisons of means
-    99% family-wise confidence level
+    99.9% family-wise confidence level
 
 Fit: aov(formula = U ~ C * T, data = d)
 
 $C
                                        diff          lwr         upr     p adj
-dynamic-only-static-only        -0.08942201 -0.112570995 -0.06627303 0.0000000
-static-and-dynamic-static-only  -0.06905882 -0.090961857 -0.04715579 0.0000000
-static-and-dynamic-dynamic-only  0.02036319  0.004832665  0.03589371 0.0003928
+dynamic-only-static-only        -0.08942201 -0.117872113 -0.06097191 0.0000000
+static-and-dynamic-static-only  -0.06905882 -0.095977653 -0.04213999 0.0000000
+static-and-dynamic-dynamic-only  0.02036319  0.001276175  0.03945020 0.0003928
 
 $T
               diff        lwr        upr p adj
-pro-pri  0.4988771  0.4785122  0.5192421     0
-pub-pri  0.2565120  0.2410567  0.2719672     0
-pub-pro -0.2423651 -0.2628144 -0.2219159     0
+pro-pri  0.4988771  0.4738486  0.5239056     0
+pub-pri  0.2565120  0.2375175  0.2755065     0
+pub-pro -0.2423651 -0.2674972 -0.2172331     0
 
 $`C:T`
                                                       diff         lwr          upr     p adj
-dynamic-only:pri-static-only:pri              -0.178945675 -0.22248952 -0.135401826 0.0000000
-static-and-dynamic:pri-static-only:pri        -0.127566912 -0.16886032 -0.086273501 0.0000000
-static-only:pro-static-only:pri                0.361631781  0.29007675  0.433186814 0.0000000
-dynamic-only:pro-static-only:pri               0.367335072  0.31562983  0.419040309 0.0000000
-static-and-dynamic:pro-static-only:pri         0.373075397  0.32603530  0.420115496 0.0000000
-static-only:pub-static-only:pri                0.170997039  0.11817019  0.223823888 0.0000000
-dynamic-only:pub-static-only:pri               0.127636645  0.08366200  0.171611293 0.0000000
-static-and-dynamic:pub-static-only:pri         0.118737335  0.07743753  0.160037138 0.0000000
-static-and-dynamic:pri-dynamic-only:pri        0.051378763  0.02197197  0.080785559 0.0000000
-static-only:pro-dynamic-only:pri               0.540577456  0.47515776  0.605997152 0.0000000
-dynamic-only:pro-dynamic-only:pri              0.546280747  0.50346667  0.589094826 0.0000000
-static-and-dynamic:pro-dynamic-only:pri        0.552021072  0.51497536  0.589066784 0.0000000
-static-only:pub-dynamic-only:pri               0.349942714  0.30578063  0.394104799 0.0000000
-dynamic-only:pub-dynamic-only:pri              0.306582320  0.27351597  0.339648670 0.0000000
-static-and-dynamic:pub-dynamic-only:pri        0.297683010  0.26826724  0.327098780 0.0000000
-static-only:pro-static-and-dynamic:pri         0.489198693  0.42525485  0.553142540 0.0000000
-dynamic-only:pro-static-and-dynamic:pri        0.494901984  0.45437885  0.535425119 0.0000000
-static-and-dynamic:pro-static-and-dynamic:pri  0.500642309  0.46626988  0.535014737 0.0000000
-static-only:pub-static-and-dynamic:pri         0.298563951  0.25661912  0.340508782 0.0000000
-dynamic-only:pub-static-and-dynamic:pri        0.255203557  0.22516254  0.285244571 0.0000000
-static-and-dynamic:pub-static-and-dynamic:pri  0.246304247  0.22033568  0.272272817 0.0000000
-dynamic-only:pro-static-only:pro               0.005703291 -0.06541001  0.076816590 0.9999986
-static-and-dynamic:pro-static-only:pro         0.011443616 -0.05635344  0.079240671 0.9995821
-static-only:pub-static-only:pro               -0.190634742 -0.26256767 -0.118701817 0.0000000
-dynamic-only:pub-static-only:pro              -0.233995136 -0.29970236 -0.168287911 0.0000000
-static-and-dynamic:pub-static-only:pro        -0.242894446 -0.30684242 -0.178946471 0.0000000
-static-and-dynamic:pro-dynamic-only:pro        0.005740325 -0.04062507  0.052105718 0.9999599
-static-only:pub-dynamic-only:pro              -0.196338032 -0.24856498 -0.144111080 0.0000000
-dynamic-only:pub-dynamic-only:pro             -0.239698427 -0.28295057 -0.196446279 0.0000000
-static-and-dynamic:pub-dynamic-only:pro       -0.248597737 -0.28912739 -0.208068089 0.0000000
-static-only:pub-static-and-dynamic:pro        -0.202078358 -0.24969132 -0.154465398 0.0000000
-dynamic-only:pub-static-and-dynamic:pro       -0.245438752 -0.28298989 -0.207887618 0.0000000
-static-and-dynamic:pub-static-and-dynamic:pro -0.254338062 -0.28871817 -0.219957955 0.0000000
-dynamic-only:pub-static-only:pub              -0.043360394 -0.08794731  0.001226516 0.0141845
-static-and-dynamic:pub-static-only:pub        -0.052259704 -0.09421083 -0.010308582 0.0002663
-static-and-dynamic:pub-dynamic-only:pub       -0.008899310 -0.03894911  0.021150489 0.9792498
+dynamic-only:pri-static-only:pri              -0.178945675 -0.22957252 -0.128318826 0.0000000
+static-and-dynamic:pri-static-only:pri        -0.127566912 -0.17557726 -0.079556566 0.0000000
+static-only:pro-static-only:pri                0.361631781  0.27843735  0.444826214 0.0000000
+dynamic-only:pro-static-only:pri               0.367335072  0.30721927  0.427450870 0.0000000
+static-and-dynamic:pro-static-only:pri         0.373075397  0.31838359  0.427767209 0.0000000
+static-only:pub-static-only:pri                0.170997039  0.10957719  0.232416893 0.0000000
+dynamic-only:pub-static-only:pri               0.127636645  0.07650892  0.178764368 0.0000000
+static-and-dynamic:pub-static-only:pri         0.118737335  0.07071956  0.166755113 0.0000000
+static-and-dynamic:pri-dynamic-only:pri        0.051378763  0.01718855  0.085568974 0.0000000
+static-only:pro-dynamic-only:pri               0.540577456  0.46451636  0.616638555 0.0000000
+dynamic-only:pro-dynamic-only:pri              0.546280747  0.49650237  0.596059119 0.0000000
+static-and-dynamic:pro-dynamic-only:pri        0.552021072  0.50894937  0.595092773 0.0000000
+static-only:pub-dynamic-only:pri               0.349942714  0.29859707  0.401288363 0.0000000
+dynamic-only:pub-dynamic-only:pri              0.306582320  0.26813728  0.345027361 0.0000000
+static-and-dynamic:pub-dynamic-only:pri        0.297683010  0.26348236  0.331883656 0.0000000
+static-only:pro-static-and-dynamic:pri         0.489198693  0.41485351  0.563543878 0.0000000
+dynamic-only:pro-static-and-dynamic:pri        0.494901984  0.44778721  0.542016758 0.0000000
+static-and-dynamic:pro-static-and-dynamic:pri  0.500642309  0.46067874  0.540605881 0.0000000
+static-only:pub-static-and-dynamic:pri         0.298563951  0.24979622  0.347331679 0.0000000
+dynamic-only:pub-static-and-dynamic:pri        0.255203557  0.22027596  0.290131151 0.0000000
+static-and-dynamic:pub-static-and-dynamic:pri  0.246304247  0.21611154  0.276496958 0.0000000
+dynamic-only:pro-static-only:pro               0.005703291 -0.07697756  0.088384136 0.9999986
+static-and-dynamic:pro-static-only:pro         0.011443616 -0.06738155  0.090268785 0.9995821
+static-only:pub-static-only:pro               -0.190634742 -0.27426854 -0.107000948 0.0000000
+dynamic-only:pub-static-only:pro              -0.233995136 -0.31039054 -0.157599737 0.0000000
+static-and-dynamic:pub-static-only:pro        -0.242894446 -0.31724443 -0.168544463 0.0000000
+static-and-dynamic:pro-dynamic-only:pro        0.005740325 -0.04816703  0.059647680 0.9999599
+static-only:pub-dynamic-only:pro              -0.196338032 -0.25706041 -0.135615655 0.0000000
+dynamic-only:pub-dynamic-only:pro             -0.239698427 -0.28998613 -0.189410728 0.0000000
+static-and-dynamic:pub-dynamic-only:pro       -0.248597737 -0.29572008 -0.201475390 0.0000000
+static-only:pub-static-and-dynamic:pro        -0.202078358 -0.25743621 -0.146720502 0.0000000
+dynamic-only:pub-static-and-dynamic:pro       -0.245438752 -0.28909809 -0.201779415 0.0000000
+static-and-dynamic:pub-static-and-dynamic:pro -0.254338062 -0.29431056 -0.214365563 0.0000000
+dynamic-only:pub-static-only:pub              -0.043360394 -0.09519997  0.008479184 0.0141845
+static-and-dynamic:pub-static-only:pub        -0.052259704 -0.10103475 -0.003484661 0.0002663
+static-and-dynamic:pub-dynamic-only:pub       -0.008899310 -0.04383712  0.026038498 0.9792498
 
