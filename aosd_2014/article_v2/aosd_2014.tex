@@ -1,6 +1,6 @@
 % LARGE SCALE
 
-\documentclass[preprint]{sigplanconf}
+\documentclass[]{sigplanconf}
 
 \usepackage{amsmath}
 \usepackage{listings}
@@ -70,7 +70,7 @@ Finally, we also found evidence that the background of programmers has influence
 Experimentation, Language
 
 \keywords
-Type systems, static analysis, Groovy
+Type Systems, Static Analysis, Groovy
 
 \section{Introduction}
 Type systems are one of the most important characteristics of a programming language and also a major topic of research in software engineering \cite{Furr09,takikawa12,types_and_programming_languages,gradual_typing}.
@@ -109,7 +109,7 @@ Finally, programmers can benefit from this knowledge when choosing programming l
 
 This paper presents a large scale empirical study about how programmers use optional typing in Groovy.
 Through the analysis of a massive dataset with almost seven thousand Groovy projects, we were able to identify when programmers prefer to type or not their declarations.
-Our results give more visibility about what is the point of view of programmers about the use of types.
+Our results give more visibility over the point of view of programmers about the use of types.
 This analysis complements, with a different point of view, existing studies based on controlled experiments \cite{Hanenberg13, ruby_vs_druby, experiment_with_purity, hanenberg_icpc, mayer2012static, Gannon77, Prechelt98}. 
 
 % Results show that programmers consider types as a means to document their code.
@@ -321,8 +321,8 @@ In the remainder of this text, we refer to declarations with type annotations as
 
 \section{Study Settings\label{settings}}
 The study presented in this paper consists in the static analysis of the source code of a corpus of 6638 Groovy projects.
-Its goal is to find in which contexts, Groovy programmers type or not their declarations.
-In this section, we present five research questions that guide our analysis, the data collection and analysis procedures as well as the characterization of the studied dataset.
+Its goal is to find in which contexts Groovy programmers type or not their declarations.
+In this section, we present five research questions that guide our analysis, the data collection and analysis procedures and the characterization of the studied dataset.
 
 We have shared all the artifacts of this study in our project website \footnote{http://github.com/carlosgsouza/groovonomics}.
 This includes the source code of the programs used in the data collection and analysis procedures, the analyzed data (except the source code of the analyzed projects) and detailed results.
@@ -563,9 +563,9 @@ n		& mean	& std. dev.	& 1\ts{st}	& 2\ts{nd}	& 3\ts{rd}	& 4\ts{th}		\\
 
 
 % TYPE
-\subsection{Declaration Kind\label{sec:results-type}}
+\subsection{Kind of Declaration\label{sec:results-type}}
 This section investigates whether programmers use types differently depending on the kind of the declaration.
-For each project, we measured the relative usage of types by declaration type, which can be a field, a constructor parameter, the return or a parameter of a method or a local variable.
+For each project, we measured the relative usage of types in fields, constructor parameters, method returns, method parameters and local variables.
 These results are displayed in box plots in Figure \ref{fig:all_boxplot_type} along with the corresponding descriptive statistics.
 Note that the size of each sample, \emph{n}, is different since not all projects have all types of declarations. 
 For instance, there are only 1670 out of 6638 projects with declarations of constructor parameters.
@@ -615,12 +615,13 @@ We start by defining a hypothesis below, which can then be rejected or accepted 
 
 The appropriate significance test should be chosen carefully.
 It needs to compare multiple treatments, which represent the 5 distinct kinds of declaration.
-We first considered applying repeated \emph{t-tests} or the \emph{Mann-Whitney U-tests} to compare every two kinds of declaration, i.e, fields vs local variables, fields vs method returns, etc.
-However, applying repeated tests over the same sample increases the probability of getting Type-I errors (rejecting the null hypothesis when it actually should should be accepted).
+We first considered applying repeated \emph{t-tests} or \emph{Mann-Whitney U-tests} in order to compare every two kinds of declaration, i.e, fields vs local variables, fields vs method returns, etc.
+However, applying repeated tests over the same sample increases the probability of getting Type-I errors (rejecting the null hypothesis when it actually should be accepted).
 
 A valid alternative for our scenario is to use One-Way Between Groups ANOVA, which compares all means simultaneously and maintains the Type-I error probability at the designated level.
 ANOVA computes a \emph{p} value which indicates whether at least two treatments are significantly different from each other.
 The smaller the value of \emph{p}, the "more significant" is the difference and, consequently, the stronger the rejection of the null hypothesis.
+
 Given the level of significance, $\alpha$, we can reject the null hypothesis if $p < \alpha$.
 Typically, $\alpha=0.05$ or $\alpha=0.01$ are used, but in this study  we decided to use a very small value for this purpose, $\alpha=0.001$.
 This value might seem too small at first, which would require the difference between two treatments to be unnecessarily high in order to be considered significant.
@@ -695,7 +696,7 @@ Although these are essentially the same type of declaration in Groovy, they seem
 This section presents an analysis about how programmers use types according to the the visibility of a declaration.
 We follow the same approach from the previous section.
 Figure \ref{fig:all_boxplot_visibility_all} shows the box plots for the usage of types per declaration visibility along with the descriptive statistics.
-The ANOVA test reported \emph{p} value equal to 0 for these treatments, allowing us to strongly reject the null hypothesis.
+The ANOVA test reported a \emph{p} value equal to 0 for these treatments, allowing us to strongly reject the null hypothesis.
 % The obtained effect size was again very large, $\eta^2=0.28$, implying that there is a very large influence of the visibility of a declaration over the value of the relative usage of types.
 Finally, results of the Tukey HSD Test are reported in Table \ref{tab:all_utest_visibility}.
 These results show that all treatments are different from each other since all \emph{p} values are equal to 0.
@@ -788,7 +789,7 @@ Public & Protected & 0 & (-0.27, -0.22) \\ \hline
 % TESTS
 \subsection{Test Classes and Main Classes\label{sec:results-tests}}
 We now analyze the use of types in test classes in comparison to main classes.
-A simple heuristic to determine if a class was written as a test class or a main class is used.
+A simple heuristic to determine the kind of the class was used.
 In Groovy, like in Java, it is common to organize test classes and main classes in different source folders.
 The convention adopted by popular build tools among Groovy programmers, such as Gradle and Maven, assumes that test classes and main classes are in the \emph{src/test/groovy} and \emph{src/main/groovy} directories respectively.
 Based on these conventions, we can assume that all classes inside a \emph{test} directory, but not in a \emph{main} directory, are test classes.
@@ -832,17 +833,17 @@ We found test classes in 4350 of the 6638 projects in our dataset.
 Results are displayed in Figure \ref{fig:test_boxplot_type} and show the relative usage of types by declaration type.
 White and gray box plots correspond to test classes and main classes respectively.
 
-In order to compare the usage of types in test and functional classes, we use a slightly different approach.
+In order to compare the usage of types in test and main classes, we use a slightly different approach.
 In this analysis, there are two independent variables, the kind of declaration and the kind of class.
 Thus, we are required to use Factorial ANOVA, which is the generalization of the One Way ANOVA for multiple factors.
-Multiple values of \emph{p} are calculated by this test, one corresponding to the comparison of treatments according to one of the factors.
+Multiple values of \emph{p} are calculated by this test, each one corresponding to the comparison of treatments according to one of the factors.
 We report the \emph{p} value corresponding to the factor representing the kind of class.
 We also apply the Tukey HSD test, which results are displayed in Table \ref{tab:test_utest_type}.
 This time we want to show what is the difference of the relative usage of types between the same kinds of declaration, but in different kinds of classes.
-For example, the third row of Table \ref{tab:test_utest_type} shows that there is a significant difference in how programmers type local variables in functional and test classes.
-The difference between the relative usage of types in functional classes and test classes falls in the $(0.05, 0.11)$ interval.
+For example, the third row of Table \ref{tab:test_utest_type} shows that there is a significant difference in how programmers type local variables in main and test classes.
+The difference between the relative usage of types in main classes and test classes falls in the $(0.05, 0.11)$ interval.
 
-The ANOVA test reported once again a \emph{p} value equal to 0, implying that the usage of type is different in test and functional classes.
+The ANOVA test reported once again a \emph{p} value equal to 0, implying that the usage of type is different in test and main classes.
 Figure \ref{fig:test_boxplot_type} and Table \ref{tab:test_utest_type} show that this difference is significant for all kinds of declarations except constructor parameters.
 While local variables in main classes are not typed very often, they are typed even less in test classes.
 At least half of the projects type none of the declarations of this kind in test classes.
@@ -877,7 +878,7 @@ Local Variable &  0          & ( 0.047,  0.11) \\ \hline
 Method Parameter &  0          & ( 0.36,  0.44) \\ \hline
 Method Return &  0          & (-0.31, -0.26) \\ \hline
 \end{tabular}
-\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by functional and test classes}
+\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by main and test classes}
 \label{tab:test_utest_type}
 \end{table}
 
@@ -890,7 +891,7 @@ Determining whether a file corresponds to a script or a class is fairly simple.
 In Groovy, a script file is compiled into a class extending \emph{groovy.lang.Script}.
 We consider all classes extending this class to be scripts.
 
-Figure \ref{fig:script_boxplot_type} shows the distribution of the relative usage of types in class files and script files.
+Figure \ref{fig:script_boxplot_type} shows the distribution of the relative usage of types in class and script files.
 Note that constructors and fields are not considered since there is no way to declare those elements in scripts.
 Also, we do not present an analysis of declarations grouped by visibility since, although allowed, defining the visibility of a declaration inside a script does not make much sense.
 
@@ -924,10 +925,6 @@ There is no significant difference on the usage of types in local variables.
 On the other hand, declarations of parameters or returns of methods are typed much less frequently in scripts.
 Note however that the value for the last quartile of these declarations is very high, superior to 0.8.
 This indicates that, although most projects prefer not to use types in method returns, there are a few projects that consistently type most of them.
-Along with the results of the analysis of test classes, these results show that the answer for Question Q2 is positive.
-There are large differences in how programmers type scripts and classes.
-Although it is not clear from our analysis what is the reason for such phenomena, we will raise some hypothesis in our discussion, presented in Section \ref{discussion}.
-
 
 % ETA=0.067
 \begin{table}[ht]
@@ -946,7 +943,9 @@ Method Return    & 0    & ( 0.30, 0.40) \\ \hline
 \label{tab:script_utest_all}
 \end{table}
 
-
+Along with the results of the analysis of test classes, the results presented in this section show that the answer for Question Q2 is positive.
+There are large differences in how programmers type scripts and classes.
+Although it is not clear from our analysis what is the reason for such phenomena, we will raise some hypothesis in our discussion, presented in Section \ref{discussion}.
 
 % PROGRAMMERS BACKGROUND
 \subsection{Programmers' Background\label{sec:results-background}}
@@ -958,7 +957,7 @@ Finally, the third group is formed by the projects of those programmers with bot
 We refer to these three groups by the names \emph{Static Only}, \emph{Dynamic Only} and \emph{Static and Dynamic} respectively.
 
 Figures \ref{fig:background_boxplot_type} and \ref{fig:background_boxplot_visibility}  show results by declaration type and visibility.
-The \emph{p} value reported by the ANOVA test is equal to 0, showing that there is a significant difference in how programmers with different backgrounds type their declarations.
+The \emph{p} value reported by the ANOVA test is equal to 0, implying that there is a significant difference in how programmers with different backgrounds type their declarations.
 The results of the Tukey HSD test are reported in Tables \ref{tab:background_utest_type} and \ref{tab:backgorund_utest_visibility}.
 These tables are divided in three parts, each one corresponding to the comparison between the data of two of the three groups.
 
@@ -1106,6 +1105,8 @@ Most of the \emph{p} values reported by the Tukey HSD test are equal to 0.
 However, constructor parameters and protected declarations never present significant differences.
 This indicates a strong influence of these types of declarations over the programmers' behavior.
 There are other two cases which do not present significant differences, method returns and public declarations, both in the comparisons between programmers of the \emph{Dynamic} and \emph{Static} groups.
+It is important to say though that the \emph{p} value reported in these two cases is relatively small, 0.01.
+These differences are considered not significant only because we are using a very strict confidence level, but would be considered significantly different under a confidence level of 0.05.
 
 The results reported in this section suggest a positive answer for Question Q3, i.e, programmers use types differently depending on their background.
 This difference is larger when comparing those projects of the \emph{Static} group with projects of the other groups.
@@ -1151,11 +1152,11 @@ Private				 		&  0.213	&  -0.068	&  0.160	\\ \hline
 
 Table \ref{tab:all_correlation_maturity} shows the Spearman correlation coefficient between the usage of types and the age, size and number of commits of a project.
 Most of values in this table are close to 0.
-There are only a few which could indicate a very weak relationship, such as \emph{Size} vs. \emph{protected} or \emph{commits} vs. \emph{private}.
-All in all, these values don not seem to suggest any direct relationship between these metrics and the usage of types.
+There are a few coefficient values which could indicate a relationship, such as \emph{Size} vs. \emph{Protected} or \emph{Commits} vs. \emph{Private}, but these relationships are still considerably weak.
+All in all, these values do not seem to suggest any direct relationship between these metrics and the usage of types.
 
 The lack of correlation between the relative usage of types and these metrics does not necessarily imply that they have no influence on the usage of types.
-A possibility is that this influence appears only in the most mature projects, where the values of all of these three metrics are high enough.
+A possibility is that this influence appears only in the most mature projects, where the values of all of these three metrics are large enough.
 In order to determine whether this is true, we conduct now a comparison between mature projects and the rest of the dataset.
 We define a mature project as a project that is 100 days old or more and has, at least, 2KLoC and 100 commits.
 These numbers were defined by manually inspecting our dataset and finding that there are popular and mature projects that barely exceed these three metrics.
@@ -1169,7 +1170,7 @@ According to our criteria, there are 223 mature projects in our dataset, which a
 \small
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-{}		& mean	& median	& std. dev.	& max	& total		\\
+{}		& Mean	& Median	& Std. Dev.	& Max	& Total		\\
 \hline
 \hline
 Size (LoC)	& 9947 	& 5627 & 14594  & 149933	& 2218189	\\ \hline
@@ -1183,7 +1184,7 @@ Age (Days)  & 600  	& 574  & 350   & 1469		& 133697	\\ \hline
 Figures \ref{fig:size_boxplot_type}  and \ref{fig:size_boxplot_visibility} show the box plots for the usage of types in mature projects and others by declaration type and visibility respectively.
 The ANOVA test reported a \emph{p} value equal to 0.0518 for this analysis, which implies that there are no treatments that are significantly different from each other.
 Because of this, we do not report the results for the Tukey HSD test.
-This result, along with the very low correlation coefficients reported in Table \ref{tab:all_correlation_maturity}, imply that the answer for Question Q4 is negative.
+This result, along with the very low correlation coefficients reported in Table \ref{tab:all_correlation_maturity}, implies that the answer for Question Q4 is negative.
 There is no significant difference in how programmers type declarations in mature projects compared to declarations in other projects.
 
 \begin{figure}[h!]
@@ -1316,12 +1317,12 @@ On the other hand, it can be said that only 10\% of the mature projects present 
 %
 \section{Discussion\label{discussion}}
 In this section, we discuss the results of our study in the light of the research questions proposed in Section \ref{questions}.
-Although we were able to get a good understanding of the usage of types in different contexts, the cause for such results is still unclear in many of them.
+Although we were able to obtain a good understanding of the usage of types in different contexts, the cause for such results is still unclear in many of them.
 We provide several hypothesis with the goal of identifying future research topics that can provide more detailed insights about such causes.
 
 % Q1
 \subsection*{Q1: Do programmers use types more often in the interface of their modules?\label{discussion-q1}}
-The analysis of the usage of types by kind and visibility of declarations, presented in Sections \ref{sec:results-type} and \ref{sec:results-visibility}, shows evidence that the answer for Q1 is affirmative.
+The analysis of the usage of types by kind and visibility of declarations, presented in Sections \ref{sec:results-type} and \ref{sec:results-visibility}, provides clear evidence that the answer for Q1 is affirmative.
 Private declarations are typed less often than protected and public declarations.
 Also, fields, methods and constructors are typed more often than local variables.
 Although fields are significantly less typed than methods and constructors, this can be explained by the fact that most fields are declared privately as shown in Section \ref{dataset}.
@@ -1332,14 +1333,14 @@ We believe that the main motivation for this is the implicit documentation provi
 In these scenarios, types provide useful hints about the behavior of modules \cite{Curtis1987} and define pre and post condition of contracts
 \cite{Meyer88, Meijer04, Wadler04, Plosch97, Flanagan2006, Furr09}.
 Users of an well defined module learn how to use it faster and do not need to read its implementation to understand how to use it.
-Programmers may consider that delicate contracts, such as those defined by protected methods, should be well documented and thus are typed more often.
+Programmers may consider that delicate contracts, such as t hose defined by protected methods, should be well documented and thus are typed more often.
 
-Constructor parameters and protected declarations are always the most typed elements.
-In addition, the analysis of different contexts, i.e, functional and test classes, mature and non-mature projects and programmers' backgrounds, shows no significant difference in the usage of types.
+Constructor parameters and protected declarations are always the elements typed most often.
+In addition, the analyses of different contexts, i.e, main and test classes, mature and non-mature projects and programmers' backgrounds, show no significant difference in the usage of types.
 This reveals that the presence of these particular declarations are considered by programmers as more important factors in their choice whether to type a declaration than these contexts.
 We hypothesize that programmers consider documentation more important in these elements.
 Constructors usually define the dependencies of an object, at least for its creation.
-In addition, they might be the first element of a class which programmers interact with when dealing with a new module.
+In addition, they might be the first element which programmers interact with when dealing with a new module.
 Protected declarations are often used as a means to delegate the implementation of a method to subclasses, which requires an well defined contract so the superclass can work properly.
 Moreover, they give subclasses and other classes in the same package access to internal elements of a class, forming a tightly coupled relationship \cite{Chidamber94}.
 
@@ -1368,7 +1369,7 @@ It is curious however that test code itself is usually perceived as a form of do
 Because of this, we were expecting programmers to actually use more types in test classes as a means to improve the documentation provided by them.
 Perhaps, although programmers use test classes as documentation, they might not write them with this goal in mind.
 
-An alternative explanation for the fact that scripts and tests are typed less frequently is that most of them are probably simpler than functional classes.
+An alternative explanation for the fact that scripts and tests are typed less frequently is that most of them are probably simpler than main classes.
 As found in the recent work of Hanenberg et al \cite{Hanenberg13}, untyped code potentially has positive impacts on the development time of easier tasks.
 In such case, programmers might not type their declarations in scripts or test classes since this would allow them to finish their tasks faster.
 
@@ -1376,7 +1377,7 @@ In such case, programmers might not type their declarations in scripts or test c
 \subsection*{Q3: Does the experience of programmers with other languages influence their choice for typing their code?\label{discussion-q3}}
 The analysis presented in Section \ref{sec:results-background} indicates that the answer for Question Q3 is affirmative.
 The choice for using types on a language with optional typing, such a Groovy, is in fact influenced by the programmers' experience with other languages.
-In general, those programmers who have only statically typed languages in their portfolio type more often than all others.
+In general, those programmers who have only statically typed languages in their portfolio type more often than the others.
 However, the two groups with projects written by programmers who have either statically and dynamically typed languages or only dynamically typed languages are very similar in most cases.
 Apparently programmers who develop in an "untyped" language get used to the lack of types, leading them to declare types less often.
 This hypothesis supports the work of Daly et al which suggests that programmers have ways of reasoning about types that compensate for the lack of static type information \cite{ruby_vs_druby}.
@@ -1532,7 +1533,7 @@ ERA will help researchers to retrieve large numbers of projects from GitHub and 
 % In order to overcome this uncertainty, we are planning a series of controlled and qualitative studies which will complement the findings in this study in order to validate or reject these hypothesis.
 
 \acks
-Many thank to Stefan Hanenberg for the invaluable contributions.
+Many thank to Stefan Hanenberg for the inspiration and the invaluable contributions.
 
 % \newpage
 
