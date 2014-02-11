@@ -1,15 +1,29 @@
-% LARGE SCALE
+\documentclass[msc]{ppgccufmg}    
 
-\documentclass[]{sigplanconf}
-
+%\usepackage[brazil]{babel}        
+\usepackage[english]{babel}     
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{type1ec}
+\usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{listings}
 \usepackage{float}
-\usepackage{graphicx}
 \usepackage{adjustbox}
 \usepackage{multirow}
 \usepackage{color}
 \usepackage{courier}
+\usepackage[a4paper,
+  bookmarks=true,
+  bookmarksnumbered=true,
+  linktocpage,
+  colorlinks,
+  citecolor=black,
+  urlcolor=black,
+  linkcolor=black,
+  filecolor=black,
+  ]{hyperref}
+\usepackage[square]{natbib}
 
 \newcommand{\ts}{\textsuperscript}
 
@@ -19,61 +33,82 @@
 \floatstyle{ruled}
 \newfloat{Listing}{tbp}{loa}
 
+
 \begin{document}
 
-\special{papersize=8.5in,11in}
-\setlength{\pdfpageheight}{\paperheight}
-\setlength{\pdfpagewidth}{\paperwidth}
 
-\conferenceinfo{CONF 'yy}{Month d--d, 20yy, City, ST, Country} 
-\copyrightyear{20yy} 
-\copyrightdata{978-1-nnnn-nnnn-n/yy/mm} 
-\doi{nnnnnnn.nnnnnnn}
 
-% Uncomment one of the following two, if you are not going for the 
-% traditional copyright transfer agreement.
+\ppgccufmg{
+  title={A Study About How Programmers Use Optional Typing},
+  authorrev={Garcia de Souza, Carlos Alexandre},
+  cutter={D1234p},
+  cdu={519.6*82.10},
+  university={Federal University of Minas Gerais},
+  course={Computer Science},
+  address={Belo Horizonte},
+  portuguesetitle={Um Estudo Sobre Como Programadores Utilizam Tipagem Opcional},
+  portugueseuniversity={Universidade Federal de Minas Gerais},
+  portuguesecourse={Ciência da Computação},
+  date={2014-03},
+  advisor={Eduardo Magno Figueiredo},
+  % approval={img/approvalsheet.eps},
+  abstract=[brazil]{Resumo}{resumo},
+  abstract={Abstract}{abstract},
+  dedication={dedicatoria},
+  ack={agradecimentos},
+  epigraphtext={Truth and lie are opposite things.}{Unknown},
+  keywords={Type Systems, Repository Analysis, Optional Typing, Groovy},
+}
 
-%\exclusivelicense                % ACM gets exclusive license to publish, 
-                                  % you retain copyright
 
-%\permissiontopublish             % ACM gets nonexclusive license to publish
-                                  % (paid open-access papers, 
-                                  % short abstracts)
 
-%\titlebanner{banner above paper title}        % These are ignored unless
-%\preprintfooter{short description of paper}   % 'preprint' option specified.
 
-\title{How Do Programmers Use Optional Typing? An Empirical Study}
+% Os tr�s comandos seguintes s�o apenas para gerar texto para ocupar espa�o nas
+% p�ginas.
+\newcommand{\dummytxta}{%
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat. Duis aute irure dolor in
+reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.\par
+}
 
-\authorinfo{Carlos Souza}
-           {Software Engineering Lab\\Federal University of Minas Gerais (UFMG)}
-           {carlosgsouza@gmail.com}
-\authorinfo{Eduardo Figueiredo}
-           {Software Engineering Lab\\Federal University of Minas Gerais (UFMG)}
-           {figureido@dcc.ufmg.br}
+\newcommand{\dummytxtb}{%
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque
+porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
+dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
+nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex
+ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea
+voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem
+eum fugiat quo voluptas nulla pariatur?\par
+}
 
-\maketitle
+\newcommand{\dummytxtc}{%
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
+excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
+officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum
+quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta
+nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat
+facere possimus, omnis voluptas assumenda est, omnis dolor
+repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum
+necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non
+recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut
+reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus
+asperiores repellat.\par
+}
 
-\begin{abstract}
-The recent popularization of dynamically typed languages, such as Ruby and JavaScript, has brought more attention to the discussion about the impact of typing strategies on development.
-Types allow the compiler to find type errors earlier and potentially improve the readability and maintainability of code.
-On the other hand, "untyped" code may be easier to change and require less work from programmers.
-This paper tries to identify the programmers' point of view about these tradeoffs.
-An analysis of the source code of 6638 projects written in Groovy, a programming language which features optional typing, shows in which scenarios programmers prefer to type or not to type their declarations. 
-Our results show that types are popular in the definition of module interfaces, but are less used in scripts, test classes and frequently changed code.
-There is no correlation between the size and age of projects and how their constructs are typed.
-Finally, we also found evidence that the background of programmers influences how they use types.
-\end{abstract}
+\newcommand{\dummytxt}{\dummytxta\dummytxtb\dummytxtc}
 
-\category{D.2.3}{Software Engineering}{Cooding Tools and Techniques}
+\chapter{Introduction}
 
-\terms
-Experimentation, Language
-
-\keywords
-Type Systems, Static Analysis, Groovy
-
-\section{Introduction}
 Type systems are one of the most important characteristics of a programming language and also a major topic of research in software engineering \cite{Furr09,takikawa12,types_and_programming_languages,gradual_typing}.
 A programming language's type system determines when the type of an expression is defined \cite{types_and_programming_languages}. 
 Statically typed languages, such as Java and C\#, require programmers to explicitly define the type of a declaration, which can then be used by the compiler to check for type errors. 
@@ -127,11 +162,9 @@ Finally, Section \ref{conclusion} concludes this study and suggests future work.
 
 
 
-%
-%  THE GROOVY LANGUAGE
-%
+\section{Type Systems}
 
-\section{The Groovy Language\label{groovy}}
+\section{The Groovy Language}
 Groovy is a dynamically typed programming language designed to run on the Java Virtual Machine.
 Its adoption has grown remarkably over the last years.
 According to the TIOBE Programming Index, Groovy is the 22\textsuperscript{nd} most popular language in the software industry \cite{tiobe}, ahead of languages like Haskell and Scala. 
@@ -249,7 +282,7 @@ For example, the snippet of code shown in Listing \ref{typeError} compiles witho
 Nevertheless, during runtime, the \emph{string} variable references an instance of the \emph{Integer} class and an exception is thrown when the method \emph{toUpperCase} is invoked since the \emph{Integer} class does not have such method.
 
 \begin{Listing}[ht]
-\begin{lstlisting}[basicstyle=\footnotesize\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left,morekeywords={def}]
+\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left,morekeywords={def}]
 class DynamicTyping {
 	private String typedField
 	private untypedField
@@ -272,7 +305,7 @@ class DynamicTyping {
 \end{Listing}
 
 \begin{Listing}[ht]
-\begin{lstlisting}[basicstyle=\footnotesize\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
+\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
 String string = new Integer(1)
 string.toUpperCase()
 \end{lstlisting}
@@ -287,7 +320,7 @@ Listing \ref{staticTyping} shows an example of static typing in Groovy.
 Trying to compile the class \emph{TypeCheckedGroovyClass} produces an error since the method \emph{sum} is supposed to receive two parameters of the type \emph{int}, but it is actually called with two parameters of the type \emph{String}.
 
 \begin{Listing}[ht]
-\begin{lstlisting}[basicstyle=\footnotesize\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
+\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
 @TypeChecked
 class TypeCheckedGroovyClass {
 	
@@ -312,14 +345,8 @@ In the remainder of this text, we refer to declarations with type annotations as
 
 
 
+\chapter{Study Settings}
 
-
-
-%
-% STUDY SETTINGS
-%
-
-\section{Study Settings\label{settings}}
 The study presented in this paper consists in the static analysis of the source code of a corpus of 6638 Groovy projects.
 Its goal is to find in which contexts Groovy programmers type or do not type their declarations.
 In this section, we present five research questions that guide our analysis, the data collection and analysis procedures and the characterization of the studied dataset.
@@ -328,7 +355,7 @@ We have shared all the artifacts of this study in our project website. \footnote
 This includes the source code of the programs used in the data collection and analysis procedures, the analyzed data (except the source code of the analyzed projects) and detailed results.
 Our goal is to allow this study to be easily replicated or extended.
 
-\subsection{Research Questoins\label{questions}}
+\section{Research Questoins\label{questions}}
 We aim to answer the following research questions about the usage of types by Groovy programmers:
 
 \begin{itemize}
@@ -344,7 +371,8 @@ We aim to answer the following research questions about the usage of types by Gr
 
 \end{itemize}
 
-\subsection{Data Collection Procedure\label{dataCollection}}
+
+\section{Data Collection Procedure\label{dataCollection}}
 The projects used in this study were obtained from GitHub, a popular source control service based on Git.
 For each project, it was necessary to retrieve its source code, metadata, commit history, and the metadata of all of its developers.
 GitHub does not offer a listing of all hosted projects, but it offers two search mechanisms, a REST API and a Web based search page.
@@ -365,7 +393,7 @@ Using those identifiers we once again used the GitHub REST API and obtained the 
 
 
 %DATASET
-\subsection{Dataset\label{dataset}}
+\section{Dataset\label{dataset}}
 
 % count scripts, main classes and test classes
 
@@ -500,9 +528,8 @@ Almost 2500 out of  of the 4481 developers of projects in our dataset also have 
 % \end{figure}
 
 
-
 %ANALYSIS
-\subsection{Analysis\label{analyzer}}
+\section{Analysis\label{analyzer}}
 In order to understand where programmers use types, we developed a static code analyzer based on the Groovy metaprogramming library.
 This analyzer is capable of retrieving the declaration information of parameters and returns of methods, parameters of constructors, fields and local variables.
 In addition, the analyzer can tell if a declaration is part of a test class or a script and what is its visibility.
@@ -530,12 +557,12 @@ However, our choice was fundamental in order to execute a study with such an ext
 %
 % RESULTS
 %
-\section{Results\label{results}}
+\chapter{Results\label{results}}
 This section presents the data obtained from our analysis and its statistical treatment.
 We show how the usage of types varies according to the kind and visibility of declarations, nature of code, programmers' background, project maturity and frequency of changes.
 The interpretation of these results is left to Section \ref{discussion}, which answers the proposed research questions (Section \ref{questions}) based on this data and raises new research questions.
 
-\subsection{Overall Result\label{sec:results-overall}}
+\section{Overall Result\label{sec:results-overall}}
 
 Figure \ref{fig:all_histogram_all} shows a histogram and the descriptive statistics for the relative usage of types in declarations of projects.
 This value can vary from 0 (a project does not declare any types) to 1 (all declarations of a project are typed). 
@@ -572,7 +599,7 @@ In the rest of this section, this data will be presented in more detail so we ca
 
 
 % TYPE
-\subsection{Kind of Declaration\label{sec:results-type}}
+\section{Kind of Declaration\label{sec:results-type}}
 This section investigates whether programmers use types differently depending on the kind of the declaration.
 For each project, we measured the relative usage of types in fields, constructor parameters, method returns, method parameters and local variables.
 These results are displayed in box plots in Figure \ref{fig:all_boxplot_type} along with the corresponding descriptive statistics.
@@ -700,7 +727,7 @@ Although these are essentially the same kind of declaration in Groovy, they seem
 
 
 % VISIBILITY
-\subsection{Declaration Visibility\label{sec:results-visibility}}
+\section{Declaration Visibility\label{sec:results-visibility}}
 
 This section presents an analysis about how programmers use types according to the the visibility of a declaration.
 We follow the same approach as in the previous section.
@@ -797,7 +824,7 @@ Public & Protected & 0 & (-0.27, -0.22) \\ \hline
 
 
 % TESTS
-\subsection{Test Classes and Main Classes\label{sec:results-tests}}
+\section{Test Classes and Main Classes\label{sec:results-tests}}
 We now analyze the use of types in test classes in comparison to main classes.
 We used a simple heuristic to determine the kind of the class.
 In Groovy, like in Java, it is common to organize test classes and main classes in different source folders.
@@ -893,7 +920,7 @@ Method Return &  0          & (-0.31, -0.26) \\ \hline
 \end{table}
 
 % SCRIPTS
-\subsection{Script Files and Class Files\label{sec:results-scripts}}
+\section{Script Files and Class Files\label{sec:results-scripts}}
 In Groovy, programmers can write code in the form of scripts, not requiring the definition of classes for simple tasks.
 This section investigates how programmers type their code in such scripts.
 Similar to what was done in the previous section, we measured the usage of types in script and class files in all projects and compared the obtained data.
@@ -958,7 +985,7 @@ Method Return    & 0    & ( 0.30, 0.40) \\ \hline
 \end{table}
 
 % PROGRAMMERS BACKGROUND
-\subsection{Programmers' Background\label{sec:results-background}}
+\section{Programmers' Background\label{sec:results-background}}
 In this section, we analyze how programmers use types in their declarations according to their backgrounds.
 Projects are distributed in three groups based on the type system of the languages their developers have used on GitHub.
 The first group comprises those projects of programmers who developed only in statically typed languages, such as Java or C\#.
@@ -1126,7 +1153,7 @@ This comparison reveals that, for all kinds and visibilities of declarations, th
 
 
 % PROJECT MATURITY
-\subsection{Project Size, Age and Number of Commits\label{sec:results-maturity}}
+\section{Project Size, Age and Number of Commits\label{sec:results-maturity}}
 This section investigates whether programmers use types differently in their code depending on the project characteristics.
 We analyze three project metrics: age, number of lines of code and number of commits.
 % The latter measures the level of activity of the project.
@@ -1284,7 +1311,7 @@ Variable					& Other			& 5622 	& 0.29 		& 0.17	& 0.32 \\
 
 
 % FREQUENCY OF CHANGES
-\subsection{Frequency of changes\label{sec:results-changes}}
+\section{Frequency of changes\label{sec:results-changes}}
 This section investigates whether programmers prefer to type their declarations in frequently changed code or not.
 Only the mature projects defined in the previous section are considered since we would not be able to obtain meaningful results from small and young projects.
 
@@ -1316,22 +1343,16 @@ On the other hand, only 10\% of the mature projects present strong positive corr
 
 
 
-
-
-
-
-
-
 %
 % DISCUSSION
 %
-\section{Discussion\label{discussion}}
+\chapter{Discussion\label{discussion}}
 In this section, we discuss the results of our study in the light of the research questions proposed in Section \ref{questions}.
 Although we were able to obtain a good understanding of the usage of types in different contexts, the cause for such results is still unclear in many of them.
 We provide several hypotheses with the goal of identifying future research topics that can provide more detailed insights about such causes.
 
 % Q1
-\subsection*{Q1: Do programmers use types more often in the interface of their modules?\label{discussion-q1}}
+\section*{Q1: Do programmers use types more often in the interface of their modules?\label{discussion-q1}}
 The analysis of the usage of types by kind and visibility of declarations, presented in Sections \ref{sec:results-type} and \ref{sec:results-visibility}, provides clear evidence that the answer for Q1 is affirmative.
 Private declarations are typed less often than protected and public declarations.
 Also, fields, methods and constructors are typed more often than local variables.
@@ -1368,7 +1389,7 @@ Another possibility is that, even though Groovy is actually a dynamically typed 
 
 
 % Q2
-\subsection*{Q2: Do programmers use types less often in test classes and scripts?\label{discussion-q2}}
+\section*{Q2: Do programmers use types less often in test classes and scripts?\label{discussion-q2}}
 There are notable differences between the usage of types in either test classes or scripts and the main classes of a program.
 Sections \ref{sec:results-tests} and \ref{sec:results-scripts} show that, in these scenarios, programmers use types less often.
 If we are right about our hypothesis that programmers type their modules as a means to document their code, this could explain this less frequent use of types.
@@ -1384,7 +1405,7 @@ As found in the recent work of Hanenberg et al. \cite{Hanenberg13}, untyped code
 In such case, programmers might not type their declarations in scripts or test classes since this would allow them to finish their tasks faster.
 
 % Q3
-\subsection*{Q3: Does the experience of programmers with other languages influence their choice for typing their code?\label{discussion-q3}}
+\section*{Q3: Does the experience of programmers with other languages influence their choice for typing their code?\label{discussion-q3}}
 The analysis presented in Section \ref{sec:results-background} indicates that the answer for Question Q3 is affirmative.
 The choice for using types on a language with optional typing, such a Groovy, is in fact influenced by the programmers' experience with other languages.
 In general, those programmers who have only statically typed languages in their portfolio type more often than the others.
@@ -1393,7 +1414,7 @@ Apparently programmers who develop in an "untyped" language get used to the lack
 This hypothesis supports the work of Daly et al. which suggests that programmers have ways of reasoning about types that compensate for the lack of static type information \cite{ruby_vs_druby}.
 
 % Q4
-\subsection*{Q4: Does the size, age or level of activity  of a project have any influence on the usage of types?\label{discussion-q4}}
+\section*{Q4: Does the size, age or level of activity  of a project have any influence on the usage of types?\label{discussion-q4}}
 We initially believed that, as these metrics grow, the maintenance of projects becomes more difficult, leading programmers to use more types as a means to make code more readable.
 However, the analysis presented in Section \ref{sec:results-maturity} shows no evidence of such behavior.
 We consider two hypotheses in order to explain these results.
@@ -1401,7 +1422,7 @@ First, the considered metrics might not actually correlate to the need for maint
 Second, even if these metrics are a good indicative of the necessity of better maintainability, once projects start growing and aging, programmers might not have the opportunity or desire to make their code more maintainable.
 
 % Q5
-\subsection*{Q5: In frequently changed code, do developers prefer typed or untyped declarations?\label{discussion-q5}}
+\section*{Q5: In frequently changed code, do developers prefer typed or untyped declarations?\label{discussion-q5}}
 In frequently changed code, there are arguments in favor and against using types.
 Since types act as documentation, programmers might use them to make code more maintainable and easier to change  \cite{should_your_specification_language_be_typed}.
 On the other hand, untyped code is simpler and can potentially be changed faster \cite{gradual_typing}.
@@ -1424,10 +1445,10 @@ However, it is very unlikely that programmers would not notice that untyped decl
 %
 % THREATS TO VALIDITY
 %
-\section{Threats to Validity\label{threats}}
+\chapter{Threats to Validity\label{threats}}
 In this section, we discuss potential threats to validity of our study. As usual, we have arranged possible threats in two categories, internal and external validity \cite{Wohlin2012}. 
 
-\subsection*{Internal Validity}
+\section*{Internal Validity}
 Perhaps the most relevant internal threat to our study is that in a large scale empirical study such as ours, there might be many confounds which are difficult to identify.
 In Section \ref{sec:results-background} we consider that the GitHub portfolio of a programmer represents well his experience with other languages and type systems, but this might not be true for all programmers.
 They may have projects in their portfolio that they have not worked on or projects hosted elsewhere written in other languages.
@@ -1441,7 +1462,7 @@ There might be other similar cases that we are not aware of.
 % In addition, the type of application developed by these programmers might have influenced their choices.
 % In addition to that, the programmers' background, which we have shown to have influence over programmers, might interfere with the analysis of other influencing factors.
 
-\subsection*{External Validity}
+\section*{External Validity}
 Although we have analyzed a very extensive number of Groovy projects, it cannot be said that we have covered all possible scenarios.
 By manually inspecting our dataset, we could find only a few projects with characteristics of software developed inside an organization.
 Most of them were developed by small groups of people or open source communities.
@@ -1465,7 +1486,7 @@ Finally, the tools used to code in a given language might influence programmers 
 %
 % RELATED WORK
 %
-\section{Related Work\label{related}}
+\chapter{Related Work\label{related}}
 There are multiple studies in the literature that compare different typing strategies.
 Although we are not aware of any studies that analyze this question using a large scale case study as ours, we know of multiple controlled experiments with significant results.
 One of the goals of this paper is to complement these results by providing a a different point of view to their analyses. 
@@ -1512,7 +1533,7 @@ It shows that those programmers who have worked with dynamically typed languages
 %
 % CONCLUSION AND FUTURE WORK
 %
-\section{Conclusions and Future Work\label{conclusion}}
+\chapter{Conclusions and Future Work\label{conclusion}}
 In this paper we conducted a large scale case study in order to investigate how types are used in Groovy.
 Our goal is to find what are the point of view of programmers about what typing strategies are more suitable to which contexts.
 Our main findings are:
@@ -1541,150 +1562,27 @@ ERA will help researchers retrieve large numbers of projects from GitHub and pro
 % It is difficult however to state whether these hypothesis make sense or not.
 % In order to overcome this uncertainty, we are planning a series of controlled and qualitative studies which will complement the findings in this study in order to validate or reject these hypothesis.
 
-\acks
-Many thank to Stefan Hanenberg for the inspiration and the invaluable contributions.
 
-% \newpage
 
-%
-% BIBLIOGRAPHY
-%
-\bibliographystyle{abbrvnat}
-\renewcommand{\bibfont}{\normalsize}
-\begin{thebibliography}{}
-\softraggedright
 
-\bibitem[Tiobe Website(2013)]{tiobe}
-Tiobe programming community index. http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html. Accessed in 23/09/2013.
+\ppgccbibliography{bibfile}
 
-\bibitem[Groovy(2013)]{groovy}
-Groovy Programming Language. http://groovy.codehaus.org/. Accessed in 10/10/2013.
 
-\bibitem[Bruce, K. (2002)]{bruce2002foundations}
-Bruce, K. (2002). Foundations of object-oriented languages: types and semantics. MIT press.
+\begin{appendices}
 
-\bibitem[Bruch, M., Monperrus, M., and Mezini, M. (2009)]{bruch2009learning}
-Bruch, M., Monperrus, M., and Mezini, M. (2009). Learning from examples to improve code completion systems. In Proceedings of the the 7th joint meeting of the European software engineering conference and the ACM SIGSOFT symposium on The foundati- ons of software engineering, pages 213–222. ACM.
+\chapter{ERA: An Elastic Framework for Repository Analysis on the Cloud}
 
-\bibitem[Cardelli, L. (1996]{type_systems}
-Cardelli, L. (1996). Type systems. ACM Comput. Surv., 28(1):263–264.
 
-\bibitem[Chang, M., Mathiske, B., Smith, E., Chaudhuri, A., Gal, A., Bebenita, M., Wimmer, C.]{jit}
-Chang, M., Mathiske, B., Smith, E., Chaudhuri, A., Gal, A., Bebenita, M., Wimmer, C., and Franz, M. (2011). The impact of optional type information on jit compilation of dynamically typed languages. SIGPLAN Not., 47(2):13–24.
+\end{appendices}
 
-\bibitem[Daly, M. T., Sazawal, V., and Foster, J. S. (2009)]{ruby_vs_druby}
-Daly, M. T., Sazawal, V., and Foster, J. S. (2009). Work In Progress: an Empirical Study of Static Typing in Ruby. In Workshop on Evaluation and Usability of Programming Languages and Tools (PLATEAU), Orlando, Florida.
 
-\bibitem[Hanenberg, S. (2010)]{experiment_with_purity}
-Hanenberg, S. (2010). An experiment about static and dynamic type systems: doubts about the positive impact of static type systems on development time. SIGPLAN Not., 45(10):22–35.
+\begin{attachments}
 
-\bibitem[Kleinschmager, S., Hanenberg, S., Robbes, R., and Stefik, A. (2012)]{hanenberg_icpc}
-Kleinschmager, S., Hanenberg, S., Robbes, R., and Stefik, A. (2012). Do static type systems improve the maintainability of software systems? An empirical study. 2012 20th IEEE International Conference on Program Comprehension (ICPC), pages 153– 162.
 
-\bibitem[Lamport, L. and Paulson, L. C. (1999)]{should_your_specification_language_be_typed}
-Lamport, L. and Paulson, L. C. (1999). Should your specification language be typed. ACM Trans. Program. Lang. Syst., 21(3):502–526.
+\chapter{Detailed Results}
 
-\bibitem[Mayer(2012)]{mayer2012static}
-Mayer, C., Hanenberg, S., Robbes, R., Tanter, E., and Stefik, A.(2012). Static type systems (sometimes) have a positive impact on the usability of undocumented software: An empirical evaluation,  18:5.
 
-\bibitem[Pierce, B. (2002)]{types_and_programming_languages}
-Pierce, B. (2002). Types and programming languages. MIT press.
-
-\bibitem[Tratt, L. (2009)]{dynamically_typed_languages}
-Tratt, L. (2009). Chapter 5 dynamically typed languages. volume 77 of Advances in Computers, pages 149 – 184. Elsevier.
-
-\bibitem[Siek, J., and Walid T.(2007)]{gradual_typing}
-Siek, Jeremy, and Walid Taha. Gradual typing for objects. ECOOP 2007 – Object-Oriented Programming. Springer Berlin Heidelberg, 2007. 2-27.
-
-\bibitem[Gray(2008)]{gray08}
-Gray, K. E. Safe cross-language inheritance. ECOOP 2008 - European Conference on Object-Oriented Programming, pp. 52–75.
-
-\bibitem[Gray(2011)]{gray11}
-Gray, K. E. Interoperability in a scripted world: Putting inheritance \& prototypes together. In Foundations of Object-Oriented Languages (2011).
-
-\bibitem[Gray(2005)]{gray05}
-Gray, K. E., Findler, R. B.,Andflatt, M. Fine-grained interoperability through contracts and mirrors. InObject-Oriented Programming, Systems, Languages, and Applications(2005), pp. 231–245.
-
-\bibitem[Siek(2007)]{siek07}
-Siek, J.,Andtaha, W. Gradual typing for objects. In European Conference on Object-Oriented Programming(2007),pp. 2–27.
-
-\bibitem[Takikawa(2012)]{takikawa12}
-Takikawa, Asumu, et al. "Gradual typing for first-class classes." ACM SIGPLAN Notices. Vol. 47. No. 10. ACM, 2012.
-\bibitem[Fowler(2010)]{fowler10}
-Fowler, M.. Domain-specific languages. Pearson Education, 2010.
-
-\bibitem[Labovitz(1968)]{labovitz68}
-Labovitz, S. "Criteria for selecting a significance level: A note on the sacredness of. 05." The American Sociologist 3.3 (1968): 220-222.
-
-% Types help on the definition of a contract
-\bibitem[Meijer(2004)]{Meijer04}
-Meijer, E., and Peter D. "Static typing where possible, dynamic typing when needed: The end of the cold war between programming languages." OOPSLA, 2004.
-
-\bibitem[Wadler(2004)]{Wadler04}
-Wadler, Philip, and Robert Bruce Findler. "Well-typed programs can’t be blamed." Programming Languages and Systems. Springer Berlin Heidelberg, 2009. 1-16.
-
-% Unfortunately, dynamically typed programming languages usually do not support the concept of DEC. Therefore we integrated DEC into the programming language Python by using a metaprogramming approach
-\bibitem[Plosch(1997)]{Plosch97}
-Plosch, Reinhold. "Design by contract for Python." Software Engineering Conference, 1997. Asia Pacific and International Computer Science Conference 1997. APSEC'97 and ICSC'97. Proceedings. IEEE, 1997.
-
-%Traditional static type systems are very effective for verifying basic interface specifications
-\bibitem[Flanagan(2006)]{Flanagan2006}
-Flanagan, C. "Hybrid type checking." ACM Sigplan Notices. Vol. 41. No. 1. ACM, 2006.
-
-\bibitem[Meyer(1988)]{Meyer88}
-Meyer, B. Object-oriented software construction. Vol. 2. New York: Prentice hall, 1988.
-
-\bibitem[Furr(2009)]{Furr09}
-Furr, Michael, et al. "Static type inference for Ruby." Proceedings of the 2009 ACM symposium on Applied Computing. ACM, 2009.
-
-% Coupling is high for inheritance
-% interaction coupling, component coupling and inheritance coupling
-\bibitem[Chidamber(1994)]{Chidamber94}
-Chidamber, Shyam R., and Chris F. Kemerer. "A metrics suite for object oriented design." Software Engineering, IEEE Transactions on 20.6 (1994): 476-493.
-
-\bibitem[ISO25000(2004)]{Iso2004}
-ISO, ISO, and IEC FCD. "25000, Software Engineering-Software Product Quality Requirements and Evaluation (SQuaRE)-Guide to SQuaRE." Geneva, International Organization for Standardization (2004).
-
-\bibitem[Fenton(1998)]{Fenton1998}
-Fenton, Norman E., and Shari Lawrence Pfleeger. Software metrics: a rigorous and practical approach. PWS Publishing Co., 1998.
-
-\bibitem[Wohlin(2012)]{Wohlin2012}
-Wohlin, Claes, et al. Experimentation in software engineering. Springer Publishing Company, Incorporated, 2012.
-
-% Use of types in interfaces
-\bibitem[Gannon(1977)]{Gannon77}
-Gannon, J. D. An experimental evaluation of data type conventions. Commun. ACM 20, 8 (1977), 584–595.
-
-\bibitem[Prechelt(1998)]{Prechelt98}
-Prechelt, L., and Tichy, W. F. A controlled experiment to assess the beneﬁts of procedure argument type checking. IEEE Trans. Softw. Eng. 24, 4 (1998), 302–312
-
-\bibitem[Hanenberg(2013)]{Hanenberg13}
-Hanenberg, Stefan, et al. "An empirical study on the impact of static typing on software maintainability." Empirical Software Engineering (2013): 1-48.
-
-\bibitem[Bruce(2002)]{Bruce2002}
-Bruce, Kim B. Foundations of object-oriented languages: types and semantics. The MIT Press, 2002.
-
-\bibitem[Curtis(1987)]{Curtis1987}
-Curtis, B. Five paradigms in the psychology of programming. MMC, 1987.
-
-\bibitem[Beck(2003)]{Beck03}
-Beck, Kent. Test-driven development: by example. Addison-Wesley Professional, 2003.
-
-\bibitem[Meyerovich(2013)]{Meyerovich13}
-Meyerovich, Leo A., and Ariel Rabkin. "Empirical Analysis of Programming Language Adoption." (2013).
-
-\bibitem[Cohen(1988)]{Cohen88}
-Cohen, J. Statistical power analysis for the behavioral sciences (2nd ed.). Hillsdale, NJ: Lawrence Erlbaum.
-
-\end{thebibliography}
+\end{attachments}
 
 
 \end{document}
-
-%                       Revision History
-%                       -------- -------
-%  Date         Person  Ver.    Change
-%  ----         ------  ----    ------
-
-%  2013.06.29   TU      0.1--4  comments on permission/copyright notices
-
