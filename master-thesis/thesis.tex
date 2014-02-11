@@ -172,107 +172,107 @@ It builds upon the strengths of Java, but has additional features inspired by dy
 Like Java, Groovy code is compiled to bytecode, allowing it to seamlessly integrate with existing Java classes and libraries. 
 These factors have attracted a large number of Java programmers who want to use Groovy's dynamic functionality without having to learn a completely different language or change the execution platform of their systems. 
 
-% Groovy was designed to be more expressive and concise than Java.
-% Two implementations of a simple algorithm are shown below.
-% Given a list of numbers, return a list containing only the even numbers of that list.
-% Listing \ref{javaClass} shows the Java implementation while Listing \ref{groovyClass} shows the Groovy counterpart. 
-% Because of its high level of expressiveness, Groovy is able to reduce much of the boilerplate required in Java.
-% Listing \ref{groovyClass} shows that Groovy offers a native syntax for lists (lines 3, 6 and 14) and operator overloading (line 6). 
-% Semicolons are optional, except when there are multiple statements in the same line. 
-% When the keyword $return$ is omitted (line 10), the last expression evaluated with a method is returned. 
-% Also, parentheses in method calls can often be omitted (line 16).
-% In addition, Groovy implicitly imports frequently used classes, like those of the $java.util$ package, and methods, like $System.out.println$ (line % 16).
+Groovy was designed to be more expressive and concise than Java.
+Two implementations of a simple algorithm are shown below.
+Given a list of numbers, return a list containing only the even numbers of that list.
+Listing \ref{javaClass} shows the Java implementation while Listing \ref{groovyClass} shows the Groovy counterpart. 
+Because of its high level of expressiveness, Groovy is able to reduce much of the boilerplate required in Java.
+Listing \ref{groovyClass} shows that Groovy offers a native syntax for lists (lines 3, 6 and 14) and operator overloading (line 6). 
+Semicolons are optional, except when there are multiple statements in the same line. 
+When the keyword $return$ is omitted (line 10), the last expression evaluated with a method is returned. 
+Also, parentheses in method calls can often be omitted (line 16).
+In addition, Groovy implicitly imports frequently used classes, like those of the $java.util$ package, and methods, like $System.out.println$ (line % 16).
 
-% \begin{Listing}[ht]
-% \begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
-% import java.util.ArrayList;
-% import java.util.List;
-% 
-% public class JavaFilter {
-% 	List<Integer> evenNumbers(List<Integer> list) {
-% 		List<Integer> result = new ArrayList<Integer>();
-% 		for(int item : list) {
-% 			if(item % 2 == 0) {
-% 				result.add(item);
-% 			}
-% 		}
-% 
-% 		return result;
-% 	}
-% 
-% 	public static void main(String[] args) {
-% 		List<Integer> list = new ArrayList<Integer>();
-% 		list.add(1);
-% 		list.add(2);
-% 		list.add(3);
-% 		list.add(4);
-% 
-% 		List<Integer> result = new JavaFilter().evenNumbers(list);
-% 		System.out.println(result);
-% 	}
-% }
-% \end{lstlisting}
-% \caption{A simple algorithm written in Java}
-% \label{javaClass}
-% \end{Listing}
-% 
-% \begin{Listing}[ht]
-% \begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
-% class GroovyFilter {
-% 	List<Integer> evenNumbers(List<Integer> list) {
-% 		List<Integer> result = []
-% 		for(int item : list) {
-% 			if(item % 2 == 0) {
-% 				result << item
-% 			}
-% 		}
-% 
-% 		result
-% 	}
-% 
-% 	public static void main(String[] args) {
-% 		List<Integer> list = [1, 2, 3, 4]
-% 		List<Integer> result = new GroovyFilter().evenNumbers(list)
-% 		println result
-% 	}
-% }
-% \end{lstlisting}
-% \caption{A simple algorithm written in Groovy}
-% \label{groovyClass}
-% \end{Listing}
+\begin{Listing}[ht]
+\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
+import java.util.ArrayList;
+import java.util.List;
 
-% The design of Groovy was influenced by dynamic features of programming languages such as Ruby and Python.
-% Listing \ref{dynamicInfuence} shows how these features can be used to rewrite the same algorithm presented % in Listing \ref{javaClass} in a single line of code. 
-% First, notice that the code shown in Listing \ref{dynamicInfuence}  is a script, rather than a class file.
-% It makes use of a closure to allow a programmer to define a filter logic.
-% This closure is passed down to the \emph{findAll} method, which  apply this closure to every element of % the list to in order to decide if that element should be returned or not.
-% Closures are one of the most important features of Groovy as compared to Java.
-% They allow a functional programming style, which is both expressive and powerful.
-% 
-% \begin{Listing}[ht]
-% \begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
-% println([1, 2, 3, 4].findAll {it % 2 == 0})
-% \end{lstlisting}
-% \caption{A class written in Groovy}
-% \label{dynamicInfuence}
-% \end{Listing}
-% 
-% Metaprogramming is another dynamic feature present in Groovy. 
-% Listing \ref{metaprogramming} shows how to add a method to an existing class dynamically.
-% By adding the method \emph{evenNumbers()} to the \emph{List} class, it is possible to achieve higher % expressiveness.
-% This is specially useful when implementing Domain Specific Languages \cite{fowler10}.
-% 
-% \begin{Listing}[ht]
-% \begin{lstlisting}[language=Java,tabsize=2,breaklines=true,numbers=left]
-% List.metaClass.evenNumbers = {
-% 	delegate.findAll {it % 2 == 0}
-% }
-% println([1, 2, 3, 4].evenNumbers())
-% 
-% \end{lstlisting}
-% \caption{An example of metaprogramming in Groovy}
-% \label{metaprogramming}
-% \end{Listing}% 
+public class JavaFilter {
+	List<Integer> evenNumbers(List<Integer> list) {
+		List<Integer> result = new ArrayList<Integer>();
+		for(int item : list) {
+			if(item % 2 == 0) {
+				result.add(item);
+			}
+		}
+
+		return result;
+	}
+
+	public static void main(String[] args) {
+		List<Integer> list = new ArrayList<Integer>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+
+		List<Integer> result = new JavaFilter().evenNumbers(list);
+		System.out.println(result);
+	}
+}
+\end{lstlisting}
+\caption{A simple algorithm written in Java}
+\label{javaClass}
+\end{Listing}
+
+\begin{Listing}[ht]
+\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
+class GroovyFilter {
+	List<Integer> evenNumbers(List<Integer> list) {
+		List<Integer> result = []
+		for(int item : list) {
+			if(item % 2 == 0) {
+				result << item
+			}
+		}
+
+		result
+	}
+
+	public static void main(String[] args) {
+		List<Integer> list = [1, 2, 3, 4]
+		List<Integer> result = new GroovyFilter().evenNumbers(list)
+		println result
+	}
+}
+\end{lstlisting}
+\caption{A simple algorithm written in Groovy}
+\label{groovyClass}
+\end{Listing}
+
+The design of Groovy was influenced by dynamic features of programming languages such as Ruby and Python.
+Listing \ref{dynamicInfuence} shows how these features can be used to rewrite the same algorithm presented % in Listing \ref{javaClass} in a single line of code. 
+First, notice that the code shown in Listing \ref{dynamicInfuence}  is a script, rather than a class file.
+It makes use of a closure to allow a programmer to define a filter logic.
+This closure is passed down to the \emph{findAll} method, which  apply this closure to every element of % the list to in order to decide if that element should be returned or not.
+Closures are one of the most important features of Groovy as compared to Java.
+They allow a functional programming style, which is both expressive and powerful.
+
+\begin{Listing}[ht]
+\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
+println([1, 2, 3, 4].findAll {it % 2 == 0})
+\end{lstlisting}
+\caption{A class written in Groovy}
+\label{dynamicInfuence}
+\end{Listing}
+
+Metaprogramming is another dynamic feature present in Groovy. 
+Listing \ref{metaprogramming} shows how to add a method to an existing class dynamically.
+By adding the method \emph{evenNumbers()} to the \emph{List} class, it is possible to achieve higher % expressiveness.
+This is specially useful when implementing Domain Specific Languages \cite{fowler10}.
+
+\begin{Listing}[ht]
+\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
+List.metaClass.evenNumbers = {
+	delegate.findAll {it % 2 == 0}
+}
+println([1, 2, 3, 4].evenNumbers())
+
+\end{lstlisting}
+\caption{An example of metaprogramming in Groovy}
+\label{metaprogramming}
+\end{Listing}% 
 
 When Groovy was first launched, in 2007, it was a purely dynamically typed language.
 However, it allowed programmers to optionally type their declarations.
@@ -363,7 +363,7 @@ We aim to answer the following research questions about the usage of types by Gr
 	
 	\item \textbf{Question Q2: Do programmers use types less often in test classes and scripts?} Many studies analyze typing paradigms in the main classes of a program. However, little is known about this question in scripts or test classes. We want to understand if programmers consider different typing strategies in these scenarios.
 
-	\item \textbf{Question Q3: Does the experience of programmers with other languages influence their choice for typing their code?} We believe that programmers familiar with a dynamically typed language are more confortable with the lack of types and end up using types less often in Groovy. 
+	\item \textbf{Question Q3: Does the experience of programmers with other languages influence their choice for typing their code?} We believe that programmers familiar with a dynamically typed language are more comfortable with the lack of types and end up using types less often in Groovy. 
 
 	\item \textbf{Question Q4: Does the size, age or level of activity of a project have any influence on the usage of types?} We hypothesize that as these metrics grow, there is an increased concern about keeping code more maintainable. This can lead programmers to use types more often as a means to improve code readability.
 
@@ -411,7 +411,6 @@ Also, we found many small projects created with learning purposes only.
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
-\small
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
@@ -436,7 +435,7 @@ This is explained by the fact that, in Groovy, the default visibilities for fiel
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
-\small
+
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
@@ -444,16 +443,16 @@ This is explained by the fact that, in Groovy, the default visibilities for fiel
 \hline
 \hline
 \cell{Field}                      	&   54    &  19  &    163  &    5,268 & 366,148   \\ \hline                  
-\cell{Constructor\\Parameter}     	&    3    &   0  &     16  &     933 &  18,956   \\ \hline                  
-\cell{Method\\Parameter}          	&   30    &   6  &    110  &    3,554 & 202,617   \\ \hline                  
-\cell{Method\\Return}             	&   53    &  15  &    165  &    4,893 & 357,997   \\ \hline                  
-\cell{Local\\Variable}            	&   88    &  21  &    361  &   16,427 & 602,645   \\ \hline                  
+\cell{Constructor Parameter}     	&    3    &   0  &     16  &     933 &  18,956   \\ \hline                  
+\cell{Method Parameter}          	&   30    &   6  &    110  &    3,554 & 202,617   \\ \hline                  
+\cell{Method Return}             	&   53    &  15  &    165  &    4,893 & 357,997   \\ \hline                  
+\cell{Local Variable}            	&   88    &  21  &    361  &   16,427 & 602,645   \\ \hline                  
 \hline																			
 Public                    			&   74    &  20  &    239  &    7,942 & 507,296   \\ \hline                  
 Protected                 			&    6    &   0  &     32  &    1,394 &  42,646   \\ \hline                  
 Private                   			&   58    &  21  &    178  &    5,268 & 395,776   \\ \hline                  
 \hline																			
-\cell{All\\Declarations} &  227    &  71  &    744  &   29,862 &1,548,363   \\ \hline                  
+\cell{All Declarations} &  227    &  71  &    744  &   29,862 &1,548,363   \\ \hline                  
 \end{tabular}
 \caption{Number of Declarations per Project}
 \label{tab:number_of_declarations}
@@ -471,7 +470,7 @@ Almost 2500 out of  of the 4481 developers of projects in our dataset also have 
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
-\small
+
 
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -490,7 +489,7 @@ Almost 2500 out of  of the 4481 developers of projects in our dataset also have 
 
 
 \begin{figure}[ht]
-\centering \includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/languages.png}
+\centering \includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/languages.png}
 \caption{Most popular languages among Groovy developers}
 \label{fig:other_languages} 
 \end{figure}
@@ -522,7 +521,7 @@ Almost 2500 out of  of the 4481 developers of projects in our dataset also have 
 
 
 % \begin{figure}[ht]
-% \centering \includegraphics[width=0.45\textwidth]{typeSystem_background}
+% \centering \includegraphics[width=0.7\textwidth]{typeSystem_background}
 % \caption{Type System of other languages used by programmers}
 % \label{fig:typeSystem_background} 
 % \end{figure}
@@ -570,10 +569,10 @@ All declarations are considered.
 
 \begin{figure}[h]
 \centering 
-\includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/all/histograms/5_all_types.png} 
+\includegraphics[width=0.9\textwidth]{../aosd_2014/analysis/result/all/histograms/5_all_types.png} 
 
 \vspace{0.3cm}
-\small
+
 \begin{tabular}{|c|c|c|cccc|}
 \hline
 {}		&  {}		&  {}			&  \multicolumn{4}{c|}{Quartiles}				\\
@@ -609,11 +608,11 @@ On the other hand, 6000 projects have declarations of fields.
 
 \begin{figure}[h]
 \centering 
-\includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/all/boxplots/6_declarations_by_type.png} 
+\includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/all/boxplots/6_declarations_by_type.png} 
 \vspace{0.3cm}
 
 \renewcommand{\arraystretch}{1.2}
-\small
+
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 Declaration Type		& n		& mean	& median		& std. dev.	\\
@@ -689,7 +688,7 @@ Confidence intervals were calculated with a confidence of 0.999 ($1-\alpha$).
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
-\small
+
 \begin{tabular}{|c|c|c|c|}
 \hline 
 								& {}					& p  	      & Difference \\
@@ -749,13 +748,13 @@ These results again suggest a positive answer for Question Q1, which hypothesize
 
 \begin{figure}[h]
 \centering 
-\includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/all/boxplots/23_declarations_by_visibility.png} 
+\includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/all/boxplots/23_declarations_by_visibility.png} 
 
 
 \vspace{0.3cm}
 
 \renewcommand{\arraystretch}{1.2}
-\small
+
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 Declaration Visibility	& n		& mean	& median	& std. dev.	\\
@@ -774,7 +773,7 @@ Private   				& 6023	& 0.43	& 0.40		& 0.32		\\ \hline
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
-\small
+
 \begin{tabular}{|c|c|c|c|}
 \hline 
 								& {}		& p		& Difference	\\
@@ -793,28 +792,28 @@ Public & Protected & 0 & (-0.27, -0.22) \\ \hline
 % Figures \ref{fig:all_boxplot_visibility_methodReturn}-\ref{fig:all_boxplot_visibility_field} detail these results by declaration type.
 % \begin{figure}[h]
 % \centering 
-% \includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/all/boxplots/11_returns_of_methods.png} 
+% \includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/all/boxplots/11_returns_of_methods.png} 
 % \caption{Usage of types in declarations of returns of methods by visibility}
 % \label{fig:all_boxplot_visibility_methodReturn} 
 % \end{figure}
 % 
 % \begin{figure}[h]
 % \centering 
-% \includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/all/boxplots/14_parameters_of_methods.png} 
+% \includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/all/boxplots/14_parameters_of_methods.png} 
 % \caption{Usage of types in declarations of parameters of methods by visibility}
 % \label{fig:all_boxplot_visibility_methodParameter} 
 % \end{figure}
 % 
 % \begin{figure}[h]
 % \centering 
-% \includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/all/boxplots/17_parameters_of_constructors.png} 
+% \includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/all/boxplots/17_parameters_of_constructors.png} 
 % \caption{Usage of types in declarations of constructor parameters by visibility}
 % \label{fig:all_boxplot_visibility_constructorParameter} 
 % \end{figure}
 % 
 % \begin{figure}[h]
 % \centering 
-% \includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/all/boxplots/20_fields.png} 
+% \includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/all/boxplots/20_fields.png} 
 % \caption{Usage of types in declarations of fields by visibility}
 % \label{fig:all_boxplot_visibility_field} 
 % \end{figure}
@@ -833,14 +832,14 @@ Based on these conventions, we can assume that all classes inside a \emph{test} 
 
 \begin{figure}[h]
 \centering 
-\includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/test/comparison/boxplots/6_declarations_by_type.png} 
+\includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/test/comparison/boxplots/6_declarations_by_type.png} 
 \vspace{0.1cm}
 \renewcommand{\arraystretch}{1.2}
-\small
+
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\cell{Declaration\\Type}	& \cell{Class\\Type}& n		& mean		& median	& \cell{std.\\dev.}\\
+\cell{Declaration Type}	& \cell{Class Type}& n		& mean		& median	& \cell{std. dev.}\\
 \hline
 \hline
 \multirow{2}{*}{Field}	& Test			& 1769	& 0.48 		& 0.47	& 0.43 \\ 
@@ -903,7 +902,7 @@ This implies that, in this case, developers type their methods not because they 
 % ETA=0.072
 \begin{table}[h!]
 \centering{}%
-\small
+
 \begin{tabular}{|c|c|c|}
 \hline 
 Declaration Type 		& p & Difference \\
@@ -945,14 +944,14 @@ Although it is not clear from our analysis what is the reason for such phenomena
 
 \begin{figure}[h]
 \centering 
-\includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/script/comparison/boxplots/6_declarations_by_type.png} 
+\includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/script/comparison/boxplots/6_declarations_by_type.png} 
 \vspace{0.1cm}
 \renewcommand{\arraystretch}{1.2}
-\small
+
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\cell{Declaration\\Type}&\cell{File\\Type}	& n		& mean		& median	& \cell{std.\\dev.}\\
+\cell{Declaration Type}&\cell{File Type}	& n		& mean		& median	& \cell{std. dev.}\\
 \hline
 \hline	
 Method					& Script			& 504 	& 0.40	& 0.23	& 0.42	 \\                
@@ -970,7 +969,7 @@ Variable	 				& Class				& 5246	& 0.30	& 0.18	& 0.32	 \\
 % ETA=0.067
 \begin{table}[ht]
 \centering{}%
-\small
+
 \begin{tabular}{|c|c|c|}
 \hline 
 Declaration Type & p & Difference \\
@@ -1000,14 +999,14 @@ These tables are divided in three parts, each one corresponding to the compariso
 
 \begin{figure}[h]
 \centering 
-\includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/background/comparison/boxplots/6_declarations_by_type.png} 
+\includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/background/comparison/boxplots/6_declarations_by_type.png} 
 \vspace{0.1cm}
 \renewcommand{\arraystretch}{1.2}
-\small
+
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\cell{Declaration\\Type}						& \cell{Background}	& N		& Mean		& Median	& \cell{Std.\\Dev.}\\
+\cell{Declaration Type}						& \cell{Background}	& N		& Mean		& Median	& \cell{std. dev.}\\
 \hline
 \hline
 {}												& Static			& 782	& 0.56		& 0.52 		& 0.35\\			 
@@ -1038,14 +1037,14 @@ Field											& Both				& 3183	& 0.43		& 0.39 		& 0.34\\
                 
 \begin{figure}[ht]
 \centering 
-\includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/background/comparison/boxplots/23_declarations_by_visibility.png} 
+\includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/background/comparison/boxplots/23_declarations_by_visibility.png} 
 \vspace{0.1cm}
 \renewcommand{\arraystretch}{1.2}
-\small
+
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\cell{Declaration\\Type}						& \cell{Background}	& n		& mean		& median	& \cell{std.\\dev.}\\
+\cell{Declaration Type}						& \cell{Background}	& n		& mean		& median	& \cell{std. dev.}\\
 \hline
 \hline
 {}												& Static			& 757 	& 0.73		& 0.83 		& 0.29\\			 
@@ -1069,13 +1068,13 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 \begin{table}[h!]
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
-\small
+
 \begin{tabular}{|c|c|c|c|}
 \hline 
 {}															& Declaration Type 		& p 		& Difference  \\
 \hline 
 \hline 
-\multirow{5}{*}{\cell{Static and\\Dynamic\\vs.\\Static}}	& Field					& 0    & (-0.17, -0.07)	\\ \cline{2-4}
+\multirow{5}{*}{\cell{Static and Dynamic\\vs.\\Static}}	& Field					& 0    & (-0.17, -0.07)	\\ \cline{2-4}
 															& Constructor Parameter	& 1.0  & (-0.12,  0.06)	\\ \cline{2-4}
 															& Method Parameter		& 0    & (-0.11, 0.00)	\\ \cline{2-4}
 															& Method Return			& 0    & (-0.11, -0.01)	\\ \cline{2-4}
@@ -1090,7 +1089,7 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 															& Local Variable		& 0    & (-0.18, -0.07)	\\ 
 \hline 
 \hline
-\multirow{5}{*}{\cell{Static and\\Dynamic\\vs.\\Dynamic}}	& Field					& 0    & ( 0.01,  0.08)	\\ \cline{2-4}
+\multirow{5}{*}{\cell{Static and Dynamic\\vs.\\Dynamic}}	& Field					& 0    & ( 0.01,  0.08)	\\ \cline{2-4}
 															& Constructor Parameter	& 1.00 & (-0.07,  0.06)	\\ \cline{2-4}
 															& Method Parameter		& 0.84 & (-0.02,  0.06)	\\ \cline{2-4}
 															& Method Return			& 0.94 & (-0.05,  0.02)	\\ \cline{2-4}
@@ -1102,7 +1101,7 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 \end{table}
       
 \begin{table}[h!]
-\small
+
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{|c|c|c|c|}
@@ -1110,7 +1109,7 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 {}															& Declaration Visibility 	& p 		& Difference \\
 \hline 
 \hline 
-\multirow{3}{*}{\cell{Static and\\Dynamic vs.\\Static}}		& Public					& 0.00	& (-0.10, 0.00)	\\ \cline{2-4}
+\multirow{3}{*}{\cell{Static and Dynamic\\vs.\\Static}}		& Public					& 0.00	& (-0.10, 0.00)	\\ \cline{2-4}
 															& Protected					& 1.00	& (-0.07,  0.09)	\\ \cline{2-4}
 															& Private					& 0.00	& (-0.18, -0.08)	\\ 
 \hline 
@@ -1121,7 +1120,7 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 															& Private					& 0.00	& (-0.23, -0.13)	\\ 
 \hline 
 \hline
-\multirow{3}{*}{\cell{Static and\\Dynamic vs.\\Dynamic}}	& Public					& 0.98	& (-0.04,  0.03)	\\ \cline{2-4}
+\multirow{3}{*}{\cell{Static and Dynamic\\vs.\\Dynamic}}	& Public					& 0.98	& (-0.04,  0.03)	\\ \cline{2-4}
 															& Protected					& 1.00	& (-0.05,  0.06)	\\ \cline{2-4}
 															& Private					& 0.00	& ( 0.02,  0.09)	\\ 
 \hline 
@@ -1165,7 +1164,7 @@ A negative value means an inverse correlation.
 Values close to 1 or -1 indicate very strong relationships and values above 0.5 or below -0.5 can be considered strong correlations.
 
 \begin{table}[h!]
-\small
+
 \centering{}%
 \begin{tabular}{|c|c|c|c|c|}
 \hline 
@@ -1204,7 +1203,7 @@ According to our criteria, there are 223 mature projects in our dataset, which a
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
-\small
+
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
 {}		& Mean	& Median	& Std. Dev.	& Max	& Total		\\
@@ -1226,14 +1225,14 @@ There is no significant difference in how programmers type declarations in matur
 
 \begin{figure}[h!]
 \centering 
-\includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/size/comparison/boxplots/6_declarations_by_type.png} 
+\includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/size/comparison/boxplots/6_declarations_by_type.png} 
 \vspace{0.1cm}
 \renewcommand{\arraystretch}{1.2}
-\small
+
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\cell{Declaration\\Type}	& \cell{Project\\Type}& n	& mean	& median	& \cell{std.\\dev.}\\
+\cell{Declaration Type}	& \cell{Project Type}& n	& mean	& median	& \cell{std. dev.}\\
 \hline
 \hline
 \multirow{2}{*}{Field}		& Mature		& 221 	& 0.53 		& 0.48	& 0.27 \\
@@ -1259,14 +1258,14 @@ Variable					& Other			& 5622 	& 0.29 		& 0.17	& 0.32 \\
 
 \begin{figure}[h!]
 \centering 
-\includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/size/comparison/boxplots/23_declarations_by_visibility.png} 
+\includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/size/comparison/boxplots/23_declarations_by_visibility.png} 
 \vspace{0.1cm}
 \renewcommand{\arraystretch}{1.2}
-\small
+
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\cell{Declaration\\Type}			& \cell{Project\\Type}	& n		& mean		& median	& \cell{std.\\dev.}\\
+\cell{Declaration Type}			& \cell{Project Type}	& n		& mean		& median	& \cell{std. dev.}\\
 \hline
 \hline
 \multirow{2}{*}{\cell{Public}}		& Mature				& 223 	& 0.72		& 0.76 		& 0.24\\
@@ -1288,7 +1287,7 @@ Variable					& Other			& 5622 	& 0.29 		& 0.17	& 0.32 \\
 
 % \begin{table}[h!]
 % \centering{}%
-% \small
+% 
 % \begin{tabular}{|c|c|c|}
 % \hline 
 % Declaration Type/Visibility 		& p & Difference \\
@@ -1323,7 +1322,7 @@ It shows that 65\% of them present a negative Spearman correlation coefficient a
 On the other hand, only 10\% of the mature projects present strong positive correlations.
 
 \begin{figure}[h]
-\centering \includegraphics[width=0.45\textwidth]{../aosd_2014/analysis/result/change_commits_distribution.png} 
+\centering \includegraphics[width=0.9\textwidth]{../aosd_2014/analysis/result/change_commits_distribution.png} 
 \caption{Spearman ranking for the correlation between frequency of changes of files and the usage of types in mature projects}
 \label{fig:change_spearman} 
 \end{figure}
