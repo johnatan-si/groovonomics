@@ -164,7 +164,7 @@ Finally, Section \ref{conclusion} concludes this study and suggests future work.
 
 \section{Type Systems}
 
-\section{The Groovy Language}
+\chapter{The Groovy Language}
 Groovy is a dynamically typed programming language designed to run on the Java Virtual Machine.
 Its adoption has grown remarkably over the last years.
 According to the TIOBE Programming Index, Groovy is the 22\textsuperscript{nd} most popular language in the software industry \cite{tiobe}, ahead of languages like Haskell and Scala. 
@@ -172,107 +172,7 @@ It builds upon the strengths of Java, but has additional features inspired by dy
 Like Java, Groovy code is compiled to bytecode, allowing it to seamlessly integrate with existing Java classes and libraries. 
 These factors have attracted a large number of Java programmers who want to use Groovy's dynamic functionality without having to learn a completely different language or change the execution platform of their systems. 
 
-Groovy was designed to be more expressive and concise than Java.
-Two implementations of a simple algorithm are shown below.
-Given a list of numbers, return a list containing only the even numbers of that list.
-Listing \ref{javaClass} shows the Java implementation while Listing \ref{groovyClass} shows the Groovy counterpart. 
-Because of its high level of expressiveness, Groovy is able to reduce much of the boilerplate required in Java.
-Listing \ref{groovyClass} shows that Groovy offers a native syntax for lists (lines 3, 6 and 14) and operator overloading (line 6). 
-Semicolons are optional, except when there are multiple statements in the same line. 
-When the keyword $return$ is omitted (line 10), the last expression evaluated with a method is returned. 
-Also, parentheses in method calls can often be omitted (line 16).
-In addition, Groovy implicitly imports frequently used classes, like those of the $java.util$ package, and methods, like $System.out.println$ (line % 16).
-
-\begin{Listing}[ht]
-\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
-import java.util.ArrayList;
-import java.util.List;
-
-public class JavaFilter {
-	List<Integer> evenNumbers(List<Integer> list) {
-		List<Integer> result = new ArrayList<Integer>();
-		for(int item : list) {
-			if(item % 2 == 0) {
-				result.add(item);
-			}
-		}
-
-		return result;
-	}
-
-	public static void main(String[] args) {
-		List<Integer> list = new ArrayList<Integer>();
-		list.add(1);
-		list.add(2);
-		list.add(3);
-		list.add(4);
-
-		List<Integer> result = new JavaFilter().evenNumbers(list);
-		System.out.println(result);
-	}
-}
-\end{lstlisting}
-\caption{A simple algorithm written in Java}
-\label{javaClass}
-\end{Listing}
-
-\begin{Listing}[ht]
-\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
-class GroovyFilter {
-	List<Integer> evenNumbers(List<Integer> list) {
-		List<Integer> result = []
-		for(int item : list) {
-			if(item % 2 == 0) {
-				result << item
-			}
-		}
-
-		result
-	}
-
-	public static void main(String[] args) {
-		List<Integer> list = [1, 2, 3, 4]
-		List<Integer> result = new GroovyFilter().evenNumbers(list)
-		println result
-	}
-}
-\end{lstlisting}
-\caption{A simple algorithm written in Groovy}
-\label{groovyClass}
-\end{Listing}
-
-The design of Groovy was influenced by dynamic features of programming languages such as Ruby and Python.
-Listing \ref{dynamicInfuence} shows how these features can be used to rewrite the same algorithm presented % in Listing \ref{javaClass} in a single line of code. 
-First, notice that the code shown in Listing \ref{dynamicInfuence}  is a script, rather than a class file.
-It makes use of a closure to allow a programmer to define a filter logic.
-This closure is passed down to the \emph{findAll} method, which  apply this closure to every element of % the list to in order to decide if that element should be returned or not.
-Closures are one of the most important features of Groovy as compared to Java.
-They allow a functional programming style, which is both expressive and powerful.
-
-\begin{Listing}[ht]
-\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
-println([1, 2, 3, 4].findAll {it % 2 == 0})
-\end{lstlisting}
-\caption{A class written in Groovy}
-\label{dynamicInfuence}
-\end{Listing}
-
-Metaprogramming is another dynamic feature present in Groovy. 
-Listing \ref{metaprogramming} shows how to add a method to an existing class dynamically.
-By adding the method \emph{evenNumbers()} to the \emph{List} class, it is possible to achieve higher % expressiveness.
-This is specially useful when implementing Domain Specific Languages \cite{fowler10}.
-
-\begin{Listing}[ht]
-\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
-List.metaClass.evenNumbers = {
-	delegate.findAll {it % 2 == 0}
-}
-println([1, 2, 3, 4].evenNumbers())
-
-\end{lstlisting}
-\caption{An example of metaprogramming in Groovy}
-\label{metaprogramming}
-\end{Listing}% 
+\section{Groovy Type System}
 
 When Groovy was first launched, in 2007, it was a purely dynamically typed language.
 However, it allowed programmers to optionally type their declarations.
@@ -343,6 +243,110 @@ Although they do not provide static type checking, they are capable of documenti
 In the remainder of this text, we refer to declarations with type annotations as "typed", while the word "untyped" is used for declarations with no type annotations.
 
 
+\section{Groovy Overview}
+Groovy was designed to be more expressive and concise than Java.
+Two implementations of a simple algorithm are shown below.
+Given a list of numbers, return a list containing only the even numbers of that list.
+Listing \ref{javaClass} shows the Java implementation while Listing \ref{groovyClass} shows the Groovy counterpart. 
+
+
+\begin{Listing}[ht]
+\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
+import java.util.ArrayList;
+import java.util.List;
+
+public class JavaFilter {
+	List<Integer> evenNumbers(List<Integer> list) {
+		List<Integer> result = new ArrayList<Integer>();
+		for(int item : list) {
+			if(item % 2 == 0) {
+				result.add(item);
+			}
+		}
+
+		return result;
+	}
+
+	public static void main(String[] args) {
+		List<Integer> list = new ArrayList<Integer>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+
+		List<Integer> result = new JavaFilter().evenNumbers(list);
+		System.out.println(result);
+	}
+}
+\end{lstlisting}
+\caption{A simple algorithm written in Java}
+\label{javaClass}
+\end{Listing}
+
+Because of its high level of expressiveness, Groovy is able to reduce much of the boilerplate required in Java.
+Listing \ref{groovyClass} shows that Groovy offers a native syntax for lists (lines 3, 6 and 14) and operator overloading (line 6). 
+Semicolons are optional, except when there are multiple statements in the same line. 
+When the keyword \emph{return} is omitted (line 10), the last expression evaluated inside a method is returned. 
+Also, parentheses in method calls can often be omitted (line 16).
+In addition, Groovy implicitly imports frequently used classes, like those of the $java.util$ package, and methods, like $System.out.println$ (line  16).
+
+\begin{Listing}[ht]
+\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
+class GroovyFilter {
+	List<Integer> evenNumbers(List<Integer> list) {
+		List<Integer> result = []
+		for(int item : list) {
+			if(item % 2 == 0) {
+				result << item
+			}
+		}
+
+		result
+	}
+
+	public static void main(String[] args) {
+		List<Integer> list = [1, 2, 3, 4]
+		List<Integer> result = new GroovyFilter().evenNumbers(list)
+		println result
+	}
+}
+\end{lstlisting}
+\caption{A simple algorithm written in Groovy}
+\label{groovyClass}
+\end{Listing}
+
+The design of Groovy was influenced by dynamic features of programming languages such as Ruby and Python.
+Listing \ref{dynamicInfuence} shows how these features can be used to rewrite the same algorithm presented in Listing \ref{javaClass} in a single line of code. 
+First, notice that the code shown in Listing \ref{dynamicInfuence}  is a script, rather than a class file.
+It makes use of a closure to allow a programmer to define a filter logic.
+This closure is passed down to the \emph{findAll} method, which  applies this closure to every element of the list in order to decide if that element should be returned or not.
+Closures are one of the most important features of Groovy as compared to Java.
+They allow a functional programming style, which is both expressive and powerful.
+
+\begin{Listing}[ht]
+\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
+println([1, 2, 3, 4].findAll {it % 2 == 0})
+\end{lstlisting}
+\caption{A class written in Groovy}
+\label{dynamicInfuence}
+\end{Listing}
+
+Metaprogramming is another dynamic feature present in Groovy. 
+Listing \ref{metaprogramming} shows how to add a method to an existing class dynamically.
+By adding the method \emph{evenNumbers()} to the \emph{List} class, it is possible to achieve higher expressiveness.
+This is specially useful when implementing Domain Specific Languages \cite{fowler10}.
+
+\begin{Listing}[ht]
+\begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left]
+List.metaClass.evenNumbers = {
+	delegate.findAll {it % 2 == 0}
+}
+println([1, 2, 3, 4].evenNumbers())
+
+\end{lstlisting}
+\caption{An example of metaprogramming in Groovy}
+\label{metaprogramming}
+\end{Listing}% 
 
 
 \chapter{Study Settings}
