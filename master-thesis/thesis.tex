@@ -13,6 +13,7 @@
 \usepackage{multirow}
 \usepackage{color}
 \usepackage{courier}
+\usepackage[section]{placeins}
 \usepackage[a4paper,
   bookmarks=true,
   bookmarksnumbered=true,
@@ -751,16 +752,7 @@ Finally, the results of the Tukey HSD Test are reported in Table \ref{tab:all_ut
 These results show that all treatments are different from each other since all \emph{p} values are equal to 0.
 
 
-Protected declarations are those typed most often.
-Note how skewed is the distribution for these elements in Figure \ref{fig:all_boxplot_visibility_all}.
-Almost all 2387 projects which use protected visibility in their declarations have all of their protected fields, methods and constructors typed.
-The confidence intervals reported by the Tukey HSD test show very large differences between these declarations and those with either private or public visibility.
-Although public declarations are not typed as much, they are also typed very often.
-At least half of the projects type 75\% or more of their declarations.
-Conversely, private declarations are those with the smallest relative use of types.
-These results again suggest a positive answer for Question Q1, which hypothesizes that declarations that are part of a module definition are typed more frequently.
-
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering 
 \includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/all/boxplots/23_declarations_by_visibility.png} 
 
@@ -782,7 +774,6 @@ Private   				& 6023	& 0.43	& 0.40		& 0.32		\\ \hline
 \label{fig:all_boxplot_visibility_all} 
 \end{figure}
 
-
 \begin{table}[h]
 
 \centering{}%
@@ -800,6 +791,15 @@ Public & Protected & 0 & (-0.27, -0.22) \\ \hline
 \caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by visibility of declaration}
 \label{tab:all_utest_visibility}
 \end{table}
+
+Protected declarations are those typed most often.
+Note how skewed is the distribution for these elements in Figure \ref{fig:all_boxplot_visibility_all}.
+Almost all 2387 projects which use protected visibility in their declarations have all of their protected fields, methods and constructors typed.
+The confidence intervals reported by the Tukey HSD test show very large differences between these declarations and those with either private or public visibility.
+Although public declarations are not typed as much, they are also typed very often.
+At least half of the projects type 75\% or more of their declarations.
+Conversely, private declarations are those with the smallest relative use of types.
+These results again suggest a positive answer for Question Q1, which hypothesizes that declarations that are part of a module definition are typed more frequently.
 
 
 % BREAKING VISIBILITY BY DECLARATION TYPE
@@ -893,25 +893,6 @@ This time we want to show what is the difference of the relative usage of types 
 For example, the third row of Table \ref{tab:test_utest_type} shows that there is a significant difference in how programmers type local variables in main and test classes.
 The difference between the relative usage of types in main classes and test classes falls in the $(0.05, 0.11)$ interval.
 
-The ANOVA test reported once again a \emph{p} value equal to 0, implying that the usage of type is different in test and main classes.
-Figure \ref{fig:test_boxplot_type} and Table \ref{tab:test_utest_type} show that this difference is significant for all kinds of declarations except constructor parameters.
-While local variables in main classes are not typed very often, they are typed even less in test classes.
-At least half of the projects type none of the declarations of this kind in test classes.
-The difference in declarations of parameters of methods is even more evident since they are often typed in main classes, but almost never typed in test classes.
-The confidence interval reported by the Tukey HSD Test in this case is $(-0.36, -0.44)$.
-The large width of the box plots for fields and method parameters is noteworthy.
-This indicates that many projects type either almost all or none of these declarations.
-
-Curiously, method returns are significantly more typed in test classes.
-The difference reported by the confidence interval in Table \ref{tab:test_utest_type} for this case is (-0.31, -0.26).
-At least half of the projects type all of their method returns in test classes.
-Although counterintuitive this result can be easily explained.
-Automated testing frameworks usually enforce a certain method signature for test methods.
-JUnit for example, which is used in 2525 of the 4350 projects with test classes, requires test methods to be typed as \emph{void}.
-Other popular test frameworks, such as TestNG, have similar requirements.
-This implies that, in this case, developers type their methods not because they want to, but because they have to.
-
-
 
 % ETA=0.072
 \begin{table}[h!]
@@ -932,6 +913,29 @@ Method Return &  0          & (-0.31, -0.26) \\ \hline
 \label{tab:test_utest_type}
 \end{table}
 
+
+The ANOVA test reported once again a \emph{p} value equal to 0, implying that the usage of type is different in test and main classes.
+Figure \ref{fig:test_boxplot_type} and Table \ref{tab:test_utest_type} show that this difference is significant for all kinds of declarations except constructor parameters.
+While local variables in main classes are not typed very often, they are typed even less in test classes.
+At least half of the projects type none of the declarations of this kind in test classes.
+The difference in declarations of parameters of methods is even more evident since they are often typed in main classes, but almost never typed in test classes.
+The confidence interval reported by the Tukey HSD Test in this case is $(-0.36, -0.44)$.
+The large width of the box plots for fields and method parameters is noteworthy.
+This indicates that many projects type either almost all or none of these declarations.
+
+Curiously, method returns are significantly more typed in test classes.
+The difference reported by the confidence interval in Table \ref{tab:test_utest_type} for this case is (-0.31, -0.26).
+At least half of the projects type all of their method returns in test classes.
+Although counterintuitive this result can be easily explained.
+Automated testing frameworks usually enforce a certain method signature for test methods.
+JUnit for example, which is used in 2525 of the 4350 projects with test classes, requires test methods to be typed as \emph{void}.
+Other popular test frameworks, such as TestNG, have similar requirements.
+This implies that, in this case, developers type their methods not because they want to, but because they have to.
+
+
+
+
+
 % SCRIPTS
 \section{Script Files and Class Files\label{sec:results-scripts}}
 In Groovy, programmers can write code in the form of scripts, not requiring the definition of classes for simple tasks.
@@ -944,17 +948,6 @@ Figure \ref{fig:script_boxplot_type} shows the distribution of the relative usag
 Note that constructors and fields are not considered since there is no way to declare those elements in scripts.
 Also, we do not present an analysis of declarations grouped by visibility since, although allowed, defining the visibility of a declaration inside a script does not make much sense.
 
-
-The execution of the ANOVA test reported a \emph{p} value equal to 0, revealing that the declarations are typed significantly different in script files.
-Table \ref{tab:script_utest_all} displays the results for the Tukey HSD test, which provide detailed results by the kind of declaration.
-There is no significant difference on the usage of types in local variables.
-On the other hand, declarations of parameters or returns of methods are typed much less frequently in scripts.
-Note however that the value for the last quartile of these declarations is very high, superior to 0.8.
-This indicates that, although most projects prefer not to use types in method returns, there are a few projects that consistently type most of them.
-
-Along with the results of the analysis of test classes, the results presented in this section show that the answer for Question Q2 is positive.
-There are large differences in how programmers type scripts and classes.
-Although it is not clear from our analysis what is the reason for such phenomena, we will raise some hypothesis in our discussion, presented in Section \ref{discussion}.
 
 \begin{figure}[h]
 \centering 
@@ -997,6 +990,20 @@ Method Return    & 0    & ( 0.30, 0.40) \\ \hline
 \label{tab:script_utest_all}
 \end{table}
 
+The execution of the ANOVA test reported a \emph{p} value equal to 0, revealing that the declarations are typed significantly different in script files.
+Table \ref{tab:script_utest_all} displays the results for the Tukey HSD test, which provide detailed results by the kind of declaration.
+There is no significant difference on the usage of types in local variables.
+On the other hand, declarations of parameters or returns of methods are typed much less frequently in scripts.
+Note however that the value for the last quartile of these declarations is very high, superior to 0.8.
+This indicates that, although most projects prefer not to use types in method returns, there are a few projects that consistently type most of them.
+
+Along with the results of the analysis of test classes, the results presented in this section show that the answer for Question Q2 is positive.
+There are large differences in how programmers type scripts and classes.
+Although it is not clear from our analysis what is the reason for such phenomena, we will raise some hypothesis in our discussion, presented in Section \ref{discussion}.
+
+
+
+
 % PROGRAMMERS BACKGROUND
 \section{Programmers' Background\label{sec:results-background}}
 In this section, we analyze how programmers use types in their declarations according to their backgrounds.
@@ -1011,7 +1018,15 @@ The \emph{p} value reported by the ANOVA test is equal to 0, implying that there
 The results of the Tukey HSD test are reported in Tables \ref{tab:background_utest_type} and \ref{tab:backgorund_utest_visibility}.
 These tables are divided in three parts, each one corresponding to the comparison between the data of two of the three groups.
 
-\begin{figure}[h]
+There are significant differences in the usage of types between all groups.
+These differences, however, are not as clear as those found in the previous anlayses.
+Let's start with the comparison between projects in the \emph{Static and Dynamic} and the \emph{Dynamic Only} groups.
+There are significant differences only in private declarations and declarations of fields.
+Still, these differences are not very large, $(0.01,0.08)$ for fields and $(0.02,0.09)$ for private declarations.
+All in all, these two groups present very similar behavior when typing their declarations, apart from those two exceptions.
+
+
+\begin{figure}[ht!]
 \centering 
 \includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/background/comparison/boxplots/6_declarations_by_type.png} 
 \vspace{0.1cm}
@@ -1047,8 +1062,23 @@ Field											& Both				& 3183	& 0.43		& 0.39 		& 0.34\\
 \caption{Usage of types by declaration type and programmer background}
 \label{fig:background_boxplot_type}
 \end{figure}
-
                 
+
+The comparison between the \emph{Static} and the other groups shows more clear differences.
+Most of the \emph{p} values reported by the Tukey HSD test are equal to 0.
+However, constructor parameters and protected declarations never present significant differences.
+This indicates a strong influence of these types of declarations over the programmers' behavior.
+There are other two other cases that do not present significant differences, method returns and public declarations, both in the comparisons between programmers of the \emph{Dynamic} and \emph{Static} groups.
+It is important though to say that the \emph{p} value reported in these two cases is relatively small, 0.01.
+These differences are considered not significant only because we are using a very strict confidence level, but would be considered significantly different under a confidence level of 0.05.
+
+The results reported in this section suggest a positive answer for Question Q3, i.e, programmers use types differently depending on their background.
+This difference is larger when comparing those projects of the \emph{Static} group with projects of the other groups.
+These results are statistically strong,  but should be generalized with care.
+The detailed results reported by the Tukey HSD test reveal many exceptions, specially in the comparison between the groups comprising the projects of those programmers who have at least one dynamically typed language in their portfolio, \emph{Static and Dynamic} and \emph{Dynamic Only}.
+This comparison reveals that, for all kinds and visibilities of declarations, the difference is either not significant or small.
+
+
 \begin{figure}[ht]
 \centering 
 \includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/background/comparison/boxplots/23_declarations_by_visibility.png} 
@@ -1078,6 +1108,7 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 \label{fig:background_boxplot_visibility}
 \end{figure}	
 
+\FloatBarrier
 
 \begin{table}[h!]
 \centering{}%
@@ -1143,26 +1174,7 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 \label{tab:backgorund_utest_visibility}
 \end{table}
 
-There are significant differences in the usage of types between all groups.
-These differences, however, are not as clear as those found in the previous anlayses.
-Let's start with the comparison between projects in the \emph{Static and Dynamic} and the \emph{Dynamic Only} groups.
-There are significant differences only in private declarations and declarations of fields.
-Still, these differences are not very large, $(0.01,0.08)$ for fields and $(0.02,0.09)$ for private declarations.
-All in all, these two groups present very similar behavior when typing their declarations, apart from those two exceptions.
 
-The comparison between the \emph{Static} and the other groups shows more clear differences.
-Most of the \emph{p} values reported by the Tukey HSD test are equal to 0.
-However, constructor parameters and protected declarations never present significant differences.
-This indicates a strong influence of these types of declarations over the programmers' behavior.
-There are other two other cases that do not present significant differences, method returns and public declarations, both in the comparisons between programmers of the \emph{Dynamic} and \emph{Static} groups.
-It is important though to say that the \emph{p} value reported in these two cases is relatively small, 0.01.
-These differences are considered not significant only because we are using a very strict confidence level, but would be considered significantly different under a confidence level of 0.05.
-
-The results reported in this section suggest a positive answer for Question Q3, i.e, programmers use types differently depending on their background.
-This difference is larger when comparing those projects of the \emph{Static} group with projects of the other groups.
-These results are statistically strong,  but should be generalized with care.
-The detailed results reported by the Tukey HSD test reveal many exceptions, specially in the comparison between the groups comprising the projects of those programmers who have at least one dynamically typed language in their portfolio, \emph{Static and Dynamic} and \emph{Dynamic Only}.
-This comparison reveals that, for all kinds and visibilities of declarations, the difference is either not significant or small.
 
 
 % PROJECT MATURITY
@@ -1336,7 +1348,7 @@ It shows that 65\% of them present a negative Spearman correlation coefficient a
 On the other hand, only 10\% of the mature projects present strong positive correlations.
 
 \begin{figure}[h]
-\centering \includegraphics[width=0.9\textwidth]{../aosd_2014/analysis/result/change_commits_distribution.png} 
+\centering \includegraphics[width=0.6\textwidth]{../aosd_2014/analysis/result/change_commits_distribution.png} 
 \caption{Spearman ranking for the correlation between frequency of changes of files and the usage of types in mature projects}
 \label{fig:change_spearman} 
 \end{figure}
