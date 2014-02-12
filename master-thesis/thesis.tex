@@ -349,13 +349,27 @@ println([1, 2, 3, 4].evenNumbers())
 \end{Listing}% 
 
 
+
+
+
+
+
+
+
+
+
+
+
+%
+% STUDY SETTINGS
+%
 \chapter{Study Settings}
 
-The study presented in this paper consists in the static analysis of the source code of a corpus of 6638 Groovy projects.
+The study presented in this thesis consists in the static analysis of the source code of a corpus of 6638 Groovy projects.
 Its goal is to find in which contexts Groovy programmers type or do not type their declarations.
 In this section, we present five research questions that guide our analysis, the data collection and analysis procedures and the characterization of the studied dataset.
 
-We have shared all the artifacts of this study in our project website. \footnote{http://github.com/carlosgsouza/groovonomics}
+We have shared all the artifacts of this study in our project website.\footnote{http://github.com/carlosgsouza/groovonomics}
 This includes the source code of the programs used in the data collection and analysis procedures, the analyzed data (except the source code of the analyzed projects) and detailed results.
 Our goal is to allow this study to be easily replicated or extended.
 
@@ -462,14 +476,6 @@ Private                   			&   58    &  21  &    178  &    5,268 & 395,776   \
 \label{tab:number_of_declarations}
 \end{table}
 
-
-The projects of our dataset were developed by 4481 people.
-While 96\% of the projects were developed by small groups of 3 people or fewer, there were projects with up to 58 people involved.
-These developers have different backgrounds.
-Figure \ref{fig:other_languages} shows what are the most popular languages used by the Groovy developers in other GitHub projects. 
-Java is the most popular among them.
-Almost 2500 out of  of the 4481 developers of projects in our dataset also have Java projects hosted on GitHub.
-
 \begin{table}[h!]
 
 \centering{}%
@@ -492,37 +498,41 @@ Almost 2500 out of  of the 4481 developers of projects in our dataset also have 
 \end{table}
 
 
-\begin{figure}[ht]
-\centering \includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/languages.png}
+
+The projects of our dataset were developed by 4481 people.
+Table \ref{tab:number_of_developers} shows the distribution of the number of developers per project.
+While 96\% of the projects were developed by small groups of 3 people or fewer, there were projects with up to 58 people involved.
+These developers have different backgrounds.
+Figure \ref{fig:other_languages} shows what are the most popular languages used by the Groovy developers in other GitHub projects. 
+Java is the most popular among them.
+Almost 2500 out of  of the 4481 developers of projects in our dataset also have Java projects hosted on GitHub.
+
+\begin{table}[ht]
+\caption{Distribution of the Number of Developers per Project}
+\centering{}%
+\begin{tabular}{|c|c|c|}
+\hline 
+Number of Developers & Fraction of Projects\tabularnewline
+\hline 
+\hline 
+1 & 84\%\tabularnewline
+\hline 
+2 & 9\%\tabularnewline
+\hline 
+3 & 3\%\tabularnewline
+\hline 
+4 or more & 4\%\tabularnewline
+\hline 
+\end{tabular}
+\label{tab:number_of_developers}
+\end{table}
+
+
+\begin{figure}[h!]
+\centering \includegraphics[width=0.6\textwidth]{../aosd_2014/analysis/result/languages.png}
 \caption{Most popular languages among Groovy developers}
 \label{fig:other_languages} 
 \end{figure}
-
-
-% Figure \ref{fig:typeSystem_background} shows what is the type system of the languages the developers in our dataset have experience with.
-% Most of them have experience with both statically and dynamically typed languages.
-% There are two small groups however that have experience with only one type system outside Groovy.
- 
-% \begin{table}[ht]
-% \caption{Distribution of the Number of Developers in a Project}
-% \centering{}%
-% \begin{tabular}{|c|c|c|}
-% \hline 
-% Number of Developers & Fraction of Projects\tabularnewline
-% \hline 
-% \hline 
-% 1 & 84\%\tabularnewline
-% \hline 
-% 2 & 9\%\tabularnewline
-% \hline 
-% 3 & 3\%\tabularnewline
-% \hline 
-% 4 or more & 4\%\tabularnewline
-% \hline 
-% \end{tabular}
-% \label{tab:number_of_developers}
-% \end{table}
-
 
 % \begin{figure}[ht]
 % \centering \includegraphics[width=0.7\textwidth]{typeSystem_background}
@@ -573,7 +583,7 @@ All declarations are considered.
 
 \begin{figure}[h]
 \centering 
-\includegraphics[width=0.9\textwidth]{../aosd_2014/analysis/result/all/histograms/5_all_types.png} 
+\includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/all/histograms/5_all_types.png} 
 
 \vspace{0.3cm}
 
