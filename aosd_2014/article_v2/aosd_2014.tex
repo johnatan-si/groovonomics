@@ -94,7 +94,7 @@ Also, by removing the repetitive work of defining types, these languages allow p
 Statically typed languages also have their advantages. 
 They allow compilers to find type errors statically \cite{should_your_specification_language_be_typed}. 
 Typed declarations increase the maintainability of systems because they implicitly document the code, telling programmers about the nature of expressions \cite{type_systems,mayer2012static}. 
-Systems built with these languages tend to be more efficient since they do not need to perform type checking during execution \cite{bruce2002foundations,jit}. 
+Systems built with these languages tend to be more efficient since they do not need to perform type checking during execution \cite{Bruce2002,jit}. 
 Finally, modern development environments, such as Eclipse and IDEA, are able to assist programmers with functionalities such as code completion based on the information provided by statically typed declarations \cite{bruch2009learning}.
 
 Some languages try to combine characteristics from both static and dynamic type systems.
@@ -1556,127 +1556,125 @@ This work was partially supported by FAPEMIG, grants APQ-02376-11 and APQ-02532-
 \begin{thebibliography}{}
 \softraggedright
 
-\bibitem[Tiobe Website(2013)]{tiobe}
-Tiobe programming community index. http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html. Accessed in 23/09/2013.
+\bibitem[Beck(2003)]{Beck03}
+K. Beck.  Test-driven development: by example. Addison-Wesley Professional, 2003.
 
-\bibitem[Groovy(2013)]{groovy}
-Groovy Programming Language. http://groovy.codehaus.org/. Accessed in 10/10/2013.
-
-\bibitem[Bruce, K. (2002)]{bruce2002foundations}
-Bruce, K. (2002). Foundations of object-oriented languages: types and semantics. MIT press.
+\bibitem[Bruce(2002)]{Bruce2002}
+K. Bruce. Foundations of object-oriented languages: types and semantics. The MIT Press, 2002.
 
 \bibitem[Bruch, M., Monperrus, M., and Mezini, M. (2009)]{bruch2009learning}
-Bruch, M., Monperrus, M., and Mezini, M. (2009). Learning from examples to improve code completion systems. In Proceedings of the the 7th joint meeting of the European software engineering conference and the ACM SIGSOFT symposium on The foundati- ons of software engineering, pages 213–222. ACM.
+M. Bruch, M. Monperrus, and M. Mezini. Learning from examples to improve code completion systems. In Proceedings of the International Symposium on the Foundations of Software Engineering (FSE), 213–222, 2009.
 
 \bibitem[Cardelli, L. (1996]{type_systems}
-Cardelli, L. (1996). Type systems. ACM Comput. Surv., 28(1):263–264.
+L. Cardelli. Type systems. ACM Computing Surveys, 28(1), 263–264, 1996.
 
 \bibitem[Chang, M., Mathiske, B., Smith, E., Chaudhuri, A., Gal, A., Bebenita, M., Wimmer, C.]{jit}
-Chang, M., Mathiske, B., Smith, E., Chaudhuri, A., Gal, A., Bebenita, M., Wimmer, C., and Franz, M. (2011). The impact of optional type information on jit compilation of dynamically typed languages. SIGPLAN Not., 47(2):13–24.
-
-\bibitem[Daly, M. T., Sazawal, V., and Foster, J. S. (2009)]{ruby_vs_druby}
-Daly, M. T., Sazawal, V., and Foster, J. S. (2009). Work In Progress: an Empirical Study of Static Typing in Ruby. In Workshop on Evaluation and Usability of Programming Languages and Tools (PLATEAU), Orlando, Florida.
-
-\bibitem[Hanenberg, S. (2010)]{experiment_with_purity}
-Hanenberg, S. (2010). An experiment about static and dynamic type systems: doubts about the positive impact of static type systems on development time. SIGPLAN Not., 45(10):22–35.
-
-\bibitem[Kleinschmager, S., Hanenberg, S., Robbes, R., and Stefik, A. (2012)]{hanenberg_icpc}
-Kleinschmager, S., Hanenberg, S., Robbes, R., and Stefik, A. (2012). Do static type systems improve the maintainability of software systems? An empirical study. 2012 20th IEEE International Conference on Program Comprehension (ICPC), pages 153– 162.
-
-\bibitem[Lamport, L. and Paulson, L. C. (1999)]{should_your_specification_language_be_typed}
-Lamport, L. and Paulson, L. C. (1999). Should your specification language be typed. ACM Trans. Program. Lang. Syst., 21(3):502–526.
-
-\bibitem[Mayer(2012)]{mayer2012static}
-Mayer, C., Hanenberg, S., Robbes, R., Tanter, E., and Stefik, A.(2012). Static type systems (sometimes) have a positive impact on the usability of undocumented software: An empirical evaluation,  18:5.
-
-\bibitem[Pierce, B. (2002)]{types_and_programming_languages}
-Pierce, B. (2002). Types and programming languages. MIT press.
-
-\bibitem[Tratt, L. (2009)]{dynamically_typed_languages}
-Tratt, L. (2009). Chapter 5 dynamically typed languages. volume 77 of Advances in Computers, pages 149 – 184. Elsevier.
-
-\bibitem[Siek, J., and Walid T.(2007)]{gradual_typing}
-Siek, Jeremy, and Walid Taha. Gradual typing for objects. ECOOP 2007 – Object-Oriented Programming. Springer Berlin Heidelberg, 2007. 2-27.
-
-\bibitem[Gray(2008)]{gray08}
-Gray, K. E. Safe cross-language inheritance. ECOOP 2008 - European Conference on Object-Oriented Programming, pp. 52–75.
-
-\bibitem[Gray(2011)]{gray11}
-Gray, K. E. Interoperability in a scripted world: Putting inheritance \& prototypes together. In Foundations of Object-Oriented Languages (2011).
-
-\bibitem[Gray(2005)]{gray05}
-Gray, K. E., Findler, R. B.,Andflatt, M. Fine-grained interoperability through contracts and mirrors. InObject-Oriented Programming, Systems, Languages, and Applications(2005), pp. 231–245.
-
-\bibitem[Siek(2007)]{siek07}
-Siek, J.,Andtaha, W. Gradual typing for objects. In European Conference on Object-Oriented Programming(2007),pp. 2–27.
-
-\bibitem[Takikawa(2012)]{takikawa12}
-Takikawa, Asumu, et al. "Gradual typing for first-class classes." ACM SIGPLAN Notices. Vol. 47. No. 10. ACM, 2012.
-\bibitem[Fowler(2010)]{fowler10}
-Fowler, M.. Domain-specific languages. Pearson Education, 2010.
-
-\bibitem[Labovitz(1968)]{labovitz68}
-Labovitz, S. "Criteria for selecting a significance level: A note on the sacredness of. 05." The American Sociologist 3.3 (1968): 220-222.
-
-% Types help on the definition of a contract
-\bibitem[Meijer(2004)]{Meijer04}
-Meijer, E., and Peter D. "Static typing where possible, dynamic typing when needed: The end of the cold war between programming languages." OOPSLA, 2004.
-
-\bibitem[Wadler(2004)]{Wadler04}
-Wadler, Philip, and Robert Bruce Findler. "Well-typed programs can’t be blamed." Programming Languages and Systems. Springer Berlin Heidelberg, 2009. 1-16.
-
-% Unfortunately, dynamically typed programming languages usually do not support the concept of DEC. Therefore we integrated DEC into the programming language Python by using a metaprogramming approach
-\bibitem[Plosch(1997)]{Plosch97}
-Plosch, Reinhold. "Design by contract for Python." Software Engineering Conference, 1997. Asia Pacific and International Computer Science Conference 1997. APSEC'97 and ICSC'97. Proceedings. IEEE, 1997.
-
-%Traditional static type systems are very effective for verifying basic interface specifications
-\bibitem[Flanagan(2006)]{Flanagan2006}
-Flanagan, C. "Hybrid type checking." ACM Sigplan Notices. Vol. 41. No. 1. ACM, 2006.
-
-\bibitem[Meyer(1988)]{Meyer88}
-Meyer, B. Object-oriented software construction. Vol. 2. New York: Prentice hall, 1988.
-
-\bibitem[Furr(2009)]{Furr09}
-Furr, Michael, et al. "Static type inference for Ruby." Proceedings of the 2009 ACM symposium on Applied Computing. ACM, 2009.
+M. Chang, B. Mathiske, E. Smith, A. Chaudhuri, A. Gal. M. Bebenita, C. Wimmer, and M. Franz. The impact of optional type information on jit compilation of dynamically typed languages. SIGPLAN Notices, 47(2), 13–24, 2011.
 
 % Coupling is high for inheritance
 % interaction coupling, component coupling and inheritance coupling
 \bibitem[Chidamber(1994)]{Chidamber94}
-Chidamber, Shyam R., and Chris F. Kemerer. "A metrics suite for object oriented design." Software Engineering, IEEE Transactions on 20.6 (1994): 476-493.
+S. Chidamber and C. Kemerer. A metrics suite for object oriented design. IEEE Transactions on Software Engineering, 20(6), 476-493, 1994.
 
-\bibitem[ISO25000(2004)]{Iso2004}
-ISO, ISO, and IEC FCD. "25000, Software Engineering-Software Product Quality Requirements and Evaluation (SQuaRE)-Guide to SQuaRE." Geneva, International Organization for Standardization (2004).
+\bibitem[Cohen(1988)]{Cohen88}
+J. Cohen. Statistical power analysis for the behavioral sciences (2nd ed.). Hillsdale, NJ: Lawrence Erlbaum, 1988.
+
+\bibitem[Curtis(1987)]{Curtis1987}
+B. Curtis. Five paradigms in the psychology of programming. MMC, 1987.
+
+\bibitem[Daly, M. T., Sazawal, V., and Foster, J. S. (2009)]{ruby_vs_druby}
+M. Daly, V. Sazawal, and  J. Foster. An empirical study of static typing in ruby. In Proceedings of the Workshop on Evaluation and Usability of Programming Languages and Tools (PLATEAU), 2009.
 
 \bibitem[Fenton(1998)]{Fenton1998}
-Fenton, Norman E., and Shari Lawrence Pfleeger. Software metrics: a rigorous and practical approach. PWS Publishing Co., 1998.
+N. Fenton and S. Pfleeger. Software metrics: a rigorous and practical approach. PWS Publishing Co., 1998.
 
-\bibitem[Wohlin(2012)]{Wohlin2012}
-Wohlin, Claes, et al. Experimentation in software engineering. Springer Publishing Company, Incorporated, 2012.
+%Traditional static type systems are very effective for verifying basic interface specifications
+\bibitem[Flanagan(2006)]{Flanagan2006}
+C. Flanagan. Hybrid type checking. ACM SIGPLAN Notices. Vol. 41. No. 1, 2006.
+
+\bibitem[Fowler(2010)]{fowler10}
+M. Fowler, Domain-specific languages. Pearson Education, 2010.
+
+\bibitem[Furr(2009)]{Furr09}
+M. Furr et al. Static type inference for Ruby. In Proceedings of the ACM symposium on Applied Computing (ACM SAC), 2009.
 
 % Use of types in interfaces
 \bibitem[Gannon(1977)]{Gannon77}
-Gannon, J. D. An experimental evaluation of data type conventions. Commun. ACM 20, 8 (1977), 584–595.
+J. Gannon.  An experimental evaluation of data type conventions. Communications of the ACM, 20, 8, 584–595, 1977.
 
-\bibitem[Prechelt(1998)]{Prechelt98}
-Prechelt, L., and Tichy, W. F. A controlled experiment to assess the beneﬁts of procedure argument type checking. IEEE Trans. Softw. Eng. 24, 4 (1998), 302–312
+\bibitem[Gray(2008)]{gray08}
+K. Gray. Safe cross-language inheritance. In Proceedings of the European Conference on Object-Oriented Programming (ECOOP), pp. 52–75.
+
+\bibitem[Gray(2011)]{gray11}
+K. Gray. Interoperability in a scripted world: Putting inheritance \& prototypes together. In Proceedings of Foundations of Object-Oriented Languages (FOOL), 2011.
+
+\bibitem[Gray(2005)]{gray05}
+K. Gray, R. Findler, M. Andflatt. Fine-grained interoperability through contracts and mirrors. In Proceedings of the International Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA), pp. 231–245, 2005.
+
+\bibitem[Groovy(2013)]{groovy}
+Groovy programming language. http://groovy.codehaus.org/. Accessed in 10/10/2013.
+
+\bibitem[Hanenberg, S. (2010)]{experiment_with_purity}
+S. Hanenberg, An experiment about static and dynamic type systems: doubts about the positive impact of static type systems on development time. SIGPLAN Notices, 45(10), 22–35, 2010.
 
 \bibitem[Hanenberg(2013)]{Hanenberg13}
-Hanenberg, Stefan, et al. "An empirical study on the impact of static typing on software maintainability." Empirical Software Engineering (2013): 1-48.
+S. Hanenberg et al. An empirical study on the impact of static typing on software maintainability. Empirical Software Engineering - An International Journal, 1-48, 2013.
 
-\bibitem[Bruce(2002)]{Bruce2002}
-Bruce, Kim B. Foundations of object-oriented languages: types and semantics. The MIT Press, 2002.
+\bibitem[ISO25000(2004)]{Iso2004}
+ISO, and IEC FCD. 25000, Software engineering-software product quality requirements and evaluation (SQuaRE) - Guide to SQuaRE. International Organization for Standardization, 2004.
 
-\bibitem[Curtis(1987)]{Curtis1987}
-Curtis, B. Five paradigms in the psychology of programming. MMC, 1987.
+\bibitem[Kleinschmager, S., Hanenberg, S., Robbes, R., and Stefik, A. (2012)]{hanenberg_icpc}
+S. Kleinschmager, S. Hanenberg, R. Robbes, and A. Stefik. Do static type systems improve the maintainability of software systems? An empirical study. In Proceedings of the 20th IEEE International Conference on Program Comprehension (ICPC), 153– 162, 2012.
 
-\bibitem[Beck(2003)]{Beck03}
-Beck, Kent. Test-driven development: by example. Addison-Wesley Professional, 2003.
+\bibitem[Labovitz(1968)]{labovitz68}
+S. Labovitz, Criteria for selecting a significance level: A note on the sacredness of. 05. The American Sociologist 3.3, 220-222, 1968.
+
+\bibitem[Lamport, L. and Paulson, L. C. (1999)]{should_your_specification_language_be_typed}
+L. Lamport, and L. Paulson. Should your specification language be typed. ACM Transactions on Programming Languages and Systems, 21(3), 502–526, 1999.
+
+\bibitem[Mayer(2012)]{mayer2012static}
+C. Mayer, S. Hanenberg, R. Robbes, E. Tanter, and A. Stefik. Static type systems (sometimes) have a positive impact on the usability of undocumented software: An empirical evaluation.  Technical Report 20120418-005, 2012.
+
+% Types help on the definition of a contract
+\bibitem[Meijer(2004)]{Meijer04}
+E. Meijer and D. Peter. Static typing where possible, dynamic typing when needed: The end of the cold war between programming languages. In Proceedings of the International Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA), 2004.
+
+\bibitem[Meyer(1988)]{Meyer88}
+B. Meyer. Object-oriented software construction, Vol. 2. Prentice hall, 1988.
 
 \bibitem[Meyerovich(2013)]{Meyerovich13}
-Meyerovich, Leo A., and Ariel Rabkin. "Empirical Analysis of Programming Language Adoption." (2013).
+L. Meyerovich and A. Rabkin. Empirical analysis of programming language adoption. In Proceedings of the International Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA), 1-18, 2013.
 
-\bibitem[Cohen(1988)]{Cohen88}
-Cohen, J. Statistical power analysis for the behavioral sciences (2nd ed.). Hillsdale, NJ: Lawrence Erlbaum.
+\bibitem[Pierce, B. (2002)]{types_and_programming_languages}
+B. Pierce. Types and programming languages. MIT press, 2002.
+
+% Unfortunately, dynamically typed programming languages usually do not support the concept of DEC. Therefore we integrated DEC into the programming language Python by using a metaprogramming approach
+\bibitem[Plosch(1997)]{Plosch97}
+R. Plosch. Design by contract for Python. Proceedings of the Asia Pacific Software Engineering Conference (APSEC), 1997.
+
+\bibitem[Prechelt(1998)]{Prechelt98}
+L. Prechelt and  W. Tichy. A controlled experiment to assess the beneﬁts of procedure argument type checking. IEEE Transactions of Software Engineering, 24(4), 302–312, 1998.
+
+\bibitem[Siek, J., and Walid T.(2007)]{gradual_typing}
+J. Siek, and W. Taha. Gradual typing for objects. In Proceedings of the European Conference on Object-Oriented Programming (ECOOP),  2-27, 2007.
+
+\bibitem[Siek(2007)]{siek07}
+J. Siek, W. Andtaha. Gradual typing for objects. In Proceedings of European Conference on Object-Oriented Programming (ECOOP), 2–27, 2007.
+
+\bibitem[Takikawa(2012)]{takikawa12}
+A. Takikawa et al. Gradual typing for first-class classes. ACM SIGPLAN Notices. Vol. 47. No. 10. ACM, 2012.
+
+\bibitem[Tiobe Website(2013)]{tiobe}
+Tiobe programming community index. http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html. Accessed in 23/09/2013.
+
+\bibitem[Tratt, L. (2009)]{dynamically_typed_languages}
+L. Tratt. Dynamically typed languages. Advances in Computers, vol. 77, 149-184, 2009.
+
+\bibitem[Wadler(2004)]{Wadler04}
+P. Wadler and R. Findler. Well-typed programs can’t be blamed. Proceedings of the 18th European Symposium on Programming Languages and Systems (ESOP), 1-16, 2009.
+
+\bibitem[Wohlin(2012)]{Wohlin2012}
+C. Wohlin et al. Experimentation in software engineering. Springer Publishing Company, 2012.
 
 \end{thebibliography}
 
