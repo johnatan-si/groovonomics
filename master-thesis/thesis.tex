@@ -458,22 +458,25 @@ println([1, 2, 3, 4].evenNumbers())
 
 The study presented in this thesis consists in the static analysis of the source code of a corpus of 6638 Groovy projects.
 Its goal is to find in which contexts Groovy programmers type or do not type their declarations.
-In this section, we present five research questions that guide our analysis, the data collection and analysis procedures and the characterization of the studied dataset.
-
 We have shared all the artifacts of this study in our project website.\footnote{http://github.com/carlosgsouza/groovonomics}
 This includes the source code of the programs used in the data collection and analysis procedures, the analyzed data and the detailed results.
 We do not share the source code of the analyzed projects, but we do share their metadata, such as author name, project name, size, contributors, etc.
 Our goal is to allow this study to be easily replicated or extended.
 
+The remainder of this chapter is organized as follows.
+In Section \ref{questions}, we present five research questions that guide our analysis. 
+Section \ref{data-collection} shows the data collection procedure and Section \ref{dataset} characterizes the obtained dataset.
+Finally, the analysis procedure is presented in Section \ref{analyzer}.
+
 \section{Research Questoins\label{questions}}
 We aim to answer the following research questions about the usage of types by Groovy programmers:
 
 \begin{itemize}
-	\item \textbf{Question Q1: Do programmers use types more often in the interface of their modules?} We believe that the benefits of the use of types are more clear in declarations that define the interface of modules. In such cases, programmers are specifying how the rest of the program should interact with a module, potentially improving readability and maintainability. On the other hand, in declarations that are hidden from external modules, we expect programmers to opt for the simplicity and flexibility offered by untyped declarations more often. 
+	\item \textbf{Question Q1: Do programmers use types more often in the interface of their modules?} We believe that the benefits of the use of types are more clear in declarations that define the interface of modules, which are exposed through public or protected visibility. In such cases, programmers are specifying how the rest of the program should interact with a module, potentially improving readability and maintainability. On the other hand, in declarations that are hidden from external modules, we expect programmers to opt for the simplicity and flexibility offered by untyped declarations more often. 
 	
 	\item \textbf{Question Q2: Do programmers use types less often in test classes and scripts?} Many studies analyze typing paradigms in the main classes of a program. However, little is known about this question in scripts or test classes. We want to understand if programmers consider different typing strategies in these scenarios.
 
-	\item \textbf{Question Q3: Does the experience of programmers with other languages influence their choice for typing their code?} We believe that programmers familiar with a dynamically typed language are more comfortable with the lack of types and end up using types less often in Groovy. 
+	\item \textbf{Question Q3: Does the experience of programmers with other languages influence their choice for typing their code?} It is expected that programmers familiar with a dynamically typed language are more comfortable with the lack of types and end up using types less often in Groovy. 
 
 	\item \textbf{Question Q4: Does the size, age or level of activity of a project have any influence on the usage of types?} We hypothesize that as these metrics grow, there is an increased concern about keeping code more maintainable. This can lead programmers to use types more often as a means to improve code readability.
 
@@ -482,9 +485,9 @@ We aim to answer the following research questions about the usage of types by Gr
 \end{itemize}
 
 
-\section{Data Collection Procedure\label{dataCollection}}
+\section{Data Collection Procedure\label{data-collection}}
 The projects used in this study were obtained from GitHub, a popular source control service based on Git.
-For each project, it was necessary to retrieve its source code, metadata, commit history, and the metadata of all of its developers.
+For each project, it was necessary to retrieve its source code, metadata, commit history, and the metadata of all its developers.
 GitHub does not offer a listing of all hosted projects, but it offers two search mechanisms, a REST API and a Web based search page.
 Unfortunately, the GitHub API is too limited for our requirements.
 It imposes a limit of one thousand results and does not allow filtering projects by their programming language.
@@ -522,6 +525,8 @@ Also, we found many small projects created with learning purposes only.
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
 
+\caption{Characterization of Projects}
+
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
 {}		& Mean	& Median	& \cell{Sd}	& Max	& Total		\\
@@ -531,14 +536,14 @@ Size (LoC)	& 1,471 	& 529  & 4,545  & 149,933	& 9,770,783	\\ \hline
 Commits   	& 31  	& 5    & 175   & 6,545		& 203,375	\\ \hline
 Age (Days)  & 361  	& 280  & 333   & 1,717		& 2,395,441	\\ \hline
 \end{tabular}
-\caption{Characterization of Projects}
 \label{tab:dataset_characterization}
 \end{table}
 
 
 Table \ref{tab:number_of_declarations} shows the number of declarations by kind and visibility and Table \ref{tab:number_of_declarations_by_visibility} shows the use of visibilities according to kind of declaration.
 Note that most fields are declared with private visibility while most methods are public.
-This is explained by the fact that, in Groovy, the default visibilities for fields and methods are private and public respectively.
+This can be easily explained when we consider the default visibilities in Groovy.
+Fields with no visibility defined by the programmer are considered private by the Groovy compiler, while methods are considered public.
 
 
 \begin{table}[h!]
@@ -546,6 +551,7 @@ This is explained by the fact that, in Groovy, the default visibilities for fiel
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
 
+\caption{Number of Declarations per Project}
 
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
@@ -564,7 +570,7 @@ Private                   			&   58    &  21  &    178  &    5,268 & 395,776   \
 \hline																			
 \cell{All Declarations} &  227    &  71  &    744  &   29,862 &1,548,363   \\ \hline                  
 \end{tabular}
-\caption{Number of Declarations per Project}
+
 \label{tab:number_of_declarations}
 \end{table}
 
@@ -573,7 +579,7 @@ Private                   			&   58    &  21  &    178  &    5,268 & 395,776   \
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
 
-
+\caption{Number of Declarations by Visibility}
 \begin{tabular}{|c|c|c|c|}
 \hline
 {}									& Private	& Protected	& Public	\\
@@ -585,7 +591,6 @@ Private                   			&   58    &  21  &    178  &    5,268 & 395,776   \
 \cell{Method Return}             	&   21,460 	&  28,507 	& 308,030 \\ \hline                  
 \hline																			
 \end{tabular}
-\caption{Number of Declarations by Visibility}
 \label{tab:number_of_declarations_by_visibility}
 \end{table}
 
@@ -593,8 +598,8 @@ Private                   			&   58    &  21  &    178  &    5,268 & 395,776   \
 
 The projects of our dataset were developed by 4481 people.
 Table \ref{tab:number_of_developers} shows the distribution of the number of developers per project.
-While 96\% of the projects were developed by small groups of 3 people or fewer, there were projects with up to 58 people involved.
-These developers have different backgrounds.
+While 96\% of the projects were developed by small groups of 3 people or fewer, there were projects with up to 58 developers involved.
+These developers have different backgrounds according to GitHub.
 Figure \ref{fig:other_languages} shows what are the most popular languages used by the Groovy developers in other GitHub projects. 
 Java is the most popular among them.
 Almost 2500 out of  of the 4481 developers of projects in our dataset also have Java projects hosted on GitHub.
@@ -633,9 +638,9 @@ Number of Developers & Fraction of Projects\tabularnewline
 % \end{figure}
 
 
-%ANALYSIS
+%ANALYZER
 \section{Static Code Analyzer\label{analyzer}}
-In order to understand where programmers use types, we developed a static code analyzer based on the Groovy metaprogramming library.
+In order to understand in which situations programmers use types, we developed a static code analyzer based on the Groovy metaprogramming library.
 This analyzer is capable of retrieving the declaration information of parameters and returns of methods, parameters of constructors, fields and local variables.
 In addition, the analyzer can tell if a declaration is part of a test class or a script and what is its visibility.
 
@@ -645,7 +650,7 @@ Instead, we generated the AST for each file using the \emph{CONVERSION} phase of
 At this phase, the compiler has not tried to resolve any dependencies yet, but it is capable of generating an AST with enough information to determine whether a declaration is typed or not.
 This makes it possible to analyze each Groovy file separately without having to compile the whole project.
 The downside of this approach is that we cannot analyze Groovy code in conjunction with its dependencies. 
-For example, it is impossible to determine whether programmers tend to type code that interacts with other typed modules since we have not resolved any dependencies to these modules.
+For example, it is not possible to determine whether programmers tend to type code that interacts with other typed modules since we have not resolved any dependencies on these modules.
 However, our choice was fundamental in order to execute a study with such an extensive dataset.
 % Nevertheless, as shown in the next section, we were still able to obtain detailed and relevant results.
 
