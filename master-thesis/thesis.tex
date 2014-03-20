@@ -26,6 +26,9 @@
   ]{hyperref}
 \usepackage[square]{natbib}
 
+\clubpenalty=10000 
+\widowpenalty = 10000 
+
 \newcommand{\ts}{\textsuperscript}
 
 \newcommand{\cell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
@@ -166,45 +169,45 @@ In addition, detailed results are displayed in Attachment \ref{detailed_results}
 %
 \chapter{Background\label{background}}
 In this chapter, we present the background of our study.
-We start by listing the pros and cons of using types to build software systems and the most relevant research about this topic.
-In the following section, we introduce the main concepts of the Groovy language, including its optional type system.
+We start by discussing the tradeoffs of different typing paradigms in Section \ref{sec:types}.
+In Section \ref{sec:groovy}, we introduce the main concepts of the Groovy language, including its optional type system.
 
-\section{Types and Related Work}
-In literature, it is common to find the following arguments in favor of typed languages:
+\section{Types and Related Work\label{sec:types}}
+In the literature, it is common to find the following arguments in favor of typed languages (\cite{type_systems, should_your_specification_language_be_typed, mayer2012static, bruch2009learning}):
 
 \begin{itemize}
-	\item Allow compilers to find type errors statically, thus decreasing the occurrence of defects on a system
-	\item Simplify the task of verifying the correctness of a program and potentially lead to higher productivity
-	\item Implicitly document the source code by communicating the nature of constructs to programmers and hence the increasing maintainability of a program
-	\item Generally lead to more efficient systems since no type checking need to be performed during run time
-	\item Allow modern development environments, such as Eclipse and IDEA, to use the information provided by types to assist programmers with productivity functionalities such as code completion or integrated documentation
+	\item They allow compilers to find type errors statically, thus decreasing the occurrence of defects on a system
+	\item They simplify the task of verifying the correctness of a program and potentially lead to higher productivity
+	\item They implicitly document the source code by communicating the nature of constructs to programmers and hence the increasing maintainability of a program
+	\item They generally lead to more efficient systems since no type checking need to be performed during run time
+	\item They allow modern development environments, such as Eclipse and IDEA, to use the information provided by types to assist programmers with productivity functionalities such as code completion or integrated documentation
 \end{itemize}
 
-Conversely, untyped languages also have advantages:
+Conversely, untyped languages also have advantages (\cite{types_and_programming_languages, dynamically_typed_languages}):
 \begin{itemize}
-	\item Tend to lead programmers to code faster by eliminating the repetitive work of declaring types
-	\item Allow programmers to focus on the problem to be solved rather than on the rules of the language 
-	\item Allow programmers to perform faster changes on a program thus adapting to changing requirements more easily
+	\item They tend to lead programmers to code faster by eliminating the repetitive work of declaring types
+	\item They allow programmers to focus on the problem to be solved rather than on the rules of the language 
+	\item They allow programmers to perform faster changes on a program thus adapting to changing requirements more easily
 \end{itemize}
 
 The impacts of different typing strategies have been widely studied in the literature.
 In an experiment conducted by \cite{Prechelt98}, it was possible to observe a positive impact when using type checking on procedure arguments.
-40 programmers were split in two groups and asked to perform two non trivial tasks based on an existing API.
+In this experiment, g40 programmers were split in two groups and asked to perform two non trivial tasks based on an existing API.
 One group used ANSI C, which check types statically.
 Meanwhile, the other group used a dialect of C which did not perform type checking (although types were still declared).
 The group using the C dialect with type checking produced less defects, were able to find errors more quickly and were more productive than the other group.
 
 % Untyped is faster
 % TODO this is a large scale experiment
-A recent series of experiments conducted by Stefan Hanenberg analyzes typing paradigms in various contexts.
+A recent series of experiments conducted by Hanenberg analyzes typing paradigms in various contexts.
 \cite{experiment_with_purity} compares the performance of two groups of students asked to develop two small systems. 
-Both groups used a language developed by the author, Purity. 
+Both groups used a language developed by the author, called Purity. 
 The only difference in the language used by the two groups was the type system.
 One group used a statically typed version of Purity while the other used a dynamically typed version of the same language.
 Results showed that the group using the dynamic version was significantly more productive than the other, which contradicts the results found by \cite{Prechelt98}. 
 
 % Typed is faster + contradiction
-In a follow up study \cite{hanenberg_icpc}, the authors obtained opposite conclusions. 
+In a follow up study by \cite{hanenberg_icpc}, the authors obtained opposite conclusions. 
 They compared the performance of two groups of developers in maintenance tasks. 
 The first group used Java, a statically typed language, and the other used Groovy, but restricting developers to use only untyped declarations in order to simulate a dynamically typed version of Java.
 In this case, the group using the statically typed language, Java, was much more productive.
@@ -227,7 +230,7 @@ Results showed that the DRuby compiler rarely managed to capture any errors that
 This result contradicts the argument that type checking can significantly reduce the occurrence of defects.
 However, the authors suggest an interesting explanation.
 Since most subjects involved in the study had previous experience with Ruby, they were probably used to the lack of typing.
-This result also raises the question whether type checks can effectively reduce the occurrence of run time errors only among those developers who are not used to dynamic typing.
+This result also raises the question whether type checks can effectively reduce the occurrence of run time errors only among developers who are not used to dynamic typing.
 
 The studies discussed above present very different and often contradictory results.
 The impact of the use of types on the development of software systems is a very complex topic and depends on a wide range of factors.
@@ -237,13 +240,13 @@ For example, assuming that typed programs are more reliable, but untyped program
 
 A recent work published by \cite{Meyerovich13} reports several prominent findings about the adoption of languages by programmers.
 Based on a combination of the analysis of a large dataset of source code repositories and multiple surveys, the authors were able to understand which factors influence the adoption of programming languages.
-In particular they report two interesting results involving type systems.
+In particular, they report two interesting results involving type systems.
 First, they found evidence that intrinsic factors, including the type system of a language, are only of secondary importance for language adoption.
 Extrinsic and social factors, such as open source libraries availability and existing team experience, are far more important in this case.
 This result shows that one can not determine the popularity of typing paradigms based solely on language popularity since in most cases languages are chosen because of an extrinsic factor.
 Second, \cite{Meyerovich13} shows that programmers prefer static typing as a means to increase the readability of their code rather than to provide compile time type checking.
 They seem to prefer unit tests as a means to increase the reliability of a program over static type checking.
-It is important to say though that these results were biased in favor of dynamically typed languages since they were based on a survey conducted among students of a web development course.
+However, it is important to say that these results might be biased in favor of dynamically typed languages since they were based on a survey conducted among students of a web development course.
 
 
 % JIT + optional typing: http://dl.acm.org/citation.cfm?id=2047853
@@ -252,7 +255,7 @@ It is important to say though that these results were biased in favor of dynamic
 % This was a short duration study where students were used as examples of developers with no interaction with other programmers. 
 % In our study, we try to get more relevant results when analyzing source code developed by programmers during their normal activities.
 
-\section{The Groovy Language\label{groovy}}
+\section{The Groovy Language\label{sec:groovy}}
 Groovy is a dynamically typed programming language designed to run on the Java Virtual Machine.
 Its adoption has grown remarkably over the last years.
 According to the TIOBE Programming Index, Groovy is the 22\textsuperscript{nd} most popular language in the software industry \cite{tiobe}, ahead of languages like Haskell and Scala. 
@@ -267,7 +270,7 @@ However, it allowed programmers to optionally type their declarations.
 Examples of typed and untyped declarations combined in the same file are shown in Listing \ref{dynamicTyping}.
 This kind of typing should not be confused with static typing since the Groovy compiler does not use these type annotations to look for errors.
 For example, the snippet of code shown in Listing \ref{typeError} compiles without any errors.
-Nevertheless, during runtime, the \emph{string} variable references an instance of the \emph{Integer} class and an exception is thrown when the method \emph{toUpperCase} is invoked since the \emph{Integer} class does not have such method.
+Nevertheless, during runtime, the \emph{string} variable refers to an instance of the \emph{Integer} class and an exception is thrown when the method \emph{toUpperCase} is invoked since the \emph{Integer} class does not have such method.
 
 \begin{Listing}[ht]
 \begin{lstlisting}[basicstyle=\ttfamily, language=Java,tabsize=2,breaklines=true,numbers=left,morekeywords={def}]
@@ -304,7 +307,7 @@ string.toUpperCase()
 Since version 2.0, Groovy allows programmers to explicitly activate static typing by using the \emph{@TypeChecked} annotation.
 This makes Groovy a gradually typed language (\cite{gray05,gray08,gray11,siek07,takikawa12}).
 In this mode, the Groovy compiler looks for type errors and fails if it finds any.
-Listing \ref{staticTyping} shows an example of static typing in Groovy.
+Listing \ref{staticTyping} shows an example of static typing with the \emph{@TypeChecked} annotation in Groovy.
 Trying to compile the class \emph{TypeCheckedGroovyClass} produces an error since the method \emph{sum} is supposed to receive two parameters of the type \emph{int}, but it is actually called with two parameters of the type \emph{String}.
 
 \begin{Listing}[ht]
@@ -362,8 +365,8 @@ public class JavaFilter {
 		list.add(3);
 		list.add(4);
 
-		List<Integer> result = new JavaFilter().evenNumbers(list);
-		System.out.println(result);
+		List<Integer> rslt = new JavaFilter().evenNumbers(list);
+		System.out.println(rslt);
 	}
 }
 \end{lstlisting}
