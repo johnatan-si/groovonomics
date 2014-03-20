@@ -47,11 +47,11 @@
   university={Federal University of Minas Gerais},
   course={Computer Science},
   address={Belo Horizonte},
-  portuguesetitle={Um Estudo Em\'{i}rico sobre o Uso de Tipagem Opcional em Sistemas de Software},
+  portuguesetitle={Um Estudo Emp\'{i}rico sobre o Uso de Tipagem Opcional em Sistemas de Software},
   portugueseuniversity={Universidade Federal de Minas Gerais},
   portuguesecourse={Ci\^{e}ncia da Computa\c{c}\~{a}o},
   date={2014-03},
-  advisor={Eduardo Magno Figueiredo},
+  advisor={Eduardo Magno Lages Figueiredo},
   % approval={img/approvalsheet.eps},
   abstract=[brazil]{Resumo}{resumo},
   abstract={Abstract}{abstract},
@@ -101,32 +101,36 @@ It is also possible to turn static type checking on so the compiler can find typ
 This allows developers to choose the most appropriate paradigm for each situation.
 
 
-\section{Problem}
+\section{Motivation}
 Although the tradeoffs between different typing paradigms have been widely researched, specially though controlled experiments, it is still unclear how programmers actually perceive these tradeoffs.
 For example, assuming that typed programs are more reliable, but untyped programs can be written faster, which factor would be considered more relevant by programmers and in which contexts?
 
-Finding the programmers' point of view about the use of types is far from trivial.
-Controlled experiments hardly reproduce real life situations, where many experienced programmers interact through a long period of time to build large and complex software systems.
-Also, one can not find the point of view of programmers about types by simply analyzing the programming language they choose since there are many other factors which might influence such choice.
-
-\section{Motivation}
-% Complement studies
 Understanding the point of view of programmers about the use of types is an important matter.
 Programming language developers can consider this information in their design so they can develop the most appropriate features for their target audience.
 Tools can be created or improved to overcome weaknesses of languages. 
 Finally, programmers can benefit from this knowledge when choosing programming languages or typing paradigms for a given context.
+
+Finding the programmers' point of view about the use of types is far from trivial.
+Controlled experiments hardly reproduce real life situations, where many experienced programmers interact through a long period of time to build large and complex software systems \cite{Wohlin2012}.
+Also, one can not find the point of view of programmers about types by simply analyzing the programming language they choose since there are many other factors which might influence such choice.
+
+
 
 % TODO
 % Complimentary study. Contraditions in experiments
 
 \section{Contributions}
 This dissertation presents a large scale empirical study about how programmers use optional typing in Groovy.
-Through the analysis of a massive dataset with almost seven thousand Groovy projects, we were able to identify when programmers prefer to type or not their declarations.
+Through the analysis of a massive dataset with 6638 Groovy projects, we were able to identify when programmers prefer to type or not their declarations. 
+In particular, we found that programmers do not use types in test classes, script files and frequently changed code as often as in other scenarios.
+On the other hand, types are extremely popular in interfaces of modules.
+Also, there is evidence that the use of types by programmers with statically typed languages background is more frequent.
+
 Our results bring more visibility over the point of view of programmers about the use of types in software systems.
 This analysis complements existing studies based on controlled experiments (\cite{Hanenberg13, ruby_vs_druby, experiment_with_purity, hanenberg_icpc, mayer2012static, Gannon77, Prechelt98}).
-Finally, we hope to inspire new researches about his topic by raising new research questions based on the obtained results.
+Finally, we hope to inspire new researches about this topic by raising new research questions based on the obtained results.
 
-Partial results of this study have been published as an article (\cite{souza_vem2013}) on the First Brazilian Workshop on Visualization, Evolution and Software Maintenance  where they received the best paper award.
+Partial results of this study have been published as a research paper (\cite{souza_vem2013}) on the First Brazilian Workshop on Visualization, Evolution and Software Maintenance  where they received the best paper award.
 More recent results have been approved to be published on the 13th International Conference on Modularity (\cite{souza_aosd2014}).
 In addition, the artifacts built in this study form the basis of an ongoing effort to develop a scalable framework for the static source code analysis of massive datasets called Elastic Repository Analysis (\cite{era}).
 
@@ -143,7 +147,7 @@ In addition, the artifacts built in this study form the basis of an ongoing effo
 The remainder of this document is organized as follows. 
 Chapter \ref{background} presents the background of this study, introducing the main concepts of type systems and of the Groovy language.
 In Chapter \ref{study-settings} we present the study settings which results are shown in Chapter \ref{results}.
-Chapter \ref{discussion} discusses the results of this study and Chapter \ref{conclusion} concludes this study and suggests future work.
+Chapter \ref{discussion} discusses the results of this study and threats to its validity and Chapter \ref{conclusion} concludes this study and suggests future work.
 % In addition, we present in Appendix \ref{era} a framework for the massive analysis of repositories on the cloud, which was built for the analysis presented in this dissertation.
 In addition, detailed results are displayed in Attachment \ref{detailed_results}.
 
