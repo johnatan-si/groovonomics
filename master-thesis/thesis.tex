@@ -668,15 +668,21 @@ However, our choice was fundamental in order to execute a study with such an ext
 % RESULTS
 %
 \chapter{Results\label{results}}
-This section presents the data obtained from our analysis and its statistical treatment.
-We show how the usage of types varies according to the kind and visibility of declarations, nature of code, programmers' background, project maturity and frequency of changes.
-The interpretation of these results is left to Chapter \ref{discussion}, which answers the proposed research questions (Section \ref{questions}) based on this data and raises new research questions.
+This section presents the data obtained from our analysis.
+Section \ref{sec:results-overall} shows the overall result.
+The usage of types according to the kind and visibility of declarations are presented in Sections \ref{sec:results-type} and \ref{sec:results-visibility}.
+Section \ref{sec:results-tests} shows how types are used in test and functional classes while Section \ref{sec:results-scripts} compares the usage of types in script and class files.
+We study the influence of programmers' background in Section \ref{sec:results-background} and how types are used according to age, size and number of commits of projects in Section \ref{sec:results-maturity}.
+Finally, we analyze the usage of types according to frequency of changes of files in Section \ref{sec:results-changes}.
+In this section we focus on the presentation and on the statistical treatment of the obtained results.
+Their interpretation is left to Chapter \ref{discussion}.
 
 \section{Overall Result\label{sec:results-overall}}
 
+This section presents an overview of the results.
 Figure \ref{fig:all_histogram_all} shows a histogram and the descriptive statistics for the relative usage of types in declarations of projects.
 This value can vary from 0 (a project does not declare any types) to 1 (all declarations of a project are typed). 
-All declarations are considered.
+All declarations are considered without making any distinction among them.
 
 \begin{figure}[h]
 \centering 
@@ -751,7 +757,7 @@ Since local variables are never part of a module interface, these results sugges
 
 The box plot graph and the descriptive statistics are not enough to determine whether the difference in the usage of types in any two kinds of declaration is significant.
 In order to do that, a significance test should be applied. 
-We start by defining a hypothesis below, which can then be rejected or accepted by this test.
+We start by defining a hypothesis below, which can then be rejected or accepted by the test.
 
 % Rewrite the hypothesis for ANOVA
 \begin{description}
@@ -761,10 +767,10 @@ We start by defining a hypothesis below, which can then be rejected or accepted 
 
 The appropriate significance test should be chosen carefully.
 It needs to compare multiple treatments, which represent the 5 distinct kinds of declaration.
-We first considered applying repeated \emph{t-tests} or \emph{Mann-Whitney U-tests} in order to compare every two kinds of declaration, i.e, fields vs. local variables, fields vs method returns, etc.
+We first considered applying repeated \emph{t-tests} or \emph{Mann-Whitney U-tests} (\cite{Wohlin2012}) in order to compare every two kinds of declaration, i.e, fields vs. local variables, fields vs method returns, etc.
 However, applying repeated tests over the same sample increases the probability of getting Type-I errors (rejecting the null hypothesis when it actually should be accepted).
 
-A valid alternative for our scenario is to use One-Way Between Groups ANOVA, which compares all means simultaneously and maintains the Type-I error probability at the designated level.
+A valid alternative for our scenario is to use One-Way Between Groups ANOVA, which compares all means simultaneously and maintains the Type-I error probability at the designated level (\cite{Wohlin2012}).
 ANOVA computes a \emph{p} value which indicates whether at least two treatments are significantly different from each other.
 The smaller the value of \emph{p}, the "more significant" is the difference and, consequently, the stronger the rejection of the null hypothesis.
 
@@ -784,7 +790,7 @@ This allows us to strongly reject the null hypothesis, even though we are using 
 
 The results above show a very clear influence of the kind of variable over the usage of types.
 However, it is also desirable to know which kinds of variables are different from each other and how different they are.
-For this purpose, we apply the Tukey Honest Significant Differences (Tukey HSD) test in conjunction with ANOVA.
+For this purpose, we apply the Tukey Honestly Significant Differences (\cite{kirk1995}), or Tukey HSD, test in conjunction with ANOVA.
 This method calculates, for every two treatments, a \emph{p} value indicating whether they are significantly different.
 It also reports a confidence interval for the difference between the means of these two treatments.
 The results of the Tukey Honest Significant Differences are displayed in Table \ref{tab:all_utest_type}.
@@ -800,9 +806,10 @@ Confidence intervals were calculated with a confidence of 0.999 ($1-\alpha$).
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
 
+\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by kind of declaration}
 \begin{tabular}{|c|c|c|c|}
 \hline 
-								& {}					& p  	      & Difference \\
+                & {}          & p         & Difference \\
 \hline
 \hline
 Local Variable & Contructor Parameter & 0      & (-0.55, -0.47) \\ \hline
@@ -816,7 +823,6 @@ Method Parameter& Local Variable & 0      & ( 0.35,  0.40) \\ \hline
 Method Return & Local Variable & 0      & ( 0.36,  0.41) \\ \hline
 Method Return & Method Parameter& 0.95 & (-0.02,  0.03) \\ \hline
 \end{tabular}
-\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by kind of declaration}
 \label{tab:all_utest_type}
 \end{table}
 
@@ -839,7 +845,7 @@ Although these are essentially the same kind of declaration in Groovy, they seem
 % VISIBILITY
 \section{Declaration Visibility\label{sec:results-visibility}}
 
-This section presents an analysis about how programmers use types according to the the visibility of a declaration.
+This section presents an analysis about how programmers use types according to the visibility of a declaration.
 We follow the same approach as in the previous section.
 Figure \ref{fig:all_boxplot_visibility_all} shows the box plots for the usage of types per declaration visibility along with the descriptive statistics.
 The ANOVA test reported a \emph{p} value equal to 0 for these treatments, allowing us to strongly reject the null hypothesis.
@@ -875,16 +881,16 @@ Private   				& 6023	& 0.43	& 0.40		& 0.32		\\ \hline
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
 
+\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by visibility of declaration}
 \begin{tabular}{|c|c|c|c|}
 \hline 
-								& {}		& p		& Difference	\\
+                & {}    & p   & Difference  \\
 \hline
 \hline
 Protected & Private & 0 & ( 0.47,  0.52) \\ \hline
 Public & Private & 0 & ( 0.24,  0.28) \\ \hline
 Public & Protected & 0 & (-0.27, -0.22) \\ \hline
 \end{tabular}
-\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by visibility of declaration}
 \label{tab:all_utest_visibility}
 \end{table}
 
@@ -893,9 +899,9 @@ Note how skewed is the distribution for these elements in Figure \ref{fig:all_bo
 Almost all 2387 projects which use protected visibility in their declarations have all of their protected fields, methods and constructors typed.
 The confidence intervals reported by the Tukey HSD test show very large differences between these declarations and those with either private or public visibility.
 Although public declarations are not typed as much, they are also typed very often.
-At least half of the projects type 75\% or more of their declarations.
+At least half of the projects type 75\% or more of their public declarations.
 Conversely, private declarations are those with the smallest relative use of types.
-These results again suggest a positive answer for Question Q1, which hypothesizes that declarations that are part of a module definition are typed more frequently.
+These results again suggest a positive answer for Question Q1, which hypothesizes that declarations that are part of a module interface definition are typed more frequently.
 
 
 % BREAKING VISIBILITY BY DECLARATION TYPE
@@ -938,7 +944,7 @@ We now analyze the use of types in test classes in comparison to main classes.
 We used a simple heuristic to determine the kind of the class.
 In Groovy, like in Java, it is common to organize test classes and main classes in different source folders.
 The convention adopted by build tools popular among Groovy programmers, such as Gradle and Maven, assumes that test classes and main classes are in the \emph{src/test/groovy} and \emph{src/main/groovy} directories respectively.
-Based on these conventions, we can assume that all classes inside a \emph{test} directory, but not in a \emph{main} directory, are test classes.
+Based on these conventions, we assume that all classes inside a \emph{test} directory, but not in a \emph{main} directory, are test classes.
 
 \begin{figure}[h]
 \centering 
@@ -981,22 +987,23 @@ White and gray box plots correspond to test classes and main classes respectivel
 
 In order to compare the usage of types in test and main classes, we use a slightly different approach.
 In this analysis, there are two independent variables, the kind of declaration and the kind of class.
-Thus, we are required to use Factorial ANOVA, which is the generalization of the One Way ANOVA for multiple factors.
+Thus, we are required to use Factorial ANOVA (\cite{Wohlin2012}), which is the generalization of the One Way ANOVA for multiple factors.
 Multiple values of \emph{p} are calculated by this test, each one corresponding to the comparison of treatments according to one of the factors.
 We report the \emph{p} value corresponding to the factor representing the kind of class.
 We also apply the Tukey HSD test, for which results are displayed in Table \ref{tab:test_utest_type}.
 This time we want to show what is the difference of the relative usage of types between the same kinds of declaration, but in different kinds of classes.
 For example, the third row of Table \ref{tab:test_utest_type} shows that there is a significant difference in how programmers type local variables in main and test classes.
-The difference between the relative usage of types in main classes and test classes falls in the $(0.05, 0.11)$ interval.
+The overall difference between the relative usage of types in main classes and test classes falls in the $(0.05, 0.11)$ interval.
 
 
 % ETA=0.072
 \begin{table}[h!]
 \centering{}%
 
+\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by main and test classes}
 \begin{tabular}{|c|c|c|}
 \hline 
-Declaration Type 		& p & Difference \\
+Declaration Type    & p & Difference \\
 \hline 
 \hline 
 Constructor Parameter &  0.98     & (-0.08,  0.16) \\ \hline
@@ -1005,13 +1012,12 @@ Local Variable &  0          & ( 0.05,  0.11) \\ \hline
 Method Parameter &  0          & ( 0.36,  0.44) \\ \hline
 Method Return &  0          & (-0.31, -0.26) \\ \hline
 \end{tabular}
-\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by main and test classes}
 \label{tab:test_utest_type}
 \end{table}
 
 
-The ANOVA test reported once again a \emph{p} value equal to 0, implying that the usage of type is different in test and main classes.
-Figure \ref{fig:test_boxplot_type} and Table \ref{tab:test_utest_type} show that this difference is significant for all kinds of declarations except constructor parameters.
+The ANOVA test reported once again a \emph{p} value equal to 0, implying that the usage of types is different in test and main classes.
+Figure \ref{fig:test_boxplot_type} and Table \ref{tab:test_utest_type} show that this difference is significant for all kinds of declarations, except for constructor parameters.
 While local variables in main classes are not typed very often, they are typed even less in test classes.
 At least half of the projects type none of the declarations of this kind in test classes.
 The difference in declarations of parameters of methods is even more evident since they are often typed in main classes, but almost never typed in test classes.
@@ -1022,9 +1028,9 @@ This indicates that many projects type either almost all or none of these declar
 Curiously, method returns are significantly more typed in test classes.
 The difference reported by the confidence interval in Table \ref{tab:test_utest_type} for this case is (-0.31, -0.26).
 At least half of the projects type all of their method returns in test classes.
-Although counterintuitive this result can be easily explained.
+Although counterintuitive, this result can be easily explained.
 Automated testing frameworks usually enforce a certain method signature for test methods.
-JUnit for example, which is used in 2525 of the 4350 projects with test classes, requires test methods to be typed as \emph{void}.
+JUnit, for example, which is used in 2525 of the 4350 projects with test classes, requires test methods to be typed as \emph{void}.
 Other popular test frameworks, such as TestNG, have similar requirements.
 This implies that, in this case, developers type their methods not because they want to, but because they have to.
 
@@ -1073,6 +1079,7 @@ Variable	 				& Class				& 5246	& 0.30	& 0.18	& 0.32	 \\
 \begin{table}[ht]
 \centering{}%
 
+\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types in script files and class files}
 \begin{tabular}{|c|c|c|}
 \hline 
 Declaration Type & p & Difference \\
@@ -1082,7 +1089,6 @@ Local Variable   & 0.39 & (-0.01, 0.04) \\ \hline
 Method Parameter & 0    & ( 0.24, 0.35) \\ \hline
 Method Return    & 0    & ( 0.30, 0.40) \\ \hline
 \end{tabular}
-\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types in script files and class files}
 \label{tab:script_utest_all}
 \end{table}
 
@@ -1095,7 +1101,7 @@ This indicates that, although most projects prefer not to use types in method re
 
 Along with the results of the analysis of test classes, the results presented in this section show that the answer for Question Q2 is positive.
 There are large differences in how programmers type scripts and classes.
-Although it is not clear from our analysis what is the reason for such phenomena, we will raise some hypothesis in our discussion, presented in Section \ref{discussion}.
+Although it is not clear from our analysis what is the reason for such phenomena, we discuss some hypotheses in Chapter \ref{discussion}.
 
 
 
@@ -1109,7 +1115,7 @@ The projects of those who developed only in dynamically typed languages, such as
 Finally, the third group is formed by the projects of those programmers with both dynamically and statically typed languages in their portfolio.
 We refer to these three groups by the names \emph{Static Only}, \emph{Dynamic Only} and \emph{Static and Dynamic} respectively.
 
-Figures \ref{fig:background_boxplot_type} and \ref{fig:background_boxplot_visibility}  show results by declaration type and visibility.
+Figures \ref{fig:background_boxplot_type} and \ref{fig:background_boxplot_visibility}  show results by declaration type and visibility respectively.
 The \emph{p} value reported by the ANOVA test is equal to 0, implying that there is a significant difference in how programmers with different backgrounds type their declarations.
 The results of the Tukey HSD test are reported in Tables \ref{tab:background_utest_type} and \ref{tab:backgorund_utest_visibility}.
 These tables are divided in three parts, each one corresponding to the comparison between the data of two of the three groups.
@@ -1164,8 +1170,8 @@ The comparison between the \emph{Static} and the other groups shows more clear d
 Most of the \emph{p} values reported by the Tukey HSD test are equal to 0.
 However, constructor parameters and protected declarations never present significant differences.
 This indicates a strong influence of these types of declarations over the programmers' behavior.
-There are other two other cases that do not present significant differences, method returns and public declarations, both in the comparisons between programmers of the \emph{Dynamic} and \emph{Static} groups.
-It is important though to say that the \emph{p} value reported in these two cases is relatively small, 0.01.
+There are two other cases that do not present significant differences, method returns and public declarations, both in the comparisons between programmers of the \emph{Dynamic} and \emph{Static} groups.
+It is important to say though that the \emph{p} value reported in these two cases is relatively small, 0.01.
 These differences are considered not significant only because we are using a very strict confidence level, but would be considered significantly different under a confidence level of 0.05.
 
 The results reported in this section suggest a positive answer for Question Q3, i.e, programmers use types differently depending on their background.
@@ -1210,34 +1216,34 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
 
+\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by declaration type and programmers background}
 \begin{tabular}{|c|c|c|c|}
 \hline 
-{}															& Declaration Type 		& p 		& Difference  \\
+{}                              & Declaration Type    & p     & Difference  \\
 \hline 
 \hline 
-\multirow{5}{*}{\cell{Static and Dynamic\\vs.\\Static}}	& Field					& 0    & (-0.17, -0.07)	\\ \cline{2-4}
-															& Constructor Parameter	& 1.0  & (-0.12,  0.06)	\\ \cline{2-4}
-															& Method Parameter		& 0    & (-0.11, 0.00)	\\ \cline{2-4}
-															& Method Return			& 0    & (-0.11, -0.01)	\\ \cline{2-4}
-															& Local Variable		& 0    & (-0.15, -0.05)	\\ 
+\multirow{5}{*}{\cell{Static and Dynamic\\vs.\\Static}} & Field         & 0    & (-0.17, -0.07) \\ \cline{2-4}
+                              & Constructor Parameter & 1.0  & (-0.12,  0.06) \\ \cline{2-4}
+                              & Method Parameter    & 0    & (-0.11, 0.00)  \\ \cline{2-4}
+                              & Method Return     & 0    & (-0.11, -0.01) \\ \cline{2-4}
+                              & Local Variable    & 0    & (-0.15, -0.05) \\ 
 \hline 
 \hline
 
-\multirow{5}{*}{\cell{Dynamic\\vs.\\Static}}				& Field					& 0    & (-0.23, -0.12)	\\ \cline{2-4}
-															& Constructor Parameter	& 0.99 & (-0.12,  0.07)	\\ \cline{2-4}
-															& Method Parameter		& 0    & (-0.14, -0.02)	\\ \cline{2-4}
-															& Method Return			& 0.01 & (-0.10,  0.00)	\\ \cline{2-4}
-															& Local Variable		& 0    & (-0.18, -0.07)	\\ 
+\multirow{5}{*}{\cell{Dynamic\\vs.\\Static}}        & Field         & 0    & (-0.23, -0.12) \\ \cline{2-4}
+                              & Constructor Parameter & 0.99 & (-0.12,  0.07) \\ \cline{2-4}
+                              & Method Parameter    & 0    & (-0.14, -0.02) \\ \cline{2-4}
+                              & Method Return     & 0.01 & (-0.10,  0.00) \\ \cline{2-4}
+                              & Local Variable    & 0    & (-0.18, -0.07) \\ 
 \hline 
 \hline
-\multirow{5}{*}{\cell{Static and Dynamic\\vs.\\Dynamic}}	& Field					& 0    & ( 0.01,  0.08)	\\ \cline{2-4}
-															& Constructor Parameter	& 1.00 & (-0.07,  0.06)	\\ \cline{2-4}
-															& Method Parameter		& 0.84 & (-0.02,  0.06)	\\ \cline{2-4}
-															& Method Return			& 0.94 & (-0.05,  0.02)	\\ \cline{2-4}
-															& Local Variable		& 0.12 & (-0.00,  0.06)	\\ 
+\multirow{5}{*}{\cell{Static and Dynamic\\vs.\\Dynamic}}  & Field         & 0    & ( 0.01,  0.08) \\ \cline{2-4}
+                              & Constructor Parameter & 1.00 & (-0.07,  0.06) \\ \cline{2-4}
+                              & Method Parameter    & 0.84 & (-0.02,  0.06) \\ \cline{2-4}
+                              & Method Return     & 0.94 & (-0.05,  0.02) \\ \cline{2-4}
+                              & Local Variable    & 0.12 & (-0.00,  0.06) \\ 
 \hline 
 \end{tabular}
-\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by declaration type and programmers background}
 \label{tab:background_utest_type}
 \end{table}
       
@@ -1245,28 +1251,28 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
+\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by declaration visibility and programmers background}
 \begin{tabular}{|c|c|c|c|}
 \hline 
-{}															& Declaration Visibility 	& p 		& Difference \\
+{}                              & Declaration Visibility  & p     & Difference \\
 \hline 
 \hline 
-\multirow{3}{*}{\cell{Static and Dynamic\\vs.\\Static}}		& Public					& 0.00	& (-0.10, 0.00)	\\ \cline{2-4}
-															& Protected					& 1.00	& (-0.07,  0.09)	\\ \cline{2-4}
-															& Private					& 0.00	& (-0.18, -0.08)	\\ 
+\multirow{3}{*}{\cell{Static and Dynamic\\vs.\\Static}}   & Public          & 0.00  & (-0.10, 0.00) \\ \cline{2-4}
+                              & Protected         & 1.00  & (-0.07,  0.09)  \\ \cline{2-4}
+                              & Private         & 0.00  & (-0.18, -0.08)  \\ 
 \hline 
 \hline
 
-\multirow{3}{*}{\cell{Dynamic\\vs.\\Static}}				& Public					& 0.01	& (-0.10,  0.01)	\\ \cline{2-4}
-															& Protected					& 1.00	& (-0.08,  0.09)	\\ \cline{2-4}
-															& Private					& 0.00	& (-0.23, -0.13)	\\ 
+\multirow{3}{*}{\cell{Dynamic\\vs.\\Static}}        & Public          & 0.01  & (-0.10,  0.01)  \\ \cline{2-4}
+                              & Protected         & 1.00  & (-0.08,  0.09)  \\ \cline{2-4}
+                              & Private         & 0.00  & (-0.23, -0.13)  \\ 
 \hline 
 \hline
-\multirow{3}{*}{\cell{Static and Dynamic\\vs.\\Dynamic}}	& Public					& 0.98	& (-0.04,  0.03)	\\ \cline{2-4}
-															& Protected					& 1.00	& (-0.05,  0.06)	\\ \cline{2-4}
-															& Private					& 0.00	& ( 0.02,  0.09)	\\ 
+\multirow{3}{*}{\cell{Static and Dynamic\\vs.\\Dynamic}}  & Public          & 0.98  & (-0.04,  0.03)  \\ \cline{2-4}
+                              & Protected         & 1.00  & (-0.05,  0.06)  \\ \cline{2-4}
+                              & Private         & 0.00  & ( 0.02,  0.09)  \\ 
 \hline 
 \end{tabular}
-\caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by declaration visibility and programmers background}
 \label{tab:backgorund_utest_visibility}
 \end{table}
 
@@ -1288,23 +1294,23 @@ Values close to 1 or -1 indicate very strong relationships and values above 0.5 
 \begin{table}[h!]
 
 \centering{}%
+\caption{Spearman Correlation between the usage of types and the size, age and number of commits of projects}
 \begin{tabular}{|c|c|c|c|c|}
 \hline 
-Declaration Type/Visibility	& Size		& Age	&	Commits\\
+Declaration Type/Visibility & Size    & Age & Commits\\
 \hline 
 \hline 
-Field						&  0.221	& -0.063	&  0.153	\\ \hline
-Constructor Parameter		& -0.072	& -0.132	& -0.053	\\ \hline
-Method Parameter			& -0.123	& -0.079	& -0.004	\\ \hline
-Method Return				& -0.071	&  0.168	& -0.027	\\ \hline
-Local Variable		 		&  0.057	& -0.049	&  0.112	\\ 
-\hline 			 
-\hline 		 
-Public						& -0.063	&   0.119	& -0.024	\\ \hline
-Protected					& -0.286	&  -0.020	& -0.165	\\ \hline
-Private				 		&  0.213	&  -0.068	&  0.160	\\ \hline
+Field           &  0.221  & -0.063  &  0.153  \\ \hline
+Constructor Parameter   & -0.072  & -0.132  & -0.053  \\ \hline
+Method Parameter      & -0.123  & -0.079  & -0.004  \\ \hline
+Method Return       & -0.071  &  0.168  & -0.027  \\ \hline
+Local Variable        &  0.057  & -0.049  &  0.112  \\ 
+\hline       
+\hline     
+Public            & -0.063  &   0.119 & -0.024  \\ \hline
+Protected         & -0.286  &  -0.020 & -0.165  \\ \hline
+Private           &  0.213  &  -0.068 &  0.160  \\ \hline
 \end{tabular}
-\caption{Spearman Correlation between the usage of types and the size, age and number of commits of projects}
 \label{tab:all_correlation_maturity}
 \end{table}	
 
@@ -1326,16 +1332,16 @@ According to our criteria, there are 223 mature projects in our dataset, which a
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
 
+\caption{Descriptive statistics for mature projects}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-{}		& Mean	& Median	& Std. Dev.	& Max	& Total		\\
+{}    & Mean  & Median  & Std. Dev. & Max & Total   \\
 \hline
 \hline
-Size (LoC)	& 9947 	& 5627 & 14594  & 149933	& 2218189	\\ \hline
-Commits   	& 487  	& 213    & 800   & 6545		& 108583	\\ \hline
-Age (Days)  & 600  	& 574  & 350   & 1469		& 133697	\\ \hline
+Size (LoC)  & 9947  & 5627 & 14594  & 149933  & 2218189 \\ \hline
+Commits     & 487   & 213    & 800   & 6545   & 108583  \\ \hline
+Age (Days)  & 600   & 574  & 350   & 1469   & 133697  \\ \hline
 \end{tabular}
-\caption{Descriptive statistics for mature projects}
 \label{tab:mature_dataset_characterization}
 \end{table}
 
@@ -1410,23 +1416,23 @@ Variable					& Other			& 5622 	& 0.29 		& 0.17	& 0.32 \\
 % \begin{table}[h!]
 % \centering{}%
 % 
+% \caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by mature projects and others}
 % \begin{tabular}{|c|c|c|}
 % \hline 
-% Declaration Type/Visibility 		& p & Difference \\
+% Declaration Type/Visibility     & p & Difference \\
 % \hline 
 % \hline 
-% Field                  & 0.0000	& (0.053,0.173)	\\ \hline
-% Constructor Parameter  & 0.3203	& (0.000,0.000) \\ \hline
-% Method Parameter       & 0.0794	& (-0.051,0.002) \\ \hline
-% Method Return          & 0.9373	& (-0.031,0.051) \\ \hline
-% Local Variable         & 0.0002	& (0.012,0.078)	\\ \hline
+% Field                  & 0.0000 & (0.053,0.173) \\ \hline
+% Constructor Parameter  & 0.3203 & (0.000,0.000) \\ \hline
+% Method Parameter       & 0.0794 & (-0.051,0.002) \\ \hline
+% Method Return          & 0.9373 & (-0.031,0.051) \\ \hline
+% Local Variable         & 0.0002 & (0.012,0.078) \\ \hline
 % \hline 
-% Public		& 0.8540	& (-0.031,0.045)	\\ \hline
-% Private		& 0.0000	& (0.000,0.000)		\\ \hline
-% Protected	& 0.0000	& (0.055,0.169)		\\ 
+% Public    & 0.8540  & (-0.031,0.045)  \\ \hline
+% Private   & 0.0000  & (0.000,0.000)   \\ \hline
+% Protected & 0.0000  & (0.055,0.169)   \\ 
 % \hline 
 % \end{tabular}
-% \caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by mature projects and others}
 % \label{tab:size_utest_type+visibility}
 % \end{table}	
 
@@ -1720,6 +1726,9 @@ S. Hanenberg, S. Kleinschmager, R. Robbes, E. Tanter, A. Stefik. An empirical st
 
 \bibitem[ISO25000(2004)]{Iso2004}
 ISO, and IEC FCD. 25000, Software engineering-software product quality requirements and evaluation (SQuaRE) - Guide to SQuaRE. International Organization for Standardization, 2004.
+
+\bibitem[Kirk (1995)]{kirk1995}
+R. E. Kirk. Experimental Design: Procedures for the Behavioral Sciences, 3rd edn. Brooks/Cole, Pacific Grove, California, 1995.
 
 \bibitem[Kleinschmager et. al.(2012)]{hanenberg_icpc}
 S. Kleinschmager, S. Hanenberg, R. Robbes, and A. Stefik. Do static type systems improve the maintainability of software systems? An empirical study. In Proceedings of the 20th IEEE International Conference on Program Comprehension (ICPC), 153- 162, 2012.
