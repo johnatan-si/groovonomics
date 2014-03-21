@@ -946,6 +946,30 @@ In Groovy, like in Java, it is common to organize test classes and main classes 
 The convention adopted by build tools popular among Groovy programmers, such as Gradle and Maven, assumes that test classes and main classes are in the \emph{src/test/groovy} and \emph{src/main/groovy} directories respectively.
 Based on these conventions, we assume that all classes inside a \emph{test} directory, but not in a \emph{main} directory, are test classes.
 
+For every project, we measured the usage of types in test classes and main classes.
+Script files are not considered in this analysis.
+We found test classes in 4350 of the 6638 projects in our dataset.
+Results are displayed in Figure \ref{fig:test_boxplot_type} and show the relative usage of types by declaration type.
+White and gray box plots correspond to test classes and main classes respectively.
+
+In order to compare the usage of types in test and main classes, we use a slightly different approach.
+In this analysis, there are two independent variables, the kind of declaration and the kind of class.
+Thus, we are required to use Factorial ANOVA (\cite{Wohlin2012}), which is the generalization of the One Way ANOVA for multiple factors.
+Multiple values of \emph{p} are calculated by this test, each one corresponding to the comparison of treatments according to one of the factors.
+We report the \emph{p} value corresponding to the factor representing the kind of class.
+We also apply the Tukey HSD test, for which results are displayed in Table \ref{tab:test_utest_type}.
+This time we want to show what is the difference of the relative usage of types between the same kinds of declaration, but in different kinds of classes.
+For example, the third row of Table \ref{tab:test_utest_type} shows that there is a significant difference in how programmers type local variables in main and test classes.
+The overall difference between the relative usage of types in main classes and test classes falls in the $(0.05, 0.11)$ interval.
+
+The ANOVA test reported once again a \emph{p} value equal to 0, implying that the usage of types is different in test and main classes.
+Figure \ref{fig:test_boxplot_type} and Table \ref{tab:test_utest_type} show that this difference is significant for all kinds of declarations, except for constructor parameters.
+While local variables in main classes are not typed very often, they are typed even less in test classes.
+At least half of the projects type none of the declarations of this kind in test classes.
+The difference in declarations of parameters of methods is even more evident since they are often typed in main classes, but almost never typed in test classes.
+The confidence interval reported by the Tukey HSD Test in this case is $(-0.36, -0.44)$.
+The large width of the box plots for fields and method parameters is noteworthy.
+This indicates that many projects type either almost all or none of these declarations.
 \begin{figure}[h]
 \centering 
 \includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/test/comparison/boxplots/6_declarations_by_type.png} 
@@ -979,21 +1003,9 @@ Variable	        	& Main			& 5548	& 0.30 		& 0.19	& 0.32 \\
 \label{fig:test_boxplot_type} 
 \end{figure}
 
-For every project, we measured the usage of types in test classes and main classes.
-Script files are not considered in this analysis.
-We found test classes in 4350 of the 6638 projects in our dataset.
-Results are displayed in Figure \ref{fig:test_boxplot_type} and show the relative usage of types by declaration type.
-White and gray box plots correspond to test classes and main classes respectively.
+\FloatBarrier
 
-In order to compare the usage of types in test and main classes, we use a slightly different approach.
-In this analysis, there are two independent variables, the kind of declaration and the kind of class.
-Thus, we are required to use Factorial ANOVA (\cite{Wohlin2012}), which is the generalization of the One Way ANOVA for multiple factors.
-Multiple values of \emph{p} are calculated by this test, each one corresponding to the comparison of treatments according to one of the factors.
-We report the \emph{p} value corresponding to the factor representing the kind of class.
-We also apply the Tukey HSD test, for which results are displayed in Table \ref{tab:test_utest_type}.
-This time we want to show what is the difference of the relative usage of types between the same kinds of declaration, but in different kinds of classes.
-For example, the third row of Table \ref{tab:test_utest_type} shows that there is a significant difference in how programmers type local variables in main and test classes.
-The overall difference between the relative usage of types in main classes and test classes falls in the $(0.05, 0.11)$ interval.
+
 
 
 % ETA=0.072
@@ -1016,14 +1028,7 @@ Method Return &  0          & (-0.31, -0.26) \\ \hline
 \end{table}
 
 
-The ANOVA test reported once again a \emph{p} value equal to 0, implying that the usage of types is different in test and main classes.
-Figure \ref{fig:test_boxplot_type} and Table \ref{tab:test_utest_type} show that this difference is significant for all kinds of declarations, except for constructor parameters.
-While local variables in main classes are not typed very often, they are typed even less in test classes.
-At least half of the projects type none of the declarations of this kind in test classes.
-The difference in declarations of parameters of methods is even more evident since they are often typed in main classes, but almost never typed in test classes.
-The confidence interval reported by the Tukey HSD Test in this case is $(-0.36, -0.44)$.
-The large width of the box plots for fields and method parameters is noteworthy.
-This indicates that many projects type either almost all or none of these declarations.
+
 
 Curiously, method returns are significantly more typed in test classes.
 The difference reported by the confidence interval in Table \ref{tab:test_utest_type} for this case is (-0.31, -0.26).
@@ -1051,6 +1056,14 @@ Note that constructors and fields are not considered since there is no way to de
 Also, we do not present an analysis of declarations grouped by visibility since, although allowed, defining the visibility of a declaration inside a script does not make much sense.
 
 
+
+The execution of the ANOVA test reported a \emph{p} value equal to 0, revealing that the declarations are typed significantly different in script files.
+Table \ref{tab:script_utest_all} displays the results for the Tukey HSD test, which provide detailed results by the kind of declaration.
+There is no significant difference on the usage of types in local variables.
+On the other hand, declarations of parameters or returns of methods are typed much less frequently in scripts.
+Note however that the value for the last quartile of these declarations is very high, superior to 0.8.
+This indicates that, although most projects prefer not to use types in method returns, there are a few projects that consistently type most of them.
+
 \begin{figure}[h]
 \centering 
 \includegraphics[width=0.7\textwidth]{../aosd_2014/analysis/result/script/comparison/boxplots/6_declarations_by_type.png} 
@@ -1075,6 +1088,7 @@ Variable	 				& Class				& 5246	& 0.30	& 0.18	& 0.32	 \\
 \label{fig:script_boxplot_type} 
 \end{figure}
 
+\FloatBarrier
 % ETA=0.067
 \begin{table}[ht]
 \centering{}%
@@ -1091,13 +1105,6 @@ Method Return    & 0    & ( 0.30, 0.40) \\ \hline
 \end{tabular}
 \label{tab:script_utest_all}
 \end{table}
-
-The execution of the ANOVA test reported a \emph{p} value equal to 0, revealing that the declarations are typed significantly different in script files.
-Table \ref{tab:script_utest_all} displays the results for the Tukey HSD test, which provide detailed results by the kind of declaration.
-There is no significant difference on the usage of types in local variables.
-On the other hand, declarations of parameters or returns of methods are typed much less frequently in scripts.
-Note however that the value for the last quartile of these declarations is very high, superior to 0.8.
-This indicates that, although most projects prefer not to use types in method returns, there are a few projects that consistently type most of them.
 
 Along with the results of the analysis of test classes, the results presented in this section show that the answer for Question Q2 is positive.
 There are large differences in how programmers type scripts and classes.
@@ -1126,7 +1133,15 @@ Let's start with the comparison between projects in the \emph{Static and Dynamic
 There are significant differences only in private declarations and declarations of fields.
 Still, these differences are not very large, $(0.01,0.08)$ for fields and $(0.02,0.09)$ for private declarations.
 All in all, these two groups present very similar behavior when typing their declarations, apart from those two exceptions.
+                
 
+The comparison between the \emph{Static} and the other groups shows more clear differences.
+Most of the \emph{p} values reported by the Tukey HSD test are equal to 0.
+However, constructor parameters and protected declarations never present significant differences.
+This indicates a strong influence of these types of declarations over the programmers' behavior.
+There are two other cases that do not present significant differences, method returns and public declarations, both in the comparisons between programmers of the \emph{Dynamic} and \emph{Static} groups.
+It is important to say though that the \emph{p} value reported in these two cases is relatively small, 0.01.
+These differences are considered not significant only because we are using a very strict confidence level, but would be considered significantly different under a confidence level of 0.05.
 
 \begin{figure}[ht!]
 \centering 
@@ -1164,15 +1179,12 @@ Field											& Both				& 3183	& 0.43		& 0.39 		& 0.34\\
 \caption{Usage of types by declaration type and programmer background}
 \label{fig:background_boxplot_type}
 \end{figure}
-                
 
-The comparison between the \emph{Static} and the other groups shows more clear differences.
-Most of the \emph{p} values reported by the Tukey HSD test are equal to 0.
-However, constructor parameters and protected declarations never present significant differences.
-This indicates a strong influence of these types of declarations over the programmers' behavior.
-There are two other cases that do not present significant differences, method returns and public declarations, both in the comparisons between programmers of the \emph{Dynamic} and \emph{Static} groups.
-It is important to say though that the \emph{p} value reported in these two cases is relatively small, 0.01.
-These differences are considered not significant only because we are using a very strict confidence level, but would be considered significantly different under a confidence level of 0.05.
+
+
+
+
+\FloatBarrier
 
 The results reported in this section suggest a positive answer for Question Q3, i.e, programmers use types differently depending on their background.
 This difference is larger when comparing those projects of the \emph{Static} group with projects of the other groups.
@@ -1212,6 +1224,8 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 
 \FloatBarrier
 
+
+
 \begin{table}[h!]
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
@@ -1249,6 +1263,8 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
       
 \begin{table}[h!]
 
+\FloatBarrier
+
 \centering{}%
 \renewcommand{\arraystretch}{1.2}
 \caption{Tukey Honest Significant Differences Test results for the comparison between the usage of types by declaration visibility and programmers background}
@@ -1278,6 +1294,7 @@ Public											& Both				& 3191	& 0.68		& 0.75 		& 0.30\\
 
 
 
+\clearpage
 
 % PROJECT MATURITY
 \section{Project Size, Age and Number of Commits\label{sec:results-maturity}}
