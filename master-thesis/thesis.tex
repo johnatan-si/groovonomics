@@ -1633,37 +1633,59 @@ Finally, the tools used to code in a given language might influence programmers 
 % CONCLUSION AND FUTURE WORK
 %
 \chapter{Conclusions and Future Work\label{conclusion}}
+
+In this chapter, we show the main conclusions of this study in Section \ref{sec:conclusion} and describe future work in Section \ref{sec:future}.
+
+\section{Conclusions\label{sec:conclusion}}
 Type systems is an important topic in software engineering and is becoming even more popular with the growing adoption of dynamically typed languages, such as JavaScript and Ruby.
 While using types potentially leads to more reliable and maintainable code, untyped programs might be faster to write and easier to change.
 This dissertation presented a study with the goal of finding how programmers of an optionally typed language perceive these tradeoffs.
-Through the large scale analysis of the source code of 6638 projects written in Groovy we were able to find the following results:
+Through the large scale analysis of the source code of 6638 projects written in Groovy we were able to find in which situations programmers preferred the usage of types or not.
+We found the following results:
 
 \begin{itemize}
-	\item Groovy programmers type declarations that define the interface of modules more often than other declarations
-	\item Types are less popular in test classes and script files
-	\item Those programmers who have developed in at least one dynamically typed language use types less frequently than those who have only worked with statically typed languages
-	\item Apparently, there is no influence of the size, age or level of activity of a project on how programmers use types
-	\item In most projects, the files that change more frequently are also those files with a lower usage of types
+	\item \emph{Groovy programmers type declarations that define the interface of modules more often than other declarations.} 
+While public and protected declarations were typed very frequently, most private declarations and declarations of local variables were not typed. We also found that protected declarations and declarations of constructors, which we believe to be extremely important elements of a module definition, were almost always typed.
+
+	\item \emph{Types are used differently in test classes and script files.}  We observed a much higher usage of types in functional classes and class files than in these scenarios.
+
+	\item \emph{A programmer's background influences the choice of programmers whether to use types or not.} Those programmers who have developed in at least one dynamically typed language use types less frequently than those who have only worked with statically typed languages.
+	
+	\item \emph{Apparently, there is no influence of the size, age or level of activity of a project on how programmers use types.} We have not found any correlation between these variables and the usage of types. We also analyzed the usage of types in projects considered mature, where all of these variables had high values, and found no significant difference to other projects.
+
+	\item \emph{Untyped declarations are more popular in frequently changed files.} In most projects, the files that change more frequently are also those files with a lower usage of types.
 \end{itemize}
 
-We believe that these results are valuable to the developers of programming languages and development tools who can base their designs on real user data.
+We believe that these results are valuable to developers of programming languages and development tools, who can base their designs on real user data.
 Also, programmers can understand the tradeoffs between using or not types in their projects.
 Our results provide a different point of view and complement previous studies, which analyzed typing strategies through the use of controlled experiments. 
 We hope that the questions raised in our discussion can inspire other researchers to analyze our findings in more detail.
 
-% \section{Future Work}
-% \subsection*{Measuring the impact of compile, runtime and unit test error messages on maintenance time}
-In future work we want to conduct controlled experiments and qualitative studies in order to evaluate some of our results in more details.
-In particular, we have started a new study with the goal of finding what is the impact of the use of the documentation provided by types and the documentation provided by unit tests on the development time of maintenance tasks.
+\section{Future Work\label{sec:future}}
+\subsection*{Measuring the impact of compile, runtime and unit test error messages on maintenance time}
+In future work we want to conduct controlled experiments and qualitative studies in order to evaluate some of our results in more detail.
+In particular, we have started a new study with the goal of comparing the productivity of developers on maintenance tasks of statically typed software and unit tested dynamically typed software.
+Our hypothesis is that, given the proper set of automated tests, dynamically typed languages can lead to systems which are as robust and maintainable as those written with statically typed languages.
 
-% \subsection*{ERA: An Elastic Framework for Repository Analysis on the Cloud}
+Our first experiment compares the development time of developers fixing a few type errors.
+They are given either compiler error messages, runtime exceptions or unit test error messages.
+Preliminary results show that programmers develop their tasks much faster when dealing with compiler error messages than with runtime exceptions.
+However, there is no significant difference between those developers dealing with compiler error messages and unit test error messages.
+These results lead us to believe that, in fact, unit tests make up for the lack of type checking.
+
+\subsection*{ERA: An Elastic Framework for Repository Analysis on the Cloud}
 Another work in progress is a framework for the static source code analysis of massive datasets called Elastic Repository Analysis - ERA\footnote{http://github.com/carlosgsouza/ERA}.
 This framework is based on the artifacts we built to analyze the Groovy projects in this study.
 ERA will help researchers retrieve large numbers of projects from GitHub and process these projects quickly on the cloud using Amazon Web Services.
+It will take care of downloading and storing huge amounts of projects and managing a large set of computing instances to process such projects.
 
 
+\subsection*{Groovonomics: Sharing the results with the Groovy community}
+One of the main contributions of this dissertation is to allow programming language and tools developers to base their designs on precise and real user data.
+In particular, we believe that the Groovy community can greatly benefit from these results.
+However, in order to effectively share these results with them, we need to generate a simpler representation of our data so they can be understood by people outside the academic community.
+We are working on an website called \emph{groovonomics}, which will display such results in the form of infographics, making them easier to be absorbed.
 
-% TODO
 % In our discussion, in Section \ref{discussion}, we avoided providing definitive answers for what caused the behavior we found in our analysis.
 % Instead, we raised many hypothesis to explain these results.
 % It is difficult however to state whether these hypothesis make sense or not.
